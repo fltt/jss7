@@ -13,7 +13,7 @@
 	<properties>
 		<ss7.name>Mobicents jSS7</ss7.name>
 		<ss7.vendor>TeleStax</ss7.vendor>
-		<ss7.version>${pom.version}</ss7.version>
+		<ss7.version>${project.version}</ss7.version>
 	</properties>
 
 	<dependencies>
@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
 			<artifactId>linkset</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Hardware Dahdi Java 
@@ -149,15 +149,6 @@
 			<artifactId>cap-impl</artifactId>
 			<groupId>org.mobicents.protocols.ss7.cap</groupId>
 		</dependency>
-
-		<dependency>
-			<artifactId>isup-api</artifactId>
-			<groupId>org.mobicents.protocols.ss7.isup</groupId>
-		</dependency>
-		<dependency>
-			<artifactId>isup-impl</artifactId>
-			<groupId>org.mobicents.protocols.ss7.isup</groupId>
-		</dependency>
 		
 		<dependency>
 			<artifactId>tcap-api</artifactId>
@@ -179,7 +170,7 @@
 				
 	</dependencies>
 	<build>
-		<finalName>${pom.artifactId}-${pom.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

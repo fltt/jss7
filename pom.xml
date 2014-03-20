@@ -13,7 +13,7 @@
 
 	<packaging>pom</packaging>
 
-	<name>Mobicents SS7 :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: ${project.artifactId}</name>
 
 
 
@@ -93,169 +93,169 @@
 			<dependency>
 				<groupId>org.mobicents.protocols.ss7.scheduler</groupId>
 				<artifactId>scheduler</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<!-- Clock -->
 			<dependency>
 				<groupId>org.mobicents.protocols.ss7.clock</groupId>
 				<artifactId>clock</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<!-- Management Shell -->
 			<dependency>
 				<artifactId>shell-transport</artifactId>
 				<groupId>org.mobicents.protocols.ss7.management</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>shell-client</artifactId>
 				<groupId>org.mobicents.protocols.ss7.management</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>shell-server-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.management</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>shell-server-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.management</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<!-- Management linkset -->
 			<dependency>
 				<artifactId>linkset</artifactId>
 				<groupId>org.mobicents.protocols.ss7.hardware</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- Hardware Dahdi Java -->
 			<dependency>
 				<artifactId>mobicents-dahdi</artifactId>
 				<groupId>org.mobicents.protocols.ss7.hardware</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- Hardware Dialogic Java -->
 			<dependency>
 				<artifactId>mobicents-dialogic</artifactId>
 				<groupId>org.mobicents.protocols.ss7.hardware</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- /hardware m3ua Java -->
 			<dependency>
 				<artifactId>mobicents-m3ua</artifactId>
 				<groupId>org.mobicents.protocols.ss7.hardware</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- MTP -->
 			<dependency>
 				<artifactId>mtp</artifactId>
 				<groupId>org.mobicents.protocols.ss7.mtp</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>mtp-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.mtp</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- M3UA -->
 			<dependency>
 				<artifactId>m3ua-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.m3ua</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>m3ua-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.m3ua</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- ISUP -->
 			<dependency>
 				<artifactId>isup-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.isup</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>isup-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.isup</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- SCCP -->
 			<dependency>
 				<artifactId>sccp-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.sccp</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>sccp-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.sccp</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- TCAP -->
 			<dependency>
 				<artifactId>tcap-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.tcap</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>tcap-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.tcap</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- MAP -->
 			<dependency>
 				<artifactId>map-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.map</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>map-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.map</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- INAP -->
 			<dependency>
 				<artifactId>inap-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.inap</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>inap-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.inap</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- CAP -->
 			<dependency>
 				<artifactId>cap-api</artifactId>
 				<groupId>org.mobicents.protocols.ss7.cap</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<artifactId>cap-impl</artifactId>
 				<groupId>org.mobicents.protocols.ss7.cap</groupId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- Statistics -->
 			<dependency>
 				<groupId>org.mobicents.protocols.ss7.statistics</groupId>
 				<artifactId>statistics-api</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.mobicents.protocols.ss7.statistics</groupId>
 				<artifactId>statistics-impl</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 
@@ -291,7 +291,7 @@
 			<dependency>
 				<groupId>org.mobicents.protocols.ss7.congestion</groupId>
 				<artifactId>congestion</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -452,6 +452,22 @@
 			</plugin>
 
 		</plugins>
+
+                <pluginManagement>
+                  <plugins>
+                    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-surefire-plugin</artifactId>
+                      <version>2.12.4</version>
+                    </plugin>
+                    <plugin>
+		      <groupId>org.codehaus.mojo</groupId>
+                      <artifactId>native-maven-plugin</artifactId>
+                      <version>1.0-alpha-8</version>
+                    </plugin>
+                  </plugins>
+                </pluginManagement>
+
 	</build>
 
 	<scm>
@@ -489,4 +505,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
 </project>

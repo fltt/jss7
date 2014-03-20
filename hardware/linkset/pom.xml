@@ -8,14 +8,14 @@
 	</parent>
 
 	<artifactId>linkset</artifactId>
-	<name>Mobicents SS7 :: Hardware :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: Hardware :: ${project.artifactId}</name>
 
 	<dependencies>
 		<!-- shell -->
 		<dependency>
 			<groupId>org.mobicents.protocols.ss7.management</groupId>
 			<artifactId>shell-server-api</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- non mobicents -->
 		<dependency>

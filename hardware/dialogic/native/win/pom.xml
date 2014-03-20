@@ -13,14 +13,14 @@
 		<include.dialogic>C:/workarea/mobicents/dialogic/DSI/INC</include.dialogic>
 		<include.dialogic.gctlib>C:/workarea/mobicents/dialogic/DSI/LIB32</include.dialogic.gctlib>
 	</properties>
-	<name>Mobicents SS7 :: Hardware :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: Hardware :: ${project.artifactId}</name>
 	<packaging>dll</packaging>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
 			<artifactId>mobicents-dialogic</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

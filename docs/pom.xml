@@ -11,7 +11,7 @@
 
 	<artifactId>mobicents-ss7-docs</artifactId>
 	<groupId>org.mobicents.protocols.ss7.docs</groupId>
-	<name>Mobicents SS7 :: Docs :: Parent :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: Docs :: Parent :: ${project.artifactId}</name>
 	<packaging>pom</packaging>
 
 	<properties>

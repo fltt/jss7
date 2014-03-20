@@ -10,7 +10,7 @@
 	<artifactId>libmobicents-dahdi-linux</artifactId>
 
 	<name>
-		Mobicents SS7 :: Hardware :: ${pom.artifactId}
+		Mobicents SS7 :: Hardware :: ${project.artifactId}
 	</name>
 	
 	<properties>
@@ -23,12 +23,12 @@
 		<dependency>
 			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
 			<artifactId>mobicents-dahdi</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}</finalName>
+		<finalName>${project.artifactId}</finalName>
 
 		<testSourceDirectory>../src/test/java</testSourceDirectory>
 

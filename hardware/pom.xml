@@ -11,7 +11,7 @@
 	<artifactId>mobicents-hardware</artifactId>
 
 	<name>
-		Mobicents SS7 :: Hardware :: Parent :: ${pom.artifactId}
+		Mobicents SS7 :: Hardware :: Parent :: ${project.artifactId}
 	</name>
 	<packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
 	</profiles>
 
 	<build>
-		<finalName>${pom.artifactId}-${pom.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

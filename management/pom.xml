@@ -9,7 +9,7 @@
 
 	<groupId>org.mobicents.protocols.ss7.management</groupId>
 	<artifactId>management</artifactId>
-	<name>Mobicents SS7 :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: ${project.artifactId}</name>
 
 
 	<modules>
@@ -20,7 +20,7 @@
 	</modules>
 
 	<build>
-		<finalName>${pom.artifactId}-${pom.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

@@ -12,7 +12,7 @@
 	<artifactId>mobicents-dahdi</artifactId>
 	
 	<name>
-		Mobicents SS7 :: Hardware :: ${pom.artifactId}
+		Mobicents SS7 :: Hardware :: ${project.artifactId}
 	</name>
 
 	<dependencies>
@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
 			<artifactId>linkset</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mobicents.protocols.ss7.mtp</groupId>

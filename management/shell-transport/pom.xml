@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>shell-transport</artifactId>
-	<name>Mobicents SS7 :: Management :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: Management :: ${project.artifactId}</name>
 
 	<dependencies>
 		<dependency>
@@ -42,7 +42,7 @@
 			<properties>
 				<cli.name>Mobicents CLI</cli.name>
 				<cli.vendor>TeleStax</cli.vendor>
-				<cli.version>${pom.version}</cli.version>
+				<cli.version>${project.version}</cli.version>
 				<cli.prefix>mobicents</cli.prefix>
 			</properties>
 		</profile>
@@ -51,7 +51,7 @@
 			<properties>
 				<cli.name>TelScale CLI</cli.name>
 				<cli.vendor>TeleStax</cli.vendor>
-				<cli.version>${pom.version}</cli.version>
+				<cli.version>${project.version}</cli.version>
 				<cli.prefix>telscale</cli.prefix>
 			</properties>
 		</profile>

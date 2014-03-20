@@ -11,7 +11,7 @@
   <groupId>org.mobicents.protocols.ss7.tools.traceparser</groupId>
 
   <packaging>pom</packaging>
-  <name>Mobicents Trase Parser :: ${pom.artifactId}</name>
+  <name>Mobicents Trase Parser :: ${project.artifactId}</name>
 
   <modules>
   	<module>parser</module>

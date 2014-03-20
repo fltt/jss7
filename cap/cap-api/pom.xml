@@ -9,7 +9,7 @@
 
 	<artifactId>cap-api</artifactId>
 
-	<name>Mobicents SS7 :: CAP :: Api :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: CAP :: Api :: ${project.artifactId}</name>
 
 	<properties>
 		<maven.test.skip>false</maven.test.skip>
@@ -51,6 +51,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>${pom.artifactId}-${pom.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 	</build>
 </project>

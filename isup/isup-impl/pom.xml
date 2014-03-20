@@ -9,7 +9,7 @@
 
 	<artifactId>isup-impl</artifactId>
 
-	<name>Mobicents SS7 :: ISUP :: Impl :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: ISUP :: Impl :: ${project.artifactId}</name>
 	
 	<dependencies>
 		<!-- TESTs, req to enable concurrent! not used now -->
@@ -27,9 +27,9 @@
 			<artifactId>log4j</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>isup-api</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>concurrent</groupId>
@@ -47,7 +47,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${pom.artifactId}-${pom.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

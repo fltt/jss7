@@ -8,12 +8,12 @@
 
 	<artifactId>gateway</artifactId>
 
-	<name>Mobicents SS7 :: SGW :: Gateway :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: SGW :: Gateway :: ${project.artifactId}</name>
 
 	<properties>
 		<sgw.name>Mobicents SGW</sgw.name>
 		<sgw.vendor>TeleStax</sgw.vendor>
-		<sgw.version>${pom.version}</sgw.version>
+		<sgw.version>${project.version}</sgw.version>
 	</properties>
 	
 	<dependencies>
@@ -77,14 +77,9 @@
 			<groupId>javolution</groupId>
 			<artifactId>javolution</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.mobicents.protocols.ss7.hardware</groupId>
-			<artifactId>linkset</artifactId>
-			<version>${pom.version}</version>
-		</dependency>
 	</dependencies>
 	<build>
-		<finalName>${pom.artifactId}-${pom.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

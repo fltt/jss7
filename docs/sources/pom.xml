@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>mobicents-ss7-docs-sources</artifactId>
-	<name>Mobicents SS7 :: Docs :: Sources :: ${pom.artifactId}</name>
+	<name>Mobicents SS7 :: Docs :: Sources :: ${project.artifactId}</name>
 	<properties>
 
 	</properties>
