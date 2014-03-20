@@ -109,10 +109,10 @@ public class SccpExecutor implements ShellExecutor {
             }
         } catch (Exception e) {
             logger.error(String.format("Error while executing comand %s", Arrays.toString(options)), e);
-            return e.toString();
+            return e.getMessage();
         } catch (Throwable t) {
             logger.error(String.format("Error while executing comand %s", Arrays.toString(options)), t);
-            return t.toString();
+            return t.getMessage();
         }
 
         return SccpOAMMessage.INVALID_COMMAND;
