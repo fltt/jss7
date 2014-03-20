@@ -77,11 +77,11 @@
 						<id>javah</id>
 						<phase>generate-sources</phase>
 						<configuration>
-							<classNames>
-								<className>
+							<javahClassNames>
+								<javahClassName>
 									org.mobicents.ss7.hardware.dahdi.Channel
-								</className>
-							</classNames>
+								</javahClassName>
+							</javahClassNames>
 						</configuration>
 						<goals>
 							<goal>javah</goal>
@@ -91,11 +91,11 @@
 						<id>javah-1</id>
 						<phase>generate-sources</phase>
 						<configuration>
-							<classNames>
-								<className>
+							<javahClassNames>
+								<javahClassName>
 									org.mobicents.ss7.hardware.dahdi.Selector
-								</className>
-							</classNames>
+								</javahClassName>
+							</javahClassNames>
 						</configuration>
 						<goals>
 							<goal>javah</goal>
