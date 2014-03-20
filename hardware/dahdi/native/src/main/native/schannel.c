@@ -1,6 +1,6 @@
 #include <org_mobicents_ss7_hardware_dahdi_Channel.h>
 #include <org_mobicents_ss7_hardware_dahdi_Selector.h>
-#include <user.h>
+#include <dahdi/user.h>
 #include <errno.h>
 #include <stdio.h>
 #include <unistd.h>
