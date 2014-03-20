@@ -47,3 +47,6 @@ debuglog.txt.*
 
 #generated doc src
 docs/sources-*/src
+
+# emacs desktop save file
+.emacs.desktop
