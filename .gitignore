@@ -49,4 +49,4 @@ debuglog.txt.*
 docs/sources-*/src
 
 # emacs desktop save file
-.emacs.desktop
+.emacs.desktop*
