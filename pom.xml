@@ -95,12 +95,6 @@
 				<artifactId>scheduler</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<!-- Clock -->
-			<dependency>
-				<groupId>org.mobicents.protocols.ss7.clock</groupId>
-				<artifactId>clock</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 			<!-- Management Shell -->
 			<dependency>
 				<artifactId>shell-transport</artifactId>
