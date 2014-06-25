@@ -56,17 +56,14 @@ public class GPRSEventImpl extends SequenceBase implements GPRSEvent {
         this.monitorMode = monitorMode;
     }
 
-    @Override
     public GPRSEventType getGPRSEventType() {
         return this.gprsEventType;
     }
 
-    @Override
     public MonitorMode getMonitorMode() {
         return this.monitorMode;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -118,7 +115,6 @@ public class GPRSEventImpl extends SequenceBase implements GPRSEvent {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -139,7 +135,6 @@ public class GPRSEventImpl extends SequenceBase implements GPRSEvent {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

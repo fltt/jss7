@@ -36,7 +36,6 @@ public class RPCauseImpl extends OctetStringLength1Base implements RPCause {
         super("RPCause", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }

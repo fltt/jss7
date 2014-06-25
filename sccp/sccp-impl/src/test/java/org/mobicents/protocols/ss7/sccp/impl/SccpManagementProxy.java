@@ -79,7 +79,6 @@ public class SccpManagementProxy extends SccpManagement {
         super.setSccpRoutingControl(sccpRoutingControl);
     }
 
-    @Override
     public void onManagementMessage(SccpDataMessage message) {
         byte[] data = message.getData();
         int messgType = data[0];
@@ -92,7 +91,6 @@ public class SccpManagementProxy extends SccpManagement {
         super.onManagementMessage(message);
     }
 
-    @Override
     protected void recdMsgForProhibitedSsn(SccpMessage msg, int ssn) {
 
         super.recdMsgForProhibitedSsn(msg, ssn);
@@ -108,7 +106,6 @@ public class SccpManagementProxy extends SccpManagement {
         super.stop();
     }
 
-    @Override
     protected void handleMtp3Pause(int affectedPc) {
         super.handleMtp3Pause(affectedPc);
 
@@ -116,7 +113,6 @@ public class SccpManagementProxy extends SccpManagement {
         mtp3Messages.add(prim);
     }
 
-    @Override
     protected void handleMtp3Resume(int affectedPc) {
         super.handleMtp3Resume(affectedPc);
 
@@ -124,7 +120,6 @@ public class SccpManagementProxy extends SccpManagement {
         mtp3Messages.add(prim);
     }
 
-    @Override
     protected void handleMtp3Status(Mtp3StatusCause cause, int affectedPc, int congStatus) {
         super.handleMtp3Status(cause, affectedPc, congStatus);
 

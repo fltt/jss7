@@ -61,17 +61,14 @@ public class ChargingCharacteristicsImpl implements ChargingCharacteristics, CAP
         this.maxTransferredVolume = -1;
     }
 
-    @Override
     public long getMaxTransferredVolume() {
         return this.maxTransferredVolume;
     }
 
-    @Override
     public int getMaxElapsedTime() {
         return this.maxElapsedTime;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (maxTransferredVolume != -1) {
             return _ID_maxTransferredVolume;
@@ -81,17 +78,14 @@ public class ChargingCharacteristicsImpl implements ChargingCharacteristics, CAP
 
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -108,7 +102,6 @@ public class ChargingCharacteristicsImpl implements ChargingCharacteristics, CAP
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -162,12 +155,10 @@ public class ChargingCharacteristicsImpl implements ChargingCharacteristics, CAP
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -180,7 +171,6 @@ public class ChargingCharacteristicsImpl implements ChargingCharacteristics, CAP
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.maxTransferredVolume == -1 && this.maxElapsedTime == -1 || this.maxTransferredVolume != -1
@@ -200,7 +190,6 @@ public class ChargingCharacteristicsImpl implements ChargingCharacteristics, CAP
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

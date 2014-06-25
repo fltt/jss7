@@ -72,12 +72,10 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public OriginalCalledNumber getOriginalCalledNumber() throws CAPException {
         if (this.data == null)
             throw new CAPException("The data has not been filled");
@@ -91,22 +89,18 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
         }
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -124,7 +118,6 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -151,12 +144,10 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -169,7 +160,6 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -180,7 +170,6 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -219,7 +208,6 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
     protected static final XMLFormat<OriginalCalledNumberCapImpl> ORIGINAL_CALLED_NUMBER_CAP_XML = new XMLFormat<OriginalCalledNumberCapImpl>(
             OriginalCalledNumberCapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, OriginalCalledNumberCapImpl originalCalledNumber)
                 throws XMLStreamException {
             try {
@@ -230,7 +218,6 @@ public class OriginalCalledNumberCapImpl implements OriginalCalledNumberCap, CAP
             }
         }
 
-        @Override
         public void write(OriginalCalledNumberCapImpl originalCalledNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

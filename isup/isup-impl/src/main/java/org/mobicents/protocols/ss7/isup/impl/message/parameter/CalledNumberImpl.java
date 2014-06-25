@@ -151,7 +151,6 @@ public abstract class CalledNumberImpl extends AbstractNAINumber implements Call
     protected static final XMLFormat<CalledNumberImpl> ISUP_CALLED_NUMBER_XML = new XMLFormat<CalledNumberImpl>(
             CalledNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CalledNumberImpl calledNumber) throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.read(xml, calledNumber);
 
@@ -160,7 +159,6 @@ public abstract class CalledNumberImpl extends AbstractNAINumber implements Call
                     ADDRESS_REPRESENTATION_RESTRICTED_INDICATOR, DEFAULT_ADDRESS_REPRESENTATION_RESTRICTED_INDICATOR);
         }
 
-        @Override
         public void write(CalledNumberImpl calledNumber, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.write(calledNumber, xml);
 

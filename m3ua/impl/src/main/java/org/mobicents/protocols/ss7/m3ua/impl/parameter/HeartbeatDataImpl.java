@@ -40,12 +40,10 @@ public class HeartbeatDataImpl extends ParameterImpl implements HeartbeatData {
         return this.value;
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
 
-    @Override
     public String toString() {
         return String.format("HeartbeatData : data = %s ", HexTools.dump(this.value, 0));
     }

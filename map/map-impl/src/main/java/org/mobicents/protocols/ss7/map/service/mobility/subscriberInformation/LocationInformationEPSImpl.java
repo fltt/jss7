@@ -391,7 +391,6 @@ public class LocationInformationEPSImpl extends SequenceBase implements Location
     protected static final XMLFormat<LocationInformationEPSImpl> LOCATION_INFORMATION_EPS_XML = new XMLFormat<LocationInformationEPSImpl>(
             LocationInformationEPSImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LocationInformationEPSImpl locationInformationEPS)
                 throws XMLStreamException {
             locationInformationEPS.eUtranCellGlobalIdentity = xml.get(E_UTRAN_CELL_GLOBAL_IDENTITY, EUtranCgiImpl.class);
@@ -408,7 +407,6 @@ public class LocationInformationEPSImpl extends SequenceBase implements Location
             locationInformationEPS.mmeName = xml.get(MME_NAME, DiameterIdentityImpl.class);
         }
 
-        @Override
         public void write(LocationInformationEPSImpl locationInformationEPS, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (locationInformationEPS.eUtranCellGlobalIdentity != null) {

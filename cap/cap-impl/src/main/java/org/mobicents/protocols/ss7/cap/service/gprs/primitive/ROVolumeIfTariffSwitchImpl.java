@@ -71,7 +71,6 @@ public class ROVolumeIfTariffSwitchImpl extends SequenceBase implements ROVolume
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException {
 
         this.roVolumeSinceLastTariffSwitch = -1;
@@ -111,7 +110,6 @@ public class ROVolumeIfTariffSwitchImpl extends SequenceBase implements ROVolume
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -131,7 +129,6 @@ public class ROVolumeIfTariffSwitchImpl extends SequenceBase implements ROVolume
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

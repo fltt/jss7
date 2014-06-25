@@ -55,7 +55,6 @@ public class EventForm extends JDialog {
 
         setBounds(new Rectangle(150, 150, 450, 300));
         addWindowListener(new WindowAdapter() {
-            @Override
             public void windowClosing(WindowEvent arg0) {
                 formClosing();
             }

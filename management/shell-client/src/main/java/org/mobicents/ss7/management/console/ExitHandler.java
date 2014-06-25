@@ -39,7 +39,6 @@ public class ExitHandler extends CommandHandlerWithHelp {
      * @see org.mobicents.ss7.management.console.CommandHandler#isAvailable(org.mobicents
      * .ss7.management.console.CommandContext)
      */
-    @Override
     public boolean isAvailable(CommandContext commandContext) {
         // Available only in disconnected mode
         if (commandContext.isControllerConnected()) {
@@ -56,7 +55,6 @@ public class ExitHandler extends CommandHandlerWithHelp {
      * @see org.mobicents.ss7.management.console.CommandHandler#handle(org.mobicents .ss7.management.console.CommandContext,
      * java.lang.String)
      */
-    @Override
     public void handle(CommandContext ctx, String commandLine) {
         String[] commands = commandLine.split(" ");
         if (commands.length != 1) {

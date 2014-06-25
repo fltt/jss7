@@ -71,12 +71,10 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public RedirectionInformation getRedirectionInformation() throws INAPException {
         if (this.data == null)
             throw new INAPException("The data has not been filled");
@@ -90,22 +88,18 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
         }
     }
 
-    @Override
     public int getTag() throws INAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws INAPParsingComponentException {
 
         try {
@@ -120,7 +114,6 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws INAPParsingComponentException {
 
         try {
@@ -143,12 +136,10 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
                     INAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws INAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws INAPException {
 
         try {
@@ -161,7 +152,6 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws INAPException {
 
         if (this.data == null)
@@ -172,7 +162,6 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -211,7 +200,6 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
     protected static final XMLFormat<RedirectionInformationInapImpl> REDIRECTION_INFORMATION_INAP_XML = new XMLFormat<RedirectionInformationInapImpl>(
             RedirectionInformationInapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RedirectionInformationInapImpl redirectionInformationInap)
                 throws XMLStreamException {
             try {
@@ -222,7 +210,6 @@ public class RedirectionInformationInapImpl implements RedirectionInformationIna
             }
         }
 
-        @Override
         public void write(RedirectionInformationInapImpl redirectionInformationInap, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

@@ -76,12 +76,10 @@ public class MoveLegRequestImpl extends CircuitSwitchedCallMessageImpl implement
         return CAPOperationCode.moveLeg;
     }
 
-    @Override
     public LegID getLegIDToMove() {
         return legIDToMove;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }

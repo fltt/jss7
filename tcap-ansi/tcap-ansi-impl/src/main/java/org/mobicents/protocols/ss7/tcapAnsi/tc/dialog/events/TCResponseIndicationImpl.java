@@ -84,7 +84,6 @@ public class TCResponseIndicationImpl extends DialogIndicationImpl implements TC
 
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
@@ -93,7 +92,6 @@ public class TCResponseIndicationImpl extends DialogIndicationImpl implements TC
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }

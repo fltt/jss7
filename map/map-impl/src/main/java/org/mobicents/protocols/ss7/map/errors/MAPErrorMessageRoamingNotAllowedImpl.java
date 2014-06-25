@@ -71,32 +71,26 @@ public class MAPErrorMessageRoamingNotAllowedImpl extends MAPErrorMessageImpl im
         return this;
     }
 
-    @Override
     public RoamingNotAllowedCause getRoamingNotAllowedCause() {
         return roamingNotAllowedCause;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     public AdditionalRoamingNotAllowedCause getAdditionalRoamingNotAllowedCause() {
         return additionalRoamingNotAllowedCause;
     }
 
-    @Override
     public void setRoamingNotAllowedCause(RoamingNotAllowedCause val) {
         roamingNotAllowedCause = val;
     }
 
-    @Override
     public void setExtensionContainer(MAPExtensionContainer val) {
         extensionContainer = val;
     }
 
-    @Override
     public void setAdditionalRoamingNotAllowedCause(AdditionalRoamingNotAllowedCause val) {
         additionalRoamingNotAllowedCause = val;
     }
@@ -113,7 +107,6 @@ public class MAPErrorMessageRoamingNotAllowedImpl extends MAPErrorMessageImpl im
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -128,7 +121,6 @@ public class MAPErrorMessageRoamingNotAllowedImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
 
         try {
@@ -204,13 +196,11 @@ public class MAPErrorMessageRoamingNotAllowedImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
 
         try {
@@ -223,7 +213,6 @@ public class MAPErrorMessageRoamingNotAllowedImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.roamingNotAllowedCause == null) {
@@ -245,7 +234,6 @@ public class MAPErrorMessageRoamingNotAllowedImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

@@ -56,38 +56,32 @@ public class RoutingInfoImpl implements RoutingInfo, MAPAsnPrimitive {
         this.forwardingData = forwardingData;
     }
 
-    @Override
     public ISDNAddressString getRoamingNumber() {
         return this.roamingNumber;
     }
 
-    @Override
     public ForwardingData getForwardingData() {
         return this.forwardingData;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (roamingNumber != null)
             return Tag.STRING_OCTET;
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         if (roamingNumber != null)
             return Tag.CLASS_UNIVERSAL;
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (roamingNumber != null)
             return true;
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -101,7 +95,6 @@ public class RoutingInfoImpl implements RoutingInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -140,12 +133,10 @@ public class RoutingInfoImpl implements RoutingInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -157,7 +148,6 @@ public class RoutingInfoImpl implements RoutingInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.roamingNumber == null && this.forwardingData == null)
             throw new MAPException("Both roamingNumber and forwardingData must not be null");

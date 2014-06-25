@@ -58,22 +58,18 @@ public class AMBRImpl extends SequenceBase implements AMBR {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public int getMaxRequestedBandwidthUL() {
         return this.maxRequestedBandwidthUL;
     }
 
-    @Override
     public int getMaxRequestedBandwidthDL() {
         return this.maxRequestedBandwidthDL;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.maxRequestedBandwidthUL = -1;
@@ -146,7 +142,6 @@ public class AMBRImpl extends SequenceBase implements AMBR {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
             asnOs.writeInteger(Tag.CLASS_CONTEXT_SPECIFIC, _TAG_maxRequestedBandwidthUL, this.maxRequestedBandwidthUL);
@@ -164,7 +159,6 @@ public class AMBRImpl extends SequenceBase implements AMBR {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

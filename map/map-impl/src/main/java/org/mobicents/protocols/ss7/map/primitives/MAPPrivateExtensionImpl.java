@@ -198,7 +198,6 @@ public class MAPPrivateExtensionImpl implements MAPPrivateExtension, MAPAsnPrimi
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("PrivateExtension [");
@@ -244,7 +243,6 @@ public class MAPPrivateExtensionImpl implements MAPPrivateExtension, MAPAsnPrimi
         return sb.toString();
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -253,7 +251,6 @@ public class MAPPrivateExtensionImpl implements MAPPrivateExtension, MAPAsnPrimi
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -275,7 +272,6 @@ public class MAPPrivateExtensionImpl implements MAPPrivateExtension, MAPAsnPrimi
     protected static final XMLFormat<MAPPrivateExtensionImpl> MAP_PRIVATE_EXTENSION_XML = new XMLFormat<MAPPrivateExtensionImpl>(
             MAPPrivateExtensionImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, MAPPrivateExtensionImpl mapPrivateExtension)
                 throws XMLStreamException {
             String globalCode = xml.getAttribute(OID, DEFAULT_STRING);
@@ -294,7 +290,6 @@ public class MAPPrivateExtensionImpl implements MAPPrivateExtension, MAPAsnPrimi
             }
         }
 
-        @Override
         public void write(MAPPrivateExtensionImpl mapPrivateExtension, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (mapPrivateExtension.oId != null) {

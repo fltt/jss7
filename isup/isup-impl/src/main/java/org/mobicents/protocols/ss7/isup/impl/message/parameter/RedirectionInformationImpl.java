@@ -140,7 +140,6 @@ public class RedirectionInformationImpl extends AbstractISUPParameter implements
     protected static final XMLFormat<RedirectionInformationImpl> ISUP_REDIRECTION_INFORMATION_XML = new XMLFormat<RedirectionInformationImpl>(
             RedirectionInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RedirectionInformationImpl redirectionInformation)
                 throws XMLStreamException {
             redirectionInformation.redirectingIndicator = xml.getAttribute(REDIRECTING_INDICATOR, DEFAULT_INT_VALUE);
@@ -149,7 +148,6 @@ public class RedirectionInformationImpl extends AbstractISUPParameter implements
             redirectionInformation.redirectionReason = xml.getAttribute(REDIRECTION_REASON, DEFAULT_INT_VALUE);
         }
 
-        @Override
         public void write(RedirectionInformationImpl redirectionInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(REDIRECTING_INDICATOR, redirectionInformation.redirectingIndicator);

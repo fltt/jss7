@@ -56,7 +56,6 @@ public class OAbandonSpecificInfoImpl extends SequenceBase implements OAbandonSp
         this.routeNotPermitted = routeNotPermitted;
     }
 
-    @Override
     public boolean getRouteNotPermitted() {
         return routeNotPermitted;
     }
@@ -94,7 +93,6 @@ public class OAbandonSpecificInfoImpl extends SequenceBase implements OAbandonSp
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -107,7 +105,6 @@ public class OAbandonSpecificInfoImpl extends SequenceBase implements OAbandonSp
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -129,7 +126,6 @@ public class OAbandonSpecificInfoImpl extends SequenceBase implements OAbandonSp
     protected static final XMLFormat<OAbandonSpecificInfoImpl> T_BUSY_SPECIFIC_INFO = new XMLFormat<OAbandonSpecificInfoImpl>(
             OAbandonSpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, OAbandonSpecificInfoImpl oAbandonSpecificInfo)
                 throws XMLStreamException {
             Boolean bval = xml.get(ROUTE_NOT_PERMITTED, Boolean.class);
@@ -137,7 +133,6 @@ public class OAbandonSpecificInfoImpl extends SequenceBase implements OAbandonSp
                 oAbandonSpecificInfo.routeNotPermitted = bval;
         }
 
-        @Override
         public void write(OAbandonSpecificInfoImpl oAbandonSpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (oAbandonSpecificInfo.routeNotPermitted)

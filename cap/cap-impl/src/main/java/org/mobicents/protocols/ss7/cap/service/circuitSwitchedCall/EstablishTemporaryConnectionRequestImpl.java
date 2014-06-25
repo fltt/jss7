@@ -105,87 +105,70 @@ public class EstablishTemporaryConnectionRequestImpl extends CircuitSwitchedCall
         this.isCAPVersion3orLater = isCAPVersion3orLater;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.establishTemporaryConnection_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.establishTemporaryConnection;
     }
 
-    @Override
     public Digits getAssistingSSPIPRoutingAddress() {
         return assistingSSPIPRoutingAddress;
     }
 
-    @Override
     public Digits getCorrelationID() {
         return correlationID;
     }
 
-    @Override
     public ScfID getScfID() {
         return scfID;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public Carrier getCarrier() {
         return carrier;
     }
 
-    @Override
     public ServiceInteractionIndicatorsTwo getServiceInteractionIndicatorsTwo() {
         return serviceInteractionIndicatorsTwo;
     }
 
-    @Override
     public Integer getCallSegmentID() {
         return callSegmentID;
     }
 
-    @Override
     public NAOliInfo getNAOliInfo() {
         return naOliInfo;
     }
 
-    @Override
     public LocationNumberCap getChargeNumber() {
         return chargeNumber;
     }
 
-    @Override
     public OriginalCalledNumberCap getOriginalCalledPartyID() {
         return originalCalledPartyID;
     }
 
-    @Override
     public CallingPartyNumberCap getCallingPartyNumber() {
         return callingPartyNumber;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -200,7 +183,6 @@ public class EstablishTemporaryConnectionRequestImpl extends CircuitSwitchedCall
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -301,12 +283,10 @@ public class EstablishTemporaryConnectionRequestImpl extends CircuitSwitchedCall
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -319,7 +299,6 @@ public class EstablishTemporaryConnectionRequestImpl extends CircuitSwitchedCall
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.assistingSSPIPRoutingAddress == null)
@@ -373,7 +352,6 @@ public class EstablishTemporaryConnectionRequestImpl extends CircuitSwitchedCall
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

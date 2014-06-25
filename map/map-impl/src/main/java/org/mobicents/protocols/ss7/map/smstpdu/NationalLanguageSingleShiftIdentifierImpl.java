@@ -43,7 +43,6 @@ public class NationalLanguageSingleShiftIdentifierImpl extends Gsm7NationalLangu
         return UserDataHeader._InformationElementIdentifier_NationalLanguageSingleShift;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("NationalLanguageSingleShiftIdentifier [");

@@ -304,7 +304,6 @@ public class Mtp3UserPartImpl extends Mtp3UserPartBaseImpl {
         return messages;
     }
 
-    @Override
     public int getMaxUserDataLength(int dpc) {
         return 1000;
     }

@@ -59,17 +59,14 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
         this.timeGPRSIfTariffSwitch = timeGPRSIfTariffSwitch;
     }
 
-    @Override
     public Integer getTimeGPRSIfNoTariffSwitch() {
         return this.timeGPRSIfNoTariffSwitch;
     }
 
-    @Override
     public TimeGPRSIfTariffSwitch getTimeGPRSIfTariffSwitch() {
         return this.timeGPRSIfTariffSwitch;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (timeGPRSIfNoTariffSwitch != null) {
             return _ID_timeGPRSIfNoTariffSwitch;
@@ -78,12 +75,10 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (timeGPRSIfNoTariffSwitch != null) {
             return true;
@@ -92,7 +87,6 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -109,7 +103,6 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -163,12 +156,10 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -181,7 +172,6 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.timeGPRSIfNoTariffSwitch == null && this.timeGPRSIfTariffSwitch == null
                 || this.timeGPRSIfNoTariffSwitch != null && this.timeGPRSIfTariffSwitch != null) {
@@ -199,7 +189,6 @@ public class ElapsedTimeImpl implements ElapsedTime, CAPAsnPrimitive {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

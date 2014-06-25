@@ -38,17 +38,14 @@ public class ReturnToInvokingExchangeDurationImpl extends AbstractInformationImp
         super.tag = 0x01;
     }
 
-    @Override
     public void setDuration(int seconds) {
         this.duration = seconds & 0XFFFF;
     }
 
-    @Override
     public int getDuration() {
         return this.duration;
     }
 
-    @Override
     byte[] encode() throws ParameterException {
         byte[] data;
         if(this.duration > 0xFF){
@@ -62,7 +59,6 @@ public class ReturnToInvokingExchangeDurationImpl extends AbstractInformationImp
         return data;
     }
 
-    @Override
     void decode(byte[] b) throws ParameterException {
         if(b.length != 1 && b.length!=2){
             throw new ParameterException("Wrong numbder of bytes: "+b.length);

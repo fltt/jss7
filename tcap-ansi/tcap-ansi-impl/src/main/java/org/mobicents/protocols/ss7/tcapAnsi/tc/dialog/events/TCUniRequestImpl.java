@@ -136,22 +136,18 @@ public class TCUniRequestImpl extends DialogRequestImpl implements TCUniRequest 
         return returnMessageOnError;
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
 
-    @Override
     public void setSecurityContext(SecurityContext val) {
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }
 
-    @Override
     public void setConfidentiality(Confidentiality val) {
         confidentiality = val;
     }

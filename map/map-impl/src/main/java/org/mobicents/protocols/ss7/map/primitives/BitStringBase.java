@@ -80,7 +80,6 @@ public abstract class BitStringBase implements MAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -155,7 +154,6 @@ public abstract class BitStringBase implements MAPAsnPrimitive {
         }
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -163,7 +161,6 @@ public abstract class BitStringBase implements MAPAsnPrimitive {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -180,7 +177,6 @@ public abstract class BitStringBase implements MAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -206,7 +202,6 @@ public abstract class BitStringBase implements MAPAsnPrimitive {
      */
     protected static final XMLFormat<BitStringBase> BIT_STRING_BASE_XML = new XMLFormat<BitStringBase>(BitStringBase.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, BitStringBase bitStringBase) throws XMLStreamException {
             String s = xml.getAttribute(DATA, DEFAULT_VALUE);
             if (s != null) {
@@ -220,7 +215,6 @@ public abstract class BitStringBase implements MAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(BitStringBase bitStringBase, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (bitStringBase.bitString != null) {
                 StringBuilder sb = new StringBuilder();

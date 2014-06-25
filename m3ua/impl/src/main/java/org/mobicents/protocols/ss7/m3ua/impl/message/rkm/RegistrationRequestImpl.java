@@ -40,7 +40,6 @@ public class RegistrationRequestImpl extends M3UAMessageImpl implements Registra
         super(MessageClass.ROUTING_KEY_MANAGEMENT, MessageType.REG_REQUEST, MessageType.S_REG_REQUEST);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Routing_Key)) {
             ((ParameterImpl) parameters.get(Parameter.Routing_Key)).write(buffer);

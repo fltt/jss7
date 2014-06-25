@@ -61,40 +61,33 @@ public class CapMan implements CapManMBean, Stoppable {
         this.sccpStack = val;
     }
 
-    // @Override
     // public int getRemoteSsn() {
     // return this.testerHost.getConfigurationData().getCapConfigurationData().getRemoteSsn();
     // }
     //
-    // @Override
     // public void setRemoteSsn(int val) {
     // this.testerHost.getConfigurationData().getCapConfigurationData().setRemoteSsn(val);
     // this.testerHost.markStore();
     // }
     //
-    // @Override
     // public int getLocalSsn() {
     // return this.testerHost.getConfigurationData().getCapConfigurationData().getLocalSsn();
     // }
     //
-    // @Override
     // public void setLocalSsn(int val) {
     // this.testerHost.getConfigurationData().getCapConfigurationData().setLocalSsn(val);
     // this.testerHost.markStore();
     // }
 
-    @Override
     public String getRemoteAddressDigits() {
         return this.testerHost.getConfigurationData().getCapConfigurationData().getRemoteAddressDigits();
     }
 
-    @Override
     public void setRemoteAddressDigits(String val) {
         this.testerHost.getConfigurationData().getCapConfigurationData().setRemoteAddressDigits(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("TCAP+CAP: Started");
@@ -112,7 +105,6 @@ public class CapMan implements CapManMBean, Stoppable {
         }
     }
 
-    @Override
     public void stop() {
         try {
             this.stopCap();
@@ -122,7 +114,6 @@ public class CapMan implements CapManMBean, Stoppable {
         }
     }
 
-    @Override
     public void execute() {
     }
 

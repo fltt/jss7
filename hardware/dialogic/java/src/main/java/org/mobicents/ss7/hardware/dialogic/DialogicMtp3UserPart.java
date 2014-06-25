@@ -73,7 +73,6 @@ public class DialogicMtp3UserPart extends Mtp3UserPartBaseImpl {
         this.destinationModuleId = destinationModuleId;
     }
 
-    @Override
     public void start() throws Exception {
 
         ipc = new InterProcessCommunicator(sourceModuleId, destinationModuleId);
@@ -85,7 +84,6 @@ public class DialogicMtp3UserPart extends Mtp3UserPartBaseImpl {
         super.start();
     }
 
-    @Override
     public void stop() throws Exception {
 
         super.stop();
@@ -94,7 +92,6 @@ public class DialogicMtp3UserPart extends Mtp3UserPartBaseImpl {
         layer3exec.shutdown();
     }
 
-    @Override
     public void sendMessage(Mtp3TransferPrimitive msg) throws IOException {
 
         if (this.isStarted) {

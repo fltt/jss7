@@ -42,7 +42,6 @@ public class CongestedIndicationImpl extends ParameterImpl implements CongestedI
         this.tag = Parameter.Congestion_Indications;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = 0;// Reserved
@@ -57,7 +56,6 @@ public class CongestedIndicationImpl extends ParameterImpl implements CongestedI
         return this.level;
     }
 
-    @Override
     public String toString() {
         return String.format("CongestedIndication level=%s", level);
     }

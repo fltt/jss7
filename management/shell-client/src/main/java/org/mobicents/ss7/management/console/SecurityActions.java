@@ -47,17 +47,14 @@ public class SecurityActions {
 
         TCLAction NON_PRIVILEGED = new TCLAction() {
 
-            @Override
             public ClassLoader getClassLoader(Class<?> cls) {
                 return cls.getClassLoader();
             }
 
-            @Override
             public String getSystemProperty(String name) {
                 return System.getProperty(name);
             }
 
-            @Override
             public String getEnvironmentVariable(String name) {
                 return System.getenv(name);
             }
@@ -65,7 +62,6 @@ public class SecurityActions {
 
         TCLAction PRIVILEGED = new TCLAction() {
 
-            @Override
             public ClassLoader getClassLoader(final Class<?> cls) {
                 return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction<Object>() {
                     public Object run() {
@@ -74,7 +70,6 @@ public class SecurityActions {
                 });
             }
 
-            @Override
             public String getSystemProperty(final String name) {
                 return (String) AccessController.doPrivileged(new PrivilegedAction<Object>() {
                     public Object run() {
@@ -83,7 +78,6 @@ public class SecurityActions {
                 });
             }
 
-            @Override
             public String getEnvironmentVariable(final String name) {
                 return (String) AccessController.doPrivileged(new PrivilegedAction<Object>() {
                     public Object run() {

@@ -62,32 +62,26 @@ public class MAPErrorMessagePwRegistrationFailureImpl extends MAPErrorMessageImp
         return this;
     }
 
-    @Override
     public PWRegistrationFailureCause getPWRegistrationFailureCause() {
         return pwRegistrationFailureCause;
     }
 
-    @Override
     public void setPWRegistrationFailureCause(PWRegistrationFailureCause val) {
         pwRegistrationFailureCause = val;
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.ENUMERATED;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -102,7 +96,6 @@ public class MAPErrorMessagePwRegistrationFailureImpl extends MAPErrorMessageImp
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
 
         try {
@@ -126,13 +119,11 @@ public class MAPErrorMessagePwRegistrationFailureImpl extends MAPErrorMessageImp
         this.pwRegistrationFailureCause = PWRegistrationFailureCause.getInstance(i1);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
 
         try {
@@ -145,7 +136,6 @@ public class MAPErrorMessagePwRegistrationFailureImpl extends MAPErrorMessageImp
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.pwRegistrationFailureCause == null)
@@ -158,7 +148,6 @@ public class MAPErrorMessagePwRegistrationFailureImpl extends MAPErrorMessageImp
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

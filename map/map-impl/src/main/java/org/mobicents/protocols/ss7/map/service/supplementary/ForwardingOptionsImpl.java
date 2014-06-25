@@ -68,47 +68,38 @@ public class ForwardingOptionsImpl implements ForwardingOptions, MAPAsnPrimitive
         code = code | (forwardingReasonCode << 2) & MASK_forwardingReason;
     }
 
-    @Override
     public boolean isNotificationToCallingParty() {
         return ((code & MASK_notificationCalling) >> 5 == 1);
     }
 
-    @Override
     public boolean isNotificationToForwardingParty() {
         return ((code & MASK_notificationForwarding) >> 7 == 1);
     }
 
-    @Override
     public boolean isRedirectingPresentation() {
         return ((code & MASK_redirectingPresentation) >> 6 == 1);
     }
 
-    @Override
     public ForwardingReason getForwardingReason() {
         return this.forwardingReason;
     }
 
-    @Override
     public int getData() {
         return code;
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -122,7 +113,6 @@ public class ForwardingOptionsImpl implements ForwardingOptions, MAPAsnPrimitive
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -144,12 +134,10 @@ public class ForwardingOptionsImpl implements ForwardingOptions, MAPAsnPrimitive
         this.forwardingReason = ForwardingReason.getForwardingReason((code & MASK_forwardingReason) >> 2);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -161,7 +149,6 @@ public class ForwardingOptionsImpl implements ForwardingOptions, MAPAsnPrimitive
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         asnOs.writeOctetStringData(new byte[] { (byte) code });
     }

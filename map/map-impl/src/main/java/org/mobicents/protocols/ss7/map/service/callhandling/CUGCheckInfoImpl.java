@@ -58,22 +58,18 @@ public class CUGCheckInfoImpl extends SequenceBase implements CUGCheckInfo {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public CUGInterlock getCUGInterlock() {
         return cugInterlock;
     }
 
-    @Override
     public boolean getCUGOutgoingAccess() {
         return cugOutgoingAccess;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.cugInterlock = null;
@@ -142,7 +138,6 @@ public class CUGCheckInfoImpl extends SequenceBase implements CUGCheckInfo {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
             if (this.cugInterlock == null)
@@ -162,7 +157,6 @@ public class CUGCheckInfoImpl extends SequenceBase implements CUGCheckInfo {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

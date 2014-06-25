@@ -63,12 +63,10 @@ public class TPValidityPeriodImpl extends OctetStringBase implements TPValidityP
         this.data = res.toByteArray();
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public ValidityPeriod getValidityPeriod() throws CAPException {
         if (this.data == null)
             throw new CAPException("Error when getting ValidityPeriod: data must not be null");
@@ -93,7 +91,6 @@ public class TPValidityPeriodImpl extends OctetStringBase implements TPValidityP
         return vp;
     }
 
-    @Override
     public String toString() {
 
         try {

@@ -57,37 +57,30 @@ public class AccessRestrictionDataImpl extends BitStringBase implements AccessRe
 
     }
 
-    @Override
     public boolean getUtranNotAllowed() {
         return this.bitString.get(_INDEX_UtranNotAllowed);
     }
 
-    @Override
     public boolean getGeranNotAllowed() {
         return this.bitString.get(_INDEX_GeranNotAllowed);
     }
 
-    @Override
     public boolean getGanNotAllowed() {
         return this.bitString.get(_INDEX_GanNotAllowed);
     }
 
-    @Override
     public boolean getIHspaEvolutionNotAllowed() {
         return this.bitString.get(_INDEX_IHspaEvolutionNotAllowed);
     }
 
-    @Override
     public boolean getEUtranNotAllowed() {
         return this.bitString.get(_INDEX_EUtranNotAllowed);
     }
 
-    @Override
     public boolean getHoToNon3GPPAccessNotAllowed() {
         return this.bitString.get(_INDEX_HoToNon3GPPAccessNotAllowed);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

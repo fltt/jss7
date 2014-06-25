@@ -73,37 +73,30 @@ public class SGSNCAMELSubscriptionInfoImpl extends SequenceBase implements SGSNC
         this.mgCsi = mgCsi;
     }
 
-    @Override
     public GPRSCSI getGprsCsi() {
         return this.gprsCsi;
     }
 
-    @Override
     public SMSCSI getMoSmsCsi() {
         return this.moSmsCsi;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public SMSCSI getMtSmsCsi() {
         return this.mtSmsCsi;
     }
 
-    @Override
     public ArrayList<MTsmsCAMELTDPCriteria> getMtSmsCamelTdpCriteriaList() {
         return this.mtSmsCamelTdpCriteriaList;
     }
 
-    @Override
     public MGCSI getMgCsi() {
         return this.mgCsi;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.gprsCsi = null;
@@ -211,7 +204,6 @@ public class SGSNCAMELSubscriptionInfoImpl extends SequenceBase implements SGSNC
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.mtSmsCamelTdpCriteriaList != null
@@ -253,7 +245,6 @@ public class SGSNCAMELSubscriptionInfoImpl extends SequenceBase implements SGSNC
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

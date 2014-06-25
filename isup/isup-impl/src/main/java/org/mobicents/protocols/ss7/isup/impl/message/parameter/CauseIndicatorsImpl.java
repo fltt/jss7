@@ -231,7 +231,6 @@ public class CauseIndicatorsImpl extends AbstractISUPParameter implements CauseI
     protected static final XMLFormat<CauseIndicatorsImpl> ISUP_CAUSE_INDICATORS_XML = new XMLFormat<CauseIndicatorsImpl>(
             CauseIndicatorsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CauseIndicatorsImpl causeIndicators)
                 throws XMLStreamException {
             causeIndicators.location = xml.getAttribute(LOCATION, DEFAULT_VALUE);
@@ -245,7 +244,6 @@ public class CauseIndicatorsImpl extends AbstractISUPParameter implements CauseI
             }
         }
 
-        @Override
         public void write(CauseIndicatorsImpl causeIndicators, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(LOCATION, causeIndicators.location);

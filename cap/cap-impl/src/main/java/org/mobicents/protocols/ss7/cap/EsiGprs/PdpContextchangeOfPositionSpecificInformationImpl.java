@@ -89,37 +89,30 @@ public class PdpContextchangeOfPositionSpecificInformationImpl extends SequenceB
         this.gsnAddress = gsnAddress;
     }
 
-    @Override
     public AccessPointName getAccessPointName() {
         return this.accessPointName;
     }
 
-    @Override
     public GPRSChargingID getChargingID() {
         return this.chargingID;
     }
 
-    @Override
     public LocationInformationGPRS getLocationInformationGPRS() {
         return this.locationInformationGPRS;
     }
 
-    @Override
     public EndUserAddress getEndUserAddress() {
         return this.endUserAddress;
     }
 
-    @Override
     public QualityOfService getQualityOfService() {
         return this.qualityOfService;
     }
 
-    @Override
     public TimeAndTimezone getTimeAndTimezone() {
         return this.timeAndTimezone;
     }
 
-    @Override
     public GSNAddress getGSNAddress() {
         return this.gsnAddress;
     }
@@ -132,7 +125,6 @@ public class PdpContextchangeOfPositionSpecificInformationImpl extends SequenceB
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
         this.accessPointName = null;
@@ -219,7 +211,6 @@ public class PdpContextchangeOfPositionSpecificInformationImpl extends SequenceB
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         try {
             if (this.accessPointName != null)
@@ -251,7 +242,6 @@ public class PdpContextchangeOfPositionSpecificInformationImpl extends SequenceB
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

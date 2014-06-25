@@ -40,21 +40,18 @@ public class FTNAddressStringImpl extends AddressStringImpl implements FTNAddres
         super(addressNature, numberingPlan, address);
     }
 
-    @Override
     protected void _testLengthDecode(int length) throws MAPParsingComponentException {
         if (length > 15)
             throw new MAPParsingComponentException("Error when decoding FTNAddressString: mesage length must not exceed 15",
                     MAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     protected void _testLengthEncode() throws MAPException {
 
         if (this.address == null && this.address.length() > 28)
             throw new MAPException("Error when encoding FTNAddressString: address length must not exceed 28 digits");
     }
 
-    @Override
     public String toString() {
         return "FTNAddressString[AddressNature=" + this.addressNature.toString() + ", NumberingPlan="
                 + this.numberingPlan.toString() + ", Address=" + this.address + "]";

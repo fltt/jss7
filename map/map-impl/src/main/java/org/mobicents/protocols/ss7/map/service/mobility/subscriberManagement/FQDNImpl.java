@@ -36,7 +36,6 @@ public class FQDNImpl extends OctetStringBase implements FQDN {
         super(9, 255, "FQDN", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

@@ -75,7 +75,6 @@ public class MtpPrimitivesTest extends SccpHarness {
         sccpProvider2 = sccpStack2.getSccpProvider();
     }
 
-    @Override
     protected SccpStackImpl createStack(String name) {
         SccpStackImpl stack = new SccpStackImplProxy(name);
         final String dir = Util.getTmpTestDir();

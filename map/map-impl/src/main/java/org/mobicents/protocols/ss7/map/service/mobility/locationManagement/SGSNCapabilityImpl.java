@@ -99,67 +99,54 @@ public class SGSNCapabilityImpl extends SequenceBase implements SGSNCapability {
         this.homogeneousSupportOfIMSVoiceOverPSSessions = homogeneousSupportOfIMSVoiceOverPSSessions;
     }
 
-    @Override
     public boolean getSolsaSupportIndicator() {
         return this.solsaSupportIndicator;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public SuperChargerInfo getSuperChargerSupportedInServingNetworkEntity() {
         return this.superChargerSupportedInServingNetworkEntity;
     }
 
-    @Override
     public boolean getGprsEnhancementsSupportIndicator() {
         return this.gprsEnhancementsSupportIndicator;
     }
 
-    @Override
     public SupportedCamelPhases getSupportedCamelPhases() {
         return this.supportedCamelPhases;
     }
 
-    @Override
     public SupportedLCSCapabilitySets getSupportedLCSCapabilitySets() {
         return this.supportedLCSCapabilitySets;
     }
 
-    @Override
     public OfferedCamel4CSIs getOfferedCamel4CSIs() {
         return this.offeredCamel4CSIs;
     }
 
-    @Override
     public boolean getSmsCallBarringSupportIndicator() {
         return this.smsCallBarringSupportIndicator;
     }
 
-    @Override
     public SupportedRATTypes getSupportedRATTypesIndicator() {
         return this.supportedRATTypesIndicator;
     }
 
-    @Override
     public SupportedFeatures getSupportedFeatures() {
         return this.supportedFeatures;
     }
 
-    @Override
     public boolean getTAdsDataRetrieval() {
         return this.tAdsDataRetrieval;
     }
 
-    @Override
     public Boolean getHomogeneousSupportOfIMSVoiceOverPSSessions() {
         return this.homogeneousSupportOfIMSVoiceOverPSSessions;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.solsaSupportIndicator = false;
@@ -305,7 +292,6 @@ public class SGSNCapabilityImpl extends SequenceBase implements SGSNCapability {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -367,7 +353,6 @@ public class SGSNCapabilityImpl extends SequenceBase implements SGSNCapability {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

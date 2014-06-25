@@ -171,7 +171,6 @@ public class MAPErrorMessageExtensionContainerImpl extends MAPErrorMessageImpl i
         ((MAPExtensionContainerImpl) this.extensionContainer).encodeAll(aos);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

@@ -105,25 +105,21 @@ public class CreateDialogTest {
 
     private class SccpHarnessPreview implements SccpProvider {
 
-        @Override
         public void deregisterSccpListener(int arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public int getMaxUserDataLength(SccpAddress arg0, SccpAddress arg1) {
             // TODO Auto-generated method stub
             return 0;
         }
 
-        @Override
         public MessageFactory getMessageFactory() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public ParameterFactory getParameterFactory() {
             // TODO Auto-generated method stub
             return null;
@@ -131,25 +127,21 @@ public class CreateDialogTest {
 
         protected SccpListener sccpListener;
 
-        @Override
         public void registerSccpListener(int arg0, SccpListener listener) {
             sccpListener = listener;
         }
 
-        @Override
         public void send(SccpDataMessage msg) throws IOException {
             // we check here that no messages go from TCAP previewMode
 
             fail("No message must go from TCAP previewMode");
         }
 
-        @Override
         public void registerManagementEventListener(SccpManagementEventListener listener) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void deregisterManagementEventListener(SccpManagementEventListener listener) {
             // TODO Auto-generated method stub
 

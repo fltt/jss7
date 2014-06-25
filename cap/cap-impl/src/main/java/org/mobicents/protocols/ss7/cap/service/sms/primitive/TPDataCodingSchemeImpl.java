@@ -36,7 +36,6 @@ public class TPDataCodingSchemeImpl extends OctetStringLength1Base implements TP
         super("TPDataCodingScheme", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }

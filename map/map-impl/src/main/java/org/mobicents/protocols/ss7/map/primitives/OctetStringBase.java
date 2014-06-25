@@ -69,7 +69,6 @@ public abstract class OctetStringBase implements MAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -135,7 +134,6 @@ public abstract class OctetStringBase implements MAPAsnPrimitive {
         asnOs.write(this.data);
     }
 
-    @Override
     public int hashCode() {
         if (data == null)
             return 0;
@@ -146,7 +144,6 @@ public abstract class OctetStringBase implements MAPAsnPrimitive {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -163,7 +160,6 @@ public abstract class OctetStringBase implements MAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public String toString() {
         return _PrimitiveName + " [Data= " + this.printDataArr() + "]";
     }

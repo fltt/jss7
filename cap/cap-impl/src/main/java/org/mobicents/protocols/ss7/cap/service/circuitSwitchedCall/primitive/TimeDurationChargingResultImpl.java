@@ -85,32 +85,26 @@ public class TimeDurationChargingResultImpl extends SequenceBase implements Time
         this.aChChargingAddress = aChChargingAddress;
     }
 
-    @Override
     public ReceivingSideID getPartyToCharge() {
         return partyToCharge;
     }
 
-    @Override
     public TimeInformation getTimeInformation() {
         return timeInformation;
     }
 
-    @Override
     public boolean getLegActive() {
         return legActive;
     }
 
-    @Override
     public boolean getCallLegReleasedAtTcpExpiry() {
         return callLegReleasedAtTcpExpiry;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public AChChargingAddress getAChChargingAddress() {
         return aChChargingAddress;
     }
@@ -177,7 +171,6 @@ public class TimeDurationChargingResultImpl extends SequenceBase implements Time
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.partyToCharge == null || this.timeInformation == null)
@@ -214,7 +207,6 @@ public class TimeDurationChargingResultImpl extends SequenceBase implements Time
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -255,7 +247,6 @@ public class TimeDurationChargingResultImpl extends SequenceBase implements Time
     protected static final XMLFormat<TimeDurationChargingResultImpl> TIME_DURATION_CHARGING_RESULT_XML = new XMLFormat<TimeDurationChargingResultImpl>(
             TimeDurationChargingResultImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TimeDurationChargingResultImpl timeDurationChargingResult)
                 throws XMLStreamException {
             timeDurationChargingResult.partyToCharge = xml.get(PARTY_TO_CHARGE, ReceivingSideIDImpl.class);
@@ -276,7 +267,6 @@ public class TimeDurationChargingResultImpl extends SequenceBase implements Time
 
         }
 
-        @Override
         public void write(TimeDurationChargingResultImpl timeDurationChargingResult, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

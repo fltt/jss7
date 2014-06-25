@@ -60,27 +60,22 @@ public class FCIBCCCAMELsequence1SMSImpl extends SequenceBase implements FCIBCCC
         this.appendFreeFormatData = appendFreeFormatData;
     }
 
-    @Override
     public FreeFormatDataSMS getFreeFormatData() {
         return this.freeFormatData;
     }
 
-    @Override
     public AppendFreeFormatData getAppendFreeFormatData() {
         return this.appendFreeFormatData;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return _ID_FCIBCCCAMELsequence1;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException,
             AsnException, MAPParsingComponentException, INAPParsingComponentException {
 
@@ -128,7 +123,6 @@ public class FCIBCCCAMELsequence1SMSImpl extends SequenceBase implements FCIBCCC
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.freeFormatData == null)
@@ -150,7 +144,6 @@ public class FCIBCCCAMELsequence1SMSImpl extends SequenceBase implements FCIBCCC
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

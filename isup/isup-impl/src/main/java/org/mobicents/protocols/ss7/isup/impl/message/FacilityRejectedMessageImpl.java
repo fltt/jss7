@@ -72,7 +72,6 @@ public class FacilityRejectedMessageImpl extends ISUPMessageImpl implements Faci
         super.o_Parameters.put(_INDEX_O_EndOfOptionalParameters, _END_OF_OPTIONAL_PARAMETERS);
     }
 
-    @Override
     protected int decodeMandatoryParameters(ISUPParameterFactory parameterFactory, byte[] b, int index)
             throws ParameterException {
         int localIndex = index;
@@ -99,7 +98,6 @@ public class FacilityRejectedMessageImpl extends ISUPMessageImpl implements Faci
         }
     }
 
-    @Override
     protected void decodeMandatoryVariableBody(ISUPParameterFactory parameterFactory, byte[] parameterBody, int parameterIndex)
             throws ParameterException {
         switch (parameterIndex) {
@@ -116,7 +114,6 @@ public class FacilityRejectedMessageImpl extends ISUPMessageImpl implements Faci
 
     }
 
-    @Override
     protected void decodeOptionalBody(ISUPParameterFactory parameterFactory, byte[] parameterBody, byte parameterCode)
             throws ParameterException {
         switch (parameterCode & 0xFF) {
@@ -131,52 +128,42 @@ public class FacilityRejectedMessageImpl extends ISUPMessageImpl implements Faci
 
     }
 
-    @Override
     public MessageType getMessageType() {
         return _MESSAGE_TYPE;
     }
 
-    @Override
     protected int getNumberOfMandatoryVariableLengthParameters() {
         return _MANDATORY_VAR_COUNT;
     }
 
-    @Override
     public boolean hasAllMandatoryParameters() {
         throw new UnsupportedOperationException();
     }
 
-    @Override
     protected boolean optionalPartIsPossible() {
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public void setFacilityIndicator(FacilityIndicator fi) {
         super.f_Parameters.put(_INDEX_F_FacilityIndicator, fi);
     }
 
-    @Override
     public FacilityIndicator getFacilityIndicator() {
         return (FacilityIndicator) super.f_Parameters.get(_INDEX_F_FacilityIndicator);
     }
 
-    @Override
     public void setCauseIndicators(CauseIndicators ci) {
         super.v_Parameters.put(_INDEX_V_CauseIndicators, ci);
     }
 
-    @Override
     public CauseIndicators getCauseIndicators() {
         return (CauseIndicators) super.v_Parameters.get(_INDEX_V_CauseIndicators);
     }
 
-    @Override
     public void setUserToUserIndicators(UserToUserIndicators u2ui) {
         super.o_Parameters.put(_INDEX_O_EndOfOptionalParameters, u2ui);
     }
 
-    @Override
     public UserToUserIndicators getUserToUserIndicators() {
         return (UserToUserIndicators) super.o_Parameters.get(_INDEX_O_EndOfOptionalParameters);
     }

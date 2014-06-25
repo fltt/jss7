@@ -41,29 +41,24 @@ public class ConfidentialityImpl implements Confidentiality {
     private Long integerConfidentialityId;
     private long[] objectConfidentialityId;
 
-    @Override
     public Long getIntegerConfidentialityId() {
         return integerConfidentialityId;
     }
 
-    @Override
     public void setIntegerConfidentialityId(Long val) {
         integerConfidentialityId = val;
         objectConfidentialityId = null;
     }
 
-    @Override
     public long[] getObjectConfidentialityId() {
         return objectConfidentialityId;
     }
 
-    @Override
     public void setObjectConfidentialityId(long[] val) {
         integerConfidentialityId = null;
         objectConfidentialityId = val;
     }
 
-    @Override
     public void decode(AsnInputStream aisA) throws ParseException {
         this.integerConfidentialityId = null;
         this.objectConfidentialityId = null;
@@ -99,7 +94,6 @@ public class ConfidentialityImpl implements Confidentiality {
         }
     }
 
-    @Override
     public void encode(AsnOutputStream aos) throws EncodeException {
 
         try {

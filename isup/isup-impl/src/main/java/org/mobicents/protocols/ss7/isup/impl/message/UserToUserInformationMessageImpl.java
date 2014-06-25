@@ -113,22 +113,18 @@ public class UserToUserInformationMessageImpl extends ISUPMessageImpl implements
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public void setAccessTransport(AccessTransport mci) {
         super.o_Parameters.put(_INDEX_O_AccessTransport, mci);
     }
 
-    @Override
     public AccessTransport getAccessTransport() {
         return (AccessTransport) super.o_Parameters.get(_INDEX_O_AccessTransport);
     }
 
-    @Override
     public void setUserToUserInformation(UserToUserInformation mci) {
         super.o_Parameters.put(_INDEX_V_User2UserInformation, mci);
     }
 
-    @Override
     public UserToUserInformation getUserToUserInformation() {
         return (UserToUserInformation) super.o_Parameters.get(_INDEX_V_User2UserInformation);
     }

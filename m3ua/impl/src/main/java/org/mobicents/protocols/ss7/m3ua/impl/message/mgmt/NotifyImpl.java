@@ -43,7 +43,6 @@ public class NotifyImpl extends M3UAMessageImpl implements Notify {
         super(MessageClass.MANAGEMENT, MessageType.NOTIFY, MessageType.S_NOTIFY);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         ((ParameterImpl) parameters.get(Parameter.Status)).write(buffer);
 

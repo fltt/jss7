@@ -44,12 +44,10 @@ public class StatCounterCollectionImpl implements StatCounterCollection {
         this.type = type;
     }
 
-    @Override
     public String getCounterName() {
         return counterName;
     }
 
-    @Override
     public void clearDeadCampaignes(Date lastTime) {
         synchronized (this) {
             ArrayList<String> toDel = new ArrayList<String>();
@@ -65,7 +63,6 @@ public class StatCounterCollectionImpl implements StatCounterCollection {
         }
     }
 
-    @Override
     public StatResult restartAndGet(String campaignName) {
         synchronized (this) {
             StatDataCollectorAbstractImpl sdc = coll.get(campaignName);
@@ -94,7 +91,6 @@ public class StatCounterCollectionImpl implements StatCounterCollection {
         }
     }
 
-    @Override
     public void updateData(long newVal) {
         synchronized (this) {
             for (String s : coll.keySet()) {
@@ -104,7 +100,6 @@ public class StatCounterCollectionImpl implements StatCounterCollection {
         }
     }
 
-    @Override
     public void updateData(String newVal) {
         synchronized (this) {
             for (String s : coll.keySet()) {

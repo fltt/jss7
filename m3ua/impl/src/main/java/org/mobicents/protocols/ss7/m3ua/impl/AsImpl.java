@@ -680,7 +680,6 @@ public class AsImpl implements XMLSerializable, As {
      */
     protected static final XMLFormat<AsImpl> AS_XML = new XMLFormat<AsImpl>(AsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AsImpl asImpl) throws XMLStreamException {
             asImpl.name = xml.getAttribute(NAME, "");
             asImpl.minAspActiveForLb = xml.getAttribute(MIN_ASP_ACT_LB).toInt();
@@ -697,7 +696,6 @@ public class AsImpl implements XMLSerializable, As {
             asImpl.init();
         }
 
-        @Override
         public void write(AsImpl asImpl, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(NAME, asImpl.name);
             xml.setAttribute(MIN_ASP_ACT_LB, asImpl.minAspActiveForLb);

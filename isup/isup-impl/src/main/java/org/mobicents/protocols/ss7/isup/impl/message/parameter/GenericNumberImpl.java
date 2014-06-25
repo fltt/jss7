@@ -221,7 +221,6 @@ public class GenericNumberImpl extends AbstractNAINumber implements GenericNumbe
     protected static final XMLFormat<GenericNumberImpl> ISUP_GENERIC_NUMBER_XML = new XMLFormat<GenericNumberImpl>(
             GenericNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, GenericNumberImpl genericNumber) throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.read(xml, genericNumber);
 
@@ -234,7 +233,6 @@ public class GenericNumberImpl extends AbstractNAINumber implements GenericNumbe
                     DEFAULT_NUMBER_QUALIFIER_INDICATOR);
         }
 
-        @Override
         public void write(GenericNumberImpl genericNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.write(genericNumber, xml);

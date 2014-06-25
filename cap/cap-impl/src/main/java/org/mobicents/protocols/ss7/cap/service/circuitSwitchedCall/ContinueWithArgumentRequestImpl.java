@@ -587,72 +587,58 @@ public class ContinueWithArgumentRequestImpl extends CircuitSwitchedCallMessageI
 
     }
 
-    @Override
     public AlertingPatternCap getAlertingPattern() {
         return this.alertingPattern;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return this.extensions;
     }
 
-    @Override
     public ServiceInteractionIndicatorsTwo getServiceInteractionIndicatorsTwo() {
         return this.serviceInteractionIndicatorsTwo;
     }
 
-    @Override
     public CallingPartysCategoryInap getCallingPartysCategory() {
         return this.callingPartysCategory;
     }
 
-    @Override
     public ArrayList<GenericNumberCap> getGenericNumbers() {
         return this.genericNumbers;
     }
 
-    @Override
     public CUGInterlock getCugInterlock() {
         return this.cugInterlock;
     }
 
-    @Override
     public boolean getCugOutgoingAccess() {
         return this.cugOutgoingAccess;
     }
 
-    @Override
     public LocationNumberCap getChargeNumber() {
         return this.chargeNumber;
     }
 
-    @Override
     public Carrier getCarrier() {
         return this.carrier;
     }
 
-    @Override
     public boolean getSuppressionOfAnnouncement() {
         return this.suppressionOfAnnouncement;
     }
 
-    @Override
     public NAOliInfo getNaOliInfo() {
         return this.naOliInfo;
     }
 
-    @Override
     public boolean getBorInterrogationRequested() {
         return this.borInterrogationRequested;
     }
 
-    @Override
     public boolean getSuppressOCsi() {
         return this.suppressOCsi;
     }
 
-    @Override
     public ContinueWithArgumentArgExtension getContinueWithArgumentArgExtension() {
         return this.continueWithArgumentArgExtension;
     }

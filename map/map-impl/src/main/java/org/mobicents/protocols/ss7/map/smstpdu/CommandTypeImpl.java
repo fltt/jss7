@@ -47,7 +47,6 @@ public class CommandTypeImpl implements CommandType {
         return CommandTypeValue.getInstance(this.code);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

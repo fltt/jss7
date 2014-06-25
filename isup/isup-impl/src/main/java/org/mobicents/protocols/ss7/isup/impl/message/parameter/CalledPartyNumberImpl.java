@@ -146,7 +146,6 @@ public class CalledPartyNumberImpl extends AbstractNAINumber implements CalledPa
     protected static final XMLFormat<CalledPartyNumberImpl> ISUP_CALLED_PARTY_NUMBER_XML = new XMLFormat<CalledPartyNumberImpl>(
             CalledPartyNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CalledPartyNumberImpl calledPartyNumber)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.read(xml, calledPartyNumber);
@@ -157,7 +156,6 @@ public class CalledPartyNumberImpl extends AbstractNAINumber implements CalledPa
                     DEFAULT_INTERNAL_NETWORK_NUMBER_INDICATOR);
         }
 
-        @Override
         public void write(CalledPartyNumberImpl calledPartyNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.write(calledPartyNumber, xml);

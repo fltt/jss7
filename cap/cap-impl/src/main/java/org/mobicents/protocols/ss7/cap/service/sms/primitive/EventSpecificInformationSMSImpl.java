@@ -82,27 +82,22 @@ public class EventSpecificInformationSMSImpl implements EventSpecificInformation
         this.tSmsDeliverySpecificInfo = tSmsDeliverySpecificInfo;
     }
 
-    @Override
     public OSmsFailureSpecificInfo getOSmsFailureSpecificInfo() {
         return this.oSmsFailureSpecificInfo;
     }
 
-    @Override
     public OSmsSubmissionSpecificInfo getOSmsSubmissionSpecificInfo() {
         return this.oSmsSubmissionSpecificInfo;
     }
 
-    @Override
     public TSmsFailureSpecificInfo getTSmsFailureSpecificInfo() {
         return this.tSmsFailureSpecificInfo;
     }
 
-    @Override
     public TSmsDeliverySpecificInfo getTSmsDeliverySpecificInfo() {
         return this.tSmsDeliverySpecificInfo;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (oSmsFailureSpecificInfo != null) {
             return _ID_oSmsFailureSpecificInfo;
@@ -115,17 +110,14 @@ public class EventSpecificInformationSMSImpl implements EventSpecificInformation
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -142,7 +134,6 @@ public class EventSpecificInformationSMSImpl implements EventSpecificInformation
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -214,12 +205,10 @@ public class EventSpecificInformationSMSImpl implements EventSpecificInformation
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -231,7 +220,6 @@ public class EventSpecificInformationSMSImpl implements EventSpecificInformation
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if ((this.oSmsFailureSpecificInfo == null && this.oSmsSubmissionSpecificInfo == null
@@ -257,7 +245,6 @@ public class EventSpecificInformationSMSImpl implements EventSpecificInformation
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

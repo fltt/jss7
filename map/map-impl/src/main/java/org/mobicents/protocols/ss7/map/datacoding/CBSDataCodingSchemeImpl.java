@@ -95,12 +95,10 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
         }
     }
 
-    @Override
     public int getCode() {
         return code;
     }
 
-    @Override
     public CBSDataCodingGroup getDataCodingGroup() {
         switch ((this.code & 0xF0) >> 4) {
             case 0:
@@ -128,7 +126,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
         return CBSDataCodingGroup.Reserved;
     }
 
-    @Override
     public CBSNationalLanguage getNationalLanguageShiftTable() {
         if (this.getDataCodingGroup() == CBSDataCodingGroup.GeneralGsm7)
             return CBSNationalLanguage.getInstance((code & 0xF0) >> 4, (code & 0x0F));
@@ -136,7 +133,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
             return null;
     }
 
-    @Override
     public CharacterSet getCharacterSet() {
         switch (this.getDataCodingGroup()) {
             case GeneralGsm7:
@@ -159,7 +155,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
         return null;
     }
 
-    @Override
     public DataCodingSchemaMessageClass getMessageClass() {
         switch (this.getDataCodingGroup()) {
             case GeneralDataCodingIndication:
@@ -175,7 +170,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
         return null;
     }
 
-    @Override
     public boolean getIsCompressed() {
         if (this.getDataCodingGroup() == CBSDataCodingGroup.GeneralDataCodingIndication && (code & 0x20) != 0)
             return true;
@@ -188,7 +182,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
      *
      * @see java.lang.Object#hashCode()
      */
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -201,7 +194,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
      *
      * @see java.lang.Object#equals(java.lang.Object)
      */
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -215,7 +207,6 @@ public class CBSDataCodingSchemeImpl implements CBSDataCodingScheme {
         return true;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

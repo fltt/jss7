@@ -46,7 +46,6 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
         this.serviceName = serviceName;
     }
 
-    @Override
     public void startService() throws Exception {
         // starting
         rebind(stack);
@@ -100,7 +99,6 @@ public class SS7Service extends ServiceMBeanSupport implements SS7ServiceMBean {
         this.stack = stack;
     }
 
-    @Override
     public void stopService() {
         try {
             unbind(jndiName);

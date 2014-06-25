@@ -287,100 +287,84 @@ public class ClientDialogic implements MAPDialogListener, MAPServiceSmsListener 
 
     }
 
-    @Override
     public void onDialogDelimiter(MAPDialog mapDialog) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogRequest(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
             MAPExtensionContainer extensionContainer) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogRequestEricsson(MAPDialog arg0, AddressString arg1, AddressString arg2, IMSI arg3, AddressString arg4) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogAccept(MAPDialog mapDialog, MAPExtensionContainer extensionContainer) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason,
             ApplicationContextName alternativeApplicationContext, MAPExtensionContainer extensionContainer) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogUserAbort(MAPDialog mapDialog, MAPUserAbortChoice userReason, MAPExtensionContainer extensionContainer) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogProviderAbort(MAPDialog mapDialog, MAPAbortProviderReason abortProviderReason,
             MAPAbortSource abortSource, MAPExtensionContainer extensionContainer) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogClose(MAPDialog mapDialog) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogNotice(MAPDialog mapDialog, MAPNoticeProblemDiagnostic noticeProblemDiagnostic) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogRelease(MAPDialog mapDialog) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogTimeout(MAPDialog mapDialog) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onErrorComponent(MAPDialog mapDialog, Long invokeId, MAPErrorMessage mapErrorMessage) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onInvokeTimeout(MAPDialog mapDialog, Long invokeId) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onForwardShortMessageRequest(ForwardShortMessageRequest forwSmInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onForwardShortMessageResponse(ForwardShortMessageResponse forwSmRespInd) {
         // TODO Auto-generated method stub
 
@@ -394,73 +378,61 @@ public class ClientDialogic implements MAPDialogListener, MAPServiceSmsListener 
 
     }
 
-    @Override
     public void onInformServiceCentreRequest(InformServiceCentreRequest informServiceCentreInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onAlertServiceCentreRequest(AlertServiceCentreRequest alertServiceCentreInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMAPMessage(MAPMessage mapMessage) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMoForwardShortMessageRequest(MoForwardShortMessageRequest moForwSmInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMoForwardShortMessageResponse(MoForwardShortMessageResponse moForwSmRespInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtForwardShortMessageRequest(MtForwardShortMessageRequest mtForwSmInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtForwardShortMessageResponse(MtForwardShortMessageResponse mtForwSmRespInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSendRoutingInfoForSMRequest(SendRoutingInfoForSMRequest sendRoutingInfoForSMInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSendRoutingInfoForSMResponse(SendRoutingInfoForSMResponse sendRoutingInfoForSMRespInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onReportSMDeliveryStatusRequest(ReportSMDeliveryStatusRequest reportSMDeliveryStatusInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onReportSMDeliveryStatusResponse(ReportSMDeliveryStatusResponse reportSMDeliveryStatusRespInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onAlertServiceCentreResponse(AlertServiceCentreResponse alertServiceCentreInd) {
         // TODO Auto-generated method stub
 

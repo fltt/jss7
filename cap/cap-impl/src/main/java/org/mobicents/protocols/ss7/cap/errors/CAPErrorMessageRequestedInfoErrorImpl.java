@@ -65,22 +65,18 @@ public class CAPErrorMessageRequestedInfoErrorImpl extends CAPErrorMessageImpl i
         return requestedInfoErrorParameter;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.ENUMERATED;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -95,7 +91,6 @@ public class CAPErrorMessageRequestedInfoErrorImpl extends CAPErrorMessageImpl i
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -122,7 +117,6 @@ public class CAPErrorMessageRequestedInfoErrorImpl extends CAPErrorMessageImpl i
         this.requestedInfoErrorParameter = RequestedInfoErrorParameter.getInstance(i1);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
@@ -153,7 +147,6 @@ public class CAPErrorMessageRequestedInfoErrorImpl extends CAPErrorMessageImpl i
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

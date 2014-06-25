@@ -67,7 +67,6 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
         return this.volumeIfTariffSwitch;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (volumeIfNoTariffSwitch != null) {
             return _ID_volumeIfNoTariffSwitch;
@@ -76,12 +75,10 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (volumeIfNoTariffSwitch != null) {
             return true;
@@ -90,7 +87,6 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -107,7 +103,6 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -162,12 +157,10 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -180,7 +173,6 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.volumeIfNoTariffSwitch == null && this.volumeIfTariffSwitch == null || this.volumeIfNoTariffSwitch != null
                 && this.volumeIfTariffSwitch != null) {
@@ -198,7 +190,6 @@ public class TransferredVolumeImpl implements TransferredVolume, CAPAsnPrimitive
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

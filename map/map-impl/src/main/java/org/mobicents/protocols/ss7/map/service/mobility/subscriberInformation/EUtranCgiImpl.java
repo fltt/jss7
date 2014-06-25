@@ -57,7 +57,6 @@ public class EUtranCgiImpl extends OctetStringBase implements EUtranCgi {
      */
     protected static final XMLFormat<EUtranCgiImpl> E_UTRAN_CGI_XML = new XMLFormat<EUtranCgiImpl>(EUtranCgiImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, EUtranCgiImpl eUtranCgi) throws XMLStreamException {
             String s = xml.getAttribute(DATA, DEFAULT_VALUE);
             if (s != null) {
@@ -65,7 +64,6 @@ public class EUtranCgiImpl extends OctetStringBase implements EUtranCgi {
             }
         }
 
-        @Override
         public void write(EUtranCgiImpl eUtranCgi, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (eUtranCgi.data != null) {
                 xml.setAttribute(DATA, DatatypeConverter.printHexBinary(eUtranCgi.data));

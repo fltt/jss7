@@ -56,17 +56,14 @@ public class MTsmsCAMELTDPCriteriaImpl extends SequenceBase implements MTsmsCAME
         this.tPDUTypeCriterion = tPDUTypeCriterion;
     }
 
-    @Override
     public SMSTriggerDetectionPoint getSMSTriggerDetectionPoint() {
         return this.smsTriggerDetectionPoint;
     }
 
-    @Override
     public ArrayList<MTSMSTPDUType> getTPDUTypeCriterion() {
         return this.tPDUTypeCriterion;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
         this.smsTriggerDetectionPoint = null;
         this.tPDUTypeCriterion = null;
@@ -150,7 +147,6 @@ public class MTsmsCAMELTDPCriteriaImpl extends SequenceBase implements MTsmsCAME
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.smsTriggerDetectionPoint == null)
             throw new MAPException("Error while encoding " + _PrimitiveName + ": smsTriggerDetectionPoint required.");
@@ -179,7 +175,6 @@ public class MTsmsCAMELTDPCriteriaImpl extends SequenceBase implements MTsmsCAME
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

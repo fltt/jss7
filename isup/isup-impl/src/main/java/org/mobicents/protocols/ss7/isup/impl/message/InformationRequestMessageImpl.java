@@ -69,46 +69,38 @@ public class InformationRequestMessageImpl extends ISUPMessageImpl implements In
         super.o_Parameters.put(_INDEX_O_EndOfOptionalParameters, _END_OF_OPTIONAL_PARAMETERS);
     }
 
-    @Override
     public void setInformationRequestIndicators(InformationRequestIndicators inri) {
         super.f_Parameters.put(_INDEX_F_InformationRequestIndicators, inri);
 
     }
 
-    @Override
     public InformationRequestIndicators getInformationRequestIndicators() {
         return (InformationRequestIndicators) super.f_Parameters.get(_INDEX_F_InformationRequestIndicators);
     }
 
-    @Override
     public void setCallReference(CallReference inri) {
         super.o_Parameters.put(_INDEX_O_CallReference, inri);
 
     }
 
-    @Override
     public CallReference getCallReference() {
         return (CallReference) super.o_Parameters.get(_INDEX_O_CallReference);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation inri) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation, inri);
 
     }
 
-    @Override
     public ParameterCompatibilityInformation getParameterCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }
 
-    @Override
     public void setNetworkSpecificFacility(NetworkSpecificFacility inri) {
         super.o_Parameters.put(_INDEX_O_NetworkSpecificFacility, inri);
 
     }
 
-    @Override
     public NetworkSpecificFacility getNetworkSpecificFacility() {
         return (NetworkSpecificFacility) super.o_Parameters.get(_INDEX_O_NetworkSpecificFacility);
     }

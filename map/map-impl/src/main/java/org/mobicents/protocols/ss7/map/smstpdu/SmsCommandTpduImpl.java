@@ -182,7 +182,6 @@ public class SmsCommandTpduImpl extends SmsTpduImpl implements SmsCommandTpdu {
         return res.toByteArray();
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

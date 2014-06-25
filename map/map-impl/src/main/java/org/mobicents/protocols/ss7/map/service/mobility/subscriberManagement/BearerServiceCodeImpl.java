@@ -50,7 +50,6 @@ public class BearerServiceCodeImpl extends OctetStringLength1Base implements Bea
         return BearerServiceCodeValue.getInstance(this.data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

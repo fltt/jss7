@@ -196,7 +196,6 @@ public class LocationNumberImpl extends AbstractNAINumber implements LocationNum
     protected static final XMLFormat<LocationNumberImpl> ISUP_LOCATION_NUMBER_XML = new XMLFormat<LocationNumberImpl>(
             LocationNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LocationNumberImpl locationNumber)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.read(xml, locationNumber);
@@ -210,7 +209,6 @@ public class LocationNumberImpl extends AbstractNAINumber implements LocationNum
             locationNumber.screeningIndicator = xml.getAttribute(SCREENING_INDICATOR, DEFAULT_SCREENING_INDICATOR);
         }
 
-        @Override
         public void write(LocationNumberImpl locationNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.write(locationNumber, xml);

@@ -37,7 +37,6 @@ public class FreeFormatDataImpl extends OctetStringBase implements FreeFormatDat
         super(1, 160, "FreeFormatData", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

@@ -53,7 +53,6 @@ public class StatusImpl extends ParameterImpl implements Status {
 
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = (byte) (type >>> 8);
@@ -73,7 +72,6 @@ public class StatusImpl extends ParameterImpl implements Status {
         return this.type;
     }
 
-    @Override
     public String toString() {
         return String.format("Status type=%d info=%d", type, info);
     }

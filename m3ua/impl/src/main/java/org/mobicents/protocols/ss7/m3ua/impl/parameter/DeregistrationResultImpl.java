@@ -83,7 +83,6 @@ public class DeregistrationResultImpl extends ParameterImpl implements Deregistr
         value = buffer.array();
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }

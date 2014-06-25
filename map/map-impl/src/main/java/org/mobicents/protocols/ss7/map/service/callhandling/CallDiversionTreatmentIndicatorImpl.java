@@ -41,17 +41,14 @@ public class CallDiversionTreatmentIndicatorImpl extends OctetStringLength1Base 
         super("CallDiversionTreatmentIndicator", value != null ? value.getCode() : 0);
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public CallDiversionTreatmentIndicatorValue getCallDiversionTreatmentIndicatorValue() {
         return CallDiversionTreatmentIndicatorValue.getInstance(this.data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

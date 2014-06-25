@@ -167,162 +167,130 @@ public class PDPContextInfoImpl implements PDPContextInfo, MAPAsnPrimitive {
         this.extPdpAddress = extPdpAddress;
     }
 
-    @Override
     public int getPdpContextIdentifier() {
         return pdpContextIdentifier;
     }
 
-    @Override
     public boolean getPdpContextActive() {
         return pdpContextActive;
     }
 
-    @Override
     public PDPType getPdpType() {
         return pdpType;
     }
 
-    @Override
     public PDPAddress getPdpAddress() {
         return pdpAddress;
     }
 
-    @Override
     public APN getApnSubscribed() {
         return apnSubscribed;
     }
 
-    @Override
     public APN getApnInUse() {
         return apnInUse;
     }
 
-    @Override
     public Integer getNsapi() {
         return nsapi;
     }
 
-    @Override
     public TransactionId getTransactionId() {
         return transactionId;
     }
 
-    @Override
     public TEID getTeidForGnAndGp() {
         return teidForGnAndGp;
     }
 
-    @Override
     public TEID getTeidForIu() {
         return teidForIu;
     }
 
-    @Override
     public GSNAddress getGgsnAddress() {
         return ggsnAddress;
     }
 
-    @Override
     public ExtQoSSubscribed getQosSubscribed() {
         return qosSubscribed;
     }
 
-    @Override
     public ExtQoSSubscribed getQosRequested() {
         return qosRequested;
     }
 
-    @Override
     public ExtQoSSubscribed getQosNegotiated() {
         return qosNegotiated;
     }
 
-    @Override
     public GPRSChargingID getChargingId() {
         return chargingId;
     }
 
-    @Override
     public ChargingCharacteristics getChargingCharacteristics() {
         return chargingCharacteristics;
     }
 
-    @Override
     public GSNAddress getRncAddress() {
         return rncAddress;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     public Ext2QoSSubscribed getQos2Subscribed() {
         return qos2Subscribed;
     }
 
-    @Override
     public Ext2QoSSubscribed getQos2Requested() {
         return qos2Requested;
     }
 
-    @Override
     public Ext2QoSSubscribed getQos2Negotiated() {
         return qos2Negotiated;
     }
 
-    @Override
     public Ext3QoSSubscribed getQos3Subscribed() {
         return qos3Subscribed;
     }
 
-    @Override
     public Ext3QoSSubscribed getQos3Requested() {
         return qos3Requested;
     }
 
-    @Override
     public Ext3QoSSubscribed getQos3Negotiated() {
         return qos3Negotiated;
     }
 
-    @Override
     public Ext4QoSSubscribed getQos4Subscribed() {
         return qos4Subscribed;
     }
 
-    @Override
     public Ext4QoSSubscribed getQos4Requested() {
         return qos4Requested;
     }
 
-    @Override
     public Ext4QoSSubscribed getQos4Negotiated() {
         return qos4Negotiated;
     }
 
-    @Override
     public ExtPDPType getExtPdpType() {
         return extPdpType;
     }
 
-    @Override
     public PDPAddress getExtPdpAddress() {
         return extPdpAddress;
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
@@ -644,12 +612,10 @@ public class PDPContextInfoImpl implements PDPContextInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -661,7 +627,6 @@ public class PDPContextInfoImpl implements PDPContextInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
 

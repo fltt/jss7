@@ -101,150 +101,125 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         this.mapMan = val;
     }
 
-    @Override
     public String getMsisdnAddress() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().getMsisdnAddress();
     }
 
-    @Override
     public void setMsisdnAddress(String val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setMsisdnAddress(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public AddressNatureType getMsisdnAddressNature() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .getMsisdnAddressNature().getIndicator());
     }
 
-    @Override
     public String getMsisdnAddressNature_Value() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .getMsisdnAddressNature().getIndicator()).toString();
     }
 
-    @Override
     public void setMsisdnAddressNature(AddressNatureType val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .setMsisdnAddressNature(AddressNature.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public NumberingPlanMapType getMsisdnNumberingPlan() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .getMsisdnNumberingPlan().getIndicator());
     }
 
-    @Override
     public String getMsisdnNumberingPlan_Value() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .getMsisdnNumberingPlan().getIndicator()).toString();
     }
 
-    @Override
     public void setMsisdnNumberingPlan(NumberingPlanMapType val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .setMsisdnNumberingPlan(NumberingPlan.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public int getDataCodingScheme() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().getDataCodingScheme();
     }
 
-    @Override
     public void setDataCodingScheme(int val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setDataCodingScheme(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getAlertingPattern() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().getAlertingPattern();
     }
 
-    @Override
     public void setAlertingPattern(int val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setAlertingPattern(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public ProcessSsRequestAction getProcessSsRequestAction() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().getProcessSsRequestAction();
     }
 
-    @Override
     public String getProcessSsRequestAction_Value() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().getProcessSsRequestAction()
                 .toString();
     }
 
-    @Override
     public void setProcessSsRequestAction(ProcessSsRequestAction val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setProcessSsRequestAction(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public String getAutoResponseString() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().getAutoResponseString();
     }
 
-    @Override
     public void setAutoResponseString(String val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setAutoResponseString(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public String getAutoUnstructured_SS_RequestString() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData()
                 .getAutoUnstructured_SS_RequestString();
     }
 
-    @Override
     public void setAutoUnstructured_SS_RequestString(String val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setAutoUnstructured_SS_RequestString(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public boolean isOneNotificationFor100Dialogs() {
         return this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().isOneNotificationFor100Dialogs();
     }
 
-    @Override
     public void setOneNotificationFor100Dialogs(boolean val) {
         this.testerHost.getConfigurationData().getTestUssdServerConfigurationData().setOneNotificationFor100Dialogs(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public void putMsisdnAddressNature(String val) {
         AddressNatureType x = AddressNatureType.createInstance(val);
         if (x != null)
             this.setMsisdnAddressNature(x);
     }
 
-    @Override
     public void putMsisdnNumberingPlan(String val) {
         NumberingPlanMapType x = NumberingPlanMapType.createInstance(val);
         if (x != null)
             this.setMsisdnNumberingPlan(x);
     }
 
-    @Override
     public void putProcessSsRequestAction(String val) {
         ProcessSsRequestAction x = ProcessSsRequestAction.createInstance(val);
         if (x != null)
             this.setProcessSsRequestAction(x);
     }
 
-    @Override
     public String getCurrentRequestDef() {
         if (this.currentDialog != null)
             return "CurDialog: " + currentRequestDef;
@@ -252,7 +227,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
             return "PrevDialog: " + currentRequestDef;
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
@@ -290,7 +264,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         return true;
     }
 
-    @Override
     public void stop() {
         MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
         isStarted = false;
@@ -301,11 +274,9 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         this.testerHost.sendNotif(SOURCE_NAME, "USSD Server has been stopped", "", Level.INFO);
     }
 
-    @Override
     public void execute() {
     }
 
-    @Override
     public String closeCurrentDialog() {
         if (isStarted) {
             MAPDialogSupplementary curDialog = currentDialog;
@@ -456,7 +427,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         return "UnstructuredSSRequest has been sent";
     }
 
-    @Override
     public String performProcessUnstructuredResponse(String msg) {
 
         if (!isStarted)
@@ -485,7 +455,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         return res;
     }
 
-    @Override
     public String performUnstructuredRequest(String msg) {
 
         if (!isStarted)
@@ -509,7 +478,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         return res;
     }
 
-    @Override
     public String performUnstructuredNotify(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -566,13 +534,11 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         }
     }
 
-    @Override
     public void onMAPMessage(MAPMessage mapMessage) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onProcessUnstructuredSSRequest(ProcessUnstructuredSSRequest ind) {
 
         if (!isStarted)
@@ -638,17 +604,14 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         this.testerHost.sendNotif(SOURCE_NAME, pref + msg, uData, Level.DEBUG);
     }
 
-    @Override
     public void onProcessUnstructuredSSResponse(ProcessUnstructuredSSResponse procUnstrResInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onUnstructuredSSRequest(UnstructuredSSRequest ind) {
     }
 
-    @Override
     public void onUnstructuredSSResponse(UnstructuredSSResponse ind) {
 
         if (!isStarted)
@@ -702,19 +665,16 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         }
     }
 
-    @Override
     public void onUnstructuredSSNotifyRequest(UnstructuredSSNotifyRequest unstrNotifyInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onUnstructuredSSNotifyResponse(UnstructuredSSNotifyResponse unstrNotifyInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogDelimiter(MAPDialog mapDialog) {
         try {
             if (needSendSend) {
@@ -734,7 +694,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         }
     }
 
-    @Override
     public void onDialogRequest(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
             MAPExtensionContainer extensionContainer) {
         synchronized (this) {
@@ -753,7 +712,6 @@ public class TestUssdServerMan extends TesterBase implements TestUssdServerManMB
         }
     }
 
-    @Override
     public void onDialogRelease(MAPDialog mapDialog) {
         if (this.currentDialog == mapDialog)
             this.doRemoveDialog();

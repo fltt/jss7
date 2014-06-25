@@ -62,37 +62,30 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
         this.timeDurationChargingResult = timeDurationChargingResult;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.applyChargingReport_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.applyChargingReport;
     }
 
-    @Override
     public TimeDurationChargingResult getTimeDurationChargingResult() {
         return timeDurationChargingResult;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -107,7 +100,6 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -139,12 +131,10 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
         ((TimeDurationChargingResultImpl) this.timeDurationChargingResult).decodeAll(aiss);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -157,7 +147,6 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.timeDurationChargingResult == null)
@@ -173,7 +162,6 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -196,7 +184,6 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
     protected static final XMLFormat<ApplyChargingReportRequestImpl> APPLY_CHARGING_REPORT_REQUEST_XML = new XMLFormat<ApplyChargingReportRequestImpl>(
             ApplyChargingReportRequestImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ApplyChargingReportRequestImpl applyChargingReportRequest)
                 throws XMLStreamException {
             CIRCUIT_SWITCHED_CALL_MESSAGE_XML.read(xml, applyChargingReportRequest);
@@ -204,7 +191,6 @@ public class ApplyChargingReportRequestImpl extends CircuitSwitchedCallMessageIm
                     TimeDurationChargingResultImpl.class);
         }
 
-        @Override
         public void write(ApplyChargingReportRequestImpl applyChargingReportRequest, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

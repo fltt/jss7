@@ -58,12 +58,10 @@ public class CAPServiceGprsImpl extends CAPServiceBaseImpl implements CAPService
         super(capProviderImpl);
     }
 
-    @Override
     public CAPDialogGprs createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress) throws CAPException {
         return this.createNewDialog(appCntx, origAddress, destAddress, null);
     }
 
-    @Override
     public CAPDialogGprs createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress, Long localTrId) throws CAPException {
 
         // We cannot create a dialog if the service is not activated
@@ -78,22 +76,18 @@ public class CAPServiceGprsImpl extends CAPServiceBaseImpl implements CAPService
         return dialog;
     }
 
-    @Override
     public void addCAPServiceListener(CAPServiceGprsListener capServiceListener) {
         super.addCAPServiceListener(capServiceListener);
     }
 
-    @Override
     public void removeCAPServiceListener(CAPServiceGprsListener capServiceListener) {
         super.removeCAPServiceListener(capServiceListener);
     }
 
-    @Override
     protected CAPDialogImpl createNewDialogIncoming(CAPApplicationContext appCntx, Dialog tcapDialog) {
         return new CAPDialogGprsImpl(appCntx, tcapDialog, this.capProviderImpl, this);
     }
 
-    @Override
     public ServingCheckData isServingService(CAPApplicationContext dialogApplicationContext) {
         switch (dialogApplicationContext) {
             case CapV3_gprsSSF_gsmSCF:
@@ -104,7 +98,6 @@ public class CAPServiceGprsImpl extends CAPServiceBaseImpl implements CAPService
         return new ServingCheckDataImpl(ServingCheckResult.AC_NotServing);
     }
 
-    @Override
     public void processComponent(ComponentType compType, OperationCode oc, Parameter parameter, CAPDialog capDialog,
             Long invokeId, Long linkedId, Invoke linkedInvoke) throws CAPParsingComponentException {
 

@@ -55,7 +55,6 @@ public class Client extends EventTestHarness {
 
     }
 
-    @Override
     public void sendBegin() throws TCAPException, TCAPSendException {
         ComponentPrimitiveFactory cpFactory = this.tcapProvider.getComponentPrimitiveFactory();
 

@@ -61,42 +61,34 @@ public class InbandInfoImpl implements InbandInfo, CAPAsnPrimitive {
         this.interval = interval;
     }
 
-    @Override
     public MessageID getMessageID() {
         return messageID;
     }
 
-    @Override
     public Integer getNumberOfRepetitions() {
         return numberOfRepetitions;
     }
 
-    @Override
     public Integer getDuration() {
         return duration;
     }
 
-    @Override
     public Integer getInterval() {
         return interval;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -111,7 +103,6 @@ public class InbandInfoImpl implements InbandInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -171,12 +162,10 @@ public class InbandInfoImpl implements InbandInfo, CAPAsnPrimitive {
                     + ": messageID is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -189,7 +178,6 @@ public class InbandInfoImpl implements InbandInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.messageID == null)
@@ -215,7 +203,6 @@ public class InbandInfoImpl implements InbandInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

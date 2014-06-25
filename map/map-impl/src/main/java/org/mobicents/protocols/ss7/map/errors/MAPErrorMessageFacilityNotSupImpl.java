@@ -237,7 +237,6 @@ public class MAPErrorMessageFacilityNotSupImpl extends MAPErrorMessageImpl imple
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

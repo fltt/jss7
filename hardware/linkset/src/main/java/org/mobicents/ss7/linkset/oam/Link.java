@@ -162,14 +162,12 @@ public abstract class Link implements XMLSerializable {
      */
     protected static final XMLFormat<Link> LINK_XML = new XMLFormat<Link>(Link.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, Link link) throws XMLStreamException {
             link.linkName = xml.getAttribute(LINK_NAME).toString();
             link.state = xml.getAttribute(LINK_STATE, LinkState.UNAVAILABLE);
             link.mode = xml.getAttribute(LINK_MODE, LinkMode.UNCONFIGURED);
         }
 
-        @Override
         public void write(Link link, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(LINK_NAME, link.linkName);
             xml.setAttribute(LINK_STATE, link.state);

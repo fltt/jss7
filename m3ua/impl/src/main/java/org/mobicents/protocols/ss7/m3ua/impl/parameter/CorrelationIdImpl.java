@@ -53,7 +53,6 @@ public class CorrelationIdImpl extends ParameterImpl implements CorrelationId {
         return this.corrId;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = (byte) (corrId >>> 24);
@@ -64,7 +63,6 @@ public class CorrelationIdImpl extends ParameterImpl implements CorrelationId {
         return data;
     }
 
-    @Override
     public String toString() {
         return String.format("CorrelationId id=%d", corrId);
     }

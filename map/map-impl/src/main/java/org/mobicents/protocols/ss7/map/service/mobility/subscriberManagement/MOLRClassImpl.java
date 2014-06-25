@@ -59,22 +59,18 @@ public class MOLRClassImpl extends SequenceBase implements MOLRClass {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public SSCode getSsCode() {
         return this.ssCode;
     }
 
-    @Override
     public ExtSSStatus getSsStatus() {
         return this.ssStatus;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.ssCode = null;
@@ -144,7 +140,6 @@ public class MOLRClassImpl extends SequenceBase implements MOLRClass {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.ssCode == null)
@@ -163,7 +158,6 @@ public class MOLRClassImpl extends SequenceBase implements MOLRClass {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

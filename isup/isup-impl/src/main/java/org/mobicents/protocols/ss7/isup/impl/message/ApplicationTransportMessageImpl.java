@@ -115,32 +115,26 @@ public class ApplicationTransportMessageImpl extends ISUPMessageImpl implements 
         return true;
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation mci) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation, mci);
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation pci) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation, pci);
     }
 
-    @Override
     public ParameterCompatibilityInformation getParameterCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }
 
-    @Override
     public void setApplicationTransport(ApplicationTransport atp) {
         super.o_Parameters.put(_INDEX_O_ApplicationTransportParameter, atp);
     }
 
-    @Override
     public ApplicationTransport getApplicationTransport() {
         return (ApplicationTransport) super.o_Parameters.get(_INDEX_O_ApplicationTransportParameter);
     }

@@ -56,42 +56,34 @@ public class CAPGprsReferenceNumberImpl implements CAPGprsReferenceNumber, CAPAs
         this.originationReference = originationReference;
     }
 
-    @Override
     public Integer getDestinationReference() {
         return this.destinationReference;
     }
 
-    @Override
     public Integer getOriginationReference() {
         return this.originationReference;
     }
 
-    @Override
     public void setDestinationReference(Integer destinationReference) {
         this.destinationReference = destinationReference;
     }
 
-    @Override
     public void setOriginationReference(Integer originationReference) {
         this.originationReference = originationReference;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -106,7 +98,6 @@ public class CAPGprsReferenceNumberImpl implements CAPGprsReferenceNumber, CAPAs
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -176,13 +167,11 @@ public class CAPGprsReferenceNumberImpl implements CAPGprsReferenceNumber, CAPAs
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
 
         this.encodeAll(asnOs, Tag.CLASS_UNIVERSAL, Tag.SEQUENCE);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -195,7 +184,6 @@ public class CAPGprsReferenceNumberImpl implements CAPGprsReferenceNumber, CAPAs
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -218,7 +206,6 @@ public class CAPGprsReferenceNumberImpl implements CAPGprsReferenceNumber, CAPAs
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

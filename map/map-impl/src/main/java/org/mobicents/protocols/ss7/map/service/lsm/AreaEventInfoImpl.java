@@ -179,7 +179,6 @@ public class AreaEventInfoImpl extends SequenceBase implements AreaEventInfo {
         }
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -189,7 +188,6 @@ public class AreaEventInfoImpl extends SequenceBase implements AreaEventInfo {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -223,7 +221,6 @@ public class AreaEventInfoImpl extends SequenceBase implements AreaEventInfo {
         return true;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

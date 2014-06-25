@@ -42,7 +42,6 @@ public class ASPActiveImpl extends M3UAMessageImpl implements ASPActive {
         super(MessageClass.ASP_TRAFFIC_MAINTENANCE, MessageType.ASP_ACTIVE, MessageType.S_ASP_ACTIVE);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Traffic_Mode_Type)) {
             ((ParameterImpl) parameters.get(Parameter.Traffic_Mode_Type)).write(buffer);

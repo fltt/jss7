@@ -59,12 +59,10 @@ public abstract class MessageImpl implements CAPMessage {
      */
     protected static final XMLFormat<MessageImpl> CAP_MESSAGE_XML = new XMLFormat<MessageImpl>(MessageImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, MessageImpl message) throws XMLStreamException {
             message.invokeId = xml.getAttribute(INVOKE_ID, -1L);
         }
 
-        @Override
         public void write(MessageImpl message, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(INVOKE_ID, message.invokeId);
         }

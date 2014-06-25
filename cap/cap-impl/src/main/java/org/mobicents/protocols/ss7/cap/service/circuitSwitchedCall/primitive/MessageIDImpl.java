@@ -72,27 +72,22 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
         this.variableMessage = variableMessage;
     }
 
-    @Override
     public Integer getElementaryMessageID() {
         return elementaryMessageID;
     }
 
-    @Override
     public MessageIDText getText() {
         return text;
     }
 
-    @Override
     public ArrayList<Integer> getElementaryMessageIDs() {
         return elementaryMessageIDs;
     }
 
-    @Override
     public VariableMessage getVariableMessage() {
         return variableMessage;
     }
 
-    @Override
     public int getTag() throws CAPException {
 
         if (this.elementaryMessageID != null) {
@@ -108,12 +103,10 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.elementaryMessageID != null)
             return true;
@@ -121,7 +114,6 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
             return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -136,7 +128,6 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -197,12 +188,10 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -215,7 +204,6 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int choiceCnt = 0;
@@ -258,7 +246,6 @@ public class MessageIDImpl implements MessageID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

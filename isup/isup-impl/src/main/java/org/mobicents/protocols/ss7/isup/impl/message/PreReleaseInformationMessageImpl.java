@@ -126,52 +126,42 @@ public class PreReleaseInformationMessageImpl extends ISUPMessageImpl implements
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation mci) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation, mci);
     }
 
-    @Override
     public ParameterCompatibilityInformation getParameterCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation pci) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation, pci);
     }
 
-    @Override
     public void setOptionalForwardCallIndicators(OptionalForwardCallIndicators mci) {
         super.o_Parameters.put(_INDEX_O_OptionalForwardCallIndicators, mci);
     }
 
-    @Override
     public OptionalForwardCallIndicators getOptionalForwardCallIndicators() {
         return (OptionalForwardCallIndicators) super.o_Parameters.get(_INDEX_O_OptionalForwardCallIndicators);
     }
 
-    @Override
     public void setOptionalBackwardCallIndicators(OptionalBackwardCallIndicators mci) {
         super.o_Parameters.put(_INDEX_O_OptionalBackwardCallIndicators, mci);
     }
 
-    @Override
     public OptionalBackwardCallIndicators getOptionalBackwardCallIndicators() {
         return (OptionalBackwardCallIndicators) super.o_Parameters.get(_INDEX_O_OptionalBackwardCallIndicators);
     }
 
-    @Override
     public void setApplicationTransport(ApplicationTransport mci) {
         super.o_Parameters.put(_INDEX_O_ApplicationTransport, mci);
     }
 
-    @Override
     public ApplicationTransport getApplicationTransport() {
         return (ApplicationTransport) super.o_Parameters.get(_INDEX_O_ApplicationTransport);
     }

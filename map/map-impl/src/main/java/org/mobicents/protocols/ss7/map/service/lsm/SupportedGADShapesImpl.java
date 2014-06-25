@@ -125,7 +125,6 @@ public class SupportedGADShapesImpl extends BitStringBase implements SupportedGA
         return this.bitString.get(_INDEX_ELLIPSOID_ARC);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

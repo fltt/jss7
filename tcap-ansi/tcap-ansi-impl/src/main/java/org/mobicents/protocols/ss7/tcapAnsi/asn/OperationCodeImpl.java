@@ -45,26 +45,22 @@ public class OperationCodeImpl implements OperationCode {
         return type;
     }
 
-    @Override
     public void setNationalOperationCode(Long nationalOperationCode) {
         this.nationalOperationCode = nationalOperationCode;
         this.privateOperationCode = null;
         this.type = OperationCodeType.National;
     }
 
-    @Override
     public void setPrivateOperationCode(Long privateOperationCode) {
         this.nationalOperationCode = null;
         this.privateOperationCode = privateOperationCode;
         this.type = OperationCodeType.Private;
     }
 
-    @Override
     public Long getNationalOperationCode() {
         return nationalOperationCode;
     }
 
-    @Override
     public Long getPrivateOperationCode() {
         return privateOperationCode;
     }

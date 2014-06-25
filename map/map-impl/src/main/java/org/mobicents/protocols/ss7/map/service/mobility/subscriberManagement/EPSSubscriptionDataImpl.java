@@ -80,47 +80,38 @@ public class EPSSubscriptionDataImpl extends SequenceBase implements EPSSubscrip
         this.mpsEPSPriority = mpsEPSPriority;
     }
 
-    @Override
     public APNOIReplacement getApnOiReplacement() {
         return this.apnOiReplacement;
     }
 
-    @Override
     public Integer getRfspId() {
         return this.rfspId;
     }
 
-    @Override
     public AMBR getAmbr() {
         return this.ambr;
     }
 
-    @Override
     public APNConfigurationProfile getAPNConfigurationProfile() {
         return this.apnConfigurationProfile;
     }
 
-    @Override
     public ISDNAddressString getStnSr() {
         return this.stnSr;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public boolean getMpsCSPriority() {
         return this.mpsCSPriority;
     }
 
-    @Override
     public boolean getMpsEPSPriority() {
         return this.mpsEPSPriority;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.apnOiReplacement = null;
@@ -220,7 +211,6 @@ public class EPSSubscriptionDataImpl extends SequenceBase implements EPSSubscrip
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -260,7 +250,6 @@ public class EPSSubscriptionDataImpl extends SequenceBase implements EPSSubscrip
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

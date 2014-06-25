@@ -41,13 +41,11 @@ public class TSmsDeliverySpecificInfoImpl extends SequenceBase implements TSmsDe
         super("TSmsDeliverySpecificInfo");
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException,
             AsnException, MAPParsingComponentException, INAPParsingComponentException {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
     }

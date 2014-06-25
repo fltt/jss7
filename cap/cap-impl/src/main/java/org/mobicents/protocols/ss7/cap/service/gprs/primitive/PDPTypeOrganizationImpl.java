@@ -41,17 +41,14 @@ public class PDPTypeOrganizationImpl extends OctetStringLength1Base implements P
         super("PDPTypeOrganization", value != null ? (value.getCode() | 0xF0) : 0);
     }
 
-    @Override
     public PDPTypeOrganizationValue getPDPTypeOrganizationValue() {
         return PDPTypeOrganizationValue.getInstance(data & 0x0F);
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

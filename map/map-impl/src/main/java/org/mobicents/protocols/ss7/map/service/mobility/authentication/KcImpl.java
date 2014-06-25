@@ -37,7 +37,6 @@ public class KcImpl extends OctetStringBase implements Kc {
         super(8, 8, "Kc");
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }

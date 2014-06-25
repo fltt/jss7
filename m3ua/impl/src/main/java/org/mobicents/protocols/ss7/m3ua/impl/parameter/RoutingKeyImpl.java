@@ -189,7 +189,6 @@ public class RoutingKeyImpl extends ParameterImpl implements RoutingKey, XMLSeri
         buffer.get(this.value);
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
@@ -222,7 +221,6 @@ public class RoutingKeyImpl extends ParameterImpl implements RoutingKey, XMLSeri
         return this.trafMdTy;
     }
 
-    @Override
     public String toString() {
         TextBuilder tb = TextBuilder.newInstance();
         tb.append("RoutingKey(");
@@ -262,7 +260,6 @@ public class RoutingKeyImpl extends ParameterImpl implements RoutingKey, XMLSeri
      */
     protected static final XMLFormat<RoutingKeyImpl> RC_XML = new XMLFormat<RoutingKeyImpl>(RoutingKeyImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RoutingKeyImpl routingKey) throws XMLStreamException {
             int dpcArraySize = xml.getAttribute(DPC_ARRAY_SIZE).toInt();
             int opcArraySize = xml.getAttribute(OPC_ARRAY_SIZE).toInt();
@@ -297,7 +294,6 @@ public class RoutingKeyImpl extends ParameterImpl implements RoutingKey, XMLSeri
             routingKey.encode();
         }
 
-        @Override
         public void write(RoutingKeyImpl routingKey, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (routingKey.dpc != null) {
                 xml.setAttribute(DPC_ARRAY_SIZE, routingKey.dpc.length);

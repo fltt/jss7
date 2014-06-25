@@ -89,22 +89,18 @@ public class TCAbortMessageImpl implements TCAbortMessage {
         this.destinationTransactionId = t;
     }
 
-    @Override
     public PAbortCause getPAbortCause() {
         return this.pAbortCause;
     }
 
-    @Override
     public void setPAbortCause(PAbortCause t) {
         this.pAbortCause = t;
     }
 
-    @Override
     public UserInformationElement getUserAbortInformation() {
         return userAbortInformation;
     }
 
-    @Override
     public void setUserAbortInformation(UserInformationElement uai) {
         userAbortInformation = uai;
     }

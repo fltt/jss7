@@ -61,27 +61,22 @@ public class VoiceBroadcastDataImpl extends SequenceBase implements VoiceBroadca
         this.longGroupId = longGroupId;
     }
 
-    @Override
     public GroupId getGroupId() {
         return this.groupId;
     }
 
-    @Override
     public boolean getBroadcastInitEntitlement() {
         return this.broadcastInitEntitlement;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public LongGroupId getLongGroupId() {
         return this.longGroupId;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.groupId = null;
@@ -166,7 +161,6 @@ public class VoiceBroadcastDataImpl extends SequenceBase implements VoiceBroadca
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.groupId == null && this.longGroupId == null)
@@ -195,7 +189,6 @@ public class VoiceBroadcastDataImpl extends SequenceBase implements VoiceBroadca
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

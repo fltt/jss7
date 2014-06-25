@@ -58,12 +58,10 @@ public class GPRSQoSExtensionImpl extends SequenceBase implements GPRSQoSExtensi
         this.supplementToLongQoSFormat = supplementToLongQoSFormat;
     }
 
-    @Override
     public Ext2QoSSubscribed getSupplementToLongQoSFormat() {
         return this.supplementToLongQoSFormat;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -101,7 +99,6 @@ public class GPRSQoSExtensionImpl extends SequenceBase implements GPRSQoSExtensi
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         try {
             if (this.supplementToLongQoSFormat == null)
@@ -116,7 +113,6 @@ public class GPRSQoSExtensionImpl extends SequenceBase implements GPRSQoSExtensi
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -38,7 +38,6 @@ public class TraceReaderDriverHexStream extends TraceReaderDriverBase implements
         super(processControl, fileName);
     }
 
-    @Override
     public void startTraceFile() throws TraceReaderException {
 
         if (this.listeners.size() == 0)

@@ -49,14 +49,12 @@ public class Server extends EventTestHarness {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
     public void onTCQuery(TCQueryIndication ind) {
         // TODO Auto-generated method stub
         super.onTCQuery(ind);
         this.components = ind.getComponents();
     }
 
-    @Override
     public void sendContinue(boolean addingInv) throws TCAPSendException, TCAPException {
 
         Component[] comps = components;

@@ -411,12 +411,10 @@ public abstract class AbstractNumber extends AbstractISUPParameter implements Nu
     protected static final XMLFormat<AbstractNumber> ISUP_ABSTRACT_NUMBER_XML = new XMLFormat<AbstractNumber>(
             AbstractNumber.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AbstractNumber abstractNumber) throws XMLStreamException {
             abstractNumber.setAddress(xml.getAttribute(ADDRESS, DEFAULT_ADDRESS));
         }
 
-        @Override
         public void write(AbstractNumber abstractNumber, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(ADDRESS, abstractNumber.address);
         }

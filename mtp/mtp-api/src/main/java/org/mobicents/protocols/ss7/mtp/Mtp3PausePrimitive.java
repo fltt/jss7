@@ -35,7 +35,6 @@ public class Mtp3PausePrimitive extends Mtp3Primitive {
         super(PAUSE, affectedDpc);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

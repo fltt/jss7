@@ -50,7 +50,6 @@ public class AspFactoryStopTimer extends M3UATask {
      *
      * @see org.mobicents.protocols.ss7.m3ua.impl.scheduler.M3UATask#tick(long)
      */
-    @Override
     public void tick(long now) {
         if (now - this.initiatedTime >= STOP_TIMER_TIMEOUT) {
 

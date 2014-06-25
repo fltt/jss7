@@ -197,7 +197,6 @@ public class AuthenticationSetListImpl implements AuthenticationSetList, MAPAsnP
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AuthenticationSetList [");

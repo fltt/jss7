@@ -59,11 +59,9 @@ public class ONoAnswerSpecificInfoImpl extends SequenceBase implements ONoAnswer
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -80,12 +78,10 @@ public class ONoAnswerSpecificInfoImpl extends SequenceBase implements ONoAnswer
     protected static final XMLFormat<ONoAnswerSpecificInfoImpl> O_NO_ANSWER_SPECIFIC_INFO_XML = new XMLFormat<ONoAnswerSpecificInfoImpl>(
             ONoAnswerSpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ONoAnswerSpecificInfoImpl oNoAnswerSpecificInfo)
                 throws XMLStreamException {
         }
 
-        @Override
         public void write(ONoAnswerSpecificInfoImpl oNoAnswerSpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

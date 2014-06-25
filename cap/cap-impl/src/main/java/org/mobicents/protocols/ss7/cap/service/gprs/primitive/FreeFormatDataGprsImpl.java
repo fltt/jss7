@@ -37,7 +37,6 @@ public class FreeFormatDataGprsImpl extends OctetStringBase implements FreeForma
         super(1, 160, "FreeFormatDataGprs", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

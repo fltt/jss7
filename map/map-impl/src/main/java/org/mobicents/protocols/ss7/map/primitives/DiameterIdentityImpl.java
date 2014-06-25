@@ -57,7 +57,6 @@ public class DiameterIdentityImpl extends OctetStringBase implements DiameterIde
     protected static final XMLFormat<DiameterIdentityImpl> DIAMETER_IDENTITY_XML = new XMLFormat<DiameterIdentityImpl>(
             DiameterIdentityImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DiameterIdentityImpl diameterIdentity)
                 throws XMLStreamException {
             String s = xml.getAttribute(DATA, DEFAULT_VALUE);
@@ -66,7 +65,6 @@ public class DiameterIdentityImpl extends OctetStringBase implements DiameterIde
             }
         }
 
-        @Override
         public void write(DiameterIdentityImpl diameterIdentity, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (diameterIdentity.data != null) {

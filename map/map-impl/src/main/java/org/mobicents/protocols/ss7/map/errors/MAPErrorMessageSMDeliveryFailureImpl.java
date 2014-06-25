@@ -223,7 +223,6 @@ public class MAPErrorMessageSMDeliveryFailureImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

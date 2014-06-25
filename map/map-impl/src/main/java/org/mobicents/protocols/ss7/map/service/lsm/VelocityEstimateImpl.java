@@ -85,7 +85,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return data;
     }
 
-    @Override
     public VelocityType getVelocityType() {
         if (this.data == null || this.data.length < 1)
             return null;
@@ -93,7 +92,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return VelocityType.getInstance((this.data[0] & 0xF0) >> 4);
     }
 
-    @Override
     public int getHorizontalSpeed() {
         if (this.data == null || this.data.length < 4)
             return 0;
@@ -102,7 +100,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return res;
     }
 
-    @Override
     public int getBearing() {
         if (this.data == null || this.data.length < 4)
             return 0;
@@ -111,7 +108,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return res;
     }
 
-    @Override
     public int getVerticalSpeed() {
         VelocityType velocityType = this.getVelocityType();
         if (velocityType == null)
@@ -127,7 +123,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return 0;
     }
 
-    @Override
     public int getUncertaintyHorizontalSpeed() {
         VelocityType velocityType = this.getVelocityType();
         if (velocityType == null)
@@ -145,7 +140,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return 0;
     }
 
-    @Override
     public int getUncertaintyVerticalSpeed() {
         VelocityType velocityType = this.getVelocityType();
         if (velocityType == null)
@@ -160,7 +154,6 @@ public class VelocityEstimateImpl extends OctetStringBase implements VelocityEst
         return 0;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

@@ -156,7 +156,6 @@ public class EpsAuthenticationSetListImpl implements EpsAuthenticationSetList, M
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

@@ -131,7 +131,6 @@ public class Mtp3TransferPrimitive {
         return res;
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

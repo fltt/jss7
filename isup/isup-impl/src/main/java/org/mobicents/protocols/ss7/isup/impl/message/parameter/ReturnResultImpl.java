@@ -52,7 +52,6 @@ public class ReturnResultImpl extends AbstractRemoteOperation implements ReturnR
         super(OperationType.ReturnResult);
     }
 
-    @Override
     public void setInvokeId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Invoke ID our of range: <-128,127>: " + i);
@@ -61,12 +60,10 @@ public class ReturnResultImpl extends AbstractRemoteOperation implements ReturnR
 
     }
 
-    @Override
     public Long getInvokeId() {
         return this.invokeId;
     }
 
-    @Override
     public void setOperationCodes(OperationCode... i) {
         this.operationCodes.clear();
         for (OperationCode oc : i) {
@@ -76,22 +73,18 @@ public class ReturnResultImpl extends AbstractRemoteOperation implements ReturnR
         }
     }
 
-    @Override
     public OperationCode[] getOperationCodes() {
         return this.operationCodes.toArray(new OperationCode[this.operationCodes.size()]);
     }
 
-    @Override
     public void setParameter(Parameter p) {
         this.parameter = p;
     }
 
-    @Override
     public Parameter getParameter() {
         return this.parameter;
     }
 
-    @Override
     public void decode(AsnInputStream ais) throws ParameterException {
 
         try {
@@ -145,7 +138,6 @@ public class ReturnResultImpl extends AbstractRemoteOperation implements ReturnR
         }
     }
 
-    @Override
     public void encode(AsnOutputStream aos) throws ParameterException {
         if (this.invokeId == null)
             throw new ParameterException("Invoke ID not set!");

@@ -49,7 +49,6 @@ public class ZoneCodeImpl extends OctetStringBase implements ZoneCode {
         return data;
     }
 
-    @Override
     public int getValue() {
         if (this.data == null || this.data.length != 2)
             return 0;

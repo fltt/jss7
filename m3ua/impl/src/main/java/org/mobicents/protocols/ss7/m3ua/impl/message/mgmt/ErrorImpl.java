@@ -44,7 +44,6 @@ public class ErrorImpl extends M3UAMessageImpl implements Error {
         super(MessageClass.MANAGEMENT, MessageType.ERROR, MessageType.S_ERROR);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         ((ParameterImpl) parameters.get(Parameter.Error_Code)).write(buffer);
 

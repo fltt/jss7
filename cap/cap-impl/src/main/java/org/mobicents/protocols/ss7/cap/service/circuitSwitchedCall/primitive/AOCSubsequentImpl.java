@@ -56,32 +56,26 @@ public class AOCSubsequentImpl implements AOCSubsequent, CAPAsnPrimitive {
         this.tariffSwitchInterval = tariffSwitchInterval;
     }
 
-    @Override
     public CAI_GSM0224 getCAI_GSM0224() {
         return cai_GSM0224;
     }
 
-    @Override
     public Integer getTariffSwitchInterval() {
         return tariffSwitchInterval;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -96,7 +90,6 @@ public class AOCSubsequentImpl implements AOCSubsequent, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -146,12 +139,10 @@ public class AOCSubsequentImpl implements AOCSubsequent, CAPAsnPrimitive {
                     + ": cai_GSM0224 is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -164,7 +155,6 @@ public class AOCSubsequentImpl implements AOCSubsequent, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.cai_GSM0224 == null)
@@ -182,7 +172,6 @@ public class AOCSubsequentImpl implements AOCSubsequent, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

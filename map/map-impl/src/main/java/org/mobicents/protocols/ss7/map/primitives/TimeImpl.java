@@ -53,12 +53,10 @@ public class TimeImpl extends OctetStringBase implements Time {
         System.arraycopy(longToBytes(ntpTime), 4, this.data, 0, 4);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public int getYear() {
         long time = bytesToLong(this.data);
         time = getTime(time);
@@ -68,7 +66,6 @@ public class TimeImpl extends OctetStringBase implements Time {
         return cal.get(Calendar.YEAR);
     }
 
-    @Override
     public int getMonth() {
         long time = bytesToLong(this.data);
         time = getTime(time);
@@ -78,7 +75,6 @@ public class TimeImpl extends OctetStringBase implements Time {
         return cal.get(Calendar.MONTH) + 1;
     }
 
-    @Override
     public int getDay() {
         long time = bytesToLong(this.data);
         time = getTime(time);
@@ -88,7 +84,6 @@ public class TimeImpl extends OctetStringBase implements Time {
         return cal.get(Calendar.DATE);
     }
 
-    @Override
     public int getHour() {
         long time = bytesToLong(this.data);
         time = getTime(time);
@@ -98,7 +93,6 @@ public class TimeImpl extends OctetStringBase implements Time {
         return cal.get(Calendar.HOUR_OF_DAY);
     }
 
-    @Override
     public int getMinute() {
         long time = bytesToLong(this.data);
         time = getTime(time);
@@ -108,7 +102,6 @@ public class TimeImpl extends OctetStringBase implements Time {
         return cal.get(Calendar.MINUTE);
     }
 
-    @Override
     public int getSecond() {
         long time = bytesToLong(this.data);
         time = getTime(time);
@@ -157,7 +150,6 @@ public class TimeImpl extends OctetStringBase implements Time {
         return buffer.getLong();
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

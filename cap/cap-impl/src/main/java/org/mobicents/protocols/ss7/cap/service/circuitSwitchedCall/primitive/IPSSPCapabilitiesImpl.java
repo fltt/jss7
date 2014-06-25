@@ -92,12 +92,10 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
             System.arraycopy(extraData, 0, this.data, 1, extraCnt);
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }
 
-    @Override
     public boolean getIPRoutingAddressSupported() {
 
         if (this.data == null || this.data.length == 0)
@@ -106,7 +104,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         return (((int) this.data[0]) & _Mask_IPRoutingAddress) != 0;
     }
 
-    @Override
     public boolean getVoiceBackSupported() {
 
         if (this.data == null || this.data.length == 0)
@@ -115,7 +112,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         return (((int) this.data[0]) & _Mask_VoiceBack) != 0;
     }
 
-    @Override
     public boolean getVoiceInformationSupportedViaSpeechRecognition() {
 
         if (this.data == null || this.data.length == 0)
@@ -124,7 +120,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         return (((int) this.data[0]) & _Mask_VoiceInformation_SpeechRecognition) != 0;
     }
 
-    @Override
     public boolean getVoiceInformationSupportedViaVoiceRecognition() {
 
         if (this.data == null || this.data.length == 0)
@@ -133,7 +128,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         return (((int) this.data[0]) & _Mask_VoiceInformation_VoiceRecognition) != 0;
     }
 
-    @Override
     public boolean getGenerationOfVoiceAnnouncementsFromTextSupported() {
 
         if (this.data == null || this.data.length == 0)
@@ -142,7 +136,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         return (((int) this.data[0]) & _Mask_GenerationOfVoiceAnnouncementsFromTextSupported) != 0;
     }
 
-    @Override
     public byte[] getExtraData() {
 
         if (this.data == null || this.data.length < 2)
@@ -156,22 +149,18 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         return res;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -186,7 +175,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -209,12 +197,10 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -227,7 +213,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -238,7 +223,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -275,7 +259,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
     protected static final XMLFormat<IPSSPCapabilitiesImpl> IPSSP_CAPABILITIES_XML = new XMLFormat<IPSSPCapabilitiesImpl>(
             IPSSPCapabilitiesImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, IPSSPCapabilitiesImpl ipsspCapabilities)
                 throws XMLStreamException {
             boolean IPRoutingAddressSupported = xml.getAttribute(IP_ROUTING_ADDRESS_SUPPORTED, false);
@@ -298,7 +281,6 @@ public class IPSSPCapabilitiesImpl implements IPSSPCapabilities, CAPAsnPrimitive
                     generationOfVoiceAnnouncementsFromTextSupported, extraData);
         }
 
-        @Override
         public void write(IPSSPCapabilitiesImpl ipsspCapabilities, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (ipsspCapabilities.getIPRoutingAddressSupported())

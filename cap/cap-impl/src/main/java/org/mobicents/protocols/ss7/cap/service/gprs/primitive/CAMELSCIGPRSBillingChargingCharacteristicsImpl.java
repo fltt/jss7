@@ -57,17 +57,14 @@ public class CAMELSCIGPRSBillingChargingCharacteristicsImpl extends SequenceBase
         this.pdpID = pdpID;
     }
 
-    @Override
     public AOCGPRS getAOCGPRS() {
         return this.aocGPRS;
     }
 
-    @Override
     public PDPID getPDPID() {
         return this.pdpID;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -112,7 +109,6 @@ public class CAMELSCIGPRSBillingChargingCharacteristicsImpl extends SequenceBase
                     + ": aocGPRS is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.aocGPRS == null)
@@ -124,7 +120,6 @@ public class CAMELSCIGPRSBillingChargingCharacteristicsImpl extends SequenceBase
             ((PDPIDImpl) this.pdpID).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _ID_pdpID);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

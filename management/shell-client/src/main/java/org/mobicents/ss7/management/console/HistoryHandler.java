@@ -50,7 +50,6 @@ public class HistoryHandler extends CommandHandlerWithHelp {
      * @see org.mobicents.ss7.management.console.CommandHandler#isAvailable(org.mobicents
      * .ss7.management.console.CommandContext)
      */
-    @Override
     public boolean isAvailable(CommandContext ctx) {
         return true;
     }
@@ -60,7 +59,6 @@ public class HistoryHandler extends CommandHandlerWithHelp {
      *
      * @see org.mobicents.ss7.management.console.CommandHandler#isValid(java.lang .String)
      */
-    @Override
     public void handle(CommandContext ctx, String commandLine) {
 
         if (commandLine.contains("--help")) {

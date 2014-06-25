@@ -36,7 +36,6 @@ public class PDPAddressImpl extends OctetStringBase implements PDPAddress {
         super(1, 63, "PDPAddress", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

@@ -52,12 +52,10 @@ public class CollectedInfoImpl implements CollectedInfo, CAPAsnPrimitive {
         this.collectedDigits = collectedDigits;
     }
 
-    @Override
     public CollectedDigits getCollectedDigits() {
         return collectedDigits;
     }
 
-    @Override
     public int getTag() throws CAPException {
 
         if (this.collectedDigits != null) {
@@ -67,17 +65,14 @@ public class CollectedInfoImpl implements CollectedInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -92,7 +87,6 @@ public class CollectedInfoImpl implements CollectedInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -125,12 +119,10 @@ public class CollectedInfoImpl implements CollectedInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -143,7 +135,6 @@ public class CollectedInfoImpl implements CollectedInfo, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int choiceCnt = 0;
@@ -157,7 +148,6 @@ public class CollectedInfoImpl implements CollectedInfo, CAPAsnPrimitive {
             ((CollectedDigitsImpl) this.collectedDigits).encodeData(asnOs);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

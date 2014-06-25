@@ -60,22 +60,18 @@ public class SpecificAPNInfoImpl extends SequenceBase implements SpecificAPNInfo
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public APN getAPN() {
         return this.apn;
     }
 
-    @Override
     public PDNGWIdentity getPdnGwIdentity() {
         return this.pdnGwIdentity;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.apn = null;
@@ -141,7 +137,6 @@ public class SpecificAPNInfoImpl extends SequenceBase implements SpecificAPNInfo
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.apn == null) {
@@ -162,7 +157,6 @@ public class SpecificAPNInfoImpl extends SequenceBase implements SpecificAPNInfo
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

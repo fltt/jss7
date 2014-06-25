@@ -49,62 +49,50 @@ public class MessageCompatibilityInstructionIndicatorImpl implements MessageComp
 
     }
 
-    @Override
     public boolean isTransitAtIntermediateExchangeIndicator() {
         return this.transitAtIntermediateExchangeIndicator;
     }
 
-    @Override
     public void setTransitAtIntermediateExchangeIndicator(boolean transitAtIntermediateExchangeIndicator) {
         this.transitAtIntermediateExchangeIndicator = transitAtIntermediateExchangeIndicator;
     }
 
-    @Override
     public boolean isReleaseCallIndicator() {
         return this.releaseCallindicator;
     }
 
-    @Override
     public void setReleaseCallIndicator(boolean releaseCallindicator) {
         this.releaseCallindicator = releaseCallindicator;
     }
 
-    @Override
     public boolean isSendNotificationIndicator() {
         return this.sendNotificationIndicator;
     }
 
-    @Override
     public void setSendNotificationIndicator(boolean sendNotificationIndicator) {
         this.sendNotificationIndicator = sendNotificationIndicator;
     }
 
-    @Override
     public boolean isDiscardMessageIndicator() {
         return this.discardMessageIndicator;
     }
 
-    @Override
     public void setDiscardMessageIndicator(boolean discardMessageIndicator) {
         this.discardMessageIndicator = discardMessageIndicator;
     }
 
-    @Override
     public boolean isPassOnNotPossibleIndicator() {
         return this.passOnNotPossibleIndicator;
     }
 
-    @Override
     public void setPassOnNotPossibleIndicator(boolean passOnNotPossibleIndicator) {
         this.passOnNotPossibleIndicator = passOnNotPossibleIndicator;
     }
 
-    @Override
     public int getBandInterworkingIndicator() {
         return this.bandInterworkingIndicator;
     }
 
-    @Override
     public void setBandInterworkingIndicator(int bandInterworkingIndicator) {
         this.bandInterworkingIndicator = bandInterworkingIndicator & 0x03;
     }

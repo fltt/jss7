@@ -205,7 +205,6 @@ public class ReportSMDeliveryStatusResponseImpl extends SmsMessageImpl implement
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

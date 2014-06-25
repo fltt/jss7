@@ -439,7 +439,6 @@ public class DialogImpl implements Dialog {
 
     }
 
-    @Override
     public ReentrantLock getDialogLock() {
         return this.dialogLock;
     }
@@ -2134,7 +2133,6 @@ public class DialogImpl implements Dialog {
      *
      * @see java.lang.Object#toString()
      */
-    @Override
     public String toString() {
 
         return super.toString() + ": Local[" + this.getLocalDialogId() + "] Remote[" + this.getRemoteDialogId()

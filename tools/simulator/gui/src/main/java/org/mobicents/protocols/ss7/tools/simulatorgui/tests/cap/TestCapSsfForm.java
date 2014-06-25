@@ -192,7 +192,6 @@ public class TestCapSsfForm extends TestingForm {
         setDialogOpenedClosed(false);
     }
 
-    @Override
     public void sendNotif(Notification notif) {
         super.sendNotif(notif);
 
@@ -204,7 +203,6 @@ public class TestCapSsfForm extends TestingForm {
         }
     }
 
-    @Override
     public void refreshState() {
         super.refreshState();
 

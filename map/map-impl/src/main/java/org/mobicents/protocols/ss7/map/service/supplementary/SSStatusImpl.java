@@ -66,7 +66,6 @@ public class SSStatusImpl extends OctetStringLength1Base implements SSStatus {
         return (this.data & _mask_ABit) != 0;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

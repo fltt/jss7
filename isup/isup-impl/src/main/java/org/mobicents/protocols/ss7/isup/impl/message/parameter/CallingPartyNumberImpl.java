@@ -220,7 +220,6 @@ public class CallingPartyNumberImpl extends AbstractNAINumber implements Calling
     protected static final XMLFormat<CallingPartyNumberImpl> ISUP_CALLING_PARTY_NUMBER_XML = new XMLFormat<CallingPartyNumberImpl>(
             CallingPartyNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CallingPartyNumberImpl callingPartyNumber)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.read(xml, callingPartyNumber);
@@ -234,7 +233,6 @@ public class CallingPartyNumberImpl extends AbstractNAINumber implements Calling
             callingPartyNumber.screeningIndicator = xml.getAttribute(SCREENING_INDICATOR, DEFAULT_SCREENING_INDICATOR);
         }
 
-        @Override
         public void write(CallingPartyNumberImpl callingPartyNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NAI_NUMBER_XML.write(callingPartyNumber, xml);

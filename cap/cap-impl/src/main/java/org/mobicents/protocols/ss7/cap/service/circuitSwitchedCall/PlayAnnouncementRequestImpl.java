@@ -73,62 +73,50 @@ public class PlayAnnouncementRequestImpl extends CircuitSwitchedCallMessageImpl 
         this.requestAnnouncementStartedNotification = requestAnnouncementStartedNotification;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.playAnnouncement_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.playAnnouncement;
     }
 
-    @Override
     public InformationToSend getInformationToSend() {
         return informationToSend;
     }
 
-    @Override
     public Boolean getDisconnectFromIPForbidden() {
         return disconnectFromIPForbidden;
     }
 
-    @Override
     public Boolean getRequestAnnouncementCompleteNotification() {
         return requestAnnouncementCompleteNotification;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public Integer getCallSegmentID() {
         return callSegmentID;
     }
 
-    @Override
     public Boolean getRequestAnnouncementStartedNotification() {
         return requestAnnouncementStartedNotification;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -143,7 +131,6 @@ public class PlayAnnouncementRequestImpl extends CircuitSwitchedCallMessageImpl 
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -213,12 +200,10 @@ public class PlayAnnouncementRequestImpl extends CircuitSwitchedCallMessageImpl 
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -231,7 +216,6 @@ public class PlayAnnouncementRequestImpl extends CircuitSwitchedCallMessageImpl 
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.informationToSend == null)
@@ -266,7 +250,6 @@ public class PlayAnnouncementRequestImpl extends CircuitSwitchedCallMessageImpl 
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

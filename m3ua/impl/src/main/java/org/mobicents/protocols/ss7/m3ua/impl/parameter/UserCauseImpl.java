@@ -70,7 +70,6 @@ public class UserCauseImpl extends ParameterImpl implements UserCause {
 
     }
 
-    @Override
     protected byte[] getValue() {
         return value;
     }
@@ -83,7 +82,6 @@ public class UserCauseImpl extends ParameterImpl implements UserCause {
         return this.user;
     }
 
-    @Override
     public String toString() {
         return String.format("UserCause cause = %d user = %d", this.cause, this.user);
     }

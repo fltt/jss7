@@ -93,7 +93,6 @@ public class OPCListImpl extends ParameterImpl implements OPCList, XMLSerializab
         }
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
@@ -106,7 +105,6 @@ public class OPCListImpl extends ParameterImpl implements OPCList, XMLSerializab
         return this.pointCodes;
     }
 
-    @Override
     public String toString() {
         return String.format("OPCList pointCode=%s mask=%s", Arrays.toString(this.pointCodes), Arrays.toString(this.masks));
     }
@@ -116,7 +114,6 @@ public class OPCListImpl extends ParameterImpl implements OPCList, XMLSerializab
      */
     protected static final XMLFormat<OPCListImpl> RC_XML = new XMLFormat<OPCListImpl>(OPCListImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, OPCListImpl opc) throws XMLStreamException {
             int size = xml.getAttribute(ARRAY_SIZE).toInt();
             opc.pointCodes = new int[size];
@@ -134,7 +131,6 @@ public class OPCListImpl extends ParameterImpl implements OPCList, XMLSerializab
 
         }
 
-        @Override
         public void write(OPCListImpl opc, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(ARRAY_SIZE, opc.pointCodes.length);
             for (int i : opc.pointCodes) {

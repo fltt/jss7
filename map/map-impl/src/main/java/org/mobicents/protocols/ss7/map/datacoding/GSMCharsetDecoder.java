@@ -59,7 +59,6 @@ public class GSMCharsetDecoder extends CharsetDecoder {
         return this.encodingData;
     }
 
-    @Override
     protected void implReset() {
         bitpos = 0;
         decodedBytes = 0;
@@ -68,12 +67,10 @@ public class GSMCharsetDecoder extends CharsetDecoder {
     }
 
     // TODO is this ok?
-    @Override
     protected CoderResult implFlush(CharBuffer out) {
         return CoderResult.UNDERFLOW;
     }
 
-    @Override
     protected CoderResult decodeLoop(ByteBuffer in, CharBuffer out) {
 
         while (in.hasRemaining()) {

@@ -74,7 +74,6 @@ public abstract class SupplementaryMessageImpl extends MessageImpl implements Su
         return this.ussdString;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
@@ -99,7 +98,6 @@ public abstract class SupplementaryMessageImpl extends MessageImpl implements Su
     protected static final XMLFormat<SupplementaryMessageImpl> USSD_MESSAGE_XML = new XMLFormat<SupplementaryMessageImpl>(
             SupplementaryMessageImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, SupplementaryMessageImpl ussdMessage)
                 throws XMLStreamException {
             MAP_MESSAGE_XML.read(xml, ussdMessage);
@@ -118,7 +116,6 @@ public abstract class SupplementaryMessageImpl extends MessageImpl implements Su
                 }
         }
 
-        @Override
         public void write(SupplementaryMessageImpl ussdMessage, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             MAP_MESSAGE_XML.write(ussdMessage, xml);

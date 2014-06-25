@@ -76,7 +76,6 @@ public class DialogImplWrapper extends DialogImpl {
 
     private HashMap<Long, Invoke> invLst = new HashMap<Long, Invoke>();
 
-    @Override
     protected Component[] processOperationsState(Component[] components) {
 
         if (components == null)
@@ -119,22 +118,18 @@ public class DialogImplWrapper extends DialogImpl {
         return components;
     }
 
-    @Override
     public void processAbort(TCAbortMessage msg, SccpAddress localAddress2, SccpAddress remoteAddress2) {
         super.processAbort(msg, localAddress2, remoteAddress2);
     }
 
-    @Override
     public void processEnd(TCEndMessage msg, SccpAddress localAddress2, SccpAddress remoteAddress2) {
         super.processEnd(msg, localAddress2, remoteAddress2);
     }
 
-    @Override
     public void processContinue(TCContinueMessage msg, SccpAddress localAddress2, SccpAddress remoteAddress2) {
         super.processContinue(msg, localAddress2, remoteAddress2);
     }
 
-    @Override
     public void processBegin(TCBeginMessage msg, SccpAddress localAddress2, SccpAddress remoteAddress2) {
         super.processBegin(msg, localAddress2, remoteAddress2);
     }

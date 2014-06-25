@@ -41,57 +41,46 @@ public abstract class CAPErrorMessageImpl implements CAPErrorMessage, CAPAsnPrim
         this.errorCode = errorCode;
     }
 
-    @Override
     public Long getErrorCode() {
         return errorCode;
     }
 
-    @Override
     public boolean isEmParameterless() {
         return false;
     }
 
-    @Override
     public boolean isEmCancelFailed() {
         return false;
     }
 
-    @Override
     public boolean isEmRequestedInfoError() {
         return false;
     }
 
-    @Override
     public boolean isEmSystemFailure() {
         return false;
     }
 
-    @Override
     public boolean isEmTaskRefused() {
         return false;
     }
 
-    @Override
     public CAPErrorMessageParameterless getEmParameterless() {
         return null;
     }
 
-    @Override
     public CAPErrorMessageCancelFailed getEmCancelFailed() {
         return null;
     }
 
-    @Override
     public CAPErrorMessageRequestedInfoError getEmRequestedInfoError() {
         return null;
     }
 
-    @Override
     public CAPErrorMessageSystemFailure getEmSystemFailure() {
         return null;
     }
 
-    @Override
     public CAPErrorMessageTaskRefused getEmTaskRefused() {
         return null;
     }

@@ -157,137 +157,110 @@ public class InitialDPSMSRequestImpl extends SmsMessageImpl implements InitialDP
         this.calledPartyNumber = calledPartyNumber;
     }
 
-    @Override
     public int getServiceKey() {
         return this.serviceKey;
     }
 
-    @Override
     public CalledPartyBCDNumber getDestinationSubscriberNumber() {
         return this.destinationSubscriberNumber;
     }
 
-    @Override
     public SMSAddressString getCallingPartyNumber() {
         return this.callingPartyNumber;
     }
 
-    @Override
     public EventTypeSMS getEventTypeSMS() {
         return this.eventTypeSMS;
     }
 
-    @Override
     public IMSI getImsi() {
         return this.imsi;
     }
 
-    @Override
     public LocationInformation getLocationInformationMSC() {
         return this.locationInformationMSC;
     }
 
-    @Override
     public LocationInformationGPRS getLocationInformationGPRS() {
         return this.locationInformationGPRS;
     }
 
-    @Override
     public ISDNAddressString getSMSCAddress() {
         return this.smscCAddress;
     }
 
-    @Override
     public TimeAndTimezone getTimeAndTimezone() {
         return this.timeAndTimezone;
     }
 
-    @Override
     public TPShortMessageSpecificInfo getTPShortMessageSpecificInfo() {
         return this.tPShortMessageSpecificInfo;
     }
 
-    @Override
     public TPProtocolIdentifier getTPProtocolIdentifier() {
         return this.tPProtocolIdentifier;
     }
 
-    @Override
     public TPDataCodingScheme getTPDataCodingScheme() {
         return this.tPDataCodingScheme;
     }
 
-    @Override
     public TPValidityPeriod getTPValidityPeriod() {
         return this.tPValidityPeriod;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return this.extensions;
     }
 
-    @Override
     public CallReferenceNumber getSmsReferenceNumber() {
         return this.smsReferenceNumber;
     }
 
-    @Override
     public ISDNAddressString getMscAddress() {
         return this.mscAddress;
     }
 
-    @Override
     public ISDNAddressString getSgsnNumber() {
         return this.sgsnNumber;
     }
 
-    @Override
     public MSClassmark2 getMSClassmark2() {
         return this.mSClassmark2;
     }
 
-    @Override
     public GPRSMSClass getGPRSMSClass() {
         return this.gprsMSClass;
     }
 
-    @Override
     public IMEI getImei() {
         return this.imei;
     }
 
-    @Override
     public ISDNAddressString getCalledPartyNumber() {
         return this.calledPartyNumber;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.initialDPSMS_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.initialDPSMS;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -304,7 +277,6 @@ public class InitialDPSMSRequestImpl extends SmsMessageImpl implements InitialDP
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -541,12 +513,10 @@ public class InitialDPSMSRequestImpl extends SmsMessageImpl implements InitialDP
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -558,7 +528,6 @@ public class InitialDPSMSRequestImpl extends SmsMessageImpl implements InitialDP
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -650,7 +619,6 @@ public class InitialDPSMSRequestImpl extends SmsMessageImpl implements InitialDP
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

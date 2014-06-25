@@ -41,29 +41,24 @@ public class SecurityContextImpl implements SecurityContext {
     private Long integerSecurityId;
     private long[] objectSecurityId;
 
-    @Override
     public Long getIntegerSecurityId() {
         return integerSecurityId;
     }
 
-    @Override
     public void setIntegerSecurityId(Long val) {
         integerSecurityId = val;
         objectSecurityId = null;
     }
 
-    @Override
     public long[] getObjectSecurityId() {
         return objectSecurityId;
     }
 
-    @Override
     public void setObjectSecurityId(long[] val) {
         integerSecurityId = null;
         objectSecurityId = val;
     }
 
-    @Override
     public void decode(AsnInputStream ais) throws ParseException {
         integerSecurityId = null;
         objectSecurityId = null;
@@ -96,7 +91,6 @@ public class SecurityContextImpl implements SecurityContext {
         }
     }
 
-    @Override
     public void encode(AsnOutputStream aos) throws EncodeException {
 
         try {

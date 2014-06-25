@@ -42,17 +42,14 @@ public class InterCUGRestrictionsImpl extends OctetStringLength1Base implements 
         super("InterCUGRestrictions", (val != null ? val.getCode() : 0));
     }
 
-    @Override
     public int getData() {
         return this.data;
     }
 
-    @Override
     public InterCUGRestrictionsValue getInterCUGRestrictionsValue() {
         return InterCUGRestrictionsValue.getInstance(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

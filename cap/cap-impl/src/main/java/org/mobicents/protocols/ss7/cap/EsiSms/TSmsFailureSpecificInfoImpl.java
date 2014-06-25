@@ -54,12 +54,10 @@ public class TSmsFailureSpecificInfoImpl extends SequenceBase implements TSmsFai
         this.failureCause = failureCause;
     }
 
-    @Override
     public MTSMSCause GetFailureCause() {
         return this.failureCause;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException,
             AsnException, MAPParsingComponentException, INAPParsingComponentException {
         this.failureCause = null;
@@ -92,7 +90,6 @@ public class TSmsFailureSpecificInfoImpl extends SequenceBase implements TSmsFai
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.failureCause != null)
             ((MTSMSCauseImpl) this.failureCause).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _ID_failureCause);

@@ -32,23 +32,19 @@ public class StatDataCollectorMin extends StatDataCollectorLongImpl {
         super(name);
     }
 
-    @Override
     protected void reset() {
         val = Long.MAX_VALUE;
     }
 
-    @Override
     public void updateData(long newVal) {
         if (val > newVal)
             val = newVal;
     }
 
-    @Override
     public StatDataCollectorType getStatDataCollectorType() {
         return StatDataCollectorType.MIN;
     }
 
-    @Override
     public void updateData(String newVal) {
     }
 

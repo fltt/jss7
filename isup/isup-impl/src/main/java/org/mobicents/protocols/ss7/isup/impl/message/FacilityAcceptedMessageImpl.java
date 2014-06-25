@@ -49,7 +49,6 @@ public class FacilityAcceptedMessageImpl extends AbstractFacilityMessageImpl imp
                 optionalCode2Index);
     }
 
-    @Override
     public MessageType getMessageType() {
         return _MESSAGE_TYPE;
     }

@@ -216,7 +216,6 @@ public class ReportingPLMNListImpl implements ReportingPLMNList, MAPAsnPrimitive
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

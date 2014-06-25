@@ -75,12 +75,10 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         super(linksetName, opc, dpc, ni);
     }
 
-    @Override
     protected void initialize() {
         this.linksetStream = new LinksetStreamImpl();
     }
 
-    @Override
     protected void configure() throws Exception {
 
         if (this.mode == LinksetMode.CONFIGURED) {
@@ -115,7 +113,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         }
     }
 
-    @Override
     public void setScheduler(Scheduler scheduler) {
         this.scheduler = scheduler;
         if (this.mtp3 != null)
@@ -139,7 +136,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
     /**
      * Operations
      */
-    @Override
     public void createLink(String[] options) throws Exception {
 
         // the command looks like "linkset link create span 1 code 1 channel 1
@@ -187,7 +183,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
 
     }
 
-    @Override
     public void deleteLink(String linkName) throws Exception {
         Link link = this.links.get(linkName);
         if (link == null) {
@@ -201,7 +196,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         this.links.remove(linkName);
     }
 
-    @Override
     public void activate() throws Exception {
         if (this.state == LinksetState.AVAILABLE) {
             throw new Exception(LinkOAMMessages.LINKSET_ALREADY_ACTIVE);
@@ -223,12 +217,10 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         throw new Exception(LinkOAMMessages.LINKSET_NO_LINKS_CONFIGURED);
     }
 
-    @Override
     public void deactivate() throws Exception {
         throw new Exception(LinkOAMMessages.NOT_IMPLEMENTED);
     }
 
-    @Override
     public void activateLink(String linkName) throws Exception {
         Link link = this.links.get(linkName);
 
@@ -239,7 +231,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         link.activate();
     }
 
-    @Override
     public void deactivateLink(String linkName) throws Exception {
         Link link = this.links.get(linkName);
 
@@ -255,7 +246,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
      */
     protected static final XMLFormat<DahdiLinkset> DAHDI_LINKSET_XML = new XMLFormat<DahdiLinkset>(DahdiLinkset.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DahdiLinkset linkSet) throws XMLStreamException {
             LINKSET_XML.read(xml, linkSet);
 
@@ -266,7 +256,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
             }
         }
 
-        @Override
         public void write(DahdiLinkset linkSet, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             LINKSET_XML.write(linkSet, xml);
         }
@@ -293,7 +282,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
 
     private class LinksetStreamImpl extends LinksetStream {
 
-        @Override
         public boolean poll(int arg0, int arg1) {
             if (mtp3 != null) {
                 mtp3.run();
@@ -303,7 +291,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
             }
         }
 
-        @Override
         public String getName() {
             return linksetName;
         }
@@ -350,7 +337,6 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         }
     }
 
-    @Override
     public void print(StringBuffer sb, int leftPad, int descPad) {
 
         // left pad

@@ -51,29 +51,24 @@ public class DialogicMan implements DialogicManMBean, Stoppable {
         this.testerHost = testerHost;
     }
 
-    @Override
     public int getSourceModuleId() {
         return this.testerHost.getConfigurationData().getDialogicConfigurationData().getSourceModuleId();
     }
 
-    @Override
     public void setSourceModuleId(int val) {
         this.testerHost.getConfigurationData().getDialogicConfigurationData().setSourceModuleId(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getDestinationModuleId() {
         return this.testerHost.getConfigurationData().getDialogicConfigurationData().getDestinationModuleId();
     }
 
-    @Override
     public void setDestinationModuleId(int val) {
         this.testerHost.getConfigurationData().getDialogicConfigurationData().setDestinationModuleId(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("IsStarted: ");
@@ -104,7 +99,6 @@ public class DialogicMan implements DialogicManMBean, Stoppable {
         }
     }
 
-    @Override
     public void execute() {
     }
 

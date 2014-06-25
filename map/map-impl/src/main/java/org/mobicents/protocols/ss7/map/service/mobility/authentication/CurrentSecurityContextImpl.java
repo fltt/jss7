@@ -64,17 +64,14 @@ public class CurrentSecurityContextImpl implements CurrentSecurityContext, MAPAs
         this.umtsSecurityContextData = umtsSecurityContextData;
     }
 
-    @Override
     public GSMSecurityContextData getGSMSecurityContextData() {
         return this.gsmSecurityContextData;
     }
 
-    @Override
     public UMTSSecurityContextData getUMTSSecurityContextData() {
         return this.umtsSecurityContextData;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (this.gsmSecurityContextData != null)
             return _TAG_gsmSecurityContextData;
@@ -82,17 +79,14 @@ public class CurrentSecurityContextImpl implements CurrentSecurityContext, MAPAs
             return _TAG_umtsSecurityContextData;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -106,7 +100,6 @@ public class CurrentSecurityContextImpl implements CurrentSecurityContext, MAPAs
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -146,12 +139,10 @@ public class CurrentSecurityContextImpl implements CurrentSecurityContext, MAPAs
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -163,7 +154,6 @@ public class CurrentSecurityContextImpl implements CurrentSecurityContext, MAPAs
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.gsmSecurityContextData == null && this.umtsSecurityContextData == null || this.gsmSecurityContextData != null
                 && this.umtsSecurityContextData != null) {
@@ -177,7 +167,6 @@ public class CurrentSecurityContextImpl implements CurrentSecurityContext, MAPAs
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

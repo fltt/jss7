@@ -50,7 +50,6 @@ public class TeleserviceCodeImpl extends OctetStringLength1Base implements Teles
         return TeleserviceCodeValue.getInstance(this.data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

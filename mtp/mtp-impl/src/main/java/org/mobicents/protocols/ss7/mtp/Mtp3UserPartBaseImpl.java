@@ -71,12 +71,10 @@ public abstract class Mtp3UserPartBaseImpl implements Mtp3UserPart {
             this.deliveryTransferMessageThreadCount = deliveryMessageThreadCount;
     }
 
-    @Override
     public void addMtp3UserPartListener(Mtp3UserPartListener listener) {
         this.userListeners.add(listener);
     }
 
-    @Override
     public void removeMtp3UserPartListener(Mtp3UserPartListener listener) {
         this.userListeners.remove(listener);
     }
@@ -85,7 +83,6 @@ public abstract class Mtp3UserPartBaseImpl implements Mtp3UserPart {
      * For classic MTP3 this value is maximum SIF length minus routing label length. This method should be overloaded if
      * different message length is supported.
      */
-    @Override
     public int getMaxUserDataLength(int dpc) {
         switch (this.routingLabelFormat) {
             case ITU:
@@ -103,27 +100,22 @@ public abstract class Mtp3UserPartBaseImpl implements Mtp3UserPart {
         }
     }
 
-    @Override
     public RoutingLabelFormat getRoutingLabelFormat() {
         return this.routingLabelFormat;
     }
 
-    @Override
     public void setRoutingLabelFormat(RoutingLabelFormat routingLabelFormat) {
         this.routingLabelFormat = routingLabelFormat;
     }
 
-    @Override
     public Mtp3TransferPrimitiveFactory getMtp3TransferPrimitiveFactory() {
         return this.mtp3TransferPrimitiveFactory;
     }
 
-    @Override
     public boolean isUseLsbForLinksetSelection() {
         return useLsbForLinksetSelection;
     }
 
-    @Override
     public void setUseLsbForLinksetSelection(boolean useLsbForLinksetSelection) {
         this.useLsbForLinksetSelection = useLsbForLinksetSelection;
     }
@@ -248,7 +240,6 @@ public abstract class Mtp3UserPartBaseImpl implements Mtp3UserPart {
             this.msg = msg;
         }
 
-        @Override
         public void run() {
             if (isStarted) {
                 try {
@@ -273,7 +264,6 @@ public abstract class Mtp3UserPartBaseImpl implements Mtp3UserPart {
             this.msg = msg;
         }
 
-        @Override
         public void run() {
             if (isStarted) {
                 try {

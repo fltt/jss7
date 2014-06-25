@@ -47,12 +47,10 @@ public class TCConversationMessageImpl implements TCConversationMessage {
     private DialogPortion dp;
     private Component[] component;
 
-    @Override
     public boolean getDialogTermitationPermission() {
         return dialogTermitationPermission;
     }
 
-    @Override
     public void setDialogTermitationPermission(boolean perm) {
         dialogTermitationPermission = perm;
     }
@@ -121,12 +119,10 @@ public class TCConversationMessageImpl implements TCConversationMessage {
 
     }
 
-    @Override
     public byte[] getDestinationTransactionId() {
         return destinationTransactionId;
     }
 
-    @Override
     public void setDestinationTransactionId(byte[] t) {
         if (t != null && t.length != 4)
             throw new IllegalArgumentException("TransactionId leng must be 4 bytes, found: " + t.length);

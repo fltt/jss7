@@ -86,37 +86,30 @@ public class PDPContextEstablishmentSpecificInformationImpl extends SequenceBase
         this.secondaryPDPContext = secondaryPDPContext;
     }
 
-    @Override
     public AccessPointName getAccessPointName() {
         return this.accessPointName;
     }
 
-    @Override
     public PDPInitiationType getPDPInitiationType() {
         return this.pdpInitiationType;
     }
 
-    @Override
     public boolean getSecondaryPDPContext() {
         return this.secondaryPDPContext;
     }
 
-    @Override
     public LocationInformationGPRS getLocationInformationGPRS() {
         return this.locationInformationGPRS;
     }
 
-    @Override
     public EndUserAddress getEndUserAddress() {
         return this.endUserAddress;
     }
 
-    @Override
     public QualityOfService getQualityOfService() {
         return this.qualityOfService;
     }
 
-    @Override
     public TimeAndTimezone getTimeAndTimezone() {
         return this.timeAndTimezone;
     }
@@ -129,7 +122,6 @@ public class PDPContextEstablishmentSpecificInformationImpl extends SequenceBase
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -217,7 +209,6 @@ public class PDPContextEstablishmentSpecificInformationImpl extends SequenceBase
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -254,7 +245,6 @@ public class PDPContextEstablishmentSpecificInformationImpl extends SequenceBase
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

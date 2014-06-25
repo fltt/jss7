@@ -71,37 +71,30 @@ public class PivotRoutingBackwardInformationImpl extends AbstractInformationPara
         return _PARAMETER_CODE;
     }
 
-    @Override
     protected Map<Integer, Class<? extends AbstractInformationImpl>> getTagMapping() {
         return tagMapping;
     }
 
-    @Override
     public void setReturnToInvokingExchangeDuration(ReturnToInvokingExchangeDuration... duration) {
         super.setInformation(duration);
     }
 
-    @Override
     public ReturnToInvokingExchangeDuration[] getReturnToInvokingExchangeDuration() {
         return (ReturnToInvokingExchangeDuration[]) super.getInformation(ReturnToInvokingExchangeDuration.class);
     }
 
-    @Override
     public void setReturnToInvokingExchangeCallIdentifier(ReturnToInvokingExchangeCallIdentifier... cid) {
         super.setInformation(cid);
     }
 
-    @Override
     public ReturnToInvokingExchangeCallIdentifier[] getReturnToInvokingExchangeCallIdentifier() {
         return (ReturnToInvokingExchangeCallIdentifier[]) super.getInformation(ReturnToInvokingExchangeCallIdentifier.class);
     }
 
-    @Override
     public void setInvokingPivotReason(InvokingPivotReason... reason) {
         super.setInformation(reason);
     }
 
-    @Override
     public InvokingPivotReason[] getInvokingPivotReason() {
         return (InvokingPivotReason[]) super.getInformation(InvokingPivotReason.class);
     }

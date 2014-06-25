@@ -78,27 +78,22 @@ public class InvokeImpl implements Invoke {
     }
 
 
-    @Override
     public InvokeClass getInvokeClass() {
         return this.invokeClass;
     }
 
-    @Override
     public boolean isNotLast() {
         return notLast;
     }
 
-    @Override
     public void setNotLast(boolean val) {
         notLast = val;
     }
 
-    @Override
     public Long getInvokeId() {
         return this.invokeId;
     }
 
-    @Override
     public void setInvokeId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Invoke ID our of range: <-128,127>: " + i);
@@ -106,12 +101,10 @@ public class InvokeImpl implements Invoke {
         this.invokeId = i;
     }
 
-    @Override
     public Long getCorrelationId() {
         return this.correlationId;
     }
 
-    @Override
     public void setCorrelationId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Correlation ID our of range: <-128,127>: " + i);
@@ -119,38 +112,31 @@ public class InvokeImpl implements Invoke {
         this.correlationId = i;
     }
 
-    @Override
     public Invoke getCorrelationInvoke() {
         return this.correlationInvoke;
     }
 
-    @Override
     public void setCorrelationInvoke(Invoke val) {
         this.correlationInvoke = val;
     }
 
-    @Override
     public OperationCode getOperationCode() {
         return this.operationCode;
     }
 
-    @Override
     public void setOperationCode(OperationCode i) {
         this.operationCode = i;
 
     }
 
-    @Override
     public Parameter getParameter() {
         return this.parameter;
     }
 
-    @Override
     public void setParameter(Parameter p) {
         this.parameter = p;
     }
 
-    @Override
     public ComponentType getType() {
         if (this.isNotLast())
             return ComponentType.InvokeNotLast;
@@ -421,7 +407,6 @@ public class InvokeImpl implements Invoke {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         if (this.isNotLast())

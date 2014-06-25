@@ -42,7 +42,6 @@ public class TesterHostStandardMBean extends StandardEmitterMBean {
         super(impl, intf, emitter);
     }
 
-    @Override
     public MBeanInfo getMBeanInfo() {
 
         MBeanAttributeInfo[] attributes = new MBeanAttributeInfo[] {

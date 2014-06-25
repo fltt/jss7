@@ -206,7 +206,6 @@ public class ConfigurationData {
     protected static final XMLFormat<ConfigurationData> CONFIGURATION_DATA_XML = new XMLFormat<ConfigurationData>(
             ConfigurationData.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ConfigurationData data) throws XMLStreamException {
             data.instance_L1 = Instance_L1.createInstance(xml.get(INSTANCE_L1, String.class));
             data.instance_L2 = Instance_L2.createInstance(xml.get(INSTANCE_L2, String.class));
@@ -262,7 +261,6 @@ public class ConfigurationData {
             // }
         }
 
-        @Override
         public void write(ConfigurationData data, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.add(data.instance_L1.toString(), INSTANCE_L1, String.class);
             xml.add(data.instance_L2.toString(), INSTANCE_L2, String.class);

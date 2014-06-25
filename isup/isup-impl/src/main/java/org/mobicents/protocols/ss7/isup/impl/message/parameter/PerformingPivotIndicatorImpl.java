@@ -52,7 +52,6 @@ public class PerformingPivotIndicatorImpl extends AbstractInformationImpl implem
         super.tag = 0x03;
     }
 
-    @Override
     public void setReason(PivotReason... reasons) {
         this.reasons.clear();
         if(reasons == null){
@@ -65,12 +64,10 @@ public class PerformingPivotIndicatorImpl extends AbstractInformationImpl implem
         }
     }
 
-    @Override
     public PivotReason[] getReason() {
         return this.reasons.toArray(new PivotReason[this.reasons.size()]);
     }
 
-    @Override
     byte[] encode() throws ParameterException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         for(PivotReason pr:this.reasons){
@@ -84,7 +81,6 @@ public class PerformingPivotIndicatorImpl extends AbstractInformationImpl implem
         return baos.toByteArray();
     }
 
-    @Override
     void decode(byte[] data) throws ParameterException {
         for(int index = 0;index<data.length;index++){
             byte b = data[index];

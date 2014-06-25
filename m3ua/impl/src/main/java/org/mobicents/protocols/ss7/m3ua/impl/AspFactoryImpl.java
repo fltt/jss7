@@ -620,7 +620,6 @@ public class AspFactoryImpl implements AssociationListener, XMLSerializable, Asp
      */
     protected static final XMLFormat<AspFactoryImpl> ASP_FACTORY_XML = new XMLFormat<AspFactoryImpl>(AspFactoryImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AspFactoryImpl aspFactoryImpl) throws XMLStreamException {
             aspFactoryImpl.name = xml.getAttribute(NAME, "");
             aspFactoryImpl.associationName = xml.getAttribute(ASSOCIATION_NAME, "");
@@ -636,7 +635,6 @@ public class AspFactoryImpl implements AssociationListener, XMLSerializable, Asp
             aspFactoryImpl.isHeartBeatEnabled = xml.getAttribute(HEART_BEAT, false);
         }
 
-        @Override
         public void write(AspFactoryImpl aspFactoryImpl, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(NAME, aspFactoryImpl.name);
             xml.setAttribute(ASSOCIATION_NAME, aspFactoryImpl.associationName);
@@ -651,20 +649,17 @@ public class AspFactoryImpl implements AssociationListener, XMLSerializable, Asp
      * AssociationListener methods
      */
 
-    @Override
     public void onCommunicationLost(Association association) {
         logger.warn(String.format("Communication channel lost for AspFactroy=%s Association=%s", this.name,
                 association.getName()));
         this.handleCommDown();
     }
 
-    @Override
     public void onCommunicationRestart(Association association) {
         logger.warn(String.format("Communication channel restart for AspFactroy=%s Association=%s", this.name,
                 association.getName()));
     }
 
-    @Override
     public void onCommunicationShutdown(Association association) {
         logger.warn(String.format("Communication channel shutdown for AspFactroy=%s Association=%s", this.name,
                 association.getName()));
@@ -672,7 +667,6 @@ public class AspFactoryImpl implements AssociationListener, XMLSerializable, Asp
 
     }
 
-    @Override
     public void onCommunicationUp(Association association, int maxInboundStreams, int maxOutboundStreams) {
         this.maxOutboundStreams = maxOutboundStreams;
         // Recreate SLS table. Minimum of two is correct?
@@ -697,7 +691,6 @@ public class AspFactoryImpl implements AssociationListener, XMLSerializable, Asp
         }
     }
 
-    @Override
     public void onPayload(Association association, org.mobicents.protocols.api.PayloadData payloadData) {
 
         byte[] m3uadata = payloadData.getData();
@@ -729,7 +722,6 @@ public class AspFactoryImpl implements AssociationListener, XMLSerializable, Asp
      *
      * @see org.mobicents.protocols.api.AssociationListener#inValidStreamId(org.mobicents .protocols.api.PayloadData)
      */
-    @Override
     public void inValidStreamId(org.mobicents.protocols.api.PayloadData payloadData) {
         logger.error(String
                 .format("Tx : PayloadData with streamNumber=%d which is greater than or equal to maxSequenceNumber=%d. Droping PayloadData=%s",

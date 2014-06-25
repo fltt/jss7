@@ -68,7 +68,6 @@ public class DahdiLink extends Link implements Mtp2Listener {
         this.code = code;
     }
 
-    @Override
     protected void configure() throws Exception {
 
         if (this.mode == LinkMode.CONFIGURED) {
@@ -88,7 +87,6 @@ public class DahdiLink extends Link implements Mtp2Listener {
         }
     }
 
-    @Override
     public void setScheduler(Scheduler scheduler) {
         this.scheduler = scheduler;
         if (this.mtp2 != null)
@@ -127,7 +125,6 @@ public class DahdiLink extends Link implements Mtp2Listener {
         this.ioBufferSize = ioBufferSize;
     }
 
-    @Override
     public void activate() throws Exception {
         if (this.state == LinkState.AVAILABLE) {
             throw new Exception(LinkOAMMessages.LINK_ALREADY_ACTIVE);
@@ -180,7 +177,6 @@ public class DahdiLink extends Link implements Mtp2Listener {
      */
     protected static final XMLFormat<DahdiLink> DAHDI_LINK_XML = new XMLFormat<DahdiLink>(DahdiLink.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DahdiLink link) throws XMLStreamException {
 
             LINK_XML.read(xml, link);
@@ -197,7 +193,6 @@ public class DahdiLink extends Link implements Mtp2Listener {
             }
         }
 
-        @Override
         public void write(DahdiLink link, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
 
             LINK_XML.write(link, xml);
@@ -216,7 +211,6 @@ public class DahdiLink extends Link implements Mtp2Listener {
         return this.mtp2;
     }
 
-    @Override
     public void print(StringBuffer sb, int leftPad, int descPad) {
         FormatterHelp.createPad(sb, leftPad);
 

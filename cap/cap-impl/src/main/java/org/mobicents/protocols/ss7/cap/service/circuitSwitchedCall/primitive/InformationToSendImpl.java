@@ -59,17 +59,14 @@ public class InformationToSendImpl implements InformationToSend, CAPAsnPrimitive
         this.tone = tone;
     }
 
-    @Override
     public InbandInfo getInbandInfo() {
         return inbandInfo;
     }
 
-    @Override
     public Tone getTone() {
         return tone;
     }
 
-    @Override
     public int getTag() throws CAPException {
 
         if (this.inbandInfo != null) {
@@ -81,17 +78,14 @@ public class InformationToSendImpl implements InformationToSend, CAPAsnPrimitive
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -106,7 +100,6 @@ public class InformationToSendImpl implements InformationToSend, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -144,12 +137,10 @@ public class InformationToSendImpl implements InformationToSend, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -162,7 +153,6 @@ public class InformationToSendImpl implements InformationToSend, CAPAsnPrimitive
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int choiceCnt = 0;
@@ -181,7 +171,6 @@ public class InformationToSendImpl implements InformationToSend, CAPAsnPrimitive
             ((ToneImpl) this.tone).encodeData(asnOs);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

@@ -65,7 +65,6 @@ public class ExtBearerServiceCodeImpl extends OctetStringBase implements ExtBear
             return BearerServiceCodeValue.getInstance(this.data[0]);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);
@@ -94,7 +93,6 @@ public class ExtBearerServiceCodeImpl extends OctetStringBase implements ExtBear
     protected static final XMLFormat<ExtBearerServiceCodeImpl> EXT_BEARER_SERVICE_CODE_XML = new XMLFormat<ExtBearerServiceCodeImpl>(
             ExtBearerServiceCodeImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ExtBearerServiceCodeImpl extBearerServiceCode)
                 throws XMLStreamException {
             String val = xml.getAttribute(BEARER_SERVICE_CODE_VALUE, DEFAULT_STRING_VALUE);
@@ -113,7 +111,6 @@ public class ExtBearerServiceCodeImpl extends OctetStringBase implements ExtBear
             // }
         }
 
-        @Override
         public void write(ExtBearerServiceCodeImpl extBearerServiceCode, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             BearerServiceCodeValue val = extBearerServiceCode.getBearerServiceCodeValue();

@@ -164,7 +164,6 @@ public class LAIFixedLengthImpl extends OctetStringBase implements LAIFixedLengt
         return res;
     }
 
-    @Override
     public String toString() {
 
         int mcc = 0;
@@ -205,7 +204,6 @@ public class LAIFixedLengthImpl extends OctetStringBase implements LAIFixedLengt
     protected static final XMLFormat<LAIFixedLengthImpl> LAI_FIXED_LENGTH_XML = new XMLFormat<LAIFixedLengthImpl>(
             LAIFixedLengthImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LAIFixedLengthImpl laiFixedLength)
                 throws XMLStreamException {
             int mcc = xml.getAttribute(MCC, DEFAULT_INT_VALUE);
@@ -219,7 +217,6 @@ public class LAIFixedLengthImpl extends OctetStringBase implements LAIFixedLengt
             }
         }
 
-        @Override
         public void write(LAIFixedLengthImpl laiFixedLength, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

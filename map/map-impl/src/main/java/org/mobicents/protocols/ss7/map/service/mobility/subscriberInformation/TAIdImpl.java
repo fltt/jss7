@@ -57,7 +57,6 @@ public class TAIdImpl extends OctetStringBase implements TAId {
      */
     protected static final XMLFormat<TAIdImpl> TA_ID_XML = new XMLFormat<TAIdImpl>(TAIdImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TAIdImpl taId) throws XMLStreamException {
             String s = xml.getAttribute(DATA, DEFAULT_VALUE);
             if (s != null) {
@@ -65,7 +64,6 @@ public class TAIdImpl extends OctetStringBase implements TAId {
             }
         }
 
-        @Override
         public void write(TAIdImpl taId, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (taId.data != null) {
                 xml.setAttribute(DATA, DatatypeConverter.printHexBinary(taId.data));

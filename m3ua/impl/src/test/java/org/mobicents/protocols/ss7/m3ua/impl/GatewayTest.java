@@ -342,25 +342,21 @@ public class GatewayTest {
             return receivedData;
         }
 
-        @Override
         public void onMtp3PauseMessage(Mtp3PausePrimitive arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onMtp3ResumeMessage(Mtp3ResumePrimitive arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onMtp3StatusMessage(Mtp3StatusPrimitive arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onMtp3TransferMessage(Mtp3TransferPrimitive value) {
             receivedData.add(value);
         }

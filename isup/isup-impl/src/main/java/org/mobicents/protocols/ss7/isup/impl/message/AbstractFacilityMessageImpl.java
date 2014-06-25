@@ -64,7 +64,6 @@ public abstract class AbstractFacilityMessageImpl extends ISUPMessageImpl implem
         super.o_Parameters.put(_INDEX_O_EndOfOptionalParameters, _END_OF_OPTIONAL_PARAMETERS);
     }
 
-    @Override
     public boolean hasAllMandatoryParameters() {
         if (super.f_Parameters.get(_INDEX_F_MessageType) == null) {
             return false;
@@ -104,12 +103,10 @@ public abstract class AbstractFacilityMessageImpl extends ISUPMessageImpl implem
 
     }
 
-    @Override
     protected void decodeMandatoryVariableBody(ISUPParameterFactory parameterFactory, byte[] parameterBody, int parameterIndex)
             throws ParameterException {
     }
 
-    @Override
     protected void decodeOptionalBody(ISUPParameterFactory parameterFactory, byte[] parameterBody, byte parameterCode)
             throws ParameterException {
         switch (parameterCode & 0xFF) {
@@ -143,62 +140,50 @@ public abstract class AbstractFacilityMessageImpl extends ISUPMessageImpl implem
 
     }
 
-    @Override
     protected int getNumberOfMandatoryVariableLengthParameters() {
         return _MANDATORY_VAR_COUNT;
     }
 
-    @Override
     protected boolean optionalPartIsPossible() {
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public void setFacilityIndicator(FacilityIndicator fi) {
         super.f_Parameters.put(_INDEX_F_FacilityIndicator, fi);
     }
 
-    @Override
     public FacilityIndicator getFacilityIndicator() {
         return (FacilityIndicator) super.f_Parameters.get(_INDEX_F_FacilityIndicator);
     }
 
-    @Override
     public void setUserToUserIndicators(UserToUserIndicators u2ui) {
         super.o_Parameters.put(_INDEX_O_UserToUserIndicators, u2ui);
     }
 
-    @Override
     public UserToUserIndicators getUserToUserIndicators() {
         return (UserToUserIndicators) super.o_Parameters.get(_INDEX_O_UserToUserIndicators);
     }
 
-    @Override
     public void setCallReference(CallReference cf) {
         super.o_Parameters.put(_INDEX_O_CallReference, cf);
     }
 
-    @Override
     public CallReference getCallReference() {
         return (CallReference) super.o_Parameters.get(_INDEX_O_CallReference);
     }
 
-    @Override
     public void setConnectionRequest(ConnectionRequest cr) {
         super.o_Parameters.put(_INDEX_O_ConnectionRequest, cr);
     }
 
-    @Override
     public ConnectionRequest getConnectionRequest() {
         return (ConnectionRequest) super.o_Parameters.get(_INDEX_O_ConnectionRequest);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation pci) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation, pci);
     }
 
-    @Override
     public ParameterCompatibilityInformation getCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }

@@ -117,32 +117,26 @@ public class NetworkResourceManagementMessageImpl extends ISUPMessageImpl implem
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation mci) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation, mci);
     }
 
-    @Override
     public ParameterCompatibilityInformation getParameterCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation pci) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation, pci);
     }
 
-    @Override
     public EchoControlInformation getEchoControlInformation() {
         return (EchoControlInformation) super.o_Parameters.get(_INDEX_O_EchoControlInformation);
     }
 
-    @Override
     public void setEchoControlInformation(EchoControlInformation pci) {
         super.o_Parameters.put(_INDEX_O_EchoControlInformation, pci);
     }

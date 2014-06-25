@@ -52,7 +52,6 @@ public class ISUPEvent extends EventObject {
         return dpc;
     }
 
-    @Override
     public String toString() {
         return "ISUPEvent [messageCode=" + message.getMessageType().getCode() + "]";
     }

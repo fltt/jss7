@@ -160,72 +160,58 @@ public class ApplicationTransportImpl extends AbstractISUPParameter implements A
         return _PARAMETER_CODE;
     }
 
-    @Override
     public Byte getApplicationContextIdentifier() {
         return this.applicationContextIdentifier;
     }
 
-    @Override
     public void setApplicationContextIdentifier(Byte v) {
         this.applicationContextIdentifier = v;
     }
 
-    @Override
     public Boolean isSendNotificationIndicator() {
         return this.sendNotificationIndicator;
     }
 
-    @Override
     public void setSendNotificationIndicator(Boolean v) {
         this.sendNotificationIndicator = v;
     }
 
-    @Override
     public Boolean isReleaseCallIndicator() {
         return this.releaseCallIndicator;
     }
 
-    @Override
     public void setReleaseCallIndicator(Boolean v) {
         this.releaseCallIndicator = v;
     }
 
-    @Override
     public Boolean isSegmentationIndicator() {
         return this.segmentationIndicator;
     }
 
-    @Override
     public void setSegmentationIndicator(Boolean v) {
         this.segmentationIndicator = v;
     }
 
-    @Override
     public Byte getAPMSegmentationIndicator() {
         return this.apmSegmentationIndicator;
     }
 
-    @Override
     public void setAPMSegmentationIndicator(Byte v) {
         this.apmSegmentationIndicator = v;
     }
 
-    @Override
     public Byte getSegmentationLocalReference() {
         return this.segmentationLocalReference;
     }
 
-    @Override
     public void setSegmentationLocalReference(Byte v) {
         this.segmentationLocalReference = v;
     }
 
-    @Override
     public byte[] getEncapsulatedApplicationInformation() {
         return this.encapsulatedApplicationData;
     }
 
-    @Override
     public void setEncapsulatedApplicationInformation(byte[] v) {
         this.encapsulatedApplicationData = v;
     }

@@ -60,12 +60,10 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         this.data[6] = (byte) encodeByte(second);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public int getYear() {
 
         if (this.data == null || this.data.length != 7)
@@ -74,7 +72,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return this.decodeByte((int) data[0]) * 100 + (int) this.decodeByte(data[1]);
     }
 
-    @Override
     public int getMonth() {
 
         if (this.data == null || this.data.length != 7)
@@ -83,7 +80,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return this.decodeByte((int) data[2]);
     }
 
-    @Override
     public int getDay() {
 
         if (this.data == null || this.data.length != 7)
@@ -92,7 +88,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return this.decodeByte((int) data[3]);
     }
 
-    @Override
     public int getHour() {
 
         if (this.data == null || this.data.length != 7)
@@ -101,7 +96,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return this.decodeByte((int) data[4]);
     }
 
-    @Override
     public int getMinute() {
 
         if (this.data == null || this.data.length != 7)
@@ -110,7 +104,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return this.decodeByte((int) data[5]);
     }
 
-    @Override
     public int getSecond() {
 
         if (this.data == null || this.data.length != 7)
@@ -119,7 +112,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return this.decodeByte((int) data[6]);
     }
 
-    @Override
     public void setYear(int year) {
 
         if (this.data == null || this.data.length != 7)
@@ -129,7 +121,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         this.data[1] = (byte) encodeByte(year % 100);
     }
 
-    @Override
     public void setMonth(int month) {
 
         if (this.data == null || this.data.length != 7)
@@ -138,7 +129,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         this.data[2] = (byte) encodeByte(month);
     }
 
-    @Override
     public void setDay(int day) {
 
         if (this.data == null || this.data.length != 7)
@@ -147,7 +137,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         this.data[3] = (byte) encodeByte(day);
     }
 
-    @Override
     public void setHour(int hour) {
 
         if (this.data == null || this.data.length != 7)
@@ -156,7 +145,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         this.data[4] = (byte) encodeByte(hour);
     }
 
-    @Override
     public void setMinute(int minute) {
 
         if (this.data == null || this.data.length != 7)
@@ -165,7 +153,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         this.data[5] = (byte) encodeByte(minute);
     }
 
-    @Override
     public void setSecond(int second) {
 
         if (this.data == null || this.data.length != 7)
@@ -182,22 +169,18 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         return (val / 10) | (val % 10) << 4;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -212,7 +195,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -235,12 +217,10 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -253,7 +233,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -264,7 +243,6 @@ public class DateAndTimeImpl implements DateAndTime, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

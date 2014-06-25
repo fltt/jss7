@@ -138,7 +138,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return data;
     }
 
-    @Override
     public TypeOfShape getTypeOfShape() {
         if (this.data == null || this.data.length < 1)
             return null;
@@ -146,7 +145,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return TypeOfShape.getInstance((this.data[0] & 0xFF) >> 4);
     }
 
-    @Override
     public double getLatitude() {
         if (this.data == null || this.data.length < 7)
             return 0;
@@ -154,7 +152,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return GeographicalInformationImpl.decodeLatitude(this.data, 1);
     }
 
-    @Override
     public double getLongitude() {
         if (this.data == null || this.data.length < 7)
             return 0;
@@ -162,7 +159,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return GeographicalInformationImpl.decodeLongitude(this.data, 4);
     }
 
-    @Override
     public double getUncertainty() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidPointWithUncertaintyCircle || this.data == null
                 || this.data.length != 8)
@@ -171,7 +167,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return GeographicalInformationImpl.decodeUncertainty(this.data[7]);
     }
 
-    @Override
     public double getUncertaintySemiMajorAxis() {
         TypeOfShape typeOfShape = this.getTypeOfShape();
         if (typeOfShape != null) {
@@ -191,7 +186,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return 0;
     }
 
-    @Override
     public double getUncertaintySemiMinorAxis() {
         TypeOfShape typeOfShape = this.getTypeOfShape();
         if (typeOfShape != null) {
@@ -211,7 +205,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return 0;
     }
 
-    @Override
     public double getAngleOfMajorAxis() {
         TypeOfShape typeOfShape = this.getTypeOfShape();
         if (typeOfShape != null) {
@@ -231,7 +224,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return 0;
     }
 
-    @Override
     public int getConfidence() {
         TypeOfShape typeOfShape = this.getTypeOfShape();
         if (typeOfShape != null) {
@@ -256,7 +248,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return 0;
     }
 
-    @Override
     public int getAltitude() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidPointWithAltitudeAndUncertaintyEllipsoid || this.data == null
                 || this.data.length != 14)
@@ -271,7 +262,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return i1 * sign;
     }
 
-    @Override
     public double getUncertaintyAltitude() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidPointWithAltitudeAndUncertaintyEllipsoid || this.data == null
                 || this.data.length != 14)
@@ -280,7 +270,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return GeographicalInformationImpl.decodeUncertainty(this.data[12]);
     }
 
-    @Override
     public int getInnerRadius() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidArc || this.data == null || this.data.length != 13)
             return 0;
@@ -289,7 +278,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return i1;
     }
 
-    @Override
     public double getUncertaintyRadius() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidArc || this.data == null || this.data.length != 13)
             return 0;
@@ -297,7 +285,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return GeographicalInformationImpl.decodeUncertainty(this.data[9]);
     }
 
-    @Override
     public double getOffsetAngle() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidArc || this.data == null || this.data.length != 13)
             return 0;
@@ -305,7 +292,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return (data[10] & 0xFF) * 2;
     }
 
-    @Override
     public double getIncludedAngle() {
         if (this.getTypeOfShape() != TypeOfShape.EllipsoidArc || this.data == null || this.data.length != 13)
             return 0;
@@ -313,7 +299,6 @@ public class ExtGeographicalInformationImpl extends OctetStringBase implements E
         return (data[11] & 0xFF) * 2;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

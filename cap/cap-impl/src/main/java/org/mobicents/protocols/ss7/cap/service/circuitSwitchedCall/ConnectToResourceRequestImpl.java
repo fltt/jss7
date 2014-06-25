@@ -71,57 +71,46 @@ public class ConnectToResourceRequestImpl extends CircuitSwitchedCallMessageImpl
         this.callSegmentID = callSegmentID;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.connectToResource_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.connectToResource;
     }
 
-    @Override
     public CalledPartyNumberCap getResourceAddress_IPRoutingAddress() {
         return resourceAddress_IPRoutingAddress;
     }
 
-    @Override
     public boolean getResourceAddress_Null() {
         return resourceAddress_Null;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public ServiceInteractionIndicatorsTwo getServiceInteractionIndicatorsTwo() {
         return serviceInteractionIndicatorsTwo;
     }
 
-    @Override
     public Integer getCallSegmentID() {
         return callSegmentID;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -136,7 +125,6 @@ public class ConnectToResourceRequestImpl extends CircuitSwitchedCallMessageImpl
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -208,12 +196,10 @@ public class ConnectToResourceRequestImpl extends CircuitSwitchedCallMessageImpl
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -226,7 +212,6 @@ public class ConnectToResourceRequestImpl extends CircuitSwitchedCallMessageImpl
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         int choiceCnt = 0;
@@ -260,7 +245,6 @@ public class ConnectToResourceRequestImpl extends CircuitSwitchedCallMessageImpl
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

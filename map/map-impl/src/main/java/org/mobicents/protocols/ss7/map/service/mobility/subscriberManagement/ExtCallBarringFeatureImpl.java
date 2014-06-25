@@ -160,7 +160,6 @@ public class ExtCallBarringFeatureImpl extends SequenceBase implements ExtCallBa
             ((MAPExtensionContainerImpl) this.extensionContainer).encodeAll(asnOs);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

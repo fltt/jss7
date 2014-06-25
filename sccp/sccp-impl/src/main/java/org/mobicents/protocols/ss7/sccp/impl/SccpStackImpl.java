@@ -889,7 +889,6 @@ public class SccpStackImpl implements SccpStack, Mtp3UserPartListener {
             this.callingPartyAddress = callingPartyAddress;
         }
 
-        @Override
         public boolean equals(Object obj) {
             if (obj == null)
                 return false;
@@ -905,7 +904,6 @@ public class SccpStackImpl implements SccpStack, Mtp3UserPartListener {
             return this.callingPartyAddress.equals(x.callingPartyAddress);
         }
 
-        @Override
         public int hashCode() {
             return this.segmentationLocalRef;
         }

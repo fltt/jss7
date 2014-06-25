@@ -82,32 +82,26 @@ public class TAnswerSpecificInfoImpl extends SequenceBase implements TAnswerSpec
         this.extBasicServiceCode2 = extBasicServiceCode2;
     }
 
-    @Override
     public CalledPartyNumberCap getDestinationAddress() {
         return destinationAddress;
     }
 
-    @Override
     public boolean getOrCall() {
         return orCall;
     }
 
-    @Override
     public boolean getForwardedCall() {
         return forwardedCall;
     }
 
-    @Override
     public ChargeIndicator getChargeIndicator() {
         return chargeIndicator;
     }
 
-    @Override
     public ExtBasicServiceCode getExtBasicServiceCode() {
         return extBasicServiceCode;
     }
 
-    @Override
     public ExtBasicServiceCode getExtBasicServiceCode2() {
         return extBasicServiceCode2;
     }
@@ -166,7 +160,6 @@ public class TAnswerSpecificInfoImpl extends SequenceBase implements TAnswerSpec
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.destinationAddress != null) {
@@ -189,7 +182,6 @@ public class TAnswerSpecificInfoImpl extends SequenceBase implements TAnswerSpec
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -234,7 +226,6 @@ public class TAnswerSpecificInfoImpl extends SequenceBase implements TAnswerSpec
     protected static final XMLFormat<TAnswerSpecificInfoImpl> O_ANSWER_SPECIFIC_INFO_XML = new XMLFormat<TAnswerSpecificInfoImpl>(
             TAnswerSpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TAnswerSpecificInfoImpl oAnswerSpecificInfo)
                 throws XMLStreamException {
             oAnswerSpecificInfo.destinationAddress = xml.get(DESTINATION_ADDRESS, CalledPartyNumberCapImpl.class);
@@ -253,7 +244,6 @@ public class TAnswerSpecificInfoImpl extends SequenceBase implements TAnswerSpec
             oAnswerSpecificInfo.extBasicServiceCode2 = xml.get(EXT_BASIC_SERVICE_CODE2, ExtBasicServiceCodeImpl.class);
         }
 
-        @Override
         public void write(TAnswerSpecificInfoImpl oAnswerSpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

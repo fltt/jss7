@@ -74,22 +74,18 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
         this.dpSpecificCriteriaAlt = dpSpecificCriteriaAlt;
     }
 
-    @Override
     public Integer getApplicationTimer() {
         return applicationTimer;
     }
 
-    @Override
     public MidCallControlInfo getMidCallControlInfo() {
         return midCallControlInfo;
     }
 
-    @Override
     public DpSpecificCriteriaAlt getDpSpecificCriteriaAlt() {
         return dpSpecificCriteriaAlt;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (this.applicationTimer != null) {
             return _ID_applicationTimer;
@@ -104,12 +100,10 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
         throw new CAPException("Error while defining a " + _PrimitiveName + ": none of choices is defined");
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.applicationTimer != null)
             return true;
@@ -117,7 +111,6 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
             return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -135,7 +128,6 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -196,12 +188,10 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -214,7 +204,6 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int choiceCnt = 0;
@@ -241,7 +230,6 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -270,7 +258,6 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
     protected static final XMLFormat<DpSpecificCriteriaImpl> DP_SPECIFIC_CRITERIA_XML = new XMLFormat<DpSpecificCriteriaImpl>(
             DpSpecificCriteriaImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DpSpecificCriteriaImpl dpSpecificCriteria)
                 throws XMLStreamException {
             dpSpecificCriteria.applicationTimer = xml.get(APPLICATION_TIMER, Integer.class);
@@ -280,7 +267,6 @@ public class DpSpecificCriteriaImpl implements DpSpecificCriteria, CAPAsnPrimiti
             // dpSpecificCriteria.dpSpecificCriteriaAlt = xml.get( DP_SPECIFIC_CRITERIA_ALT, DpSpecificCriteriaAltImpl.class);
         }
 
-        @Override
         public void write(DpSpecificCriteriaImpl dpSpecificCriteria, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (dpSpecificCriteria.getApplicationTimer() != null)

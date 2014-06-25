@@ -67,7 +67,6 @@ public class Message {
         txBuffer.position(length);
     }
 
-    @Override
     public String toString() {
         return new String(data);
     }
@@ -77,7 +76,6 @@ public class Message {
      *
      * @see java.lang.Object#hashCode()
      */
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -90,7 +88,6 @@ public class Message {
      *
      * @see java.lang.Object#equals(java.lang.Object)
      */
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;

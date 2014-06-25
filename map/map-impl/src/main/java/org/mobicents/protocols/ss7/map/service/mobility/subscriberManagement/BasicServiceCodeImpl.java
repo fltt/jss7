@@ -59,17 +59,14 @@ public class BasicServiceCodeImpl implements BasicServiceCode, MAPAsnPrimitive {
         this.bearerService = bearerService;
     }
 
-    @Override
     public BearerServiceCode getBearerService() {
         return bearerService;
     }
 
-    @Override
     public TeleserviceCode getTeleservice() {
         return teleservice;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (bearerService != null)
             return _TAG_bearerService;
@@ -77,12 +74,10 @@ public class BasicServiceCodeImpl implements BasicServiceCode, MAPAsnPrimitive {
             return _TAG_teleservice;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
@@ -180,7 +175,6 @@ public class BasicServiceCodeImpl implements BasicServiceCode, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

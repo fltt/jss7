@@ -42,17 +42,14 @@ public class SSCodeImpl extends OctetStringLength1Base implements SSCode {
         super("SSCode", value != null ? value.getCode() : 0);
     }
 
-    @Override
     public int getData() {
         return this.data;
     }
 
-    @Override
     public SupplementaryCodeValue getSupplementaryCodeValue() {
         return SupplementaryCodeValue.getInstance(this.data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

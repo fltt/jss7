@@ -36,7 +36,6 @@ public class TPProtocolIdentifierImpl extends OctetStringLength1Base implements 
         super("TPProtocolIdentifier", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }

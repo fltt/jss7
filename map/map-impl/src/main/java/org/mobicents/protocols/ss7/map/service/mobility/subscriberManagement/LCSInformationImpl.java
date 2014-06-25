@@ -65,27 +65,22 @@ public class LCSInformationImpl extends SequenceBase implements LCSInformation {
         this.addLcsPrivacyExceptionList = addLcsPrivacyExceptionList;
     }
 
-    @Override
     public ArrayList<ISDNAddressString> getGmlcList() {
         return this.gmlcList;
     }
 
-    @Override
     public ArrayList<LCSPrivacyClass> getLcsPrivacyExceptionList() {
         return this.lcsPrivacyExceptionList;
     }
 
-    @Override
     public ArrayList<MOLRClass> getMOLRList() {
         return this.molrList;
     }
 
-    @Override
     public ArrayList<LCSPrivacyClass> getAddLcsPrivacyExceptionList() {
         return this.addLcsPrivacyExceptionList;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.gmlcList = null;
@@ -241,7 +236,6 @@ public class LCSInformationImpl extends SequenceBase implements LCSInformation {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.gmlcList != null && (this.gmlcList.size() < 1 || this.gmlcList.size() > 5)) {
@@ -318,7 +312,6 @@ public class LCSInformationImpl extends SequenceBase implements LCSInformation {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

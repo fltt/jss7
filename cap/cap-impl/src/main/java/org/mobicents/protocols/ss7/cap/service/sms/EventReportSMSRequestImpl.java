@@ -73,52 +73,42 @@ public class EventReportSMSRequestImpl extends SmsMessageImpl implements EventRe
         super();
     }
 
-    @Override
     public EventTypeSMS getEventTypeSMS() {
         return this.eventTypeSMS;
     }
 
-    @Override
     public EventSpecificInformationSMS getEventSpecificInformationSMS() {
         return this.eventSpecificInformationSMS;
     }
 
-    @Override
     public MiscCallInfo getMiscCallInfo() {
         return this.miscCallInfo;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return this.extensions;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.eventReportSMS_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.eventReportSMS;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -138,7 +128,6 @@ public class EventReportSMSRequestImpl extends SmsMessageImpl implements EventRe
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -224,12 +213,10 @@ public class EventReportSMSRequestImpl extends SmsMessageImpl implements EventRe
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -241,7 +228,6 @@ public class EventReportSMSRequestImpl extends SmsMessageImpl implements EventRe
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.eventTypeSMS == null)
@@ -276,7 +262,6 @@ public class EventReportSMSRequestImpl extends SmsMessageImpl implements EventRe
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

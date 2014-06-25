@@ -69,32 +69,26 @@ public class SMSCAMELTDPDataImpl extends SequenceBase implements SMSCAMELTDPData
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public SMSTriggerDetectionPoint getSMSTriggerDetectionPoint() {
         return this.smsTriggerDetectionPoint;
     }
 
-    @Override
     public long getServiceKey() {
         return this.serviceKey;
     }
 
-    @Override
     public ISDNAddressString getGsmSCFAddress() {
         return this.gsmSCFAddress;
     }
 
-    @Override
     public DefaultSMSHandling getDefaultSMSHandling() {
         return this.defaultSMSHandling;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.smsTriggerDetectionPoint = null;
@@ -191,7 +185,6 @@ public class SMSCAMELTDPDataImpl extends SequenceBase implements SMSCAMELTDPData
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.smsTriggerDetectionPoint == null) {
@@ -228,7 +221,6 @@ public class SMSCAMELTDPDataImpl extends SequenceBase implements SMSCAMELTDPData
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

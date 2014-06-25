@@ -133,209 +133,173 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         this.mapMan = val;
     }
 
-    @Override
     public AddressNatureType getAddressNature() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getAddressNature().getIndicator());
     }
 
-    @Override
     public String getAddressNature_Value() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getAddressNature().getIndicator()).toString();
     }
 
-    @Override
     public void setAddressNature(AddressNatureType val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setAddressNature(AddressNature.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public NumberingPlanMapType getNumberingPlan() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlan().getIndicator());
     }
 
-    @Override
     public String getNumberingPlan_Value() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlan().getIndicator())
                 .toString();
     }
 
-    @Override
     public void setNumberingPlan(NumberingPlanMapType val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setNumberingPlan(NumberingPlan.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public String getServiceCenterAddress() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getServiceCenterAddress();
     }
 
-    @Override
     public void setServiceCenterAddress(String val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setServiceCenterAddress(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public MapProtocolVersion getMapProtocolVersion() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getMapProtocolVersion();
     }
 
-    @Override
     public String getMapProtocolVersion_Value() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getMapProtocolVersion().toString();
     }
 
-    @Override
     public void setMapProtocolVersion(MapProtocolVersion val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setMapProtocolVersion(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getHlrSsn() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getHlrSsn();
     }
 
-    @Override
     public void setHlrSsn(int val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setHlrSsn(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getVlrSsn() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getVlrSsn();
     }
 
-    @Override
     public void setVlrSsn(int val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setVlrSsn(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public TypeOfNumberType getTypeOfNumber() {
         return new TypeOfNumberType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getTypeOfNumber().getCode());
     }
 
-    @Override
     public String getTypeOfNumber_Value() {
         return new TypeOfNumberType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getTypeOfNumber().getCode()).toString();
     }
 
-    @Override
     public void setTypeOfNumber(TypeOfNumberType val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setTypeOfNumber(TypeOfNumber.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public NumberingPlanIdentificationType getNumberingPlanIdentification() {
         return new NumberingPlanIdentificationType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlanIdentification()
                 .getCode());
     }
 
-    @Override
     public String getNumberingPlanIdentification_Value() {
         return new NumberingPlanIdentificationType(this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlanIdentification()
                 .getCode()).toString();
     }
 
-    @Override
     public void setNumberingPlanIdentification(NumberingPlanIdentificationType val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData()
                 .setNumberingPlanIdentification(NumberingPlanIdentification.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public SmsCodingType getSmsCodingType() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getSmsCodingType();
     }
 
-    @Override
     public String getSmsCodingType_Value() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getSmsCodingType().toString();
     }
 
-    @Override
     public void setSmsCodingType(SmsCodingType val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setSmsCodingType(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public boolean isSendSrsmdsIfError() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().isSendSrsmdsIfError();
     }
 
-    @Override
     public void setSendSrsmdsIfError(boolean val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setSendSrsmdsIfError(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public boolean isGprsSupportIndicator() {
         return this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().isGprsSupportIndicator();
     }
 
-    @Override
     public void setGprsSupportIndicator(boolean val) {
         this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().setGprsSupportIndicator(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public void putAddressNature(String val) {
         AddressNatureType x = AddressNatureType.createInstance(val);
         if (x != null)
             this.setAddressNature(x);
     }
 
-    @Override
     public void putNumberingPlan(String val) {
         NumberingPlanMapType x = NumberingPlanMapType.createInstance(val);
         if (x != null)
             this.setNumberingPlan(x);
     }
 
-    @Override
     public void putMapProtocolVersion(String val) {
         MapProtocolVersion x = MapProtocolVersion.createInstance(val);
         if (x != null)
             this.setMapProtocolVersion(x);
     }
 
-    @Override
     public void putTypeOfNumber(String val) {
         TypeOfNumberType x = TypeOfNumberType.createInstance(val);
         if (x != null)
             this.setTypeOfNumber(x);
     }
 
-    @Override
     public void putNumberingPlanIdentification(String val) {
         NumberingPlanIdentificationType x = NumberingPlanIdentificationType.createInstance(val);
         if (x != null)
             this.setNumberingPlanIdentification(x);
     }
 
-    @Override
     public void putSmsCodingType(String val) {
         SmsCodingType x = SmsCodingType.createInstance(val);
         if (x != null)
             this.setSmsCodingType(x);
     }
 
-    @Override
     public String getCurrentRequestDef() {
         return "LastDialog: " + currentRequestDef;
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
@@ -396,7 +360,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return true;
     }
 
-    @Override
     public void stop() {
         MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
         isStarted = false;
@@ -406,17 +369,14 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         this.testerHost.sendNotif(SOURCE_NAME, "SMS Server has been stopped", "", Level.INFO);
     }
 
-    @Override
     public void execute() {
     }
 
-    @Override
     public String closeCurrentDialog() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public String performSRIForSM(String destIsdnNumber) {
         if (!isStarted)
             return "The tester is not started";
@@ -499,7 +459,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return sb.toString();
     }
 
-    @Override
     public String performSRIForSM_MtForwardSM(String msg, String destIsdnNumber, String origIsdnNumber) {
         if (!isStarted)
             return "The tester is not started";
@@ -522,7 +481,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return doSendSri(destIsdnNumber, this.getServiceCenterAddress(), mmd);
     }
 
-    @Override
     public String performMtForwardSM(String msg, String destImsi, String vlrNumber, String origIsdnNumber) {
         if (!isStarted)
             return "The tester is not started";
@@ -649,7 +607,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return sb.toString();
     }
 
-    @Override
     public void onForwardShortMessageRequest(ForwardShortMessageRequest ind) {
         if (!isStarted)
             return;
@@ -675,7 +632,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
     }
 
-    @Override
     public void onForwardShortMessageResponse(ForwardShortMessageResponse ind) {
         if (!isStarted)
             return;
@@ -692,7 +648,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
     }
 
-    @Override
     public void onMoForwardShortMessageRequest(MoForwardShortMessageRequest ind) {
         if (!isStarted)
             return;
@@ -772,19 +727,16 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return sb.toString();
     }
 
-    @Override
     public void onMoForwardShortMessageResponse(MoForwardShortMessageResponse moForwSmRespInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtForwardShortMessageRequest(MtForwardShortMessageRequest mtForwSmInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtForwardShortMessageResponse(MtForwardShortMessageResponse ind) {
         if (!isStarted)
             return;
@@ -801,13 +753,11 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
     }
 
-    @Override
     public void onSendRoutingInfoForSMRequest(SendRoutingInfoForSMRequest sendRoutingInfoForSMInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSendRoutingInfoForSMResponse(SendRoutingInfoForSMResponse ind) {
         if (!isStarted)
             return;
@@ -862,13 +812,11 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return sb.toString();
     }
 
-    @Override
     public void onReportSMDeliveryStatusRequest(ReportSMDeliveryStatusRequest reportSMDeliveryStatusInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onReportSMDeliveryStatusResponse(ReportSMDeliveryStatusResponse ind) {
         if (!isStarted)
             return;
@@ -882,7 +830,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         this.testerHost.sendNotif(SOURCE_NAME, "Rcvd: rsmdsResp", ind.toString(), Level.DEBUG);
     }
 
-    @Override
     public void onInformServiceCentreRequest(InformServiceCentreRequest ind) {
         if (!isStarted)
             return;
@@ -897,7 +844,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         this.testerHost.sendNotif(SOURCE_NAME, "Rcvd: iscReq", uData, Level.DEBUG);
     }
 
-    @Override
     public void onAlertServiceCentreRequest(AlertServiceCentreRequest ind) {
         if (!isStarted)
             return;
@@ -927,18 +873,15 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
     }
 
-    @Override
     public void onAlertServiceCentreResponse(AlertServiceCentreResponse alertServiceCentreInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogRequest(MAPDialog arg0, AddressString arg1, AddressString arg2, MAPExtensionContainer arg3) {
         int i1 = 0;
     }
 
-    @Override
     public void onDialogDelimiter(MAPDialog mapDialog) {
 
         if (mapDialog.getApplicationContext().getApplicationContextName() == MAPApplicationContextName.shortMsgMTRelayContext
@@ -1007,7 +950,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
     }
 
-    @Override
     public void onDialogClose(MAPDialog mapDialog) {
         if (mapDialog.getUserObject() != null) {
             HostMessageData hmd = (HostMessageData) mapDialog.getUserObject();
@@ -1037,7 +979,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
     }
 
-    @Override
     public void onErrorComponent(MAPDialog dlg, Long invokeId, MAPErrorMessage msg) {
         // if an error for (mt)ForwardSM or SRI requests
         if (dlg.getApplicationContext().getApplicationContextName() != MAPApplicationContextName.shortMsgMTRelayContext
@@ -1091,7 +1032,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         // needSendClose = true;
     }
 
-    @Override
     public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
         super.onRejectComponent(mapDialog, invokeId, problem, isLocalOriginated);
         if (isLocalOriginated)

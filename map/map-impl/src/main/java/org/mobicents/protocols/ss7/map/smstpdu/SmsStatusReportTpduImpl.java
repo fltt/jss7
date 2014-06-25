@@ -258,7 +258,6 @@ public class SmsStatusReportTpduImpl extends SmsTpduImpl implements SmsStatusRep
         return res.toByteArray();
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

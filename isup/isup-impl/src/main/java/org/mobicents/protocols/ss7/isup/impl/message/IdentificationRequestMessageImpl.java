@@ -116,32 +116,26 @@ public class IdentificationRequestMessageImpl extends ISUPMessageImpl implements
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public void setMCIDRequestIndicators(MCIDRequestIndicators mcid) {
         super.o_Parameters.put(_INDEX_O_MCIDRequestIndicators, mcid);
     }
 
-    @Override
     public MCIDRequestIndicators getMCIDRequestIndicators() {
         return (MCIDRequestIndicators) super.o_Parameters.get(_INDEX_O_MCIDRequestIndicators);
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation mci) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation, mci);
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation pci) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation, pci);
     }
 
-    @Override
     public ParameterCompatibilityInformation getParameterCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }

@@ -40,7 +40,6 @@ public class HeartbeatImpl extends M3UAMessageImpl implements Heartbeat {
         super(MessageClass.ASP_STATE_MAINTENANCE, MessageType.HEARTBEAT, MessageType.S_HEARTBEAT);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Heartbeat_Data)) {
             ((ParameterImpl) parameters.get(Parameter.Heartbeat_Data)).write(buffer);

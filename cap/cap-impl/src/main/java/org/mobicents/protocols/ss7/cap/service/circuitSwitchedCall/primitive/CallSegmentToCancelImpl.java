@@ -61,32 +61,26 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
         this.callSegmentID = callSegmentID;
     }
 
-    @Override
     public Integer getInvokeID() {
         return invokeID;
     }
 
-    @Override
     public Integer getCallSegmentID() {
         return callSegmentID;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -101,7 +95,6 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -146,13 +139,11 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -165,7 +156,6 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -181,7 +171,6 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -208,7 +197,6 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
     protected static final XMLFormat<CallSegmentToCancelImpl> CALL_SEGMENT_TO_CANCEL_XML = new XMLFormat<CallSegmentToCancelImpl>(
             CallSegmentToCancelImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CallSegmentToCancelImpl callSegmentToCancel)
                 throws XMLStreamException {
 
@@ -216,7 +204,6 @@ public class CallSegmentToCancelImpl implements CallSegmentToCancel, CAPAsnPrimi
             callSegmentToCancel.callSegmentID = xml.get(CALL_SEGMENT_ID, Integer.class);
         }
 
-        @Override
         public void write(CallSegmentToCancelImpl callSegmentToCancel, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

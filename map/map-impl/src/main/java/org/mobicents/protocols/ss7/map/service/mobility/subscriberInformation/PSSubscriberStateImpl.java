@@ -65,7 +65,6 @@ public class PSSubscriberStateImpl implements PSSubscriberState, MAPAsnPrimitive
         this.pdpContextInfoList = pdpContextInfoList;
     }
 
-    @Override
     public PSSubscriberStateChoice getChoice() {
         return choice;
     }
@@ -79,7 +78,6 @@ public class PSSubscriberStateImpl implements PSSubscriberState, MAPAsnPrimitive
         return this.netDetNotReachable;
     }
 
-    @Override
     public ArrayList<PDPContextInfo> getPDPContextInfoList() {
         return pdpContextInfoList;
     }
@@ -356,7 +354,6 @@ public class PSSubscriberStateImpl implements PSSubscriberState, MAPAsnPrimitive
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

@@ -88,7 +88,6 @@ public class CallingPartyCategoryImpl extends AbstractISUPParameter implements C
         return _PARAMETER_CODE;
     }
 
-    @Override
     public String toString() {
         return "CallingPartyCategory [callingPartyCategory=" + callingPartyCategory + "]";
     }
@@ -99,14 +98,12 @@ public class CallingPartyCategoryImpl extends AbstractISUPParameter implements C
     protected static final XMLFormat<CallingPartyCategoryImpl> ISUP_CALLING_PARTY_CATEGORY_XML = new XMLFormat<CallingPartyCategoryImpl>(
             CallingPartyCategoryImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CallingPartyCategoryImpl callingPartyCategory)
                 throws XMLStreamException {
             callingPartyCategory.callingPartyCategory = (byte) xml.getAttribute(CALLING_PARTY_CATEGORY,
                     DEFAULT_CALLING_PARTY_CATEGORY);
         }
 
-        @Override
         public void write(CallingPartyCategoryImpl callingPartyCategory, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(CALLING_PARTY_CATEGORY, callingPartyCategory.callingPartyCategory & 0xFF);

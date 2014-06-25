@@ -67,32 +67,26 @@ public class MCSSInfoImpl extends SequenceBase implements MCSSInfo {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public SSCode getSSCode() {
         return this.ssCode;
     }
 
-    @Override
     public ExtSSStatus getSSStatus() {
         return this.ssStatus;
     }
 
-    @Override
     public int getNbrSB() {
         return this.nbrSB;
     }
 
-    @Override
     public int getNbrUser() {
         return this.nbrUser;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.ssCode = null;
@@ -190,7 +184,6 @@ public class MCSSInfoImpl extends SequenceBase implements MCSSInfo {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.ssCode == null)
@@ -226,7 +219,6 @@ public class MCSSInfoImpl extends SequenceBase implements MCSSInfo {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

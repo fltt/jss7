@@ -65,22 +65,18 @@ public class MAPErrorMessageCUGRejectImpl extends MAPErrorMessageImpl implements
         return this;
     }
 
-    @Override
     public CUGRejectCause getCUGRejectCause() {
         return cugRejectCause;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     public void setCUGRejectCause(CUGRejectCause val) {
         cugRejectCause = val;
     }
 
-    @Override
     public void setExtensionContainer(MAPExtensionContainer val) {
         extensionContainer = val;
     }
@@ -97,7 +93,6 @@ public class MAPErrorMessageCUGRejectImpl extends MAPErrorMessageImpl implements
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -112,7 +107,6 @@ public class MAPErrorMessageCUGRejectImpl extends MAPErrorMessageImpl implements
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
 
         try {
@@ -169,13 +163,11 @@ public class MAPErrorMessageCUGRejectImpl extends MAPErrorMessageImpl implements
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
 
         try {
@@ -188,7 +180,6 @@ public class MAPErrorMessageCUGRejectImpl extends MAPErrorMessageImpl implements
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.cugRejectCause == null && this.extensionContainer == null)
@@ -207,7 +198,6 @@ public class MAPErrorMessageCUGRejectImpl extends MAPErrorMessageImpl implements
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

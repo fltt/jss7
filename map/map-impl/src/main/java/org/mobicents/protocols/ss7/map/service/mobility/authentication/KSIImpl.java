@@ -37,7 +37,6 @@ public class KSIImpl extends OctetStringLength1Base implements KSI {
         super("KSI", data);
     }
 
-    @Override
     public int getData() {
         return this.data;
     }

@@ -72,7 +72,6 @@ public class CheckImeiResponseImpl extends MobilityMessageImpl implements CheckI
         return this.mapProtocolVersion;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (this.mapProtocolVersion >= 3) {
             return Tag.SEQUENCE;
@@ -81,12 +80,10 @@ public class CheckImeiResponseImpl extends MobilityMessageImpl implements CheckI
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.mapProtocolVersion >= 3) {
             return false;
@@ -95,7 +92,6 @@ public class CheckImeiResponseImpl extends MobilityMessageImpl implements CheckI
         }
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -189,12 +185,10 @@ public class CheckImeiResponseImpl extends MobilityMessageImpl implements CheckI
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -206,7 +200,6 @@ public class CheckImeiResponseImpl extends MobilityMessageImpl implements CheckI
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
             if (mapProtocolVersion >= 3) {
@@ -234,32 +227,26 @@ public class CheckImeiResponseImpl extends MobilityMessageImpl implements CheckI
         }
     }
 
-    @Override
     public MAPMessageType getMessageType() {
         return MAPMessageType.checkIMEI_Response;
     }
 
-    @Override
     public int getOperationCode() {
         return MAPOperationCode.checkIMEI;
     }
 
-    @Override
     public EquipmentStatus getEquipmentStatus() {
         return this.equipmentStatus;
     }
 
-    @Override
     public UESBIIu getBmuef() {
         return bmuef;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

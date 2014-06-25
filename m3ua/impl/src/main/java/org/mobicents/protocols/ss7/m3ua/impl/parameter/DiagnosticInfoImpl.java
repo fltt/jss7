@@ -41,7 +41,6 @@ public class DiagnosticInfoImpl extends ParameterImpl implements DiagnosticInfo 
         this.info = new String(value);
     }
 
-    @Override
     protected byte[] getValue() {
         return this.info.getBytes();
     }

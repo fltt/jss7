@@ -59,7 +59,6 @@ public class OCalledPartyBusySpecificInfoImpl extends SequenceBase implements OC
         this.busyCause = busyCause;
     }
 
-    @Override
     public CauseCap getBusyCause() {
         return busyCause;
     }
@@ -93,14 +92,12 @@ public class OCalledPartyBusySpecificInfoImpl extends SequenceBase implements OC
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.busyCause != null) {
             ((CauseCapImpl) this.busyCause).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _ID_busyCause);
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -122,13 +119,11 @@ public class OCalledPartyBusySpecificInfoImpl extends SequenceBase implements OC
     protected static final XMLFormat<OCalledPartyBusySpecificInfoImpl> ROUTE_SELECT_FAILURE_SPECIFIC_INFO_XML = new XMLFormat<OCalledPartyBusySpecificInfoImpl>(
             OCalledPartyBusySpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml,
                 OCalledPartyBusySpecificInfoImpl oCalledPartyBusySpecificInfo) throws XMLStreamException {
             oCalledPartyBusySpecificInfo.busyCause = xml.get(BUSY_CAUSE, CauseCapImpl.class);
         }
 
-        @Override
         public void write(OCalledPartyBusySpecificInfoImpl oCalledPartyBusySpecificInfo,
                 javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
 

@@ -141,7 +141,6 @@ public class CamelRoutingInfoImpl extends SequenceBase implements CamelRoutingIn
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.gmscCamelSubscriptionInfo == null)
             throw new MAPException("Error while encoding" + _PrimitiveName + ": gmscCamelSubscriptionInfo must not be null");
@@ -157,7 +156,6 @@ public class CamelRoutingInfoImpl extends SequenceBase implements CamelRoutingIn
                     _TAG_extensionContainer);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

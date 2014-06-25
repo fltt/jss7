@@ -47,27 +47,22 @@ public class LSAAttributesImpl extends OctetStringLength1Base implements LSAAttr
                 | (activeModeSupportAvailable ? activeModeSupport_mask : 0));
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public LSAIdentificationPriorityValue getLSAIdentificationPriority() {
         return LSAIdentificationPriorityValue.getInstance(data & lsaIdentificationPriority_mask);
     }
 
-    @Override
     public boolean isPreferentialAccessAvailable() {
         return ((data & preferentialAccess_mask) == preferentialAccess_mask);
     }
 
-    @Override
     public boolean isActiveModeSupportAvailable() {
         return ((data & activeModeSupport_mask) == activeModeSupport_mask);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

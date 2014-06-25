@@ -46,7 +46,6 @@ public class ProtocolVersionImpl implements ProtocolVersion {
         this.data = ProtocolVersion._TAG_T1_114_1996 + ProtocolVersion._TAG_T1_114_2000;
     }
 
-    @Override
     public boolean isT1_114_1996Supported() {
         if ((this.data & ProtocolVersion._TAG_T1_114_1996) != 0)
             return true;
@@ -54,7 +53,6 @@ public class ProtocolVersionImpl implements ProtocolVersion {
             return false;
     }
 
-    @Override
     public boolean isT1_114_2000Supported() {
         if ((this.data & ProtocolVersion._TAG_T1_114_2000) != 0)
             return true;
@@ -62,7 +60,6 @@ public class ProtocolVersionImpl implements ProtocolVersion {
             return false;
     }
 
-    @Override
     public boolean isSupportedVersion() {
         if ((this.data & ProtocolVersion._TAG_T1_114_1996) != 0 || (this.data & ProtocolVersion._TAG_T1_114_1996) != 0)
             return true;

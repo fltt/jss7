@@ -39,7 +39,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#addCircuit(int, int)
      */
-    @Override
     public void addCircuit(int cic, int dpc) {
         cicMap.put(getChannelID(cic, dpc), dpc);
     }
@@ -49,7 +48,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#removeCircuit(int)
      */
-    @Override
     public void removeCircuit(int cic, int dpc) {
         cicMap.remove(getChannelID(cic, dpc));
     }
@@ -59,7 +57,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#isCircuitPresent(int)
      */
-    @Override
     public boolean isCircuitPresent(int cic, int dpc) {
         return this.cicMap.containsKey(getChannelID(cic, dpc));
     }
@@ -69,7 +66,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#getChannelIDs()
      */
-    @Override
     public long[] getChannelIDs() {
         long[] x = new long[this.cicMap.size()];
         Iterator<Long> it = this.cicMap.keySet().iterator();
@@ -85,7 +81,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#getCIC()
      */
-    @Override
     public int getCIC(long channelID) {
         // get last 14 bits
         return (int) (channelID & 0x3FFF);
@@ -96,7 +91,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#getDPC()
      */
-    @Override
     public int getDPC(long channelID) {
         return (int) (channelID >> 14);
     }
@@ -106,7 +100,6 @@ public class CircuitManagerImpl implements CircuitManager {
      *
      * @see org.mobicents.protocols.ss7.isup.CircuitManager#getChannelID(int,int)
      */
-    @Override
     public long getChannelID(int cic, int dpc) {
         long currValue = dpc;
         currValue = (currValue << 14) + (long) cic;

@@ -80,7 +80,6 @@ public class DestinationPointCodeImpl extends ParameterImpl implements Destinati
         return destPC;
     }
 
-    @Override
     protected byte[] getValue() {
         return value;
     }
@@ -89,7 +88,6 @@ public class DestinationPointCodeImpl extends ParameterImpl implements Destinati
         return this.mask;
     }
 
-    @Override
     public String toString() {
         return String.format("DestinationPointCode dpc=%d mask=%d", destPC, mask);
     }
@@ -100,14 +98,12 @@ public class DestinationPointCodeImpl extends ParameterImpl implements Destinati
     protected static final XMLFormat<DestinationPointCodeImpl> RC_XML = new XMLFormat<DestinationPointCodeImpl>(
             DestinationPointCodeImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DestinationPointCodeImpl dpc) throws XMLStreamException {
             dpc.destPC = xml.getAttribute(DPC).toInt();
             dpc.mask = (short) xml.getAttribute(MASK).toInt();
             dpc.encode();
         }
 
-        @Override
         public void write(DestinationPointCodeImpl dpc, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(DPC, dpc.destPC);
             xml.setAttribute(MASK, dpc.mask);

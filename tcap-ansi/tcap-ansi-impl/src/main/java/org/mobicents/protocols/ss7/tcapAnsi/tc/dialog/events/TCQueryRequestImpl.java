@@ -140,12 +140,10 @@ public class TCQueryRequestImpl extends DialogRequestImpl implements TCQueryRequ
         return returnMessageOnError;
     }
 
-    @Override
     public boolean getDialogTermitationPermission() {
         return dialogTermitationPermission;
     }
 
-    @Override
     public void setDialogTermitationPermission(boolean dialogTermitationPermission) {
         this.dialogTermitationPermission = dialogTermitationPermission;
         if (dialogTermitationPermission)
@@ -154,22 +152,18 @@ public class TCQueryRequestImpl extends DialogRequestImpl implements TCQueryRequ
             this.type = EventType.QueryWithoutPerm;
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
 
-    @Override
     public void setSecurityContext(SecurityContext val) {
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }
 
-    @Override
     public void setConfidentiality(Confidentiality val) {
         confidentiality = val;
     }

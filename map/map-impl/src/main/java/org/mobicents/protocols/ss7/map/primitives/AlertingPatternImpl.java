@@ -77,7 +77,6 @@ public class AlertingPatternImpl extends OctetStringLength1Base implements Alert
         return AlertingCategory.getInstance(this.data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -105,7 +104,6 @@ public class AlertingPatternImpl extends OctetStringLength1Base implements Alert
     protected static final XMLFormat<AlertingPatternImpl> ALERTING_PATTERN_XML = new XMLFormat<AlertingPatternImpl>(
             AlertingPatternImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AlertingPatternImpl alertingPattern)
                 throws XMLStreamException {
             String str = xml.getAttribute(ALERTING_LEVEL, DEVAULT_STRING_VALUE);
@@ -121,7 +119,6 @@ public class AlertingPatternImpl extends OctetStringLength1Base implements Alert
             }
         }
 
-        @Override
         public void write(AlertingPatternImpl alertingPattern, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (alertingPattern.getAlertingLevel() != null)

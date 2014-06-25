@@ -243,12 +243,10 @@ public class DisconnectForwardConnectionWithArgumentRequestImpl extends CircuitS
         }
     };
 
-    @Override
     public Integer getCallSegmentID() {
         return callSegmentID;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }

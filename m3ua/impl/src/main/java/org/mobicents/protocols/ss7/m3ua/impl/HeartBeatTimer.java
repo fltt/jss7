@@ -57,7 +57,6 @@ public class HeartBeatTimer extends M3UATask {
      *
      * @see org.mobicents.protocols.ss7.m3ua.impl.scheduler.M3UATask#tick(long)
      */
-    @Override
     public void tick(long now) {
         if (now - this.lastM3UAMessageTime >= this.aspFactoryImpl.m3UAManagementImpl.getHeartbeatTime()) {
             this.lastM3UAMessageTime = now;

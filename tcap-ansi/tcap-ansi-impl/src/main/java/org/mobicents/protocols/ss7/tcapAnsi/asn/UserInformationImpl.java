@@ -42,17 +42,14 @@ public class UserInformationImpl implements UserInformation {
 
     private UserInformationElement[] userInformationElements;
 
-    @Override
     public UserInformationElement[] getUserInformationElements() {
         return userInformationElements;
     }
 
-    @Override
     public void setUserInformationElements(UserInformationElement[] val) {
         userInformationElements = val;
     }
 
-    @Override
     public void decode(AsnInputStream ais) throws ParseException {
 
         ArrayList<UserInformationElement> lst = new ArrayList<UserInformationElement>();
@@ -82,7 +79,6 @@ public class UserInformationImpl implements UserInformation {
         lst.toArray(userInformationElements);
     }
 
-    @Override
     public void encode(AsnOutputStream aos) throws EncodeException {
         try {
             aos.writeTag(Tag.CLASS_PRIVATE, false, UserInformation._TAG_USER_INFORMATION);

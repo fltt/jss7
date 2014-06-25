@@ -245,7 +245,6 @@ public class MoForwardShortMessageRequestImpl extends SmsMessageImpl implements 
             ((IMSIImpl) this.imsi).encodeAll(asnOs);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

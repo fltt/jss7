@@ -46,31 +46,26 @@ public class ErrorCodeImpl implements ErrorCode {
     }
 
 
-    @Override
     public void setNationalErrorCode(Long nationalErrorCode) {
         this.nationalErrorCode = nationalErrorCode;
         this.privateErrorCode = null;
         this.type = ErrorCodeType.National;
     }
 
-    @Override
     public void setPrivateErrorCode(Long privateErrorCode) {
         this.nationalErrorCode = null;
         this.privateErrorCode = privateErrorCode;
         this.type = ErrorCodeType.Private;
     }
 
-    @Override
     public Long getNationalErrorCode() {
         return nationalErrorCode;
     }
 
-    @Override
     public Long getPrivateErrorCode() {
         return privateErrorCode;
     }
 
-    @Override
     public ErrorCodeType getErrorType() {
         return type;
     }

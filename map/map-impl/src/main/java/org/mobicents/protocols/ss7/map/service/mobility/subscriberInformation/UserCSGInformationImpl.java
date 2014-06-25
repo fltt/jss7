@@ -304,7 +304,6 @@ public class UserCSGInformationImpl implements UserCSGInformation, MAPAsnPrimiti
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("LocationInformation [");
@@ -337,7 +336,6 @@ public class UserCSGInformationImpl implements UserCSGInformation, MAPAsnPrimiti
     protected static final XMLFormat<UserCSGInformationImpl> USER_CSG_INFORMATION_XML = new XMLFormat<UserCSGInformationImpl>(
             UserCSGInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, UserCSGInformationImpl userCSGInformation)
                 throws XMLStreamException {
             userCSGInformation.csgId = xml.get(CSG_ID, CSGIdImpl.class);
@@ -346,7 +344,6 @@ public class UserCSGInformationImpl implements UserCSGInformation, MAPAsnPrimiti
             userCSGInformation.cmi = xml.get(CMI, Integer.class);
         }
 
-        @Override
         public void write(UserCSGInformationImpl userCSGInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (userCSGInformation.csgId != null) {

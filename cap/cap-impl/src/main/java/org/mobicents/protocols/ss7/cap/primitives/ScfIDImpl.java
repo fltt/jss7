@@ -48,27 +48,22 @@ public class ScfIDImpl implements ScfID, CAPAsnPrimitive {
         this.data = data;
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -83,7 +78,6 @@ public class ScfIDImpl implements ScfID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -106,12 +100,10 @@ public class ScfIDImpl implements ScfID, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -124,7 +116,6 @@ public class ScfIDImpl implements ScfID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -135,7 +126,6 @@ public class ScfIDImpl implements ScfID, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

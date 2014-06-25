@@ -79,32 +79,26 @@ public class GmscCamelSubscriptionInfoImpl extends SequenceBase implements GmscC
         this.dCsi = dCsi;
     }
 
-    @Override
     public TCSI getTCsi() {
         return tCsi;
     }
 
-    @Override
     public OCSI getOCsi() {
         return oCsi;
     }
 
-    @Override
     public MAPExtensionContainer getMAPExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     public ArrayList<OBcsmCamelTdpCriteria> getOBcsmCamelTdpCriteriaList() {
         return oBcsmCamelTdpCriteriaList;
     }
 
-    @Override
     public ArrayList<TBcsmCamelTdpCriteria> getTBcsmCamelTdpCriteriaList() {
         return tBcsmCamelTdpCriteriaList;
     }
 
-    @Override
     public DCSI getDCsi() {
         return dCsi;
     }
@@ -191,7 +185,6 @@ public class GmscCamelSubscriptionInfoImpl extends SequenceBase implements GmscC
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.tCsi != null)
             ((TCSIImpl) this.tCsi).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _TAG_t_CSI);
@@ -217,7 +210,6 @@ public class GmscCamelSubscriptionInfoImpl extends SequenceBase implements GmscC
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

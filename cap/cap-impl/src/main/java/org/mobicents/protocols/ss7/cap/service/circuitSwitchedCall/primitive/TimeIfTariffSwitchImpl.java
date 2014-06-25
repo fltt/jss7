@@ -62,12 +62,10 @@ public class TimeIfTariffSwitchImpl extends SequenceBase implements TimeIfTariff
         this.tariffSwitchInterval = tariffSwitchInterval;
     }
 
-    @Override
     public int getTimeSinceTariffSwitch() {
         return timeSinceTariffSwitch;
     }
 
-    @Override
     public Integer getTariffSwitchInterval() {
         return tariffSwitchInterval;
     }
@@ -109,7 +107,6 @@ public class TimeIfTariffSwitchImpl extends SequenceBase implements TimeIfTariff
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -132,7 +129,6 @@ public class TimeIfTariffSwitchImpl extends SequenceBase implements TimeIfTariff
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -157,7 +153,6 @@ public class TimeIfTariffSwitchImpl extends SequenceBase implements TimeIfTariff
     protected static final XMLFormat<TimeIfTariffSwitchImpl> TIME_IF_TARIFF_SWITCH_XML = new XMLFormat<TimeIfTariffSwitchImpl>(
             TimeIfTariffSwitchImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TimeIfTariffSwitchImpl timeIfTariffSwitch)
                 throws XMLStreamException {
             Integer ival = xml.get(TIME_SINCE_TARIFF_SWITCH, Integer.class);
@@ -167,7 +162,6 @@ public class TimeIfTariffSwitchImpl extends SequenceBase implements TimeIfTariff
             timeIfTariffSwitch.tariffSwitchInterval = xml.get(TARIFF_SWITCH_INTERVAL, Integer.class);
         }
 
-        @Override
         public void write(TimeIfTariffSwitchImpl timeIfTariffSwitch, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.add(timeIfTariffSwitch.timeSinceTariffSwitch, TIME_SINCE_TARIFF_SWITCH, Integer.class);

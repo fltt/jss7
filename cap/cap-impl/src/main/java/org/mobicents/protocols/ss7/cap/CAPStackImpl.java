@@ -56,17 +56,14 @@ public class CAPStackImpl implements CAPStack {
         this.state = State.CONFIGURED;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public CAPProvider getCAPProvider() {
         return this.capProvider;
     }
 
-    @Override
     public void start() throws Exception {
         if (state != State.CONFIGURED) {
             throw new IllegalStateException("Stack has not been configured or is already running!");
@@ -81,7 +78,6 @@ public class CAPStackImpl implements CAPStack {
 
     }
 
-    @Override
     public void stop() {
         if (state != State.RUNNING) {
             throw new IllegalStateException("Stack is not running!");
@@ -94,7 +90,6 @@ public class CAPStackImpl implements CAPStack {
         this.state = State.CONFIGURED;
     }
 
-    @Override
     public TCAPStack getTCAPStack() {
         return this.tcapStack;
     }

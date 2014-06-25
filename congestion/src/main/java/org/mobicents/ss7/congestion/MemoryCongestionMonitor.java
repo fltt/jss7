@@ -88,7 +88,6 @@ public class MemoryCongestionMonitor implements CongestionMonitor {
      *
      * @see org.mobicents.ss7.congestion.CongestionMonitor#monitor()
      */
-    @Override
     public void monitor() {
         Runtime runtime = Runtime.getRuntime();
 
@@ -132,7 +131,6 @@ public class MemoryCongestionMonitor implements CongestionMonitor {
      * @see org.mobicents.ss7.congestion.CongestionMonitor#addCongestionListener(
      * org.mobicents.ss7.congestion.CongestionListener)
      */
-    @Override
     public void addCongestionListener(CongestionListener listener) {
         this.listeners.add(listener);
     }
@@ -143,7 +141,6 @@ public class MemoryCongestionMonitor implements CongestionMonitor {
      * @see org.mobicents.ss7.congestion.CongestionMonitor#removeCongestionListener
      * (org.mobicents.ss7.congestion.CongestionListener)
      */
-    @Override
     public void removeCongestionListener(CongestionListener listener) {
         this.listeners.remove(listener);
     }
@@ -153,7 +150,6 @@ public class MemoryCongestionMonitor implements CongestionMonitor {
      *
      * @see org.mobicents.ss7.congestion.CongestionMonitor#getSource()
      */
-    @Override
     public String getSource() {
         return SOURCE;
     }

@@ -42,7 +42,6 @@ public class SEHPeerAsStateEnterPen extends SEHAsStateEnterPen {
         super(asImpl, fsm);
     }
 
-    @Override
     public void onEvent(FSMState state) {
         super.onEvent(state);
 

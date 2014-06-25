@@ -104,12 +104,10 @@ public class ForwardTransferMessageImpl extends ISUPMessageImpl implements Forwa
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public void setCallReference(CallReference cr) {
         super.o_Parameters.put(_INDEX_O_CallReference, cr);
     }
 
-    @Override
     public CallReference getCallReference() {
         return (CallReference) super.o_Parameters.get(_INDEX_O_CallReference);
     }

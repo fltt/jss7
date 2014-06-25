@@ -289,7 +289,6 @@ public class FSMTest {
 
     class State1ToState2Transition implements TransitionHandler {
 
-        @Override
         public boolean process(FSMState state) {
             transitionHandlerCalled = true;
             return true;
@@ -299,7 +298,6 @@ public class FSMTest {
 
     class State2TimeoutTransition implements TransitionHandler {
 
-        @Override
         public boolean process(FSMState state) {
             timeOutCount++;
             return true;
@@ -309,7 +307,6 @@ public class FSMTest {
 
     class State1ToState2NoTransition implements TransitionHandler {
 
-        @Override
         public boolean process(FSMState state) {
             transitionHandlerCalled = true;
             return false;
@@ -319,7 +316,6 @@ public class FSMTest {
 
     class NoTransition implements TransitionHandler {
 
-        @Override
         public boolean process(FSMState state) {
             return false;
         }

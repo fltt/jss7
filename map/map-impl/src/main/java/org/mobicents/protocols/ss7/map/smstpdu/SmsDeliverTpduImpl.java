@@ -204,7 +204,6 @@ public class SmsDeliverTpduImpl extends SmsTpduImpl implements SmsDeliverTpdu {
         return res.toByteArray();
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

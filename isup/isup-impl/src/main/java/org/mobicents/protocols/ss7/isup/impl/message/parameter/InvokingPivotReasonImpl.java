@@ -50,7 +50,6 @@ public class InvokingPivotReasonImpl extends AbstractInformationImpl implements 
     public InvokingPivotReasonImpl() {
         super(InformationType.InvokingPivotReason);
     }
-    @Override
     public void setReason(PivotReason... reasons) {
         this.reasons.clear();
         if(reasons == null){
@@ -63,11 +62,9 @@ public class InvokingPivotReasonImpl extends AbstractInformationImpl implements 
         }
     }
 
-    @Override
     public PivotReason[] getReason() {
         return this.reasons.toArray(new PivotReason[this.reasons.size()]);
     }
-    @Override
     byte[] encode() throws ParameterException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         for (int index = 0; index < this.reasons.size(); index++) {
@@ -84,7 +81,6 @@ public class InvokingPivotReasonImpl extends AbstractInformationImpl implements 
         return baos.toByteArray();
     }
 
-    @Override
     void decode(byte[] data) throws ParameterException {
         for(int index = 0;index<data.length;index++){
             byte b = data[index];

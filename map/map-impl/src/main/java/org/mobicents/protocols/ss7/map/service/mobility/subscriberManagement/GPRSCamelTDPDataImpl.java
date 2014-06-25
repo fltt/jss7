@@ -70,32 +70,26 @@ public class GPRSCamelTDPDataImpl extends SequenceBase implements GPRSCamelTDPDa
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public GPRSTriggerDetectionPoint getGPRSTriggerDetectionPoint() {
         return this.gprsTriggerDetectionPoint;
     }
 
-    @Override
     public long getServiceKey() {
         return this.serviceKey;
     }
 
-    @Override
     public ISDNAddressString getGsmSCFAddress() {
         return this.gsmSCFAddress;
     }
 
-    @Override
     public DefaultGPRSHandling getDefaultSessionHandling() {
         return this.defaultSessionHandling;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.gprsTriggerDetectionPoint = null;
@@ -192,7 +186,6 @@ public class GPRSCamelTDPDataImpl extends SequenceBase implements GPRSCamelTDPDa
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.gprsTriggerDetectionPoint == null) {
@@ -231,7 +224,6 @@ public class GPRSCamelTDPDataImpl extends SequenceBase implements GPRSCamelTDPDa
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

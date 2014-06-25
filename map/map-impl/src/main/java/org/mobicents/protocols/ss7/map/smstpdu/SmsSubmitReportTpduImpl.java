@@ -205,7 +205,6 @@ public class SmsSubmitReportTpduImpl extends SmsTpduImpl implements SmsSubmitRep
         return res.toByteArray();
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

@@ -46,12 +46,10 @@ public class TCQueryMessageImpl implements TCQueryMessage {
     private Component[] component;
 
 
-    @Override
     public boolean getDialogTermitationPermission() {
         return dialogTermitationPermission;
     }
 
-    @Override
     public void setDialogTermitationPermission(boolean perm) {
         dialogTermitationPermission = perm;
     }

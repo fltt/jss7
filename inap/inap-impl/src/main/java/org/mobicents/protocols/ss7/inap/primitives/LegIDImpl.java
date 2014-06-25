@@ -64,17 +64,14 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
             this.receivingSideID = legID;
     }
 
-    @Override
     public LegType getSendingSideID() {
         return sendingSideID;
     }
 
-    @Override
     public LegType getReceivingSideID() {
         return receivingSideID;
     }
 
-    @Override
     public int getTag() throws INAPException {
         if (this.sendingSideID != null) {
             return _ID_sendingSideID;
@@ -83,17 +80,14 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws INAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -107,7 +101,6 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws INAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -159,13 +152,11 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws INAPException {
 
         this.encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws INAPException {
 
         try {
@@ -178,7 +169,6 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws INAPException {
 
         if (this.sendingSideID == null && this.receivingSideID == null || this.sendingSideID != null
@@ -194,7 +184,6 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
         asnOs.writeOctetStringData(buf);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -217,7 +206,6 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
      */
     protected static final XMLFormat<LegIDImpl> LEG_ID_XML = new XMLFormat<LegIDImpl>(LegIDImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LegIDImpl legId) throws XMLStreamException {
             String sendingSideID = xml.getAttribute(SENDING_SIDE_ID, DEFAULT_STRING_VALUE);
             if (sendingSideID != null) {
@@ -230,7 +218,6 @@ public class LegIDImpl implements LegID, INAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(LegIDImpl legId, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (legId.sendingSideID != null)
                 xml.setAttribute(SENDING_SIDE_ID, legId.sendingSideID.toString());

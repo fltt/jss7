@@ -198,7 +198,6 @@ public class MAPErrorMessageUnknownSubscriberImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

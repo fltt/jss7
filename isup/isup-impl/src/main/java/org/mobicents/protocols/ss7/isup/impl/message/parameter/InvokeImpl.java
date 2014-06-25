@@ -54,7 +54,6 @@ public class InvokeImpl extends AbstractRemoteOperation implements Invoke {
         super(OperationType.Invoke);
     }
 
-    @Override
     public void setInvokeId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Invoke ID our of range: <-128,127>: " + i);
@@ -63,12 +62,10 @@ public class InvokeImpl extends AbstractRemoteOperation implements Invoke {
 
     }
 
-    @Override
     public Long getInvokeId() {
         return this.invokeId;
     }
 
-    @Override
     public void setLinkedId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Invoke ID our of range: <-128,127>: " + i);
@@ -76,31 +73,25 @@ public class InvokeImpl extends AbstractRemoteOperation implements Invoke {
         this.linkedId = i;
     }
 
-    @Override
     public Long getLinkedId() {
         return this.linkedId;
     }
 
-    @Override
     public void setOperationCode(OperationCode i) {
         this.operationCode = i;
     }
 
-    @Override
     public OperationCode getOperationCode() {
         return this.operationCode;
     }
 
-    @Override
     public void setParameter(Parameter p) {
         this.parameter = p;
     }
 
-    @Override
     public Parameter getParameter() {
         return this.parameter;
     }
-    @Override
     public void decode(AsnInputStream ais) throws ParameterException {
 
         try {
@@ -147,7 +138,6 @@ public class InvokeImpl extends AbstractRemoteOperation implements Invoke {
         }
     }
 
-    @Override
     public void encode(AsnOutputStream aos) throws ParameterException {
         if (this.invokeId == null)
             throw new ParameterException("Invoke ID not set!");

@@ -98,12 +98,10 @@ public class RejectImpl implements Reject {
         return ComponentType.Reject;
     }
 
-    @Override
     public boolean isLocalOriginated() {
         return localOriginated;
     }
 
-    @Override
     public void setLocalOriginated(boolean p) {
         localOriginated = p;
     }

@@ -41,13 +41,11 @@ public class OSmsSubmissionSpecificInfoImpl extends SequenceBase implements OSms
         super("OSmsSubmissionSpecificInfo");
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException,
             AsnException, MAPParsingComponentException, INAPParsingComponentException {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
     }

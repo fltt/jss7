@@ -75,12 +75,10 @@ public class TrafficModeTypeImpl extends ParameterImpl implements TrafficModeTyp
         return mode;
     }
 
-    @Override
     protected byte[] getValue() {
         return value;
     }
 
-    @Override
     public String toString() {
         return String.format("TrafficModeType mode=%d", mode);
     }
@@ -90,13 +88,11 @@ public class TrafficModeTypeImpl extends ParameterImpl implements TrafficModeTyp
      */
     protected static final XMLFormat<TrafficModeTypeImpl> RC_XML = new XMLFormat<TrafficModeTypeImpl>(TrafficModeTypeImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TrafficModeTypeImpl trafficMode) throws XMLStreamException {
             trafficMode.mode = xml.getAttribute(MODE).toInt();
             trafficMode.encode();
         }
 
-        @Override
         public void write(TrafficModeTypeImpl trafficMode, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(MODE, trafficMode.mode);

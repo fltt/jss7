@@ -36,7 +36,6 @@ public class AccessPointNameImpl extends OctetStringBase implements AccessPointN
         super(3, 102, "AccessPointName", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

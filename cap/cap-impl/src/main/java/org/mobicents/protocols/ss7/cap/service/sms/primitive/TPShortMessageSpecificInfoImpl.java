@@ -36,7 +36,6 @@ public class TPShortMessageSpecificInfoImpl extends OctetStringLength1Base imple
         super("TPShortMessageSpecificInfo", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }

@@ -228,7 +228,6 @@ public class LCSClientExternalIDImpl implements LCSClientExternalID, MAPAsnPrimi
         }
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -237,7 +236,6 @@ public class LCSClientExternalIDImpl implements LCSClientExternalID, MAPAsnPrimi
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -259,7 +257,6 @@ public class LCSClientExternalIDImpl implements LCSClientExternalID, MAPAsnPrimi
         return true;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

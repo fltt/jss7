@@ -41,7 +41,6 @@ public class PDNTypeImpl extends OctetStringLength1Base implements PDNType {
         super("PDNType", value != null ? value.getCode() : 0);
     }
 
-    @Override
     public int getData() {
         return data;
     }

@@ -57,32 +57,26 @@ public class AOCBeforeAnswerImpl implements AOCBeforeAnswer, CAPAsnPrimitive {
         this.aocSubsequent = aocSubsequent;
     }
 
-    @Override
     public CAI_GSM0224 getAOCInitial() {
         return aocInitial;
     }
 
-    @Override
     public AOCSubsequent getAOCSubsequent() {
         return aocSubsequent;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -97,7 +91,6 @@ public class AOCBeforeAnswerImpl implements AOCBeforeAnswer, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -148,12 +141,10 @@ public class AOCBeforeAnswerImpl implements AOCBeforeAnswer, CAPAsnPrimitive {
                     + ": aocInitial is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -166,7 +157,6 @@ public class AOCBeforeAnswerImpl implements AOCBeforeAnswer, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.aocInitial == null)
@@ -178,7 +168,6 @@ public class AOCBeforeAnswerImpl implements AOCBeforeAnswer, CAPAsnPrimitive {
             ((AOCSubsequentImpl) this.aocSubsequent).encodeAll(aos, Tag.CLASS_CONTEXT_SPECIFIC, _ID_aOCSubsequent);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

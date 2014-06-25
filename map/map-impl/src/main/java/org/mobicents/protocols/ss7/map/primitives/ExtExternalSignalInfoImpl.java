@@ -55,37 +55,30 @@ public class ExtExternalSignalInfoImpl implements ExtExternalSignalInfo, MAPAsnP
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public SignalInfo getSignalInfo() {
         return this.signalInfo;
     }
 
-    @Override
     public ExtProtocolId getExtProtocolId() {
         return this.extProtocolId;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -99,7 +92,6 @@ public class ExtExternalSignalInfoImpl implements ExtExternalSignalInfo, MAPAsnP
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -153,12 +145,10 @@ public class ExtExternalSignalInfoImpl implements ExtExternalSignalInfo, MAPAsnP
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -170,7 +160,6 @@ public class ExtExternalSignalInfoImpl implements ExtExternalSignalInfo, MAPAsnP
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
             if (this.extProtocolId != null)

@@ -56,12 +56,10 @@ public class UESBIIuImpl extends SequenceBase implements UESBIIu {
         this.uesbiIuB = uesbiIuB;
     }
 
-    @Override
     public UESBIIuA getUESBI_IuA() {
         return this.uesbiIuA;
     }
 
-    @Override
     public UESBIIuB getUESBI_IuB() {
         return this.uesbiIuB;
     }
@@ -108,7 +106,6 @@ public class UESBIIuImpl extends SequenceBase implements UESBIIu {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.uesbiIuA != null) {
             ((UESBIIuAImpl) this.uesbiIuA).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _TAG_UESBI_IuA);
@@ -118,7 +115,6 @@ public class UESBIIuImpl extends SequenceBase implements UESBIIu {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

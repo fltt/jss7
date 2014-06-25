@@ -44,7 +44,6 @@ public class IMEIImpl extends TbcdString implements IMEI {
         return this.data;
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.data == null)
             throw new MAPException("Error while encoding the IMEI: IMEI must not be null");

@@ -74,12 +74,10 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
             this.data[7] = (byte) (encodeByte(-timeZone) | 0x08);
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }
 
-    @Override
     public int getYear() {
 
         if (this.data == null || this.data.length != 8)
@@ -88,7 +86,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return this.decodeByte((int) data[0]) * 100 + (int) this.decodeByte(data[1]);
     }
 
-    @Override
     public int getMonth() {
 
         if (this.data == null || this.data.length != 8)
@@ -97,7 +94,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return this.decodeByte((int) data[2]);
     }
 
-    @Override
     public int getDay() {
 
         if (this.data == null || this.data.length != 8)
@@ -106,7 +102,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return this.decodeByte((int) data[3]);
     }
 
-    @Override
     public int getHour() {
 
         if (this.data == null || this.data.length != 8)
@@ -115,7 +110,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return this.decodeByte((int) data[4]);
     }
 
-    @Override
     public int getMinute() {
 
         if (this.data == null || this.data.length != 8)
@@ -124,7 +118,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return this.decodeByte((int) data[5]);
     }
 
-    @Override
     public int getSecond() {
 
         if (this.data == null || this.data.length != 8)
@@ -133,7 +126,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return this.decodeByte((int) data[6]);
     }
 
-    @Override
     public int getTimeZone() {
 
         if (this.data == null || this.data.length != 8)
@@ -145,7 +137,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return res;
     }
 
-    @Override
     public void setYear(int year) {
 
         if (this.data == null || this.data.length != 8)
@@ -155,7 +146,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         this.data[1] = (byte) encodeByte(year % 100);
     }
 
-    @Override
     public void setMonth(int month) {
 
         if (this.data == null || this.data.length != 8)
@@ -164,7 +154,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         this.data[2] = (byte) encodeByte(month);
     }
 
-    @Override
     public void setDay(int day) {
 
         if (this.data == null || this.data.length != 8)
@@ -173,7 +162,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         this.data[3] = (byte) encodeByte(day);
     }
 
-    @Override
     public void setHour(int hour) {
 
         if (this.data == null || this.data.length != 8)
@@ -182,7 +170,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         this.data[4] = (byte) encodeByte(hour);
     }
 
-    @Override
     public void setMinute(int minute) {
 
         if (this.data == null || this.data.length != 8)
@@ -191,7 +178,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         this.data[5] = (byte) encodeByte(minute);
     }
 
-    @Override
     public void setSecond(int second) {
 
         if (this.data == null || this.data.length != 8)
@@ -200,7 +186,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         this.data[6] = (byte) encodeByte(second);
     }
 
-    @Override
     public void setTimeZone(int timeZone) {
 
         if (this.data == null || this.data.length != 8)
@@ -220,22 +205,18 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         return (val / 10) | (val % 10) << 4;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -250,7 +231,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -273,12 +253,10 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -291,7 +269,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -302,7 +279,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -335,7 +311,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
     protected static final XMLFormat<TimeAndTimezoneImpl> TIME_AND_TIMEZONE_XML = new XMLFormat<TimeAndTimezoneImpl>(
             TimeAndTimezoneImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TimeAndTimezoneImpl timeAndTimezone)
                 throws XMLStreamException {
             timeAndTimezone.setYear(xml.getAttribute(YEAR, 0));
@@ -347,7 +322,6 @@ public class TimeAndTimezoneImpl implements TimeAndTimezone, CAPAsnPrimitive {
             timeAndTimezone.setTimeZone(xml.getAttribute(TIME_ZONE, 0));
         }
 
-        @Override
         public void write(TimeAndTimezoneImpl timeAndTimezone, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(YEAR, timeAndTimezone.getYear());

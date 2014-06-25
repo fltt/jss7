@@ -159,7 +159,6 @@ public class QuintupletListImpl implements QuintupletList, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("QuintupletList [");

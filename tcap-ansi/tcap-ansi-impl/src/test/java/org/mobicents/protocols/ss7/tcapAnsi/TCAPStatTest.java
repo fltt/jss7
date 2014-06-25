@@ -654,61 +654,51 @@ public class TCAPStatTest extends SccpHarness {
 
     private class TCAPListenerWrapper implements TCListener {
 
-        @Override
         public void onTCUni(TCUniIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCQuery(TCQueryIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCConversation(TCConversationIndication ind) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onTCResponse(TCResponseIndication ind) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onTCUserAbort(TCUserAbortIndication ind) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onTCPAbort(TCPAbortIndication ind) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onTCNotice(TCNoticeIndication ind) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onDialogReleased(Dialog d) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onInvokeTimeout(Invoke tcInvokeRequest) {
             // TODO Auto-generated method stub
             
         }
 
-        @Override
         public void onDialogTimeout(Dialog d) {
             // TODO Auto-generated method stub
             

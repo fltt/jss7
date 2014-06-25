@@ -63,47 +63,38 @@ public class ResetTimerSMSRequestImpl extends SmsMessageImpl implements ResetTim
         super();
     }
 
-    @Override
     public TimerID getTimerID() {
         return this.timerID;
     }
 
-    @Override
     public int getTimerValue() {
         return this.timerValue;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return this.extensions;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.resetTimerSMS_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.requestReportSMSEvent;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -120,7 +111,6 @@ public class ResetTimerSMSRequestImpl extends SmsMessageImpl implements ResetTim
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -193,12 +183,10 @@ public class ResetTimerSMSRequestImpl extends SmsMessageImpl implements ResetTim
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -210,7 +198,6 @@ public class ResetTimerSMSRequestImpl extends SmsMessageImpl implements ResetTim
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.timerID == null)
@@ -231,7 +218,6 @@ public class ResetTimerSMSRequestImpl extends SmsMessageImpl implements ResetTim
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

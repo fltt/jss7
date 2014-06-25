@@ -106,7 +106,6 @@ public class GetMaxUserDataLengthTest {
             this.mtpMsgLen = mtpMsgLen;
         }
 
-        @Override
         public int getMaxUserDataLength(int dpc) {
             return mtpMsgLen;
         }

@@ -40,7 +40,6 @@ public class HeartbeatAckImpl extends M3UAMessageImpl implements HeartbeatAck {
         super(MessageClass.ASP_STATE_MAINTENANCE, MessageType.HEARTBEAT_ACK, MessageType.S_HEARTBEAT_ACK);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Heartbeat_Data)) {
             ((ParameterImpl) parameters.get(Parameter.Heartbeat_Data)).write(buffer);

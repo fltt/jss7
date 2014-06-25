@@ -41,7 +41,6 @@ public class AspStateEnterActive implements FSMStateEventHandler {
         this.aspImpl = aspImpl;
     }
 
-    @Override
     public void onEvent(FSMState state) {
 
         // Call listener and indicate of state change only if not already done

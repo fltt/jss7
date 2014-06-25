@@ -94,7 +94,6 @@ public class CallTransferNumberTest extends ParameterHarness {
         super.testValues(bci, methodNames, expectedValues);
     }
 
-    @Override
     public AbstractISUPParameter getTestedComponent() throws ParameterException {
         return new CallTransferNumberImpl();
     }

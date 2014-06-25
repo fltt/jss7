@@ -56,7 +56,6 @@ public class ArrayListSerializingBase<T> {
     protected static final XMLFormat<ArrayListSerializingBase> ARRAY_LIST_SERIALIZING_BASE_XML = new XMLFormat<ArrayListSerializingBase>(
             ArrayListSerializingBase.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ArrayListSerializingBase data) throws XMLStreamException {
             data.data.clear();
 
@@ -66,7 +65,6 @@ public class ArrayListSerializingBase<T> {
             }
         }
 
-        @Override
         public void write(ArrayListSerializingBase data, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (data.data != null && data.data.size() > 0) {
                 for (int i1 = 0; i1 < data.data.size(); i1++) {

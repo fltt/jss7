@@ -153,122 +153,98 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
         this.borInterrogationRequested = borInterrogationRequested;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.connect_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.connect;
     }
 
-    @Override
     public DestinationRoutingAddress getDestinationRoutingAddress() {
         return destinationRoutingAddress;
     }
 
-    @Override
     public AlertingPatternCap getAlertingPattern() {
         return alertingPattern;
     }
 
-    @Override
     public OriginalCalledNumberCap getOriginalCalledPartyID() {
         return originalCalledPartyID;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public Carrier getCarrier() {
         return carrier;
     }
 
-    @Override
     public CallingPartysCategoryInap getCallingPartysCategory() {
         return callingPartysCategory;
     }
 
-    @Override
     public RedirectingPartyIDCap getRedirectingPartyID() {
         return redirectingPartyID;
     }
 
-    @Override
     public RedirectionInformationInap getRedirectionInformation() {
         return redirectionInformation;
     }
 
-    @Override
     public ArrayList<GenericNumberCap> getGenericNumbers() {
         return genericNumbers;
     }
 
-    @Override
     public ServiceInteractionIndicatorsTwo getServiceInteractionIndicatorsTwo() {
         return serviceInteractionIndicatorsTwo;
     }
 
-    @Override
     public LocationNumberCap getChargeNumber() {
         return chargeNumber;
     }
 
-    @Override
     public LegID getLegToBeConnected() {
         return legToBeConnected;
     }
 
-    @Override
     public CUGInterlock getCUGInterlock() {
         return cugInterlock;
     }
 
-    @Override
     public boolean getCugOutgoingAccess() {
         return cugOutgoingAccess;
     }
 
-    @Override
     public boolean getSuppressionOfAnnouncement() {
         return suppressionOfAnnouncement;
     }
 
-    @Override
     public boolean getOCSIApplicable() {
         return ocsIApplicable;
     }
 
-    @Override
     public NAOliInfo getNAOliInfo() {
         return naoliInfo;
     }
 
-    @Override
     public boolean getBorInterrogationRequested() {
         return borInterrogationRequested;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -289,7 +265,6 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -435,12 +410,10 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -453,7 +426,6 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.destinationRoutingAddress == null)
@@ -530,7 +502,6 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -625,7 +596,6 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
     protected static final XMLFormat<ConnectRequestImpl> CONNECT_REQUEST_XML = new XMLFormat<ConnectRequestImpl>(
             ConnectRequestImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ConnectRequestImpl connectRequest)
                 throws XMLStreamException {
             CIRCUIT_SWITCHED_CALL_MESSAGE_XML.read(xml, connectRequest);
@@ -654,7 +624,6 @@ public class ConnectRequestImpl extends CircuitSwitchedCallMessageImpl implement
             connectRequest.naoliInfo = xml.get(NA_OLI_INFO, NAOliInfoImpl.class);
         }
 
-        @Override
         public void write(ConnectRequestImpl connectRequest, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             CIRCUIT_SWITCHED_CALL_MESSAGE_XML.write(connectRequest, xml);

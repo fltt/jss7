@@ -63,27 +63,22 @@ public class ServiceTypeImpl extends SequenceBase implements ServiceType {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public int getServiceTypeIdentity() {
         return this.serviceTypeIdentity;
     }
 
-    @Override
     public GMLCRestriction getGMLCRestriction() {
         return this.gmlcRestriction;
     }
 
-    @Override
     public NotificationToMSUser getNotificationToMSUser() {
         return this.notificationToMSUser;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.serviceTypeIdentity = -1;
@@ -158,7 +153,6 @@ public class ServiceTypeImpl extends SequenceBase implements ServiceType {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -182,7 +176,6 @@ public class ServiceTypeImpl extends SequenceBase implements ServiceType {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

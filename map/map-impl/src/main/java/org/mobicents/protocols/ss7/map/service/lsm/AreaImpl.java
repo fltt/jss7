@@ -147,7 +147,6 @@ public class AreaImpl extends SequenceBase implements Area {
         }
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -156,7 +155,6 @@ public class AreaImpl extends SequenceBase implements Area {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -174,7 +172,6 @@ public class AreaImpl extends SequenceBase implements Area {
         return true;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

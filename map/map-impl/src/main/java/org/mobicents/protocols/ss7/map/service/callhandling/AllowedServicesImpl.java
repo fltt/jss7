@@ -58,32 +58,26 @@ public class AllowedServicesImpl implements AllowedServices, MAPAsnPrimitive {
             this.bitString.set(_INDEX_SecondServiceAllowed);
     }
 
-    @Override
     public boolean getFirstServiceAllowed() {
         return this.bitString.get(_INDEX_FirstServiceAllowed);
     }
 
-    @Override
     public boolean getSecondServiceAllowed() {
         return this.bitString.get(_INDEX_SecondServiceAllowed);
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.STRING_BIT;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -97,7 +91,6 @@ public class AllowedServicesImpl implements AllowedServices, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -119,12 +112,10 @@ public class AllowedServicesImpl implements AllowedServices, MAPAsnPrimitive {
         this.bitString = ansIS.readBitStringData(length);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, Tag.CLASS_UNIVERSAL, Tag.STRING_BIT);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, true, tag);
@@ -136,7 +127,6 @@ public class AllowedServicesImpl implements AllowedServices, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
             asnOs.writeBitStringData(this.bitString);
@@ -147,7 +137,6 @@ public class AllowedServicesImpl implements AllowedServices, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

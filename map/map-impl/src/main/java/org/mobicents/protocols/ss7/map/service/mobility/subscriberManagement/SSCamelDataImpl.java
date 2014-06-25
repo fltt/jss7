@@ -62,22 +62,18 @@ public class SSCamelDataImpl extends SequenceBase implements SSCamelData {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public ArrayList<SSCode> getSsEventList() {
         return this.ssEventList;
     }
 
-    @Override
     public ISDNAddressString getGsmSCFAddress() {
         return this.gsmSCFAddress;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
         SSCode sSCode = null;
         this.ssEventList = null;
@@ -170,7 +166,6 @@ public class SSCamelDataImpl extends SequenceBase implements SSCamelData {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.ssEventList == null)
@@ -203,7 +198,6 @@ public class SSCamelDataImpl extends SequenceBase implements SSCamelData {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

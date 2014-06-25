@@ -124,42 +124,34 @@ public class LoopPreventionMessageImpl extends ISUPMessageImpl implements LoopPr
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation mci) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation,mci);
     }
 
-    @Override
     public ParameterCompatibilityInformation getParameterCompatibilityInformation() {
         return (ParameterCompatibilityInformation) super.o_Parameters.get(_INDEX_O_ParameterCompatibilityInformation);
     }
 
-    @Override
     public void setParameterCompatibilityInformation(ParameterCompatibilityInformation pci) {
         super.o_Parameters.put(_INDEX_O_ParameterCompatibilityInformation,pci);
     }
 
-    @Override
     public CallTransferReference getCallTransferReference() {
         return (CallTransferReference) super.o_Parameters.get(_INDEX_O_CallTransferReference);
     }
 
-    @Override
     public void setCallTransferReference(CallTransferReference ctr) {
         super.o_Parameters.put(_INDEX_O_CallTransferReference,ctr);
     }
 
-    @Override
     public LoopPreventionIndicators getLoopPreventionIndicators() {
         return (LoopPreventionIndicators) super.o_Parameters.get(_INDEX_O_LoopPreventionIndicators);
     }
 
-    @Override
     public void setLoopPreventionIndicators(LoopPreventionIndicators lpi) {
         super.o_Parameters.put(_INDEX_O_LoopPreventionIndicators,lpi);
     }

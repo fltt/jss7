@@ -177,25 +177,21 @@ public class ISUPStackImpl implements ISUPStack, Mtp3UserPartListener {
         IDLE, CONFIGURED, RUNNING;
     }
 
-    @Override
     public void onMtp3PauseMessage(Mtp3PausePrimitive arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtp3ResumeMessage(Mtp3ResumePrimitive arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtp3StatusMessage(Mtp3StatusPrimitive arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMtp3TransferMessage(Mtp3TransferPrimitive mtpMsg) {
 
         if (this.state != State.RUNNING)

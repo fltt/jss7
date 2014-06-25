@@ -37,7 +37,6 @@ public class CksnImpl extends OctetStringLength1Base implements Cksn {
         super("Cksn");
     }
 
-    @Override
     public int getData() {
         return this.data;
     }

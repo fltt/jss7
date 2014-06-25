@@ -46,7 +46,6 @@ public class SccpStackImplProxy extends SccpStackImpl {
         return (SccpManagementProxy) super.sccpManagement;
     }
 
-    @Override
     public void start() {
         this.persistFile.clear();
 
@@ -103,7 +102,6 @@ public class SccpStackImplProxy extends SccpStackImpl {
         return reassemplyCache.size();
     }
 
-    @Override
     public void setReassemblyTimerDelay(int reassemblyTimerDelay) {
         this.reassemblyTimerDelay = reassemblyTimerDelay;
     }

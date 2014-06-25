@@ -127,7 +127,6 @@ public class DialogIdleEndTest extends SccpHarness {
 
         this.server = new Server(tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onDialogTimeout(Dialog d) {
 
                 super.onDialogTimeout(d);
@@ -190,7 +189,6 @@ public class DialogIdleEndTest extends SccpHarness {
 
         this.server = new Server(tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onDialogTimeout(Dialog d) {
 
                 super.onDialogTimeout(d);
@@ -260,7 +258,6 @@ public class DialogIdleEndTest extends SccpHarness {
 
         this.server = new Server(tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onDialogTimeout(Dialog d) {
 
                 super.onDialogTimeout(d);
@@ -336,7 +333,6 @@ public class DialogIdleEndTest extends SccpHarness {
 
         this.server = new Server(tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onDialogTimeout(Dialog d) {
 
                 super.onDialogTimeout(d);
@@ -414,7 +410,6 @@ public class DialogIdleEndTest extends SccpHarness {
 
             private boolean sendContinue = false;
 
-            @Override
             public void onDialogTimeout(Dialog d) {
 
                 super.onDialogTimeout(d);
@@ -481,7 +476,6 @@ public class DialogIdleEndTest extends SccpHarness {
 
         this.server = new Server(tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onDialogTimeout(Dialog d) {
 
                 super.onDialogTimeout(d);

@@ -34,7 +34,6 @@ public class Mtp3ResumePrimitive extends Mtp3Primitive {
         super(RESUME, affectedDpc);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

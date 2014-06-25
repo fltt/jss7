@@ -212,7 +212,6 @@ public enum CAPApplicationContext {
         return res;
     }
 
-    @Override
     public String toString() {
         StringBuffer s = new StringBuffer();
 

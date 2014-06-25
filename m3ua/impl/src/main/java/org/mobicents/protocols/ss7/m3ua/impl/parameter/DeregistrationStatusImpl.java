@@ -48,7 +48,6 @@ public class DeregistrationStatusImpl extends ParameterImpl implements Deregistr
         this.status |= data[3] & 0xFF;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = (byte) (status >>> 24);
@@ -63,7 +62,6 @@ public class DeregistrationStatusImpl extends ParameterImpl implements Deregistr
         return this.status;
     }
 
-    @Override
     public String toString() {
         return String.format("DeregistrationStatus = %d", status);
     }

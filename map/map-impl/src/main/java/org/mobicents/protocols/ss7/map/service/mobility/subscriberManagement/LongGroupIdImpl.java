@@ -35,7 +35,6 @@ public class LongGroupIdImpl extends TbcdStringWithFiller implements LongGroupId
         super(4, 4, "LongGroupId", data);
     }
 
-    @Override
     public String getLongGroupId() {
         return this.data;
     }

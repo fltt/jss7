@@ -64,17 +64,14 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
         this.isrInformation = isrInformation;
     }
 
-    @Override
     public PDNGWUpdate getPndGwUpdate() {
         return this.pndGwUpdate;
     }
 
-    @Override
     public ISRInformation getIsrInformation() {
         return this.isrInformation;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (this.pndGwUpdate != null)
             return _TAG_pndGwUpdate;
@@ -82,12 +79,10 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
             return _TAG_isrInformation;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.pndGwUpdate != null)
             return false;
@@ -95,7 +90,6 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
             return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -109,7 +103,6 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -155,12 +148,10 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -172,7 +163,6 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.pndGwUpdate == null && this.isrInformation == null)
@@ -188,7 +178,6 @@ public class EPSInfoImpl implements EPSInfo, MAPAsnPrimitive {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

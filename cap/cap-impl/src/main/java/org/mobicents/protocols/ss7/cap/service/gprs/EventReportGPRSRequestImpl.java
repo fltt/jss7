@@ -72,52 +72,42 @@ public class EventReportGPRSRequestImpl extends GprsMessageImpl implements Event
         this.pdpID = pdpID;
     }
 
-    @Override
     public GPRSEventType getGPRSEventType() {
         return this.gprsEventType;
     }
 
-    @Override
     public MiscCallInfo getMiscGPRSInfo() {
         return this.miscGPRSInfo;
     }
 
-    @Override
     public GPRSEventSpecificInformation getGPRSEventSpecificInformation() {
         return this.gprsEventSpecificInformation;
     }
 
-    @Override
     public PDPID getPDPID() {
         return this.pdpID;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.eventReportGPRS_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.eventReportGPRS;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -137,7 +127,6 @@ public class EventReportGPRSRequestImpl extends GprsMessageImpl implements Event
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -219,12 +208,10 @@ public class EventReportGPRSRequestImpl extends GprsMessageImpl implements Event
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -236,7 +223,6 @@ public class EventReportGPRSRequestImpl extends GprsMessageImpl implements Event
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.gprsEventType == null)
@@ -275,7 +261,6 @@ public class EventReportGPRSRequestImpl extends GprsMessageImpl implements Event
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

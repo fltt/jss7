@@ -36,59 +36,48 @@ public class EntityReleasedGPRSResponseImpl extends GprsMessageImpl implements E
 
     public static final String _PrimitiveName = "EntityReleasedGPRSResponse";
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.entityReleasedGPRS_Response;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.entityReleasedGPRS;
     }
 
-    @Override
     public int getTag() throws CAPException {
         throw new CAPException("Parameter " + _PrimitiveName + ": does not support encoding");
     }
 
-    @Override
     public int getTagClass() {
         return 0;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         throw new CAPParsingComponentException("Parameter " + _PrimitiveName + ": does not support encoding",
                 CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         throw new CAPParsingComponentException("Parameter " + _PrimitiveName + ": does not support encoding",
                 CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         throw new CAPException("Parameter " + _PrimitiveName + ": does not support encoding");
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         throw new CAPException("Parameter " + _PrimitiveName + ": does not support encoding");
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         throw new CAPException("Parameter " + _PrimitiveName + ": does not support encoding");
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

@@ -249,7 +249,6 @@ public class ExtSSDataImpl extends SequenceBase implements ExtSSData {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

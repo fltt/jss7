@@ -110,22 +110,18 @@ public class SubsequentDirectoryNumberMessageImpl extends ISUPMessageImpl implem
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation mci) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation, mci);
     }
 
-    @Override
     public SubsequentNumber getSubsequentNumber() {
         return (SubsequentNumber) super.o_Parameters.get(_INDEX_O_SubsequentNumber);
     }
 
-    @Override
     public void setSubsequentNumber(SubsequentNumber pci) {
         super.o_Parameters.put(_INDEX_O_SubsequentNumber, pci);
     }

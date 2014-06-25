@@ -51,7 +51,6 @@ public abstract class AbstractCommandHandler implements CommandHandler {
         final String data = node.getData();
         CommandLineCompleter commandLineCompleter = new CommandLineCompleter() {
 
-            @Override
             public int complete(CommandContext ctx, String buffer, int cursor, List<String> candidates) {
 
                 if (connectFlag == CONNECT_MANDATORY_FLAG && !ctx.isControllerConnected()) {
@@ -79,7 +78,6 @@ public abstract class AbstractCommandHandler implements CommandHandler {
      *
      * @see org.mobicents.ss7.management.console.CommandHandler#handles(java.lang .String)
      */
-    @Override
     public boolean handles(String command) {
         if (command.startsWith(this.tree.getTopNode().getData())) {
             return true;
@@ -129,7 +127,6 @@ public abstract class AbstractCommandHandler implements CommandHandler {
      *
      * @see org.mobicents.ss7.management.console.CommandHandler# getCommandLineCompleterList()
      */
-    @Override
     public List<CommandLineCompleter> getCommandLineCompleterList() {
         return this.completion;
     }

@@ -124,7 +124,6 @@ public class OfferedCamel4CSIsImpl extends BitStringBase implements OfferedCamel
         return this.bitString.get(_ID_psi_enhancements);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("OfferedCamel4CSIs [");

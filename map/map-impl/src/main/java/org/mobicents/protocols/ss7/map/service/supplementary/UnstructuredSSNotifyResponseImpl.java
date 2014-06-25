@@ -128,7 +128,6 @@ public class UnstructuredSSNotifyResponseImpl extends SupplementaryMessageImpl i
         throw new MAPException("UnstructuredSSNotifyResponseIndication has no MAP message primitive");
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("UnstructuredSSNotifyResponse [");
@@ -144,13 +143,11 @@ public class UnstructuredSSNotifyResponseImpl extends SupplementaryMessageImpl i
     protected static final XMLFormat<UnstructuredSSNotifyResponseImpl> UNSTRUCTURED_SS_NOTIFY_RESPONSE_XML = new XMLFormat<UnstructuredSSNotifyResponseImpl>(
             UnstructuredSSNotifyResponseImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, UnstructuredSSNotifyResponseImpl ussdMessage)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.read(xml, ussdMessage);
         }
 
-        @Override
         public void write(UnstructuredSSNotifyResponseImpl ussdMessage, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.write(ussdMessage, xml);

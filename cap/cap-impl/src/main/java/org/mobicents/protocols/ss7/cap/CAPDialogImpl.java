@@ -101,12 +101,10 @@ public abstract class CAPDialogImpl implements CAPDialog {
         this.tcapDialog.setRemoteAddress(remoteAddress);
     }
 
-    @Override
     public void setReturnMessageOnError(boolean val) {
         returnMessageOnError = val;
     }
 
-    @Override
     public boolean getReturnMessageOnError() {
         return returnMessageOnError;
     }
@@ -115,7 +113,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         return tcapMessageType;
     }
 
-    @Override
     public void keepAlive() {
         this.tcapDialog.keepAlive();
     }
@@ -346,7 +343,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public void abort(CAPUserAbortReason abortReason) throws CAPException {
 
         if (this.tcapDialog.getPreviewMode())
@@ -373,7 +369,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public void processInvokeWithoutAnswer(Long invokeId) {
 
         if (this.tcapDialog.getPreviewMode())
@@ -382,7 +377,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         this.tcapDialog.processInvokeWithoutAnswer(invokeId);
     }
 
-    @Override
     public void sendInvokeComponent(Invoke invoke) throws CAPException {
 
         if (this.tcapDialog.getPreviewMode())
@@ -395,7 +389,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public void sendReturnResultLastComponent(ReturnResultLast returnResultLast) throws CAPException {
 
         if (this.tcapDialog.getPreviewMode())
@@ -410,7 +403,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public void sendErrorComponent(Long invokeId, CAPErrorMessage mem) throws CAPException {
 
         if (this.tcapDialog.getPreviewMode())
@@ -450,7 +442,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public void sendRejectComponent(Long invokeId, Problem problem) throws CAPException {
 
         if (this.tcapDialog.getPreviewMode())
@@ -474,7 +465,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public void resetInvokeTimer(Long invokeId) throws CAPException {
 
         if (this.tcapDialog.getPreviewMode())
@@ -487,7 +477,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         }
     }
 
-    @Override
     public boolean cancelInvocation(Long invokeId) throws CAPException {
         try {
             return this.getTcapDialog().cancelInvocation(invokeId);
@@ -504,17 +493,14 @@ public abstract class CAPDialogImpl implements CAPDialog {
         this.tcapDialog.setUserObject(userObject);
     }
 
-    @Override
     public CAPApplicationContext getApplicationContext() {
         return appCntx;
     }
 
-    @Override
     public int getMaxUserDataLength() {
         return this.getTcapDialog().getMaxUserDataLength();
     }
 
-    @Override
     public int getMessageUserDataLengthOnSend() throws CAPException {
 
         try {
@@ -548,7 +534,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         throw new CAPException("Bad TCAP Dialog state: " + this.tcapDialog.getState());
     }
 
-    @Override
     public int getMessageUserDataLengthOnClose(boolean prearrangedEnd) throws CAPException {
 
         try {
@@ -572,7 +557,6 @@ public abstract class CAPDialogImpl implements CAPDialog {
         throw new CAPException("Bad TCAP Dialog state: " + this.tcapDialog.getState());
     }
 
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("CAPDialog: LocalDialogId=").append(this.getLocalDialogId()).append(" RemoteDialogId=")

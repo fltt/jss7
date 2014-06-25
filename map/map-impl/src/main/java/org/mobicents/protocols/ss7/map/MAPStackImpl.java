@@ -57,7 +57,6 @@ public class MAPStackImpl implements MAPStack, CongestionListener {
         this.state = State.CONFIGURED;
     }
 
-    @Override
     public String getName() {
         return name;
     }

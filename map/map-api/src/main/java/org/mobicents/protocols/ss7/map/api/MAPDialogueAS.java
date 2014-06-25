@@ -67,7 +67,6 @@ public enum MAPDialogueAS {
         return null;
     }
 
-    @Override
     public String toString() {
         StringBuffer s = new StringBuffer();
         for (long l : this.oid) {

@@ -73,47 +73,38 @@ public class ForwardingDataImpl implements ForwardingData, MAPAsnPrimitive {
         this.longForwardedToNumber = longForwardedToNumber;
     }
 
-    @Override
     public ISDNAddressString getForwardedToNumber() {
         return this.forwardedToNumber;
     }
 
-    @Override
     public ISDNSubaddressString getForwardedToSubaddress() {
         return this.forwardedToSubaddress;
     }
 
-    @Override
     public ForwardingOptions getForwardingOptions() {
         return this.forwardingOptions;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public FTNAddressString getLongForwardedToNumber() {
         return this.longForwardedToNumber;
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -127,7 +118,6 @@ public class ForwardingDataImpl implements ForwardingData, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -203,12 +193,10 @@ public class ForwardingDataImpl implements ForwardingData, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -220,7 +208,6 @@ public class ForwardingDataImpl implements ForwardingData, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.forwardedToNumber != null) {
             ((ISDNAddressStringImpl) this.forwardedToNumber)

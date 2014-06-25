@@ -82,7 +82,6 @@ public class Mtp3DestinationImpl implements XMLSerializable, Mtp3Destination {
             return false;
     }
 
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("firstDpc=").append(this.firstDpc).append(", lastDpc=").append(this.lastDpc).append(", firstSls=")

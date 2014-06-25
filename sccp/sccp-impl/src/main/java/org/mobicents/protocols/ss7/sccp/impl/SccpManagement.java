@@ -837,7 +837,6 @@ public class SccpManagement {
             return ssn;
         }
 
-        @Override
         public boolean equals(Object obj) {
             if (obj == null && !(obj instanceof DpcSsn))
                 return false;
@@ -849,7 +848,6 @@ public class SccpManagement {
                 return false;
         }
 
-        @Override
         public int hashCode() {
             return this.dpc + 256 * 256 * this.ssn;
         }

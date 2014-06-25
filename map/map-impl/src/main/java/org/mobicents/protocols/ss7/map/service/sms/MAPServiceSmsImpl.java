@@ -87,7 +87,6 @@ public class MAPServiceSmsImpl extends MAPServiceBaseImpl implements MAPServiceS
         return dialog;
     }
 
-    @Override
     protected MAPDialogImpl createNewDialogIncoming(MAPApplicationContext appCntx, Dialog tcapDialog) {
         return new MAPDialogSmsImpl(appCntx, tcapDialog, this.mapProviderImpl, this, null, null);
     }
@@ -146,7 +145,6 @@ public class MAPServiceSmsImpl extends MAPServiceBaseImpl implements MAPServiceS
         return new ServingCheckDataImpl(ServingCheckResult.AC_NotServing);
     }
 
-    @Override
     public MAPApplicationContext getMAPv1ApplicationContext(int operationCode, Invoke invoke) {
 
         switch (operationCode) {
@@ -167,7 +165,6 @@ public class MAPServiceSmsImpl extends MAPServiceBaseImpl implements MAPServiceS
         return null;
     }
 
-    @Override
     public void processComponent(ComponentType compType, OperationCode oc, Parameter parameter, MAPDialog mapDialog,
             Long invokeId, Long linkedId, Invoke linkedInvoke) throws MAPParsingComponentException {
 

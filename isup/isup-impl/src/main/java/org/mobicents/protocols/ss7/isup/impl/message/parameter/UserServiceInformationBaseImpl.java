@@ -724,7 +724,6 @@ public abstract class UserServiceInformationBaseImpl extends AbstractISUPParamet
     protected static final XMLFormat<UserServiceInformationBaseImpl> ISUP_USER_SERVICE_INFORMATION_BASE_XML = new XMLFormat<UserServiceInformationBaseImpl>(
             UserServiceInformationBaseImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, UserServiceInformationBaseImpl userServiceInformation)
                 throws XMLStreamException {
             userServiceInformation.codingStandart = xml.getAttribute(CODING_STANDART, DEFAULT_VALUES);
@@ -759,7 +758,6 @@ public abstract class UserServiceInformationBaseImpl extends AbstractISUPParamet
             userServiceInformation.l3Protocol = xml.getAttribute(L3_PROTOCOL, DEFAULT_VALUES);
         }
 
-        @Override
         public void write(UserServiceInformationBaseImpl userServiceInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(CODING_STANDART, userServiceInformation.codingStandart);

@@ -94,7 +94,6 @@ public class IMSIWithLMSIImpl extends SequenceBase implements IMSIWithLMSI {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.imsi == null || this.lmsi == null) {
@@ -105,17 +104,14 @@ public class IMSIWithLMSIImpl extends SequenceBase implements IMSIWithLMSI {
         ((LMSIImpl) this.lmsi).encodeAll(asnOs);
     }
 
-    @Override
     public IMSI getImsi() {
         return this.imsi;
     }
 
-    @Override
     public LMSI getLmsi() {
         return this.lmsi;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

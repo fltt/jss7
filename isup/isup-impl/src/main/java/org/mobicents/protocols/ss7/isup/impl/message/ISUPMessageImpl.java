@@ -107,7 +107,6 @@ public abstract class ISUPMessageImpl extends AbstractISUPMessage {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
     public void setSls(int sls) {
         // if(sls>=16 || sls<0)
         // {
@@ -116,7 +115,6 @@ public abstract class ISUPMessageImpl extends AbstractISUPMessage {
         this.sls = (sls & 0x0F);
     }
 
-    @Override
     public int getSls() {
         return this.sls;
     }

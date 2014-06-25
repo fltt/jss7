@@ -187,7 +187,6 @@ public class SegmentationImpl extends AbstractParameter implements Segmentation 
         return buffer;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Segmentation [remainingSegments=");

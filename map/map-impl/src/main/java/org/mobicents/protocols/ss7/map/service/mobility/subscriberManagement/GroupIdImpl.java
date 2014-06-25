@@ -36,7 +36,6 @@ public class GroupIdImpl extends TbcdStringWithFiller implements GroupId {
         super(3, 3, "GroupId", data);
     }
 
-    @Override
     public String getGroupId() {
         return this.data;
     }

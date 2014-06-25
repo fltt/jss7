@@ -158,7 +158,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.client = new ClientComponent(this.tcapStack1, peer1Address, peer2Address) {
 
-            @Override
             public void onTCConversation(TCConversationIndication ind) {
                 super.onTCConversation(ind);
 
@@ -225,7 +224,6 @@ public class TCAPComponentsTest extends SccpHarness {
                 }
             }
 
-            @Override
             public void onTCResponse(TCResponseIndication ind) {
                 super.onTCResponse(ind);
 
@@ -246,7 +244,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.server = new ServerComponent(this.tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onTCQuery(TCQueryIndication ind) {
                 super.onTCQuery(ind);
 
@@ -263,7 +260,6 @@ public class TCAPComponentsTest extends SccpHarness {
                 }
             }
 
-            @Override
             public void onTCConversation(TCConversationIndication ind) {
                 super.onTCConversation(ind);
 
@@ -468,7 +464,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.client = new ClientComponent(this.tcapStack1, peer1Address, peer2Address) {
 
-            @Override
             public void onTCResponse(TCResponseIndication ind) {
                 super.onTCResponse(ind);
 
@@ -484,7 +479,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.server = new ServerComponent(this.tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onTCQuery(TCQueryIndication ind) {
                 super.onTCQuery(ind);
 
@@ -559,7 +553,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.client = new ClientComponent(this.tcapStack1, peer1Address, peer2Address) {
 
-            @Override
             public void onTCResponse(TCResponseIndication ind) {
                 super.onTCResponse(ind);
 
@@ -575,7 +568,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.server = new ServerComponent(this.tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onTCQuery(TCQueryIndication ind) {
                 super.onTCQuery(ind);
 
@@ -649,7 +641,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.client = new ClientComponent(this.tcapStack1, peer1Address, peer2Address) {
 
-            @Override
             public void onTCResponse(TCResponseIndication ind) {
                 super.onTCResponse(ind);
 
@@ -665,7 +656,6 @@ public class TCAPComponentsTest extends SccpHarness {
 
         this.server = new ServerComponent(this.tcapStack2, peer2Address, peer1Address) {
 
-            @Override
             public void onTCQuery(TCQueryIndication ind) {
                 super.onTCQuery(ind);
 
@@ -743,14 +733,12 @@ public class TCAPComponentsTest extends SccpHarness {
             return (DialogImpl) this.dialog;
         }
 
-        @Override
         public void onTCConversation(TCConversationIndication ind) {
             super.onTCConversation(ind);
 
             procComponents(ind.getComponents());
         }
 
-        @Override
         public void onTCResponse(TCResponseIndication ind) {
             super.onTCResponse(ind);
 
@@ -917,14 +905,12 @@ public class TCAPComponentsTest extends SccpHarness {
             this.dialog.sendComponent(err);
         }
 
-        @Override
         public void onTCQuery(TCQueryIndication ind) {
             super.onTCQuery(ind);
 
             procComponents(ind.getComponents());
         }
 
-        @Override
         public void onTCConversation(TCConversationIndication ind) {
             super.onTCConversation(ind);
 
@@ -967,7 +953,6 @@ public class TCAPComponentsTest extends SccpHarness {
      */
     class BadComponentUnrecognizedComponent implements Component {
 
-        @Override
         public void encode(AsnOutputStream aos) throws EncodeException {
             try {
                 aos.writeTag(Tag.CLASS_CONTEXT_SPECIFIC, false, 20);
@@ -984,25 +969,21 @@ public class TCAPComponentsTest extends SccpHarness {
             }
         }
 
-        @Override
         public void decode(AsnInputStream ais) throws ParseException {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void setCorrelationId(Long i) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public Long getCorrelationId() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public ComponentType getType() {
             // TODO Auto-generated method stub
             return null;
@@ -1020,7 +1001,6 @@ public class TCAPComponentsTest extends SccpHarness {
             this.setInvokeId(1l);
         }
 
-        @Override
         public void encode(AsnOutputStream aos) throws EncodeException {
             try {
                 aos.writeTag(Tag.CLASS_PRIVATE, false, _TAG_INVOKE_LAST);
@@ -1056,7 +1036,6 @@ public class TCAPComponentsTest extends SccpHarness {
             this.setInvokeId(1l);
         }
 
-        @Override
         public void encode(AsnOutputStream aos) throws EncodeException {
             try {
                 aos.writeTag(Tag.CLASS_PRIVATE, false, _TAG_INVOKE_LAST);

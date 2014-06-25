@@ -37,7 +37,6 @@ public class IKImpl extends OctetStringBase implements IK {
         super(16, 16, "IK");
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }

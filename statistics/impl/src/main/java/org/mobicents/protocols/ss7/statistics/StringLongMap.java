@@ -53,11 +53,9 @@ public class StringLongMap extends StatDataCollectorAbstractImpl {
         }
     }
 
-    @Override
     public void updateData(long newVal) {
     }
 
-    @Override
     public void updateData(String name) {
         synchronized (this) {
             LongValue val = data.get(name);
@@ -69,7 +67,6 @@ public class StringLongMap extends StatDataCollectorAbstractImpl {
         }
     }
 
-    @Override
     public StatDataCollectorType getStatDataCollectorType() {
         return StatDataCollectorType.StringLongMap;
     }
@@ -82,12 +79,10 @@ public class StringLongMap extends StatDataCollectorAbstractImpl {
             this.data = data;
         }
 
-        @Override
         public long getLongValue() {
             return 0;
         }
 
-        @Override
         public FastMap<String, LongValue> getStringLongValue() {
             return data;
         }

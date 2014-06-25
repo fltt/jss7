@@ -47,22 +47,18 @@ public class ISRInformationImpl extends BitStringBase implements ISRInformation 
         super(3, 8, 3, "ISRInformation");
     }
 
-    @Override
     public boolean getUpdateMME() {
         return this.bitString.get(_INDEX_updateMME);
     }
 
-    @Override
     public boolean getCancelSGSN() {
         return this.bitString.get(_INDEX_cancelSGSN);
     }
 
-    @Override
     public boolean getInitialAttachIndicator() {
         return this.bitString.get(_INDEX_initialAttachIndicator);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

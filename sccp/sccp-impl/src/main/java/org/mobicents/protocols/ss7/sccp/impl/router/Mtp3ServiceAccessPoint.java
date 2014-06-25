@@ -96,7 +96,6 @@ public class Mtp3ServiceAccessPoint implements XMLSerializable {
         return false;
     }
 
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("mtp3Id=").append(this.mtp3Id).append(", opc=").append(this.opc).append(", ni=").append(this.ni)

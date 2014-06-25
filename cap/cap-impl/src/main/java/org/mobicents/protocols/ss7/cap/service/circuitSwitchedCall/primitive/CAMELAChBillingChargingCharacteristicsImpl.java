@@ -89,52 +89,42 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
         this.isCAPVersion3orLater = isCAPVersion3orLater;
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public long getMaxCallPeriodDuration() {
         return maxCallPeriodDuration;
     }
 
-    @Override
     public boolean getReleaseIfdurationExceeded() {
         return releaseIfdurationExceeded;
     }
 
-    @Override
     public Long getTariffSwitchInterval() {
         return tariffSwitchInterval;
     }
 
-    @Override
     public AudibleIndicator getAudibleIndicator() {
         return audibleIndicator;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -152,7 +142,6 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -260,12 +249,10 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -278,7 +265,6 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null) {
@@ -335,7 +321,6 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -371,7 +356,6 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
     protected static final XMLFormat<CAMELAChBillingChargingCharacteristicsImpl> CAMEL_ACH_BILLING_CHARGING_CHARACTERISTIC_XML = new XMLFormat<CAMELAChBillingChargingCharacteristicsImpl>(
             CAMELAChBillingChargingCharacteristicsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml,
                 CAMELAChBillingChargingCharacteristicsImpl camelAChBillingChargingCharacteristics) throws XMLStreamException {
             camelAChBillingChargingCharacteristics.maxCallPeriodDuration = xml.get(MAX_CALL_PERIOD_DURATION, Long.class);
@@ -385,7 +369,6 @@ public class CAMELAChBillingChargingCharacteristicsImpl implements CAMELAChBilli
 
         }
 
-        @Override
         public void write(CAMELAChBillingChargingCharacteristicsImpl camelAChBillingChargingCharacteristics,
                 javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
 

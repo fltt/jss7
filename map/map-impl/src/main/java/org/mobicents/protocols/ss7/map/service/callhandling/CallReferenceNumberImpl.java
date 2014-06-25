@@ -53,7 +53,6 @@ public class CallReferenceNumberImpl extends OctetStringBase implements CallRefe
     protected static final XMLFormat<CallReferenceNumberImpl> CALL_REFERENCE_NUMBER_XML = new XMLFormat<CallReferenceNumberImpl>(
             CallReferenceNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CallReferenceNumberImpl crn) throws XMLStreamException {
             ByteArrayContainer bc = xml.get(DATA_XML, ByteArrayContainer.class);
             if (bc != null) {
@@ -61,7 +60,6 @@ public class CallReferenceNumberImpl extends OctetStringBase implements CallRefe
             }
         }
 
-        @Override
         public void write(CallReferenceNumberImpl crn, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (crn.data != null && crn.data.length > 0) {
                 ByteArrayContainer bac = new ByteArrayContainer(crn.data);

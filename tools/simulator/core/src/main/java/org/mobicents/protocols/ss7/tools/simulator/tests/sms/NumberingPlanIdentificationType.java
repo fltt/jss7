@@ -99,12 +99,10 @@ public class NumberingPlanIdentificationType extends EnumeratedBase {
             return new NumberingPlanIdentificationType(i1);
     }
 
-    @Override
     protected Hashtable<Integer, String> getIntTable() {
         return intMap;
     }
 
-    @Override
     protected Hashtable<String, Integer> getStringTable() {
         return stringMap;
     }

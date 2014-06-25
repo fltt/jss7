@@ -39,7 +39,6 @@ public class AdditionalInfoImpl extends BitStringBase implements AdditionalInfo 
         super(1, 136, data.getStrictLength(), _PrimitiveName, data);
     }
 
-    @Override
     public BitSetStrictLength getData() {
         return bitString;
     }

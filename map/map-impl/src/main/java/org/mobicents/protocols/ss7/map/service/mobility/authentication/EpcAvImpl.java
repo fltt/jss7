@@ -269,7 +269,6 @@ public class EpcAvImpl implements EpcAv, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

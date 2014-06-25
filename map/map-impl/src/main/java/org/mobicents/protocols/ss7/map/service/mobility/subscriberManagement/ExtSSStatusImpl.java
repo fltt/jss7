@@ -93,7 +93,6 @@ public class ExtSSStatusImpl extends OctetStringBase implements ExtSSStatus {
         return ((this.data[0] & sssBitA) > 0 ? true : false);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

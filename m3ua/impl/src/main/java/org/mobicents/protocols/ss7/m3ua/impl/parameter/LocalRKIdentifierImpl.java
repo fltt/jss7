@@ -73,7 +73,6 @@ public class LocalRKIdentifierImpl extends ParameterImpl implements LocalRKIdent
         value[3] = (byte) (this.id);
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
@@ -82,7 +81,6 @@ public class LocalRKIdentifierImpl extends ParameterImpl implements LocalRKIdent
         return this.id;
     }
 
-    @Override
     public String toString() {
         return String.format("LocalRKIdentifier id=%d", id);
     }
@@ -93,13 +91,11 @@ public class LocalRKIdentifierImpl extends ParameterImpl implements LocalRKIdent
     protected static final XMLFormat<LocalRKIdentifierImpl> RC_XML = new XMLFormat<LocalRKIdentifierImpl>(
             LocalRKIdentifierImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LocalRKIdentifierImpl localRkId) throws XMLStreamException {
             localRkId.id = xml.getAttribute(ID).toLong();
             localRkId.encode();
         }
 
-        @Override
         public void write(LocalRKIdentifierImpl localRkId, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(ID, localRkId.id);

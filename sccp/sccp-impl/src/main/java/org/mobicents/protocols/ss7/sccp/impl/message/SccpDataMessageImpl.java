@@ -101,28 +101,23 @@ public class SccpDataMessageImpl extends SccpDataNoticeTemplateMessageImpl imple
             return false;
     }
 
-    @Override
     protected boolean getSecondParamaterPresent() {
         return protocolClass != null;
     }
 
-    @Override
     protected byte[] getSecondParamaterData() throws IOException {
         return ((AbstractParameter) protocolClass).encode();
     }
 
-    @Override
     protected void setSecondParamaterData(int data) throws IOException {
         protocolClass = new ProtocolClassImpl();
         ((AbstractParameter) protocolClass).decode(new byte[] { (byte) data });
     }
 
-    @Override
     protected boolean getIsProtocolClass1() {
         return this.protocolClass.getProtocolClass() != 0;
     }
 
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("Sccp Msg [Type=");

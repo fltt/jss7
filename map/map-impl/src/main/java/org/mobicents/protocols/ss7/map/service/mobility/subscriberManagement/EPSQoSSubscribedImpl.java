@@ -61,22 +61,18 @@ public class EPSQoSSubscribedImpl extends SequenceBase implements EPSQoSSubscrib
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public QoSClassIdentifier getQoSClassIdentifier() {
         return this.qoSClassIdentifier;
     }
 
-    @Override
     public AllocationRetentionPriority getAllocationRetentionPriority() {
         return this.allocationRetentionPriority;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.qoSClassIdentifier = null;
@@ -151,7 +147,6 @@ public class EPSQoSSubscribedImpl extends SequenceBase implements EPSQoSSubscrib
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.qoSClassIdentifier == null) {
             throw new MAPException("Error while encoding " + _PrimitiveName
@@ -183,7 +178,6 @@ public class EPSQoSSubscribedImpl extends SequenceBase implements EPSQoSSubscrib
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

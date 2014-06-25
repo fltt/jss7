@@ -78,17 +78,14 @@ public class GSMCharset extends Charset {
         this.extensionTable = BYTE_TO_CHAR_DefaultAlphabetExtentionTable;
     }
 
-    @Override
     public boolean contains(Charset cs) {
         return this.getClass().isInstance(cs);
     }
 
-    @Override
     public CharsetDecoder newDecoder() {
         return new GSMCharsetDecoder(this, averageCharsPerByte, maxCharsPerByte);
     }
 
-    @Override
     public CharsetEncoder newEncoder() {
         return new GSMCharsetEncoder(this, averageBytesPerChar, maxBytesPerChar);
     }

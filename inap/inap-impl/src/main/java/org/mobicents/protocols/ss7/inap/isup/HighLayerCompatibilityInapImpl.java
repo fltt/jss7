@@ -72,12 +72,10 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public UserTeleserviceInformation getHighLayerCompatibility() throws INAPException {
         if (this.data == null)
             throw new INAPException("The data has not been filled");
@@ -91,22 +89,18 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
         }
     }
 
-    @Override
     public int getTag() throws INAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws INAPParsingComponentException {
 
         try {
@@ -121,7 +115,6 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws INAPParsingComponentException {
 
         try {
@@ -144,12 +137,10 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
                     INAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws INAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws INAPException {
 
         try {
@@ -162,7 +153,6 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws INAPException {
 
         if (this.data == null)
@@ -173,7 +163,6 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -212,7 +201,6 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
     protected static final XMLFormat<HighLayerCompatibilityInapImpl> HIGH_LAYER_COMPATIBILITY_INAP_XML = new XMLFormat<HighLayerCompatibilityInapImpl>(
             HighLayerCompatibilityInapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, HighLayerCompatibilityInapImpl highLayerCompatibilityInap)
                 throws XMLStreamException {
             try {
@@ -223,7 +211,6 @@ public class HighLayerCompatibilityInapImpl implements HighLayerCompatibilityIna
             }
         }
 
-        @Override
         public void write(HighLayerCompatibilityInapImpl highLayerCompatibilityInap, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

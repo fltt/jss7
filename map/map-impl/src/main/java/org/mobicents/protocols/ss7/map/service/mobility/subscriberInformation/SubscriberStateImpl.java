@@ -212,7 +212,6 @@ public class SubscriberStateImpl implements SubscriberState, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("SubscriberState [");
@@ -237,7 +236,6 @@ public class SubscriberStateImpl implements SubscriberState, MAPAsnPrimitive {
     protected static final XMLFormat<SubscriberStateImpl> SUBSCRIBER_STATE_XML = new XMLFormat<SubscriberStateImpl>(
             SubscriberStateImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, SubscriberStateImpl subscriberState)
                 throws XMLStreamException {
             String choice = xml.getAttribute(SUBSCRIBER_STATE_CHOICE, DEFAULT_STRING_VALUE);
@@ -254,7 +252,6 @@ public class SubscriberStateImpl implements SubscriberState, MAPAsnPrimitive {
             subscriberState.setData(subscriberStateChoice, notReachableReason);
         }
 
-        @Override
         public void write(SubscriberStateImpl subscriberState, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (subscriberState.subscriberStateChoice != null)

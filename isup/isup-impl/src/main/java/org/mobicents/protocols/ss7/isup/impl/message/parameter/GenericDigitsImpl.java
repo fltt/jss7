@@ -148,7 +148,6 @@ public class GenericDigitsImpl extends AbstractISUPParameter implements GenericD
     protected static final XMLFormat<GenericDigitsImpl> ISUP_GENERIC_DIGITS_XML = new XMLFormat<GenericDigitsImpl>(
             GenericDigitsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, GenericDigitsImpl genericDigits) throws XMLStreamException {
             genericDigits.encodingScheme = xml.getAttribute(ENCODING_SCHEME, DEFAULT_VALUE);
             genericDigits.typeOfDigits = xml.getAttribute(TYPE_OF_DIGITS, DEFAULT_VALUE);
@@ -159,7 +158,6 @@ public class GenericDigitsImpl extends AbstractISUPParameter implements GenericD
             }
         }
 
-        @Override
         public void write(GenericDigitsImpl genericDigits, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(ENCODING_SCHEME, genericDigits.encodingScheme);

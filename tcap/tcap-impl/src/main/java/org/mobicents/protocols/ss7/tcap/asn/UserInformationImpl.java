@@ -97,112 +97,90 @@ public class UserInformationImpl implements UserInformation {
         }
     }
 
-    @Override
     public byte[] getEncodeType() throws AsnException {
         return ext.getEncodeType();
     }
 
-    @Override
     public void setEncodeType(byte[] data) {
         ext.setEncodeType(data);
     }
 
-    @Override
     public BitSetStrictLength getEncodeBitStringType() throws AsnException {
         return ext.getEncodeBitStringType();
     }
 
-    @Override
     public void setEncodeBitStringType(BitSetStrictLength data) {
         ext.setEncodeBitStringType(data);
     }
 
-    @Override
     public boolean isOid() {
         return ext.isOid();
     }
 
-    @Override
     public void setOid(boolean oid) {
         ext.setOid(oid);
     }
 
-    @Override
     public boolean isInteger() {
         return ext.isInteger();
     }
 
-    @Override
     public void setInteger(boolean integer) {
         ext.setInteger(integer);
     }
 
-    @Override
     public boolean isObjDescriptor() {
         return ext.isObjDescriptor();
     }
 
-    @Override
     public void setObjDescriptor(boolean objDescriptor) {
         ext.setObjDescriptor(objDescriptor);
     }
 
-    @Override
     public long[] getOidValue() {
         return ext.getOidValue();
     }
 
-    @Override
     public void setOidValue(long[] oidValue) {
         ext.setOidValue(oidValue);
     }
 
-    @Override
     public long getIndirectReference() {
         return ext.getIndirectReference();
     }
 
-    @Override
     public void setIndirectReference(long indirectReference) {
         ext.setIndirectReference(indirectReference);
     }
 
-    @Override
     public String getObjDescriptorValue() {
         return ext.getObjDescriptorValue();
     }
 
-    @Override
     public void setObjDescriptorValue(String objDescriptorValue) {
         ext.setObjDescriptorValue(objDescriptorValue);
     }
 
-    @Override
     public boolean isAsn() {
         return ext.isAsn();
     }
 
-    @Override
     public void setAsn(boolean asn) {
         ext.setAsn(asn);
     }
 
-    @Override
     public boolean isOctet() {
         return ext.isOctet();
     }
 
-    @Override
     public void setOctet(boolean octet) {
         ext.setOctet(octet);
     }
 
-    @Override
     public boolean isArbitrary() {
         return ext.isArbitrary();
     }
 
-    @Override
     public void setArbitrary(boolean arbitrary) {
         ext.setArbitrary(arbitrary);
     }

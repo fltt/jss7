@@ -56,22 +56,18 @@ public class UMTSSecurityContextDataImpl extends SequenceBase implements UMTSSec
         this.ksi = ksi;
     }
 
-    @Override
     public CK getCK() {
         return this.ck;
     }
 
-    @Override
     public IK getIK() {
         return this.ik;
     }
 
-    @Override
     public KSI getKSI() {
         return this.ksi;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         AsnInputStream ais = asnIS.readSequenceStreamData(length);
@@ -125,7 +121,6 @@ public class UMTSSecurityContextDataImpl extends SequenceBase implements UMTSSec
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.ck == null || this.ik == null || this.ksi == null) {
             throw new MAPException("Error while encoding " + _PrimitiveName
@@ -142,7 +137,6 @@ public class UMTSSecurityContextDataImpl extends SequenceBase implements UMTSSec
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

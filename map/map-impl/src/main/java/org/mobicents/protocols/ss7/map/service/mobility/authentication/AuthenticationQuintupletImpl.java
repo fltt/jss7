@@ -254,7 +254,6 @@ public class AuthenticationQuintupletImpl implements AuthenticationQuintuplet, M
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AuthenticationQuintuplet [");

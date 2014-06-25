@@ -42,7 +42,6 @@ public class THPeerAsInActToAct implements TransitionHandler {
         this.fsm = fsm;
     }
 
-    @Override
     public boolean process(FSMState state) {
         FastSet<AsStateListener> asStateListeners = this.asImpl.getAsStateListeners();
         for (FastSet.Record r = asStateListeners.head(), end = asStateListeners.tail(); (r = r.getNext()) != end;) {

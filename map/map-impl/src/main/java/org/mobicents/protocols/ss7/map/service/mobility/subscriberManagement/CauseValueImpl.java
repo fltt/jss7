@@ -41,17 +41,14 @@ public class CauseValueImpl extends OctetStringLength1Base implements CauseValue
         super("CauseValue", value != null ? value.getCode() : 0);
     }
 
-    @Override
     public CauseValueCodeValue getCauseValueCodeValue() {
         return CauseValueCodeValue.getInstance(this.data);
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

@@ -229,7 +229,7 @@ public class ShellTransceiverTest {
                         ChannelSelectionKey key = (ChannelSelectionKey) keys.valueOf(record);
 
                         if (key.isAcceptable()) {
-                            ShellServerChannel chan = (ShellServerChannel) key.channel();
+                            key.channel();
                             accept();
                         } else if (key.isReadable()) {
                             ShellChannel chan = (ShellChannel) key.channel();

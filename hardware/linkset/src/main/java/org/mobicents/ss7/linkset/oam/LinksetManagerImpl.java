@@ -110,17 +110,14 @@ public class LinksetManagerImpl implements LinksetManager {
         this.scheduler = scheduler;
     }
 
-    @Override
     public LinksetFactoryFactory getLinksetFactoryFactory() {
         return linksetFactoryFactory;
     }
 
-    @Override
     public void setLinksetFactoryFactory(LinksetFactoryFactory linksetFactoryFactory) {
         this.linksetFactoryFactory = linksetFactoryFactory;
     }
 
-    @Override
     public FastMap<String, Linkset> getLinksets() {
         return linksets;
     }
@@ -535,7 +532,6 @@ public class LinksetManagerImpl implements LinksetManager {
         System.out.println(linkSetManager1.linksets.size());
     }
 
-    @Override
     public String getName() {
         return this.name;
     }

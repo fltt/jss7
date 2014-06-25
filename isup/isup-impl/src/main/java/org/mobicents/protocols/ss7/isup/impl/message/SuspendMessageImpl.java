@@ -138,22 +138,18 @@ public class SuspendMessageImpl extends ISUPMessageImpl implements SuspendMessag
         return true;
     }
 
-    @Override
     public void setSuspendResumeIndicators(SuspendResumeIndicators ri) {
         super.f_Parameters.put(_INDEX_F_SuspendResumeIndicators, ri);
     }
 
-    @Override
     public SuspendResumeIndicators getSuspendResumeIndicators() {
         return (SuspendResumeIndicators) super.f_Parameters.get(_INDEX_F_SuspendResumeIndicators);
     }
 
-    @Override
     public void setCallReference(CallReference cr) {
         super.o_Parameters.put(_INDEX_O_CallReference, cr);
     }
 
-    @Override
     public CallReference getCallReference() {
         return (CallReference) super.o_Parameters.get(_INDEX_O_CallReference);
     }

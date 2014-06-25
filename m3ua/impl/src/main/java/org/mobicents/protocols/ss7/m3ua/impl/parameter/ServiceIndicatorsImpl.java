@@ -71,7 +71,6 @@ public class ServiceIndicatorsImpl extends ParameterImpl implements ServiceIndic
         }
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
@@ -80,7 +79,6 @@ public class ServiceIndicatorsImpl extends ParameterImpl implements ServiceIndic
         return this.indicators;
     }
 
-    @Override
     public String toString() {
         return String.format("ServiceIndicators ids=%s", Arrays.toString(this.indicators));
     }
@@ -91,7 +89,6 @@ public class ServiceIndicatorsImpl extends ParameterImpl implements ServiceIndic
     protected static final XMLFormat<ServiceIndicatorsImpl> RC_XML = new XMLFormat<ServiceIndicatorsImpl>(
             ServiceIndicatorsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ServiceIndicatorsImpl si) throws XMLStreamException {
             int size = xml.getAttribute(ARRAY_SIZE).toInt();
             si.indicators = new short[size];
@@ -103,7 +100,6 @@ public class ServiceIndicatorsImpl extends ParameterImpl implements ServiceIndic
             si.encode();
         }
 
-        @Override
         public void write(ServiceIndicatorsImpl si, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(ARRAY_SIZE, si.indicators.length);
             for (Short s : si.indicators) {

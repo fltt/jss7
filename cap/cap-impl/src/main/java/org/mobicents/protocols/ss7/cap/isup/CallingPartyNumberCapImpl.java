@@ -72,12 +72,10 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public CallingPartyNumber getCallingPartyNumber() throws CAPException {
         if (this.data == null)
             throw new CAPException("The data has not been filled");
@@ -91,22 +89,18 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
         }
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -124,7 +118,6 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -151,12 +144,10 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -169,7 +160,6 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -180,7 +170,6 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -219,7 +208,6 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
     protected static final XMLFormat<CallingPartyNumberCapImpl> CALLING_PARTY_NUMBER_CAP_XML = new XMLFormat<CallingPartyNumberCapImpl>(
             CallingPartyNumberCapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CallingPartyNumberCapImpl callingPartyNumber)
                 throws XMLStreamException {
             try {
@@ -229,7 +217,6 @@ public class CallingPartyNumberCapImpl implements CallingPartyNumberCap, CAPAsnP
             }
         }
 
-        @Override
         public void write(CallingPartyNumberCapImpl callingPartyNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

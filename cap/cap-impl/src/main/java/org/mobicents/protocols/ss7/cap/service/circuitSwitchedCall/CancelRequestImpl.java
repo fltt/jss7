@@ -75,32 +75,26 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
         this.callSegmentToCancel = callSegmentToCancel;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.cancel_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.cancelCode;
     }
 
-    @Override
     public Integer getInvokeID() {
         return invokeID;
     }
 
-    @Override
     public boolean getAllRequests() {
         return allRequests;
     }
 
-    @Override
     public CallSegmentToCancel getCallSegmentToCancel() {
         return callSegmentToCancel;
     }
 
-    @Override
     public int getTag() throws CAPException {
 
         if (this.invokeID != null) {
@@ -114,12 +108,10 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.callSegmentToCancel != null)
             return false;
@@ -127,7 +119,6 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
             return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -142,7 +133,6 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -184,12 +174,10 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -202,7 +190,6 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         int choiceCnt = 0;
@@ -229,7 +216,6 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -259,7 +245,6 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
     protected static final XMLFormat<CancelRequestImpl> CANCEL_REQUEST_XML = new XMLFormat<CancelRequestImpl>(
             CancelRequestImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CancelRequestImpl cancelRequest) throws XMLStreamException {
             CIRCUIT_SWITCHED_CALL_MESSAGE_XML.read(xml, cancelRequest);
             cancelRequest.invokeID = xml.get(INVOKE_ID, Integer.class);
@@ -269,7 +254,6 @@ public class CancelRequestImpl extends CircuitSwitchedCallMessageImpl implements
             cancelRequest.callSegmentToCancel = xml.get(CALL_SEGMENT_TO_CANCEL, CallSegmentToCancelImpl.class);
         }
 
-        @Override
         public void write(CancelRequestImpl cancelRequest, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

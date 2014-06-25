@@ -248,7 +248,6 @@ public class USSDStringImpl extends OctetStringBase implements USSDString {
         return res;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

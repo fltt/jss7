@@ -57,27 +57,22 @@ public class ReceivingSideIDImpl implements ReceivingSideID, CAPAsnPrimitive {
         this.receivingSideID = receivingSideID;
     }
 
-    @Override
     public LegType getReceivingSideID() {
         return receivingSideID;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return _ID_receivingSideID;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -95,7 +90,6 @@ public class ReceivingSideIDImpl implements ReceivingSideID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -130,12 +124,10 @@ public class ReceivingSideIDImpl implements ReceivingSideID, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -148,7 +140,6 @@ public class ReceivingSideIDImpl implements ReceivingSideID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.receivingSideID == null)
@@ -161,7 +152,6 @@ public class ReceivingSideIDImpl implements ReceivingSideID, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -184,13 +174,11 @@ public class ReceivingSideIDImpl implements ReceivingSideID, CAPAsnPrimitive {
     protected static final XMLFormat<ReceivingSideIDImpl> RECEIVING_SIDE_ID_XML = new XMLFormat<ReceivingSideIDImpl>(
             ReceivingSideIDImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ReceivingSideIDImpl receivingSideID)
                 throws XMLStreamException {
             receivingSideID.receivingSideID = LegType.getInstance(xml.get(RECEIVING_SIDE_ID, Integer.class));
         }
 
-        @Override
         public void write(ReceivingSideIDImpl receivingSideID, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.add(receivingSideID.receivingSideID.getCode(), RECEIVING_SIDE_ID, Integer.class);

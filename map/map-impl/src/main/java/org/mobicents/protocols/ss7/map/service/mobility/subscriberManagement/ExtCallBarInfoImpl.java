@@ -210,7 +210,6 @@ public class ExtCallBarInfoImpl extends SequenceBase implements ExtCallBarInfo {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

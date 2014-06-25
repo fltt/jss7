@@ -31,19 +31,16 @@ import org.mobicents.protocols.ss7.isup.message.parameter.ChargedPartyIdentifica
 public class ChargedPartyIdentificationImpl extends AbstractISUPParameter implements ChargedPartyIdentification {
 
   //FIXME: XXX
-    @Override
     public int getCode() {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    @Override
     public int decode(byte[] b) throws ParameterException {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    @Override
     public byte[] encode() throws ParameterException {
         // TODO Auto-generated method stub
         return null;

@@ -71,12 +71,10 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public CallingPartyCategory getCallingPartyCategory() throws INAPException {
         if (this.data == null)
             throw new INAPException("The data has not been filled");
@@ -90,22 +88,18 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
         }
     }
 
-    @Override
     public int getTag() throws INAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws INAPParsingComponentException {
 
         try {
@@ -120,7 +114,6 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws INAPParsingComponentException {
 
         try {
@@ -143,12 +136,10 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
                     INAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws INAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws INAPException {
 
         try {
@@ -161,7 +152,6 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws INAPException {
 
         if (this.data == null)
@@ -172,7 +162,6 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -211,7 +200,6 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
     protected static final XMLFormat<CallingPartysCategoryInapImpl> CALLING_PARTYS_CATEGORY_INAP_XML = new XMLFormat<CallingPartysCategoryInapImpl>(
             CallingPartysCategoryInapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CallingPartysCategoryInapImpl callingPartysCategory)
                 throws XMLStreamException {
             try {
@@ -222,7 +210,6 @@ public class CallingPartysCategoryInapImpl implements CallingPartysCategoryInap,
             }
         }
 
-        @Override
         public void write(CallingPartysCategoryInapImpl callingPartysCategory, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

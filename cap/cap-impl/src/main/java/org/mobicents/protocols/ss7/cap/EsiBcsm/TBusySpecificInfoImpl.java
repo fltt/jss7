@@ -73,22 +73,18 @@ public class TBusySpecificInfoImpl extends SequenceBase implements TBusySpecific
         this.forwardingDestinationNumber = forwardingDestinationNumber;
     }
 
-    @Override
     public CauseCap getBusyCause() {
         return busyCause;
     }
 
-    @Override
     public boolean getCallForwarded() {
         return callForwarded;
     }
 
-    @Override
     public boolean getRouteNotPermitted() {
         return routeNotPermitted;
     }
 
-    @Override
     public CalledPartyNumberCap getForwardingDestinationNumber() {
         return forwardingDestinationNumber;
     }
@@ -137,7 +133,6 @@ public class TBusySpecificInfoImpl extends SequenceBase implements TBusySpecific
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -157,7 +152,6 @@ public class TBusySpecificInfoImpl extends SequenceBase implements TBusySpecific
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -192,7 +186,6 @@ public class TBusySpecificInfoImpl extends SequenceBase implements TBusySpecific
     protected static final XMLFormat<TBusySpecificInfoImpl> T_BUSY_SPECIFIC_INFO = new XMLFormat<TBusySpecificInfoImpl>(
             TBusySpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TBusySpecificInfoImpl tBusySpecificInfo)
                 throws XMLStreamException {
             tBusySpecificInfo.busyCause = xml.get(BUSY_CAUSE, CauseCapImpl.class);
@@ -208,7 +201,6 @@ public class TBusySpecificInfoImpl extends SequenceBase implements TBusySpecific
                     CalledPartyNumberCapImpl.class);
         }
 
-        @Override
         public void write(TBusySpecificInfoImpl tBusySpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (tBusySpecificInfo.busyCause != null) {

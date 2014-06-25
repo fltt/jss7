@@ -40,7 +40,6 @@ public class DeregistrationResponseImpl extends M3UAMessageImpl implements Dereg
         super(MessageClass.ROUTING_KEY_MANAGEMENT, MessageType.DEREG_RESPONSE, MessageType.S_DEREG_RESPONSE);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         ((ParameterImpl) parameters.get(Parameter.Deregistration_Result)).write(buffer);
     }

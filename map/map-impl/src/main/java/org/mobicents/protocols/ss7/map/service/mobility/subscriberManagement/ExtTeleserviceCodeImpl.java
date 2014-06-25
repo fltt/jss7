@@ -65,7 +65,6 @@ public class ExtTeleserviceCodeImpl extends OctetStringBase implements ExtTelese
             return TeleserviceCodeValue.getInstance(this.data[0]);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);
@@ -94,7 +93,6 @@ public class ExtTeleserviceCodeImpl extends OctetStringBase implements ExtTelese
     protected static final XMLFormat<ExtTeleserviceCodeImpl> EXT_BEARER_SERVICE_CODE_XML = new XMLFormat<ExtTeleserviceCodeImpl>(
             ExtTeleserviceCodeImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ExtTeleserviceCodeImpl extTeleserviceCode)
                 throws XMLStreamException {
             String val = xml.getAttribute(TELE_SERVICE_CODE_VALUE, DEFAULT_STRING_VALUE);
@@ -108,7 +106,6 @@ public class ExtTeleserviceCodeImpl extends OctetStringBase implements ExtTelese
             // }
         }
 
-        @Override
         public void write(ExtTeleserviceCodeImpl extTeleserviceCode, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             TeleserviceCodeValue val = extTeleserviceCode.getTeleserviceCodeValue();

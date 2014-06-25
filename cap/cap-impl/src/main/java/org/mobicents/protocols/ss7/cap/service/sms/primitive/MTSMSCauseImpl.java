@@ -36,7 +36,6 @@ public class MTSMSCauseImpl extends OctetStringLength1Base implements MTSMSCause
         super("MTSMSCause", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }

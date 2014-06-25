@@ -228,7 +228,6 @@ public class MAPErrorMessageAbsentSubscriberSMImpl extends MAPErrorMessageImpl i
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

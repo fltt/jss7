@@ -171,7 +171,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
         return data;
     }
 
-    @Override
     public TypeOfShape getTypeOfShape() {
         if (this.data == null || this.data.length != 8)
             return null;
@@ -179,7 +178,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
         return TypeOfShape.getInstance((this.data[0] & 0xFF) >> 4);
     }
 
-    @Override
     public double getLatitude() {
         if (this.data == null || this.data.length != 8)
             return 0;
@@ -187,7 +185,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
         return decodeLatitude(this.data, 1);
     }
 
-    @Override
     public double getLongitude() {
         if (this.data == null || this.data.length != 8)
             return 0;
@@ -195,7 +192,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
         return decodeLongitude(this.data, 4);
     }
 
-    @Override
     public double getUncertainty() {
         if (this.data == null || this.data.length != 8)
             return 0;
@@ -203,7 +199,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
         return decodeUncertainty(this.data[7]);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -232,7 +227,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
     protected static final XMLFormat<GeographicalInformationImpl> GEOGRAPHICAL_INFORMATION_XML = new XMLFormat<GeographicalInformationImpl>(
             GeographicalInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, GeographicalInformationImpl geographicalInformation)
                 throws XMLStreamException {
             String str = xml.getAttribute(TYPE_OF_SHAPE, DEFAULT_STRING_VALUE);
@@ -251,7 +245,6 @@ public class GeographicalInformationImpl extends OctetStringBase implements Geog
             }
         }
 
-        @Override
         public void write(GeographicalInformationImpl geographicalInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (geographicalInformation.getTypeOfShape() != null) {

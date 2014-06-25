@@ -62,7 +62,6 @@ public class M3UACommandHandler extends CommandHandlerWithHelp {
      *
      * @see org.mobicents.ss7.management.console.CommandHandler#isValid(java.lang .String)
      */
-    @Override
     public void handle(CommandContext ctx, String commandLine) {
         // TODO Validate command
 
@@ -80,7 +79,6 @@ public class M3UACommandHandler extends CommandHandlerWithHelp {
      * @see org.mobicents.ss7.management.console.CommandHandler#isAvailable(org.mobicents
      * .ss7.management.console.CommandContext)
      */
-    @Override
     public boolean isAvailable(CommandContext ctx) {
         if (!ctx.isControllerConnected()) {
             ctx.printLine("The command is not available in the current context. Please connnect first");

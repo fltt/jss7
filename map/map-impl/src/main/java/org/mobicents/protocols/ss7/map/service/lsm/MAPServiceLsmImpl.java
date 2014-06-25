@@ -115,7 +115,6 @@ public class MAPServiceLsmImpl extends MAPServiceBaseImpl implements MAPServiceL
      * @see org.mobicents.protocols.ss7.map.MAPServiceBaseImpl#createNewDialogIncoming
      * (org.mobicents.protocols.ss7.map.api.MAPApplicationContext, org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog)
      */
-    @Override
     protected MAPDialogImpl createNewDialogIncoming(MAPApplicationContext appCntx, Dialog tcapDialog) {
         return new MAPDialogLsmImpl(appCntx, tcapDialog, this.mapProviderImpl, this, null, null);
     }
@@ -156,7 +155,6 @@ public class MAPServiceLsmImpl extends MAPServiceBaseImpl implements MAPServiceL
      * org.mobicents.protocols.ss7.tcap.asn.comp.Parameter, org.mobicents.protocols.ss7.map.api.MAPDialog, java.lang.Long,
      * java.lang.Long)
      */
-    @Override
     public void processComponent(ComponentType compType, OperationCode oc, Parameter parameter, MAPDialog mapDialog,
             Long invokeId, Long linkedId, Invoke linkedInvoke) throws MAPParsingComponentException {
 

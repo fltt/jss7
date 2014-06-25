@@ -76,7 +76,6 @@ public class ForwardShortMessageResponseImpl extends SmsMessageImpl implements F
         throw new MAPException("ForwardShortMessageResponseIndication has no MAP message primitive");
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ForwardShortMessageResponse [");

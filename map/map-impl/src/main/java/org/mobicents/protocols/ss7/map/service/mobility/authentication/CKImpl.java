@@ -37,7 +37,6 @@ public class CKImpl extends OctetStringBase implements CK {
         super(16, 16, "CK");
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }

@@ -49,7 +49,6 @@ public class RegistrationStatusImpl extends ParameterImpl implements Registratio
         this.status = status;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = (byte) (status >>> 24);
@@ -64,7 +63,6 @@ public class RegistrationStatusImpl extends ParameterImpl implements Registratio
         return this.status;
     }
 
-    @Override
     public String toString() {
         return String.format("RegistrationStatus status=%d", status);
     }

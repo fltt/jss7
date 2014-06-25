@@ -307,81 +307,66 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         return needQuit;
     }
 
-    @Override
     public boolean isStarted() {
         return isStarted;
     }
 
-    @Override
     public Instance_L1 getInstance_L1() {
         return configurationData.getInstance_L1();
     }
 
-    @Override
     public void setInstance_L1(Instance_L1 val) {
         configurationData.setInstance_L1(val);
         this.markStore();
     }
 
-    @Override
     public Instance_L2 getInstance_L2() {
         return configurationData.getInstance_L2();
     }
 
-    @Override
     public void setInstance_L2(Instance_L2 val) {
         configurationData.setInstance_L2(val);
         this.markStore();
     }
 
-    @Override
     public Instance_L3 getInstance_L3() {
         return configurationData.getInstance_L3();
     }
 
-    @Override
     public void setInstance_L3(Instance_L3 val) {
         configurationData.setInstance_L3(val);
         this.markStore();
     }
 
-    @Override
     public Instance_TestTask getInstance_TestTask() {
         return configurationData.getInstance_TestTask();
     }
 
-    @Override
     public void setInstance_TestTask(Instance_TestTask val) {
         configurationData.setInstance_TestTask(val);
         this.markStore();
     }
 
-    @Override
     public String getInstance_L1_Value() {
         return configurationData.getInstance_L1().toString();
     }
 
-    @Override
     public String getInstance_L2_Value() {
         return configurationData.getInstance_L2().toString();
     }
 
-    @Override
     public String getInstance_L3_Value() {
         return configurationData.getInstance_L3().toString();
     }
 
-    @Override
     public String getInstance_TestTask_Value() {
         return configurationData.getInstance_TestTask().toString();
     }
 
-    @Override
     public String getState() {
         return TesterHost.SOURCE_NAME + ": " + (this.isStarted() ? "Started" : "Stopped");
     }
 
-    @Override
     public String getL1State() {
         if (this.instance_L1_B != null)
             return this.instance_L1_B.getState();
@@ -389,7 +374,6 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
             return "";
     }
 
-    @Override
     public String getL2State() {
         if (this.instance_L2_B != null)
             return this.instance_L2_B.getState();
@@ -397,7 +381,6 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
             return "";
     }
 
-    @Override
     public String getL3State() {
         if (this.instance_L3_B != null)
             return this.instance_L3_B.getState();
@@ -405,7 +388,6 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
             return "";
     }
 
-    @Override
     public String getTestTaskState() {
         if (this.instance_TestTask_B != null)
             return this.instance_TestTask_B.getState();
@@ -413,7 +395,6 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
             return "";
     }
 
-    @Override
     public void start() {
 
         this.store();
@@ -607,7 +588,6 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         this.isStarted = true;
     }
 
-    @Override
     public void stop() {
 
         this.isStarted = false;
@@ -637,7 +617,6 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         }
     }
 
-    @Override
     public void execute() {
         if (this.instance_L1_B != null) {
             this.instance_L1_B.execute();
@@ -653,35 +632,30 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         }
     }
 
-    @Override
     public void quit() {
         this.stop();
         this.store();
         this.needQuit = true;
     }
 
-    @Override
     public void putInstance_L1Value(String val) {
         Instance_L1 x = Instance_L1.createInstance(val);
         if (x != null)
             this.setInstance_L1(x);
     }
 
-    @Override
     public void putInstance_L2Value(String val) {
         Instance_L2 x = Instance_L2.createInstance(val);
         if (x != null)
             this.setInstance_L2(x);
     }
 
-    @Override
     public void putInstance_L3Value(String val) {
         Instance_L3 x = Instance_L3.createInstance(val);
         if (x != null)
             this.setInstance_L3(x);
     }
 
-    @Override
     public void putInstance_TestTaskValue(String val) {
         Instance_TestTask x = Instance_TestTask.createInstance(val);
         if (x != null)

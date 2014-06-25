@@ -69,42 +69,34 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
         this.extensions = extensions;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.requestReportBCSMEvent_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.requestReportBCSMEvent;
     }
 
-    @Override
     public ArrayList<BCSMEvent> getBCSMEventList() {
         return bcsmEventList;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -122,7 +114,6 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -194,12 +185,10 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -212,7 +201,6 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.bcsmEventList == null)
@@ -237,7 +225,6 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -272,7 +259,6 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
     protected static final XMLFormat<RequestReportBCSMEventRequestImpl> REQUEST_REPORT_BCSM_EVENT_REQUEST_XML = new XMLFormat<RequestReportBCSMEventRequestImpl>(
             RequestReportBCSMEventRequestImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml,
                 RequestReportBCSMEventRequestImpl requestReportBCSMEventRequest) throws XMLStreamException {
             CIRCUIT_SWITCHED_CALL_MESSAGE_XML.read(xml, requestReportBCSMEventRequest);
@@ -286,7 +272,6 @@ public class RequestReportBCSMEventRequestImpl extends CircuitSwitchedCallMessag
             requestReportBCSMEventRequest.extensions = xml.get(EXTENSIONS, CAPExtensionsImpl.class);
         }
 
-        @Override
         public void write(RequestReportBCSMEventRequestImpl requestReportBCSMEventRequest,
                 javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             CIRCUIT_SWITCHED_CALL_MESSAGE_XML.write(requestReportBCSMEventRequest, xml);

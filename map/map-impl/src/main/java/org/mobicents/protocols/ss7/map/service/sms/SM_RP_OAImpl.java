@@ -180,7 +180,6 @@ public class SM_RP_OAImpl implements SM_RP_OA, MAPAsnPrimitive {
             asnOs.writeNullData();
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

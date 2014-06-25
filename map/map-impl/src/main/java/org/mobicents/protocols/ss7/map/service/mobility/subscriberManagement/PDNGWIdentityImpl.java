@@ -64,27 +64,22 @@ public class PDNGWIdentityImpl extends SequenceBase implements PDNGWIdentity {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public PDPAddress getPdnGwIpv4Address() {
         return this.pdnGwIpv4Address;
     }
 
-    @Override
     public PDPAddress getPdnGwIpv6Address() {
         return this.pdnGwIpv6Address;
     }
 
-    @Override
     public FQDN getPdnGwName() {
         return this.pdnGwName;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.pdnGwIpv4Address = null;
@@ -149,7 +144,6 @@ public class PDNGWIdentityImpl extends SequenceBase implements PDNGWIdentity {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.pdnGwIpv4Address != null)
@@ -167,7 +161,6 @@ public class PDNGWIdentityImpl extends SequenceBase implements PDNGWIdentity {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

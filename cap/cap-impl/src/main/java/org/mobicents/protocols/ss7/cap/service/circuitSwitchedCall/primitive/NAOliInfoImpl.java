@@ -42,7 +42,6 @@ public class NAOliInfoImpl extends OctetStringLength1Base implements NAOliInfo {
         super("NAOliInfo", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }
@@ -52,12 +51,10 @@ public class NAOliInfoImpl extends OctetStringLength1Base implements NAOliInfo {
      */
     protected static final XMLFormat<NAOliInfoImpl> NA_OLI_INFO_XML = new XMLFormat<NAOliInfoImpl>(NAOliInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, NAOliInfoImpl naOliInfo) throws XMLStreamException {
             naOliInfo.data = xml.getAttribute(VALUE, 0);
         }
 
-        @Override
         public void write(NAOliInfoImpl naOliInfo, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(VALUE, naOliInfo.data);
         }

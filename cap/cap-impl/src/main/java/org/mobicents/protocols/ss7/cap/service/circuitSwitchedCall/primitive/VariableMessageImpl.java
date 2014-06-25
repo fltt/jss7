@@ -56,32 +56,26 @@ public class VariableMessageImpl implements VariableMessage, CAPAsnPrimitive {
         this.variableParts = variableParts;
     }
 
-    @Override
     public int getElementaryMessageID() {
         return elementaryMessageID;
     }
 
-    @Override
     public ArrayList<VariablePart> getVariableParts() {
         return variableParts;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -96,7 +90,6 @@ public class VariableMessageImpl implements VariableMessage, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -159,12 +152,10 @@ public class VariableMessageImpl implements VariableMessage, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -177,7 +168,6 @@ public class VariableMessageImpl implements VariableMessage, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.variableParts == null)
@@ -206,7 +196,6 @@ public class VariableMessageImpl implements VariableMessage, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

@@ -58,22 +58,18 @@ public class CCBSIndicatorsImpl extends SequenceBase implements CCBSIndicators {
         this.mapExtensionContainer = mapExtensionContainer;
     }
 
-    @Override
     public boolean getCCBSPossible() {
         return this.ccbsPossible;
     }
 
-    @Override
     public boolean getKeepCCBSCallIndicator() {
         return this.keepCCBSCallIndicator;
     }
 
-    @Override
     public MAPExtensionContainer getMAPExtensionContainer() {
         return this.mapExtensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.ccbsPossible = false;
@@ -128,7 +124,6 @@ public class CCBSIndicatorsImpl extends SequenceBase implements CCBSIndicators {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -149,7 +144,6 @@ public class CCBSIndicatorsImpl extends SequenceBase implements CCBSIndicators {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

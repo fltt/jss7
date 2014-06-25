@@ -247,7 +247,6 @@ public class CUGInfoImpl extends SequenceBase implements CUGInfo {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

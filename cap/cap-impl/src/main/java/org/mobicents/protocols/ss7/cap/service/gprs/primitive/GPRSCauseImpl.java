@@ -36,7 +36,6 @@ public class GPRSCauseImpl extends OctetStringLength1Base implements GPRSCause {
         super("GPRSCause", data);
     }
 
-    @Override
     public int getData() {
         return data;
     }

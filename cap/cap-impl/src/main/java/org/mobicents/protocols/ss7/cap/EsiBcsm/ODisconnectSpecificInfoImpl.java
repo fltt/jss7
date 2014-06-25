@@ -58,7 +58,6 @@ public class ODisconnectSpecificInfoImpl extends SequenceBase implements ODiscon
         this.releaseCause = releaseCause;
     }
 
-    @Override
     public CauseCap getReleaseCause() {
         return releaseCause;
     }
@@ -92,14 +91,12 @@ public class ODisconnectSpecificInfoImpl extends SequenceBase implements ODiscon
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.releaseCause != null) {
             ((CauseCapImpl) this.releaseCause).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _ID_releaseCause);
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -121,13 +118,11 @@ public class ODisconnectSpecificInfoImpl extends SequenceBase implements ODiscon
     protected static final XMLFormat<ODisconnectSpecificInfoImpl> O_DISCONNECT_SPECIFIC_INFO_XML = new XMLFormat<ODisconnectSpecificInfoImpl>(
             ODisconnectSpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ODisconnectSpecificInfoImpl oDisconnectSpecificInfo)
                 throws XMLStreamException {
             oDisconnectSpecificInfo.releaseCause = xml.get(RELEASE_CAUSE, CauseCapImpl.class);
         }
 
-        @Override
         public void write(ODisconnectSpecificInfoImpl oDisconnectSpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

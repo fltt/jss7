@@ -81,7 +81,6 @@ public class DestinationAvailableImpl extends M3UAMessageImpl implements Destina
         }
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Network_Appearance)) {
             ((ParameterImpl) parameters.get(Parameter.Network_Appearance)).write(buffer);

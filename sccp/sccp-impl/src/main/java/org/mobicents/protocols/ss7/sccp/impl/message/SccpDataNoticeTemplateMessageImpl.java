@@ -78,7 +78,6 @@ public abstract class SccpDataNoticeTemplateMessageImpl extends SccpSegmentableM
 
     protected abstract void setSecondParamaterData(int data) throws IOException;
 
-    @Override
     public void decode(InputStream in) throws IOException {
         switch (this.type) {
             case SccpMessage.MESSAGE_TYPE_UDT:
@@ -272,7 +271,6 @@ public abstract class SccpDataNoticeTemplateMessageImpl extends SccpSegmentableM
         }
     }
 
-    @Override
     public EncodingResultData encode(LongMessageRuleType longMessageRuleType, int maxMtp3UserDataLength, Logger logger)
             throws IOException {
 

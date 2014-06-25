@@ -412,7 +412,6 @@ public class LocationInformationImpl extends SequenceBase implements LocationInf
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("LocationInformation [");
@@ -480,7 +479,6 @@ public class LocationInformationImpl extends SequenceBase implements LocationInf
     protected static final XMLFormat<LocationInformationImpl> LOCATION_INFORMATION_XML = new XMLFormat<LocationInformationImpl>(
             LocationInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LocationInformationImpl locationInformation)
                 throws XMLStreamException {
             locationInformation.ageOfLocationInformation = xml.get(AGE_OF_LOCATION_INFORMATION, Integer.class);
@@ -505,7 +503,6 @@ public class LocationInformationImpl extends SequenceBase implements LocationInf
             locationInformation.userCSGInformation = xml.get(USER_CSG_INFORMATION, UserCSGInformationImpl.class);
         }
 
-        @Override
         public void write(LocationInformationImpl locationInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (locationInformation.ageOfLocationInformation != null) {

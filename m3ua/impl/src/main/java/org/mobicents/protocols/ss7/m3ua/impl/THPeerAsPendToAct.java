@@ -49,7 +49,6 @@ public class THPeerAsPendToAct implements TransitionHandler {
      * @see org.mobicents.protocols.ss7.m3ua.impl.fsm.TransitionHandler#process(org
      * .mobicents.protocols.ss7.m3ua.impl.fsm.State)
      */
-    @Override
     public boolean process(FSMState state) {
 
         // Send the PayloadData (if any) from pending queue to other side

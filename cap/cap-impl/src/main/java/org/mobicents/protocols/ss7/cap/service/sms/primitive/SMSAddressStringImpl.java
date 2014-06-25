@@ -53,7 +53,6 @@ public class SMSAddressStringImpl extends AddressStringImpl implements SMSAddres
         super(addressNature, numberingPlan, address);
     }
 
-    @Override
     protected void _testLengthDecode(int length) throws MAPParsingComponentException {
         if (length > 11)
             throw new MAPParsingComponentException(
@@ -61,14 +60,12 @@ public class SMSAddressStringImpl extends AddressStringImpl implements SMSAddres
                     MAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     protected void _testLengthEncode() throws MAPException {
 
         if (this.address == null && this.address.length() > 28)
             throw new MAPException("Error when encoding SMSAddressString: address length must not exceed 28 digits");
     }
 
-    @Override
     protected void _decode(AsnInputStream ansIS, int length) throws MAPParsingComponentException, IOException {
         int pos = ansIS.position();
         int nature = ansIS.read();
@@ -103,7 +100,6 @@ public class SMSAddressStringImpl extends AddressStringImpl implements SMSAddres
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.addressNature == AddressNature.reserved) {
             int tpOfAddr = 0x80 + (this.addressNature.getIndicator() << 4) + this.numberingPlan.getIndicator();
@@ -127,7 +123,6 @@ public class SMSAddressStringImpl extends AddressStringImpl implements SMSAddres
         }
     }
 
-    @Override
     public String toString() {
         return "SMSAddressString [AddressNature=" + this.addressNature.toString() + ", NumberingPlan="
                 + this.numberingPlan.toString() + ", Address=" + this.address + "]";

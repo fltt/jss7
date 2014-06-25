@@ -63,7 +63,6 @@ public class ISUPTimeoutEvent extends EventObject implements ISUPTimeout {
         return dpc;
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -77,7 +76,6 @@ public class ISUPTimeoutEvent extends EventObject implements ISUPTimeout {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -109,7 +107,6 @@ public class ISUPTimeoutEvent extends EventObject implements ISUPTimeout {
         return true;
     }
 
-    @Override
     public String toString() {
         return "ISUPTimeoutEvent [message=" + message + ", timerId=" + timerId + "]";
     }

@@ -515,25 +515,21 @@ public class PreviewModeFunctionalTest {
 
     private class SccpHarnessPreview implements SccpProvider {
 
-        @Override
         public void deregisterSccpListener(int arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public int getMaxUserDataLength(SccpAddress arg0, SccpAddress arg1) {
             // TODO Auto-generated method stub
             return 0;
         }
 
-        @Override
         public MessageFactory getMessageFactory() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public ParameterFactory getParameterFactory() {
             // TODO Auto-generated method stub
             return null;
@@ -541,25 +537,21 @@ public class PreviewModeFunctionalTest {
 
         protected SccpListener sccpListener;
 
-        @Override
         public void registerSccpListener(int arg0, SccpListener listener) {
             sccpListener = listener;
         }
 
-        @Override
         public void send(SccpDataMessage msg) throws IOException {
             // we check here that no messages go from TCAP previewMode
 
             fail("No message must go from TCAP previewMode");
         }
 
-        @Override
         public void registerManagementEventListener(SccpManagementEventListener listener) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void deregisterManagementEventListener(SccpManagementEventListener listener) {
             // TODO Auto-generated method stub
 
@@ -602,7 +594,6 @@ public class PreviewModeFunctionalTest {
             }
         }
 
-        @Override
         public void onTCUni(TCUniIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.Uni, ind, sequence++);
             observerdEvents.add(te);
@@ -610,7 +601,6 @@ public class PreviewModeFunctionalTest {
             opComponents(ind.getComponents());
         }
 
-        @Override
         public void onTCQuery(TCQueryIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.Begin, ind, sequence++);
             observerdEvents.add(te);
@@ -618,7 +608,6 @@ public class PreviewModeFunctionalTest {
             opComponents(ind.getComponents());
         }
 
-        @Override
         public void onTCConversation(TCConversationIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.Continue, ind, sequence++);
             observerdEvents.add(te);
@@ -626,7 +615,6 @@ public class PreviewModeFunctionalTest {
             opComponents(ind.getComponents());
         }
 
-        @Override
         public void onTCResponse(TCResponseIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.End, ind, sequence++);
             observerdEvents.add(te);
@@ -634,37 +622,31 @@ public class PreviewModeFunctionalTest {
             opComponents(ind.getComponents());
         }
 
-        @Override
         public void onTCUserAbort(TCUserAbortIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.UAbort, ind, sequence++);
             observerdEvents.add(te);
         }
 
-        @Override
         public void onTCPAbort(TCPAbortIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.PAbort, ind, sequence++);
             observerdEvents.add(te);
         }
 
-        @Override
         public void onTCNotice(TCNoticeIndication ind) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.Notice, ind, sequence++);
             observerdEvents.add(te);
         }
 
-        @Override
         public void onDialogReleased(Dialog d) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.DialogRelease, d, sequence++);
             observerdEvents.add(te);
         }
 
-        @Override
         public void onInvokeTimeout(Invoke tcInvokeRequest) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.InvokeTimeout, tcInvokeRequest, sequence++);
             observerdEvents.add(te);
         }
 
-        @Override
         public void onDialogTimeout(Dialog d) {
             TestEvent te = TestEvent.createReceivedEvent(EventType.DialogTimeout, d, sequence++);
             observerdEvents.add(te);

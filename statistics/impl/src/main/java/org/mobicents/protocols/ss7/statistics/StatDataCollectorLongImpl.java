@@ -54,12 +54,10 @@ public abstract class StatDataCollectorLongImpl extends StatDataCollectorAbstrac
             this.val = val;
         }
 
-        @Override
         public long getLongValue() {
             return val;
         }
 
-        @Override
         public FastMap<String, LongValue> getStringLongValue() {
             return null;
         }

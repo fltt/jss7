@@ -33,7 +33,6 @@ public class TraceReaderDriverPcap extends TraceReaderDriverBase implements Trac
         super(processControl, fileName);
     }
 
-    @Override
     public void startTraceFile() throws TraceReaderException {
 
         if (this.listeners.size() == 0)

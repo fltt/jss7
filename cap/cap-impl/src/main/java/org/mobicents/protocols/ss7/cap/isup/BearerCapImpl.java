@@ -72,12 +72,10 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public UserServiceInformation getUserServiceInformation() throws CAPException {
         if (this.data == null)
             throw new CAPException("The data has not been filled");
@@ -91,22 +89,18 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -124,7 +118,6 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -151,12 +144,10 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -169,7 +160,6 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -180,7 +170,6 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -218,7 +207,6 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
      */
     protected static final XMLFormat<BearerCapImpl> BEARER_CAP_XML = new XMLFormat<BearerCapImpl>(BearerCapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, BearerCapImpl bearerCap) throws XMLStreamException {
             try {
                 bearerCap.setUserServiceInformation(xml.get(USER_SERVICE_INFORMATION_XML, UserServiceInformationImpl.class));
@@ -227,7 +215,6 @@ public class BearerCapImpl implements BearerCap, CAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(BearerCapImpl bearerCap, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             try {
                 xml.add(((UserServiceInformationImpl) bearerCap.getUserServiceInformation()), USER_SERVICE_INFORMATION_XML,

@@ -37,7 +37,6 @@ public class MMCodeImpl extends OctetStringLength1Base implements MMCode {
         super("MMCode", value != null ? value.getCode() : 0);
     }
 
-    @Override
     public MMCodeValue getMMCodeValue() {
         return MMCodeValue.getInstance(data & 0xFF);
     }

@@ -241,7 +241,6 @@ public class SendAuthenticationInfoResponseImpl extends MobilityMessageImpl impl
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("SendAuthenticationInfoResponse [");

@@ -69,7 +69,6 @@ public class OctetStringBase implements CAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -135,7 +134,6 @@ public class OctetStringBase implements CAPAsnPrimitive {
         asnOs.write(this.data);
     }
 
-    @Override
     public int hashCode() {
         if (data == null)
             return 0;
@@ -146,7 +144,6 @@ public class OctetStringBase implements CAPAsnPrimitive {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -163,7 +160,6 @@ public class OctetStringBase implements CAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public String toString() {
         return _PrimitiveName + " [Data= " + this.printDataArr() + "]";
     }

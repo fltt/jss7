@@ -281,7 +281,6 @@ public class UserTeleserviceInformationImpl extends AbstractISUPParameter implem
     protected static final XMLFormat<UserTeleserviceInformationImpl> ISUP_USER_TELESERVICE_INFORMATION_XML = new XMLFormat<UserTeleserviceInformationImpl>(
             UserTeleserviceInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, UserTeleserviceInformationImpl userTeleserviceInformation)
                 throws XMLStreamException {
             userTeleserviceInformation.codingStandard = xml.getAttribute(CODING_STANDARD, DEFAULT_INT_VALUE);
@@ -299,7 +298,6 @@ public class UserTeleserviceInformationImpl extends AbstractISUPParameter implem
                 userTeleserviceInformation.setEVideoTelephonyCharIdentification(val);
         }
 
-        @Override
         public void write(UserTeleserviceInformationImpl userTeleserviceInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(CODING_STANDARD, userTeleserviceInformation.codingStandard);

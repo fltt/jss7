@@ -139,62 +139,50 @@ public class SegmentationMessageImpl extends ISUPMessageImpl implements Segmenta
         return _OPTIONAL_POSSIBLE;
     }
 
-    @Override
     public void setAccessTransport(AccessTransport at) {
         super.o_Parameters.put(_INDEX_O_AccessTransport, at);
     }
 
-    @Override
     public AccessTransport getAccessTransport() {
         return (AccessTransport) super.o_Parameters.get(_INDEX_O_AccessTransport);
     }
 
-    @Override
     public void setUserToUserInformation(UserToUserInformation u2ui) {
         super.o_Parameters.put(_INDEX_O_UserToUserInformation, u2ui);
     }
 
-    @Override
     public UserToUserInformation getUserToUserInformation() {
         return (UserToUserInformation) super.o_Parameters.get(_INDEX_O_UserToUserInformation);
     }
 
-    @Override
     public void setMessageCompatibilityInformation(MessageCompatibilityInformation at) {
         super.o_Parameters.put(_INDEX_O_MessageCompatibilityInformation, at);
     }
 
-    @Override
     public MessageCompatibilityInformation getMessageCompatibilityInformation() {
         return (MessageCompatibilityInformation) super.o_Parameters.get(_INDEX_O_MessageCompatibilityInformation);
     }
 
-    @Override
     public void setGenericDigits(GenericDigits gd) {
         super.o_Parameters.put(_INDEX_O_GenericDigits, gd);
     }
 
-    @Override
     public GenericDigits getGenericDigits() {
         return (GenericDigits) super.o_Parameters.get(_INDEX_O_GenericDigits);
     }
 
-    @Override
     public void setGenericNotificationIndicator(GenericNotificationIndicator gni) {
         super.o_Parameters.put(_INDEX_O_GenericNotificationIndicator, gni);
     }
 
-    @Override
     public GenericNotificationIndicator getGenericNotificationIndicator() {
         return (GenericNotificationIndicator) super.o_Parameters.get(_INDEX_O_GenericNotificationIndicator);
     }
 
-    @Override
     public void setGenericNumber(GenericNumber gn) {
         super.o_Parameters.put(_INDEX_O_GenericNumber, gn);
     }
 
-    @Override
     public GenericNumber getGenericNumber() {
         return (GenericNumber) super.o_Parameters.get(_INDEX_O_GenericNumber);
     }

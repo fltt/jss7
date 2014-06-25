@@ -60,22 +60,18 @@ public class TBcsmCamelTdpCriteriaImpl extends SequenceBase implements TBcsmCame
         this.tCauseValueCriteria = tCauseValueCriteria;
     }
 
-    @Override
     public TBcsmTriggerDetectionPoint getTBcsmTriggerDetectionPoint() {
         return this.tBcsmTriggerDetectionPoint;
     }
 
-    @Override
     public ArrayList<ExtBasicServiceCode> getBasicServiceCriteria() {
         return this.basicServiceCriteria;
     }
 
-    @Override
     public ArrayList<CauseValue> getTCauseValueCriteria() {
         return this.tCauseValueCriteria;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
         this.tBcsmTriggerDetectionPoint = null;
         this.basicServiceCriteria = null;
@@ -185,7 +181,6 @@ public class TBcsmCamelTdpCriteriaImpl extends SequenceBase implements TBcsmCame
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.tBcsmTriggerDetectionPoint == null)
             throw new MAPException("Error while encoding " + _PrimitiveName + ": tBcsmTriggerDetectionPoint required.");
@@ -228,7 +223,6 @@ public class TBcsmCamelTdpCriteriaImpl extends SequenceBase implements TBcsmCame
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

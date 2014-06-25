@@ -38,31 +38,26 @@ public class SccpStackImplWrapper extends SccpStackImpl {
         this.logger = logger;
     }
 
-    @Override
     public void onMtp3PauseMessage(Mtp3PausePrimitive msg) {
         logger.warn("Mtp3PausePrimitive received: dpc=" + msg.getAffectedDpc());
         super.onMtp3PauseMessage(msg);
     }
 
-    @Override
     public void onMtp3ResumeMessage(Mtp3ResumePrimitive msg) {
         logger.warn("Mtp3ResumePrimitive received: dpc=" + msg.getAffectedDpc());
         super.onMtp3ResumeMessage(msg);
     }
 
-    @Override
     public void onMtp3StatusMessage(Mtp3StatusPrimitive msg) {
         logger.warn("Mtp3StatusPrimitive received");
         super.onMtp3StatusMessage(msg);
     }
 
-    @Override
     public void onMtp3TransferMessage(Mtp3TransferPrimitive mtp3Msg) {
         logger.warn("Mtp3TransferPrimitive received");
         super.onMtp3TransferMessage(mtp3Msg);
     }
 
-    @Override
     protected void send(SccpDataMessageImpl message) throws IOException {
         super.send(message);
         logger.warn("Sccp msg has sent");

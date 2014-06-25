@@ -37,7 +37,6 @@ public class CarrierImpl extends OctetStringBase implements Carrier {
         super(4, 4, "Carrier", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

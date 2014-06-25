@@ -64,27 +64,22 @@ public class LSADataImpl extends SequenceBase implements LSAData {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public LSAIdentity getLSAIdentity() {
         return this.lsaIdentity;
     }
 
-    @Override
     public LSAAttributes getLSAAttributes() {
         return this.lsaAttributes;
     }
 
-    @Override
     public boolean getLsaActiveModeIndicator() {
         return this.lsaActiveModeIndicator;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.lsaIdentity = null;
@@ -166,7 +161,6 @@ public class LSADataImpl extends SequenceBase implements LSAData {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.lsaIdentity == null)
@@ -195,7 +189,6 @@ public class LSADataImpl extends SequenceBase implements LSAData {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

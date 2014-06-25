@@ -179,7 +179,6 @@ public class CellGlobalIdOrServiceAreaIdFixedLengthImpl extends OctetStringBase 
         return res;
     }
 
-    @Override
     public String toString() {
 
         int mcc = 0;
@@ -224,7 +223,6 @@ public class CellGlobalIdOrServiceAreaIdFixedLengthImpl extends OctetStringBase 
     protected static final XMLFormat<CellGlobalIdOrServiceAreaIdFixedLengthImpl> CELL_GLOBAL_ID_OR_SERVICE_AREA_ID_FIXED_LENGTH_XML = new XMLFormat<CellGlobalIdOrServiceAreaIdFixedLengthImpl>(
             CellGlobalIdOrServiceAreaIdFixedLengthImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml,
                 CellGlobalIdOrServiceAreaIdFixedLengthImpl cellGlobalIdOrServiceAreaIdFixedLength) throws XMLStreamException {
             int mcc = xml.getAttribute(MCC, DEFAULT_INT_VALUE);
@@ -239,7 +237,6 @@ public class CellGlobalIdOrServiceAreaIdFixedLengthImpl extends OctetStringBase 
             }
         }
 
-        @Override
         public void write(CellGlobalIdOrServiceAreaIdFixedLengthImpl cellGlobalIdOrServiceAreaIdFixedLength,
                 javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             try {

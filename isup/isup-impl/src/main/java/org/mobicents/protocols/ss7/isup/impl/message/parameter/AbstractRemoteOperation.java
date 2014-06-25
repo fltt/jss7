@@ -36,7 +36,6 @@ public abstract class AbstractRemoteOperation extends AbstractAsnEncodable imple
         this.operationType = operationType;
     }
 
-    @Override
     public OperationType getType() {
         return this.operationType;
     }

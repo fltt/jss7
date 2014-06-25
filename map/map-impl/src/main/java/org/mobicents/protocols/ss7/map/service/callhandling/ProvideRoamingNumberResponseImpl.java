@@ -64,17 +64,14 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
         this.mapProtocolVersion = mapProtocolVersion;
     }
 
-    @Override
     public MAPMessageType getMessageType() {
         return MAPMessageType.privideRoamingNumber_Response;
     }
 
-    @Override
     public int getOperationCode() {
         return MAPOperationCode.provideRoamingNumber;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (this.mapProtocolVersion >= 3) {
             return Tag.SEQUENCE;
@@ -83,12 +80,10 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.mapProtocolVersion >= 3) {
             return false;
@@ -97,7 +92,6 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
         }
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -119,7 +113,6 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
 
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -192,7 +185,6 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         try {
             this.encodeAll(asnOs, this.getTagClass(), this.getTag());
@@ -204,7 +196,6 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -216,7 +207,6 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.roamingNumber == null)
@@ -249,32 +239,26 @@ public class ProvideRoamingNumberResponseImpl extends CallHandlingMessageImpl im
 
     }
 
-    @Override
     public ISDNAddressString getRoamingNumber() {
         return this.roamingNumber;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public boolean getReleaseResourcesSupported() {
         return this.releaseResourcesSupported;
     }
 
-    @Override
     public ISDNAddressString getVmscAddress() {
         return this.vmscAddress;
     }
 
-    @Override
     public long getMapProtocolVersion() {
         return this.mapProtocolVersion;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

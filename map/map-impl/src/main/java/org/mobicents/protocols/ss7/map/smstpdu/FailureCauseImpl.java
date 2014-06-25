@@ -38,7 +38,6 @@ public class FailureCauseImpl implements FailureCause {
         return this.code;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

@@ -91,7 +91,6 @@ public class RegistrationResultImpl extends ParameterImpl implements Registratio
         value = buffer.array();
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
@@ -108,7 +107,6 @@ public class RegistrationResultImpl extends ParameterImpl implements Registratio
         return this.rc;
     }
 
-    @Override
     public String toString() {
         TextBuilder tb = TextBuilder.newInstance();
         tb.append("RegistrationResult(");

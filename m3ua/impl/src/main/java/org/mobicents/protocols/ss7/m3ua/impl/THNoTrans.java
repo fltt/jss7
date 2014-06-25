@@ -32,7 +32,6 @@ public class THNoTrans implements TransitionHandler {
     public THNoTrans() {
     }
 
-    @Override
     public boolean process(FSMState state) {
         return false;
     }

@@ -49,7 +49,6 @@ public class Mtp3StatusPrimitive extends Mtp3Primitive {
         return this.congestionLevel;
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

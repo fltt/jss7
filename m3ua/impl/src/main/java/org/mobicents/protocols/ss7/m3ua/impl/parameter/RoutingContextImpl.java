@@ -91,12 +91,10 @@ public class RoutingContextImpl extends ParameterImpl implements RoutingContext,
         return this.rcs;
     }
 
-    @Override
     protected byte[] getValue() {
         return value;
     }
 
-    @Override
     public String toString() {
         return String.format("RoutingContext rc=%s", Arrays.toString(rcs));
     }
@@ -106,7 +104,6 @@ public class RoutingContextImpl extends ParameterImpl implements RoutingContext,
      */
     protected static final XMLFormat<RoutingContextImpl> RC_XML = new XMLFormat<RoutingContextImpl>(RoutingContextImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RoutingContextImpl rc) throws XMLStreamException {
             int size = xml.getAttribute(ARRAY_SIZE).toInt();
             rc.rcs = new long[size];
@@ -117,7 +114,6 @@ public class RoutingContextImpl extends ParameterImpl implements RoutingContext,
             rc.encode();
         }
 
-        @Override
         public void write(RoutingContextImpl rc, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(ARRAY_SIZE, rc.rcs.length);
             for (Long l : rc.rcs) {

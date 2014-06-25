@@ -82,7 +82,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return data;
     }
 
-    @Override
     public int getScreeningAndPresentationIndicators() {
         if (this.data == null || this.data.length != 10)
             return 0;
@@ -90,7 +89,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return this.data[0];
     }
 
-    @Override
     public TypeOfShape getTypeOfShape() {
         if (this.data == null || this.data.length != 10)
             return null;
@@ -98,7 +96,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return TypeOfShape.getInstance((this.data[1] & 0xFF) >> 4);
     }
 
-    @Override
     public double getLatitude() {
         if (this.data == null || this.data.length != 10)
             return 0;
@@ -106,7 +103,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return GeographicalInformationImpl.decodeLatitude(this.data, 2);
     }
 
-    @Override
     public double getLongitude() {
         if (this.data == null || this.data.length != 10)
             return 0;
@@ -114,7 +110,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return GeographicalInformationImpl.decodeLongitude(this.data, 5);
     }
 
-    @Override
     public double getUncertainty() {
         if (this.data == null || this.data.length != 10)
             return 0;
@@ -122,7 +117,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return GeographicalInformationImpl.decodeUncertainty(this.data[8]);
     }
 
-    @Override
     public int getConfidence() {
         if (this.data == null || this.data.length != 10)
             return 0;
@@ -130,7 +124,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
         return this.data[9];
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -165,7 +158,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
     protected static final XMLFormat<GeodeticInformationImpl> GEODETIC_INFORMATION_XML = new XMLFormat<GeodeticInformationImpl>(
             GeodeticInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, GeodeticInformationImpl geodeticInformation)
                 throws XMLStreamException {
             int sapi = xml.getAttribute(SCREENING_AND_PRESENTATION_INDICATORS, DEFAULT_INT_VALUE);
@@ -187,7 +179,6 @@ public class GeodeticInformationImpl extends OctetStringBase implements Geodetic
             }
         }
 
-        @Override
         public void write(GeodeticInformationImpl geodeticInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(SCREENING_AND_PRESENTATION_INDICATORS, geodeticInformation.getScreeningAndPresentationIndicators());

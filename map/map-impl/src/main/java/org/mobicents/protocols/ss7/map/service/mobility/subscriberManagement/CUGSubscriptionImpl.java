@@ -248,7 +248,6 @@ public class CUGSubscriptionImpl extends SequenceBase implements CUGSubscription
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -96,7 +96,6 @@ public class SCTPShellExecutor implements ShellExecutor {
         return sb.toString();
     }
 
-    @Override
     public String execute(String[] args) {
         try {
             if (args.length < 3 || args.length > 11) {
@@ -312,7 +311,6 @@ public class SCTPShellExecutor implements ShellExecutor {
      *
      * @see org.mobicents.ss7.management.console.ShellExecutor#handles(java.lang. String)
      */
-    @Override
     public boolean handles(String command) {
         return command.startsWith("sctp");
     }

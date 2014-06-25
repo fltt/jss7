@@ -148,57 +148,46 @@ public class CAPProviderImpl implements CAPProvider, TCListener {
         return this.tcapProvider;
     }
 
-    @Override
     public CAPServiceCircuitSwitchedCall getCAPServiceCircuitSwitchedCall() {
         return this.capServiceCircuitSwitchedCall;
     }
 
-    @Override
     public CAPServiceGprs getCAPServiceGprs() {
         return this.capServiceGprs;
     }
 
-    @Override
     public CAPServiceSms getCAPServiceSms() {
         return this.capServiceSms;
     }
 
-    @Override
     public void addCAPDialogListener(CAPDialogListener capDialogListener) {
         this.dialogListeners.add(capDialogListener);
     }
 
-    @Override
     public CAPParameterFactory getCAPParameterFactory() {
         return capParameterFactory;
     }
 
-    @Override
     public MAPParameterFactory getMAPParameterFactory() {
         return mapParameterFactory;
     }
 
-    @Override
     public ISUPParameterFactory getISUPParameterFactory() {
         return isupParameterFactory;
     }
 
-    @Override
     public INAPParameterFactory getINAPParameterFactory() {
         return inapParameterFactory;
     }
 
-    @Override
     public CAPErrorMessageFactory getCAPErrorMessageFactory() {
         return this.capErrorMessageFactory;
     }
 
-    @Override
     public void removeCAPDialogListener(CAPDialogListener capDialogListener) {
         this.dialogListeners.remove(capDialogListener);
     }
 
-    @Override
     public CAPDialog getCAPDialog(Long dialogId) {
         synchronized (this.dialogs) {
             return this.dialogs.get(dialogId);
@@ -658,7 +647,6 @@ public class CAPProviderImpl implements CAPProvider, TCListener {
     public void onTCUni(TCUniIndication arg0) {
     }
 
-    @Override
     public void onInvokeTimeout(Invoke invoke) {
 
         CAPDialogImpl capDialogImpl = (CAPDialogImpl) this.getCAPDialog(((InvokeImpl) invoke).getDialog().getLocalDialogId());
@@ -684,7 +672,6 @@ public class CAPProviderImpl implements CAPProvider, TCListener {
         }
     }
 
-    @Override
     public void onDialogTimeout(Dialog tcapDialog) {
 
         CAPDialogImpl capDialogImpl = (CAPDialogImpl) this.getCAPDialog(tcapDialog.getLocalDialogId());
@@ -704,7 +691,6 @@ public class CAPProviderImpl implements CAPProvider, TCListener {
         }
     }
 
-    @Override
     public void onDialogReleased(Dialog tcapDialog) {
 
         CAPDialogImpl capDialogImpl = (CAPDialogImpl) this.removeDialog(tcapDialog.getLocalDialogId());
@@ -833,7 +819,6 @@ public class CAPProviderImpl implements CAPProvider, TCListener {
         }
     }
 
-    @Override
     public void onTCNotice(TCNoticeIndication ind) {
 
         if (this.getTCAPProvider().getPreviewMode()) {

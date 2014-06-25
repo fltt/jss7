@@ -115,7 +115,6 @@ public class SimulatorGuiForm extends JFrame implements NotificationListener {
     public SimulatorGuiForm() {
         setResizable(false);
         addWindowListener(new WindowAdapter() {
-            @Override
             public void windowClosing(WindowEvent e) {
                 if (getDefaultCloseOperation() == JDialog.DO_NOTHING_ON_CLOSE) {
                     JOptionPane.showMessageDialog(getJFrame(), "Before exiting you must close a test window form");
@@ -474,7 +473,6 @@ public class SimulatorGuiForm extends JFrame implements NotificationListener {
             cb.setSelectedItem(dv);
     }
 
-    @Override
     public void handleNotification(Notification notification, Object handback) {
 
         TestingForm fm = testingForm;

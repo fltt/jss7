@@ -58,7 +58,6 @@ public class TDisconnectSpecificInfoImpl extends SequenceBase implements TDiscon
         this.releaseCause = releaseCause;
     }
 
-    @Override
     public CauseCap getReleaseCause() {
         return releaseCause;
     }
@@ -92,14 +91,12 @@ public class TDisconnectSpecificInfoImpl extends SequenceBase implements TDiscon
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.releaseCause != null) {
             ((CauseCapImpl) this.releaseCause).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _ID_releaseCause);
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -121,13 +118,11 @@ public class TDisconnectSpecificInfoImpl extends SequenceBase implements TDiscon
     protected static final XMLFormat<TDisconnectSpecificInfoImpl> ROUTE_SELECT_FAILURE_SPECIFIC_INFO_XML = new XMLFormat<TDisconnectSpecificInfoImpl>(
             TDisconnectSpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TDisconnectSpecificInfoImpl oCalledPartyBusySpecificInfo)
                 throws XMLStreamException {
             oCalledPartyBusySpecificInfo.releaseCause = xml.get(RELEASE_CAUSE, CauseCapImpl.class);
         }
 
-        @Override
         public void write(TDisconnectSpecificInfoImpl oCalledPartyBusySpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

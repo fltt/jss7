@@ -65,22 +65,18 @@ public class CAPErrorMessageTaskRefusedImpl extends CAPErrorMessageImpl implemen
         return taskRefusedParameter;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.ENUMERATED;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -95,7 +91,6 @@ public class CAPErrorMessageTaskRefusedImpl extends CAPErrorMessageImpl implemen
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -122,7 +117,6 @@ public class CAPErrorMessageTaskRefusedImpl extends CAPErrorMessageImpl implemen
         this.taskRefusedParameter = TaskRefusedParameter.getInstance(i1);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
@@ -152,7 +146,6 @@ public class CAPErrorMessageTaskRefusedImpl extends CAPErrorMessageImpl implemen
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

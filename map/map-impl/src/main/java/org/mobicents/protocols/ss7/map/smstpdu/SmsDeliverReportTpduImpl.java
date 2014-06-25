@@ -191,7 +191,6 @@ public class SmsDeliverReportTpduImpl extends SmsTpduImpl implements SmsDeliverR
         return res.toByteArray();
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

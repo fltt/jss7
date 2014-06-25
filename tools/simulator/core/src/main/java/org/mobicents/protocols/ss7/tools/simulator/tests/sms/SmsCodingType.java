@@ -69,12 +69,10 @@ public class SmsCodingType extends EnumeratedBase {
             return new SmsCodingType(i1);
     }
 
-    @Override
     protected Hashtable<Integer, String> getIntTable() {
         return intMap;
     }
 
-    @Override
     protected Hashtable<String, Integer> getStringTable() {
         return stringMap;
     }

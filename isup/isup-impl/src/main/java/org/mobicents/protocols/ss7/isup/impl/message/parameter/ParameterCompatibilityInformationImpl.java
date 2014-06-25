@@ -112,7 +112,6 @@ public class ParameterCompatibilityInformationImpl extends AbstractISUPParameter
         return bos.toByteArray();
     }
 
-    @Override
     public void setParameterCompatibilityInstructionIndicators(
             ParameterCompatibilityInstructionIndicators... compatibilityInstructionIndicators) {
         this.instructionIndicators.clear();
@@ -123,7 +122,6 @@ public class ParameterCompatibilityInformationImpl extends AbstractISUPParameter
                 this.instructionIndicators.add(ii);
     }
 
-    @Override
     public ParameterCompatibilityInstructionIndicators[] getParameterCompatibilityInstructionIndicators() {
         return this.instructionIndicators.toArray(new ParameterCompatibilityInstructionIndicators[this.instructionIndicators.size()]);
     }

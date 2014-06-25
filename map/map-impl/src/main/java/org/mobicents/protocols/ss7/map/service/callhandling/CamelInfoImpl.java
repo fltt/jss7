@@ -65,22 +65,18 @@ public class CamelInfoImpl extends SequenceBase implements CamelInfo {
         this.offeredCamel4CSIs = offeredCamel4CSIs;
     }
 
-    @Override
     public SupportedCamelPhases getSupportedCamelPhases() {
         return supportedCamelPhases;
     }
 
-    @Override
     public boolean getSuppressTCSI() {
         return suppressTCSI;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     public OfferedCamel4CSIs getOfferedCamel4CSIs() {
         return offeredCamel4CSIs;
     }
@@ -162,7 +158,6 @@ public class CamelInfoImpl extends SequenceBase implements CamelInfo {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.supportedCamelPhases == null) {
             throw new MAPException("Error while encoding " + _PrimitiveName
@@ -188,7 +183,6 @@ public class CamelInfoImpl extends SequenceBase implements CamelInfo {
         }
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -201,7 +195,6 @@ public class CamelInfoImpl extends SequenceBase implements CamelInfo {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -241,7 +234,6 @@ public class CamelInfoImpl extends SequenceBase implements CamelInfo {
         return true;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

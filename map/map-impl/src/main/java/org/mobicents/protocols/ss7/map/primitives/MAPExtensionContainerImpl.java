@@ -239,7 +239,6 @@ public class MAPExtensionContainerImpl implements MAPExtensionContainer, MAPAsnP
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ExtensionContainer [");
@@ -261,7 +260,6 @@ public class MAPExtensionContainerImpl implements MAPExtensionContainer, MAPAsnP
         return sb.toString();
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -270,7 +268,6 @@ public class MAPExtensionContainerImpl implements MAPExtensionContainer, MAPAsnP
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -308,7 +305,6 @@ public class MAPExtensionContainerImpl implements MAPExtensionContainer, MAPAsnP
     protected static final XMLFormat<MAPExtensionContainerImpl> MAP_EXTENSION_CONTAINER_XML = new XMLFormat<MAPExtensionContainerImpl>(
             MAPExtensionContainerImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, MAPExtensionContainerImpl mapExtensionContainer)
                 throws XMLStreamException {
             MAPExtensionContainer_privateExtensionList al = xml.get(PRIVATE_EXTENSION_LIST,
@@ -323,7 +319,6 @@ public class MAPExtensionContainerImpl implements MAPExtensionContainer, MAPAsnP
             }
         }
 
-        @Override
         public void write(MAPExtensionContainerImpl mapExtensionContainer, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (mapExtensionContainer.privateExtensionList != null) {

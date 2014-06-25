@@ -186,7 +186,6 @@ public class ReSynchronisationInfoImpl implements ReSynchronisationInfo, MAPAsnP
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ReSynchronisationInfo [");

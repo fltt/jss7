@@ -44,7 +44,6 @@ public class MainGui implements Runnable {
         EventQueue.invokeLater(new MainGui(appName));
     }
 
-    @Override
     public void run() {
         try {
             ConnectionForm frame = new ConnectionForm();

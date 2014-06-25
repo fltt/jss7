@@ -51,27 +51,22 @@ public class ODBHPLMNDataImpl extends BitStringBase implements ODBHPLMNData {
 
     }
 
-    @Override
     public boolean getPlmnSpecificBarringType1() {
         return this.bitString.get(_INDEX_plmnSpecificBarringType1);
     }
 
-    @Override
     public boolean getPlmnSpecificBarringType2() {
         return this.bitString.get(_INDEX_plmnSpecificBarringType2);
     }
 
-    @Override
     public boolean getPlmnSpecificBarringType3() {
         return this.bitString.get(_INDEX_plmnSpecificBarringType3);
     }
 
-    @Override
     public boolean getPlmnSpecificBarringType4() {
         return this.bitString.get(_INDEX_plmnSpecificBarringType4);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ODBHPLMNData [");

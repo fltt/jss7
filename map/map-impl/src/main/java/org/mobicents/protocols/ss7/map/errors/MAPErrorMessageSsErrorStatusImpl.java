@@ -71,37 +71,30 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         return this;
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public boolean getQBit() {
         return (this.data & _mask_QBit) != 0;
     }
 
-    @Override
     public boolean getPBit() {
         return (this.data & _mask_PBit) != 0;
     }
 
-    @Override
     public boolean getRBit() {
         return (this.data & _mask_RBit) != 0;
     }
 
-    @Override
     public boolean getABit() {
         return (this.data & _mask_ABit) != 0;
     }
 
-    @Override
     public void setData(int val) {
         this.data = val;
     }
 
-    @Override
     public void setQBit(boolean val) {
         if (val) {
             this.data |= _mask_QBit;
@@ -110,7 +103,6 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public void setPBit(boolean val) {
         if (val) {
             this.data |= _mask_PBit;
@@ -119,7 +111,6 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public void setRBit(boolean val) {
         if (val) {
             this.data |= _mask_RBit;
@@ -128,7 +119,6 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public void setABit(boolean val) {
         if (val) {
             this.data |= _mask_ABit;
@@ -137,22 +127,18 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -167,7 +153,6 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
 
         try {
@@ -196,13 +181,11 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         this.data = localAis.read();
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
 
         try {
@@ -215,13 +198,11 @@ public class MAPErrorMessageSsErrorStatusImpl extends MAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         asnOs.write(this.data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

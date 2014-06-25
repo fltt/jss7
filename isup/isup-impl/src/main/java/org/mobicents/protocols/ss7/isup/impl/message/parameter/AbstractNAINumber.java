@@ -125,7 +125,6 @@ public abstract class AbstractNAINumber extends AbstractNumber implements NAINum
     protected static final XMLFormat<AbstractNAINumber> ISUP_ABSTRACT_NAI_NUMBER_XML = new XMLFormat<AbstractNAINumber>(
             AbstractNAINumber.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AbstractNAINumber abstractNAINumber)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NUMBER_XML.read(xml, abstractNAINumber);
@@ -134,7 +133,6 @@ public abstract class AbstractNAINumber extends AbstractNumber implements NAINum
                     DEFAULT_NATURE_OF_ADDRESS_INDICATOR);
         }
 
-        @Override
         public void write(AbstractNAINumber abstractNAINumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             ISUP_ABSTRACT_NUMBER_XML.write(abstractNAINumber, xml);

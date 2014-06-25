@@ -40,17 +40,14 @@ public class SGSNCapabilitiesImpl extends OctetStringLength1Base implements SGSN
         super("SGSNCapabilities", (aoCSupportedBySGSN ? 0x01 : 0x00));
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public boolean getAoCSupportedBySGSN() {
         return ((data & 0x01) == 0x01);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

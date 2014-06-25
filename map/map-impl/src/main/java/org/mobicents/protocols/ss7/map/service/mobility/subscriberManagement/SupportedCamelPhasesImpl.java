@@ -87,7 +87,6 @@ public class SupportedCamelPhasesImpl extends BitStringBase implements Supported
         return this.bitString.get(_INDEX_Phase4);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("SupportedCamelPhases [");

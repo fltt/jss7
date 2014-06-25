@@ -59,7 +59,6 @@ public class SM_RP_SMEAImpl extends OctetStringBase implements SM_RP_SMEA {
         return data;
     }
 
-    @Override
     public AddressField getAddressField() throws MAPException {
 
         ByteArrayInputStream stm = new ByteArrayInputStream(data);

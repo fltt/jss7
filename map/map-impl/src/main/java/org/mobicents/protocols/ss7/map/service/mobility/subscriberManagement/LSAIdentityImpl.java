@@ -50,7 +50,6 @@ public class LSAIdentityImpl extends OctetStringBase implements LSAIdentity {
         return data;
     }
 
-    @Override
     public boolean isPlmnSignificantLSA() {
         return ((this.data[2] & 0x01) == 0x01);
     }
@@ -60,7 +59,6 @@ public class LSAIdentityImpl extends OctetStringBase implements LSAIdentity {
      */
     protected static final XMLFormat<LSAIdentityImpl> LSA_IDENTITY_XML = new XMLFormat<LSAIdentityImpl>(LSAIdentityImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LSAIdentityImpl lsaIdentity) throws XMLStreamException {
             String s = xml.getAttribute(DATA, DEFAULT_VALUE);
             if (s != null) {
@@ -68,7 +66,6 @@ public class LSAIdentityImpl extends OctetStringBase implements LSAIdentity {
             }
         }
 
-        @Override
         public void write(LSAIdentityImpl lsaIdentity, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (lsaIdentity.data != null) {
                 xml.setAttribute(DATA, DatatypeConverter.printHexBinary(lsaIdentity.data));

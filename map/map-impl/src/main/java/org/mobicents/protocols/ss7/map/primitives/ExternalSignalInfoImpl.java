@@ -54,37 +54,30 @@ public class ExternalSignalInfoImpl implements ExternalSignalInfo, MAPAsnPrimiti
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public SignalInfo getSignalInfo() {
         return this.signalInfo;
     }
 
-    @Override
     public ProtocolId getProtocolId() {
         return this.protocolId;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public int getTag() throws MAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -98,7 +91,6 @@ public class ExternalSignalInfoImpl implements ExternalSignalInfo, MAPAsnPrimiti
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -156,12 +148,10 @@ public class ExternalSignalInfoImpl implements ExternalSignalInfo, MAPAsnPrimiti
                     + ": protocolId and signalInfo must not be null", MAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -173,7 +163,6 @@ public class ExternalSignalInfoImpl implements ExternalSignalInfo, MAPAsnPrimiti
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.protocolId == null || this.signalInfo == null)
             throw new MAPException("Error while encoding " + _PrimitiveName + ": protocolId and signalInfo must not be null");

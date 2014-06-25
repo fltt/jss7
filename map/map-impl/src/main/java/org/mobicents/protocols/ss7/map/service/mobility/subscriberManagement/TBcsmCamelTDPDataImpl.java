@@ -69,32 +69,26 @@ public class TBcsmCamelTDPDataImpl extends SequenceBase implements TBcsmCamelTDP
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public TBcsmTriggerDetectionPoint getTBcsmTriggerDetectionPoint() {
         return tBcsmTriggerDetectionPoint;
     }
 
-    @Override
     public long getServiceKey() {
         return serviceKey;
     }
 
-    @Override
     public ISDNAddressString getGsmSCFAddress() {
         return gsmSCFAddress;
     }
 
-    @Override
     public DefaultCallHandling getDefaultCallHandling() {
         return defaultCallHandling;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.tBcsmTriggerDetectionPoint = null;
@@ -188,7 +182,6 @@ public class TBcsmCamelTDPDataImpl extends SequenceBase implements TBcsmCamelTDP
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
             if (this.tBcsmTriggerDetectionPoint == null)
@@ -215,7 +208,6 @@ public class TBcsmCamelTDPDataImpl extends SequenceBase implements TBcsmCamelTDP
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

@@ -48,7 +48,6 @@ public class ConcernedDPCImpl extends ParameterImpl implements ConcernedDPC {
         this.tag = Parameter.Concerned_Destination;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         // reserved
@@ -62,7 +61,6 @@ public class ConcernedDPCImpl extends ParameterImpl implements ConcernedDPC {
         return data;
     }
 
-    @Override
     public String toString() {
         return String.format("ConcernedDPC dpc=%d", pointCode);
     }

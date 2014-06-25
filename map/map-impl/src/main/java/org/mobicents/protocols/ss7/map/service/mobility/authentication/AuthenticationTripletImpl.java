@@ -208,7 +208,6 @@ public class AuthenticationTripletImpl implements AuthenticationTriplet, MAPAsnP
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AuthenticationTriplet [");

@@ -230,7 +230,6 @@ public class AreaIdentificationImpl extends OctetStringBase implements AreaIdent
         return res;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

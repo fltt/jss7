@@ -91,7 +91,6 @@ public class DestinationUPUnavailableImpl extends M3UAMessageImpl implements Des
         parameters.put(Parameter.User_Cause, usrCau);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Network_Appearance)) {
             ((ParameterImpl) parameters.get(Parameter.Network_Appearance)).write(buffer);

@@ -36,24 +36,20 @@ public class PivotReasonImpl implements PivotReason {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
     public byte getPivotReason() {
         return this.pivotReason;
     }
 
-    @Override
     public void setPivotReason(byte b) {
         this.pivotReason = (byte) (b & 0x7F);
     }
 
-    @Override
     public byte getPivotPossibleAtPerformingExchange() {
         if(this.pivotPossibleAtPerformingExchange == null)
             return 0;
         return this.pivotPossibleAtPerformingExchange;
     }
 
-    @Override
     public void setPivotPossibleAtPerformingExchange(byte b) {
         this.pivotPossibleAtPerformingExchange = (byte) (b & 0x07);
     }

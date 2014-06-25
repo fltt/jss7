@@ -66,17 +66,14 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
         this.timeIfTariffSwitch = timeIfTariffSwitch;
     }
 
-    @Override
     public Integer getTimeIfNoTariffSwitch() {
         return timeIfNoTariffSwitch;
     }
 
-    @Override
     public TimeIfTariffSwitch getTimeIfTariffSwitch() {
         return timeIfTariffSwitch;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (timeIfNoTariffSwitch != null)
             return _ID_timeIfNoTariffSwitch;
@@ -84,12 +81,10 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
             return _ID_timeIfTariffSwitch;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (timeIfNoTariffSwitch != null)
             return true;
@@ -97,7 +92,6 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
             return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -115,7 +109,6 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -160,12 +153,10 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -178,7 +169,6 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.timeIfNoTariffSwitch == null && this.timeIfTariffSwitch == null)
@@ -199,7 +189,6 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -226,14 +215,12 @@ public class TimeInformationImpl implements TimeInformation, CAPAsnPrimitive {
     protected static final XMLFormat<TimeInformationImpl> TIME_INFORMATION_XML = new XMLFormat<TimeInformationImpl>(
             TimeInformationImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TimeInformationImpl timeInformation)
                 throws XMLStreamException {
             timeInformation.timeIfNoTariffSwitch = xml.get(TIME_IF_NO_TARIFF_SWITCH, Integer.class);
             timeInformation.timeIfTariffSwitch = xml.get(TIME_IF_TARIFF_SWITCH, TimeIfTariffSwitchImpl.class);
         }
 
-        @Override
         public void write(TimeInformationImpl timeInformation, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

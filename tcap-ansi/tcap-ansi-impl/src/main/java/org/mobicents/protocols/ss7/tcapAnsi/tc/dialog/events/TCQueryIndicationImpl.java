@@ -155,12 +155,10 @@ public class TCQueryIndicationImpl extends DialogIndicationImpl implements TCQue
 
     }
 
-    @Override
     public boolean getDialogTermitationPermission() {
         return dialogTermitationPermission;
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
@@ -169,7 +167,6 @@ public class TCQueryIndicationImpl extends DialogIndicationImpl implements TCQue
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }

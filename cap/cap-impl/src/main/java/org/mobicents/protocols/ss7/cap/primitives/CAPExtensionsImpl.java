@@ -57,32 +57,26 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
         this.extensionFields = fieldsList;
     }
 
-    @Override
     public ArrayList<ExtensionField> getExtensionFields() {
         return extensionFields;
     }
 
-    @Override
     public void setExtensionFields(ArrayList<ExtensionField> fieldsList) {
         this.extensionFields = fieldsList;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -97,7 +91,6 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -135,13 +128,11 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
         this.extensionFields = res;
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -154,7 +145,6 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.extensionFields == null)
@@ -168,7 +158,6 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -196,7 +185,6 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
     protected static final XMLFormat<CAPExtensionsImpl> CAP_Extensions_XML = new XMLFormat<CAPExtensionsImpl>(
             CAPExtensionsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CAPExtensionsImpl capExtensions) throws XMLStreamException {
             CAPExtensions_ExtensionFields al = xml.get(EXTENSION_FIELD_LIST, CAPExtensions_ExtensionFields.class);
             if (al != null) {
@@ -204,7 +192,6 @@ public class CAPExtensionsImpl implements CAPExtensions, CAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(CAPExtensionsImpl capExtensions, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (capExtensions.extensionFields == null || capExtensions.extensionFields.size() == 0)

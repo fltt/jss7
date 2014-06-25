@@ -54,7 +54,6 @@ public class ConcernedSignalingPointCodeImpl implements ConcernedSignalingPointC
         this.remoteSpc = remoteSpc;
     }
 
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("rsp=").append(this.remoteSpc);

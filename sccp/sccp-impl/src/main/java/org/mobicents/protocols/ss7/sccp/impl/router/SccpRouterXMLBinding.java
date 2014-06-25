@@ -64,7 +64,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
 
     protected final XMLFormat<RuleMap> RULEMAP = new XMLFormat<RuleMap>(RuleMap.class) {
 
-        @Override
         public void write(RuleMap obj, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             for (FastMap.Entry<Integer, RuleImpl> e = obj.head(), end = obj.tail(); (e = e.getNext()) != end;) {
                 Integer id = e.getKey();
@@ -75,7 +74,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RuleMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);
@@ -88,7 +86,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
 
     protected final XMLFormat<SccpAddressMap> SCCPADDRESSMAP = new XMLFormat<SccpAddressMap>(SccpAddressMap.class) {
 
-        @Override
         public void write(SccpAddressMap obj, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             for (FastMap.Entry<Integer, SccpAddress> e = obj.head(), end = obj.tail(); (e = e.getNext()) != end;) {
                 Integer id = e.getKey();
@@ -99,7 +96,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, SccpAddressMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);
@@ -114,7 +110,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
     protected final XMLFormat<LongMessageRuleMap> LONGMESSAGERULEMAP = new XMLFormat<LongMessageRuleMap>(
             LongMessageRuleMap.class) {
 
-        @Override
         public void write(LongMessageRuleMap obj, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             for (FastMap.Entry<Integer, LongMessageRuleImpl> e = obj.head(), end = obj.tail(); (e = e.getNext()) != end;) {
                 Integer id = e.getKey();
@@ -125,7 +120,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LongMessageRuleMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);
@@ -140,7 +134,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
     protected final XMLFormat<Mtp3ServiceAccessPointMap> MTP3SERVICEACCESSPOINTMAP = new XMLFormat<Mtp3ServiceAccessPointMap>(
             Mtp3ServiceAccessPointMap.class) {
 
-        @Override
         public void write(Mtp3ServiceAccessPointMap obj, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             for (FastMap.Entry<Integer, Mtp3ServiceAccessPointImpl> e = obj.head(), end = obj.tail(); (e = e.getNext()) != end;) {
                 Integer id = e.getKey();
@@ -151,7 +144,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, Mtp3ServiceAccessPointMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);
@@ -166,7 +158,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
     protected final XMLFormat<Mtp3DestinationMap> MTP3DESTINATIONMAP = new XMLFormat<Mtp3DestinationMap>(
             Mtp3DestinationMap.class) {
 
-        @Override
         public void write(Mtp3DestinationMap obj, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             for (FastMap.Entry<Integer, Mtp3DestinationImpl> e = obj.head(), end = obj.tail(); (e = e.getNext()) != end;) {
                 Integer id = e.getKey();
@@ -177,7 +168,6 @@ public class SccpRouterXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, Mtp3DestinationMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);

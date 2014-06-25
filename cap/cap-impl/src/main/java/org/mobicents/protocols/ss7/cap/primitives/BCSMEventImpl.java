@@ -81,27 +81,22 @@ public class BCSMEventImpl extends SequenceBase implements BCSMEvent {
         this.automaticRearm = automaticRearm;
     }
 
-    @Override
     public EventTypeBCSM getEventTypeBCSM() {
         return eventTypeBCSM;
     }
 
-    @Override
     public MonitorMode getMonitorMode() {
         return monitorMode;
     }
 
-    @Override
     public LegID getLegID() {
         return legID;
     }
 
-    @Override
     public DpSpecificCriteria getDpSpecificCriteria() {
         return dpSpecificCriteria;
     }
 
-    @Override
     public boolean getAutomaticRearm() {
         return automaticRearm;
     }
@@ -165,7 +160,6 @@ public class BCSMEventImpl extends SequenceBase implements BCSMEvent {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -202,7 +196,6 @@ public class BCSMEventImpl extends SequenceBase implements BCSMEvent {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -239,7 +232,6 @@ public class BCSMEventImpl extends SequenceBase implements BCSMEvent {
      */
     protected static final XMLFormat<BCSMEventImpl> BCSM_EVENT_XML = new XMLFormat<BCSMEventImpl>(BCSMEventImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, BCSMEventImpl bcsmEvent) throws XMLStreamException {
             String str = xml.get(EVENT_TYPE_BCSM, String.class);
             if (str != null)
@@ -254,7 +246,6 @@ public class BCSMEventImpl extends SequenceBase implements BCSMEvent {
                 bcsmEvent.automaticRearm = bval;
         }
 
-        @Override
         public void write(BCSMEventImpl bcsmEvent, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (bcsmEvent.getEventTypeBCSM() != null)
                 xml.add((String) bcsmEvent.getEventTypeBCSM().toString(), EVENT_TYPE_BCSM, String.class);

@@ -75,7 +75,6 @@ public class CheckImeiRequestImpl extends MobilityMessageImpl implements CheckIm
         return this.mapProtocolVersion;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (this.mapProtocolVersion >= 3) {
             return Tag.SEQUENCE;
@@ -84,12 +83,10 @@ public class CheckImeiRequestImpl extends MobilityMessageImpl implements CheckIm
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.mapProtocolVersion >= 3) {
             return false;
@@ -110,7 +107,6 @@ public class CheckImeiRequestImpl extends MobilityMessageImpl implements CheckIm
         this.imsi = imsi;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -214,12 +210,10 @@ public class CheckImeiRequestImpl extends MobilityMessageImpl implements CheckIm
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -240,7 +234,6 @@ public class CheckImeiRequestImpl extends MobilityMessageImpl implements CheckIm
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.imei == null) {
             throw new MAPException("imei parameter must not be null");
@@ -264,32 +257,26 @@ public class CheckImeiRequestImpl extends MobilityMessageImpl implements CheckIm
         }
     }
 
-    @Override
     public MAPMessageType getMessageType() {
         return MAPMessageType.checkIMEI_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return MAPOperationCode.checkIMEI;
     }
 
-    @Override
     public IMEI getIMEI() {
         return this.imei;
     }
 
-    @Override
     public RequestedEquipmentInfo getRequestedEquipmentInfo() {
         return this.requestedEquipmentInfo;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

@@ -50,12 +50,10 @@ public class DahdiLinksetFactory extends LinksetFactory {
         this.scheduler = scheduler;
     }
 
-    @Override
     public String getName() {
         return NAME;
     }
 
-    @Override
     public Linkset createLinkset(String[] options) throws Exception {
 
         // the expected command is "linkset create dahdi opc 1 apc 2 ni 3

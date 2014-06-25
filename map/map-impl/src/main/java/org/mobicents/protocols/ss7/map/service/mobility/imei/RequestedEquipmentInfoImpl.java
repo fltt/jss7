@@ -47,17 +47,14 @@ public class RequestedEquipmentInfoImpl extends BitStringBase implements Request
             this.bitString.set(_INDEX_BMUEF);
     }
 
-    @Override
     public boolean getEquipmentStatus() {
         return this.bitString.get(_INDEX_EQUIPMENT_STATUS);
     }
 
-    @Override
     public boolean getBmuef() {
         return this.bitString.get(_INDEX_BMUEF);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

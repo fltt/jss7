@@ -38,7 +38,6 @@ public class StatusImpl implements Status {
         return this.code;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

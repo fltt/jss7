@@ -168,7 +168,6 @@ public class SLRArgExtensionContainerImpl extends SequenceBase implements SLRArg
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

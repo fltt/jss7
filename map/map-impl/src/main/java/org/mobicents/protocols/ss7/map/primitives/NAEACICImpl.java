@@ -61,7 +61,6 @@ public class NAEACICImpl extends OctetStringBase implements NAEACIC {
         setParameters(carrierCode, networkIdentificationPlanValue, networkIdentificationTypeValue);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
@@ -137,7 +136,6 @@ public class NAEACICImpl extends OctetStringBase implements NAEACIC {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

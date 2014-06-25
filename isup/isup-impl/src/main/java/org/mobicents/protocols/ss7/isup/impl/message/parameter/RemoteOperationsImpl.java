@@ -137,17 +137,14 @@ public class RemoteOperationsImpl extends AbstractISUPParameter implements Remot
         return _PARAMETER_CODE;
     }
 
-    @Override
     public void setProtocol(byte protocol) {
         this.protocol = this.protocol;
     }
 
-    @Override
     public byte getProtocol() {
         return this.protocol;
     }
 
-    @Override
     public void setOperations(RemoteOperation... operations) {
         this.remoteOperations.clear();
         for (RemoteOperation ro : operations) {
@@ -157,7 +154,6 @@ public class RemoteOperationsImpl extends AbstractISUPParameter implements Remot
         }
     }
 
-    @Override
     public RemoteOperation[] getOperations() {
         return this.remoteOperations.toArray(new RemoteOperation[this.remoteOperations.size()]);
     }

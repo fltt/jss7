@@ -115,87 +115,70 @@ public class APNConfigurationImpl extends SequenceBase implements APNConfigurati
         this.lipaPermission = lipaPermission;
     }
 
-    @Override
     public int getContextId() {
         return this.contextId;
     }
 
-    @Override
     public PDNType getPDNType() {
         return this.pDNType;
     }
 
-    @Override
     public PDPAddress getServedPartyIPIPv4Address() {
         return this.servedPartyIPIPv4Address;
     }
 
-    @Override
     public APN getApn() {
         return this.apn;
     }
 
-    @Override
     public EPSQoSSubscribed getEPSQoSSubscribed() {
         return this.ePSQoSSubscribed;
     }
 
-    @Override
     public PDNGWIdentity getPdnGwIdentity() {
         return this.pdnGwIdentity;
     }
 
-    @Override
     public PDNGWAllocationType getPdnGwAllocationType() {
         return this.pdnGwAllocationType;
     }
 
-    @Override
     public boolean getVplmnAddressAllowed() {
         return this.vplmnAddressAllowed;
     }
 
-    @Override
     public ChargingCharacteristics getChargingCharacteristics() {
         return this.chargingCharacteristics;
     }
 
-    @Override
     public AMBR getAmbr() {
         return this.ambr;
     }
 
-    @Override
     public ArrayList<SpecificAPNInfo> getSpecificAPNInfoList() {
         return this.specificAPNInfoList;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public PDPAddress getServedPartyIPIPv6Address() {
         return this.servedPartyIPIPv6Address;
     }
 
-    @Override
     public APNOIReplacement getApnOiReplacement() {
         return this.apnOiReplacement;
     }
 
-    @Override
     public SIPTOPermission getSiptoPermission() {
         return this.siptoPermission;
     }
 
-    @Override
     public LIPAPermission getLipaPermission() {
         return lipaPermission;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.contextId = -1;
@@ -410,7 +393,6 @@ public class APNConfigurationImpl extends SequenceBase implements APNConfigurati
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.pDNType == null) {
@@ -495,7 +477,6 @@ public class APNConfigurationImpl extends SequenceBase implements APNConfigurati
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

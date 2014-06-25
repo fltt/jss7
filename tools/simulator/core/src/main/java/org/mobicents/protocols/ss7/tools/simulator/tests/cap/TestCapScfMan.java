@@ -133,35 +133,29 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         this.capMan = val;
     }
 
-    @Override
     public CapApplicationContextScf getCapApplicationContext() {
         return this.testerHost.getConfigurationData().getTestCapScfConfigurationData().getCapApplicationContext();
     }
 
-    @Override
     public String getCapApplicationContext_Value() {
         return this.testerHost.getConfigurationData().getTestCapScfConfigurationData().getCapApplicationContext().toString();
     }
 
-    @Override
     public void setCapApplicationContext(CapApplicationContextScf val) {
         this.testerHost.getConfigurationData().getTestCapScfConfigurationData().setCapApplicationContext(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public void putCapApplicationContext(String val) {
         CapApplicationContextScf x = CapApplicationContextScf.createInstance(val);
         if (x != null)
             this.setCapApplicationContext(x);
     }
 
-    @Override
     public String getCurrentRequestDef() {
         return "LastDialog: " + currentRequestDef;
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
@@ -209,7 +203,6 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         return true;
     }
 
-    @Override
     public void stop() {
         CAPProvider capProvider = this.capMan.getCAPStack().getCAPProvider();
         isStarted = false;
@@ -219,11 +212,9 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         this.testerHost.sendNotif(SOURCE_NAME, "CAP SCF has been stopped", "", Level.INFO);
     }
 
-    @Override
     public void execute() {
     }
 
-    @Override
     public String closeCurrentDialog() {
         if (!isStarted)
             return "The tester is not started";
@@ -251,13 +242,11 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         currentDialog = null;
     }
 
-    @Override
     public String performInitiateCallAttempt(String msg) {
         return "Not yet supported";
         // TODO: implement it for CAP V4
     }
 
-    @Override
     public String performApplyCharging(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -288,7 +277,6 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public String performCancel(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -316,7 +304,6 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public String performConnect(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -355,7 +342,6 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public String performContinue(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -383,7 +369,6 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public String performReleaseCall(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -417,7 +402,6 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public String performRequestReportBCSMEvent(String msg) {
         if (!isStarted)
             return "The tester is not started";
@@ -449,184 +433,153 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public void onCAPMessage(CAPMessage msg) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: " + msg.getMessageType().toString(), msg.toString(), Level.DEBUG);
     }
 
-    @Override
     public void onErrorComponent(CAPDialog dlg, Long invokeId, CAPErrorMessage msg) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: Error, InvokeId=" + invokeId + ", Error=" + msg.getErrorCode(),
                 msg.toString(), Level.DEBUG);
     }
 
-    @Override
     public void onInvokeTimeout(CAPDialog arg0, Long arg1) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onRejectComponent(CAPDialog dlg, Long invokeId, Problem problem, boolean isLocalOriginated) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: Reject, InvokeId=" + invokeId
                 + (isLocalOriginated ? ", local" : ", remote"), problem.toString(), Level.DEBUG);
     }
 
-    @Override
     public void onActivityTestRequest(ActivityTestRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onActivityTestResponse(ActivityTestResponse arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onApplyChargingReportRequest(ApplyChargingReportRequest arg0) {
         this.countApplyChargingReport++;
         currentRequestDef += "Rsvd applyChargingReport;";
     }
 
-    @Override
     public void onApplyChargingRequest(ApplyChargingRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCallInformationReportRequest(CallInformationReportRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCallInformationRequestRequest(CallInformationRequestRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCancelRequest(CancelRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onConnectRequest(ConnectRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onConnectToResourceRequest(ConnectToResourceRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onContinueRequest(ContinueRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectForwardConnectionRequest(DisconnectForwardConnectionRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onEstablishTemporaryConnectionRequest(EstablishTemporaryConnectionRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onEventReportBCSMRequest(EventReportBCSMRequest arg0) {
         this.countEventReportBCSM++;
         currentRequestDef += "Rsvd eventReportBCSM;";
     }
 
-    @Override
     public void onFurnishChargingInformationRequest(FurnishChargingInformationRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onInitialDPRequest(InitialDPRequest ind) {
         this.countInitialDp++;
         currentRequestDef += "Rsvd initialDp;";
     }
 
-    @Override
     public void onAssistRequestInstructionsRequest(AssistRequestInstructionsRequest arg0) {
         this.countAssistRequestInstructions++;
         currentRequestDef += "Rsvd assistRequestInstructions;";
     }
 
-    @Override
     public void onPlayAnnouncementRequest(PlayAnnouncementRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onPromptAndCollectUserInformationRequest(PromptAndCollectUserInformationRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onPromptAndCollectUserInformationResponse(PromptAndCollectUserInformationResponse arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onReleaseCallRequest(ReleaseCallRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onRequestReportBCSMEventRequest(RequestReportBCSMEventRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onResetTimerRequest(ResetTimerRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSendChargingInformationRequest(SendChargingInformationRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSpecializedResourceReportRequest(SpecializedResourceReportRequest arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogAccept(CAPDialog dlg, CAPGprsReferenceNumber arg1) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: DlgAccept", "TrId=" + dlg.getLocalDialogId(), Level.DEBUG);
     }
 
-    @Override
     public void onDialogClose(CAPDialog dlg) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: DlgClose", "TrId=" + dlg.getLocalDialogId(), Level.DEBUG);
     }
 
-    @Override
     public void onDialogDelimiter(CAPDialog dlg) {
         try {
             if (dlg.getState() == CAPDialogState.InitialReceived)
@@ -636,23 +589,19 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public void onDialogNotice(CAPDialog dlg, CAPNoticeProblemDiagnostic problem) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: DlgNotice", "Problem: " + problem, Level.DEBUG);
     }
 
-    @Override
     public void onDialogProviderAbort(CAPDialog dlg, PAbortCauseType problem) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: DlgProviderAbort", "Problem: " + problem, Level.DEBUG);
     }
 
-    @Override
     public void onDialogRelease(CAPDialog arg0) {
         this.doRemoveDialog();
         this.testerHost.sendNotif(SOURCE_NAME, "DlgClosed:", "", Level.DEBUG);
     }
 
-    @Override
     public void onDialogRequest(CAPDialog capDialog, CAPGprsReferenceNumber referenceNumber) {
         synchronized (this) {
             if (capDialog instanceof CAPDialogCircuitSwitchedCall) {
@@ -677,59 +626,49 @@ public class TestCapScfMan extends TesterBase implements TestCapScfManMBean, Sto
         }
     }
 
-    @Override
     public void onDialogTimeout(CAPDialog dlg) {
         dlg.keepAlive();
     }
 
-    @Override
     public void onDialogUserAbort(CAPDialog dlg, CAPGeneralAbortReason reason, CAPUserAbortReason userAbort) {
         this.testerHost.sendNotif(SOURCE_NAME, "Rsvd: DlgProviderAbort", reason + " - " + userAbort, Level.DEBUG);
     }
 
-    @Override
     public void onContinueWithArgumentRequest(ContinueWithArgumentRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectLegRequest(DisconnectLegRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectLegResponse(DisconnectLegResponse ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectForwardConnectionWithArgumentRequest(DisconnectForwardConnectionWithArgumentRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onInitiateCallAttemptRequest(InitiateCallAttemptRequest initiateCallAttemptRequest) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onInitiateCallAttemptResponse(InitiateCallAttemptResponse initiateCallAttemptResponse) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMoveLegRequest(MoveLegRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMoveLegResponse(MoveLegResponse ind) {
         // TODO Auto-generated method stub
 

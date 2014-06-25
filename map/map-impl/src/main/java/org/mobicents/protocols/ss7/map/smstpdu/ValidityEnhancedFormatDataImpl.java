@@ -38,7 +38,6 @@ public class ValidityEnhancedFormatDataImpl implements ValidityEnhancedFormatDat
         return this.data;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

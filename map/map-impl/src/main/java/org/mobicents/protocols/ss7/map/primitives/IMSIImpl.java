@@ -50,12 +50,10 @@ public class IMSIImpl extends TbcdString implements IMSI {
      */
     protected static final XMLFormat<IMSIImpl> IMSI_XML = new XMLFormat<IMSIImpl>(IMSIImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, IMSIImpl imsi) throws XMLStreamException {
             imsi.data = xml.getAttribute(NUMBER, "");
         }
 
-        @Override
         public void write(IMSIImpl imsi, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(NUMBER, imsi.data);
         }

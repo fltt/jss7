@@ -883,7 +883,6 @@ public class SccpExecutorTest {
          *
          * @see org.mobicents.protocols.ss7.mtp.Mtp3UserPart# getMtp3TransferPrimitiveFactory()
          */
-        @Override
         public Mtp3TransferPrimitiveFactory getMtp3TransferPrimitiveFactory() {
             // TODO Auto-generated method stub
             return null;
@@ -894,7 +893,6 @@ public class SccpExecutorTest {
          *
          * @see org.mobicents.protocols.ss7.mtp.Mtp3UserPart#getRoutingLabelFormat()
          */
-        @Override
         public RoutingLabelFormat getRoutingLabelFormat() {
             // TODO Auto-generated method stub
             return null;
@@ -906,18 +904,15 @@ public class SccpExecutorTest {
          * @see org.mobicents.protocols.ss7.mtp.Mtp3UserPart#setRoutingLabelFormat
          * (org.mobicents.protocols.ss7.mtp.RoutingLabelFormat)
          */
-        @Override
         public void setRoutingLabelFormat(RoutingLabelFormat arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public boolean isUseLsbForLinksetSelection() {
             return false;
         }
 
-        @Override
         public void setUseLsbForLinksetSelection(boolean arg0) {
 
         }

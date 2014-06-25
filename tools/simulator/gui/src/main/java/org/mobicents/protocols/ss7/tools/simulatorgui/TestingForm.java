@@ -97,7 +97,6 @@ public class TestingForm extends JDialog {
         super(owner, true);
         setModal(false);
         addWindowListener(new WindowAdapter() {
-            @Override
             public void windowClosing(WindowEvent e) {
                 if (getDefaultCloseOperation() == JDialog.DO_NOTHING_ON_CLOSE) {
                     JOptionPane.showMessageDialog(getJFrame(), "Before exiting you must Stop the testing process");

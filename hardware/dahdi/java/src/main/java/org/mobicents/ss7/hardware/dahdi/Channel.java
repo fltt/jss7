@@ -173,7 +173,6 @@ public class Channel implements Mtp1 {
      */
     public native void closeChannel(int fd);
 
-    @Override
     public String toString() {
         return Integer.toString(channelID);
     }

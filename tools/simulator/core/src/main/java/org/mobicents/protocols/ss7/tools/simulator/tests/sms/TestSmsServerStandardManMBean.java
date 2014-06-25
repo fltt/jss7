@@ -42,7 +42,6 @@ public class TestSmsServerStandardManMBean extends StandardMBean {
         super(impl, intf);
     }
 
-    @Override
     public MBeanInfo getMBeanInfo() {
 
         MBeanAttributeInfo[] attributes = new MBeanAttributeInfo[] {

@@ -64,12 +64,10 @@ public class ASPIdentifierImpl extends ParameterImpl implements ASPIdentifier {
         return aspID;
     }
 
-    @Override
     protected byte[] getValue() {
         return value;
     }
 
-    @Override
     public String toString() {
         return String.format("ASPIdentifier id=%d", aspID);
     }

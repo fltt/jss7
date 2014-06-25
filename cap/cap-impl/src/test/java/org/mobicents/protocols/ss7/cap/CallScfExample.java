@@ -98,7 +98,6 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         capProvider.getCAPServiceCircuitSwitchedCall().deactivate();
     }
 
-    @Override
     public void onInitialDPRequest(InitialDPRequest ind) {
         this.cc = new CallContent();
         this.cc.idp = ind;
@@ -107,7 +106,6 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         ind.getCAPDialog().processInvokeWithoutAnswer(ind.getInvokeId());
     }
 
-    @Override
     public void onEventReportBCSMRequest(EventReportBCSMRequest ind) {
         if (this.cc != null) {
             this.cc.eventList.add(ind);
@@ -125,7 +123,6 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         ind.getCAPDialog().processInvokeWithoutAnswer(ind.getInvokeId());
     }
 
-    @Override
     public void onDialogDelimiter(CAPDialog capDialog) {
         try {
             if (this.cc != null) {
@@ -195,7 +192,6 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         }
     }
 
-    @Override
     public void onDialogTimeout(CAPDialog capDialog) {
         if (currentCapDialog != null && this.cc != null && this.cc.step != Step.disconnected
                 && this.cc.activityTestInvokeId == null) {
@@ -211,14 +207,12 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         }
     }
 
-    @Override
     public void onActivityTestResponse(ActivityTestResponse ind) {
         if (currentCapDialog != null && this.cc != null) {
             this.cc.activityTestInvokeId = null;
         }
     }
 
-    @Override
     public void onInvokeTimeout(CAPDialog capDialog, Long invokeId) {
         if (currentCapDialog != null && this.cc != null) {
             if (this.cc.activityTestInvokeId == invokeId) { // activityTest failure
@@ -232,187 +226,156 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         }
     }
 
-    @Override
     public void onErrorComponent(CAPDialog capDialog, Long invokeId, CAPErrorMessage capErrorMessage) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onRejectComponent(CAPDialog capDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCAPMessage(CAPMessage capMessage) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onRequestReportBCSMEventRequest(RequestReportBCSMEventRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onApplyChargingRequest(ApplyChargingRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onContinueRequest(ContinueRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onApplyChargingReportRequest(ApplyChargingReportRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onReleaseCallRequest(ReleaseCallRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onConnectRequest(ConnectRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCallInformationRequestRequest(CallInformationRequestRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCallInformationReportRequest(CallInformationReportRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onActivityTestRequest(ActivityTestRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onAssistRequestInstructionsRequest(AssistRequestInstructionsRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onEstablishTemporaryConnectionRequest(EstablishTemporaryConnectionRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectForwardConnectionRequest(DisconnectForwardConnectionRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onConnectToResourceRequest(ConnectToResourceRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onResetTimerRequest(ResetTimerRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onFurnishChargingInformationRequest(FurnishChargingInformationRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSendChargingInformationRequest(SendChargingInformationRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onSpecializedResourceReportRequest(SpecializedResourceReportRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onPlayAnnouncementRequest(PlayAnnouncementRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onPromptAndCollectUserInformationRequest(PromptAndCollectUserInformationRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onPromptAndCollectUserInformationResponse(PromptAndCollectUserInformationResponse ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onCancelRequest(CancelRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogRequest(CAPDialog capDialog, CAPGprsReferenceNumber capGprsReferenceNumber) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogAccept(CAPDialog capDialog, CAPGprsReferenceNumber capGprsReferenceNumber) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogUserAbort(CAPDialog capDialog, CAPGeneralAbortReason generalReason, CAPUserAbortReason userReason) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogProviderAbort(CAPDialog capDialog, PAbortCauseType abortCause) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogClose(CAPDialog capDialog) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDialogRelease(CAPDialog capDialog) {
         this.currentCapDialog = null;
         this.cc = null;
     }
 
-    @Override
     public void onDialogNotice(CAPDialog capDialog, CAPNoticeProblemDiagnostic noticeProblemDiagnostic) {
         // TODO Auto-generated method stub
 
@@ -429,49 +392,41 @@ public class CallScfExample implements CAPDialogListener, CAPServiceCircuitSwitc
         public Long activityTestInvokeId;
     }
 
-    @Override
     public void onContinueWithArgumentRequest(ContinueWithArgumentRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectLegRequest(DisconnectLegRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectLegResponse(DisconnectLegResponse ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDisconnectForwardConnectionWithArgumentRequest(DisconnectForwardConnectionWithArgumentRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onInitiateCallAttemptRequest(InitiateCallAttemptRequest initiateCallAttemptRequest) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onInitiateCallAttemptResponse(InitiateCallAttemptResponse initiateCallAttemptResponse) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMoveLegRequest(MoveLegRequest ind) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMoveLegResponse(MoveLegResponse ind) {
         // TODO Auto-generated method stub
 

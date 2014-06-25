@@ -40,7 +40,6 @@ public class RegistrationResponseImpl extends M3UAMessageImpl implements Registr
         super(MessageClass.ROUTING_KEY_MANAGEMENT, MessageType.REG_RESPONSE, MessageType.S_REG_RESPONSE);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         ((ParameterImpl) parameters.get(Parameter.Registration_Result)).write(buffer);
     }

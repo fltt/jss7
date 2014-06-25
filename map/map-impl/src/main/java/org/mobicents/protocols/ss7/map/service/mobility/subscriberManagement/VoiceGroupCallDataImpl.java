@@ -66,32 +66,26 @@ public class VoiceGroupCallDataImpl extends SequenceBase implements VoiceGroupCa
         this.longGroupId = longGroupId;
     }
 
-    @Override
     public GroupId getGroupId() {
         return this.groupId;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public AdditionalSubscriptions getAdditionalSubscriptions() {
         return this.additionalSubscriptions;
     }
 
-    @Override
     public AdditionalInfo getAdditionalInfo() {
         return this.additionalInfo;
     }
 
-    @Override
     public LongGroupId getLongGroupId() {
         return this.longGroupId;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.groupId = null;
@@ -184,7 +178,6 @@ public class VoiceGroupCallDataImpl extends SequenceBase implements VoiceGroupCa
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.groupId == null && this.longGroupId == null)
             throw new MAPException("Error while encoding" + _PrimitiveName + ": groupId must not be null");
@@ -209,7 +202,6 @@ public class VoiceGroupCallDataImpl extends SequenceBase implements VoiceGroupCa
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

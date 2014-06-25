@@ -62,42 +62,34 @@ public class RequestReportSMSEventRequestImpl extends SmsMessageImpl implements 
         super();
     }
 
-    @Override
     public ArrayList<SMSEvent> getSMSEvents() {
         return this.smsEvents;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return this.extensions;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.requestReportSMSEvent_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.requestReportSMSEvent;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -114,7 +106,6 @@ public class RequestReportSMSEventRequestImpl extends SmsMessageImpl implements 
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -199,12 +190,10 @@ public class RequestReportSMSEventRequestImpl extends SmsMessageImpl implements 
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -216,7 +205,6 @@ public class RequestReportSMSEventRequestImpl extends SmsMessageImpl implements 
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.smsEvents == null)
@@ -243,7 +231,6 @@ public class RequestReportSMSEventRequestImpl extends SmsMessageImpl implements 
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

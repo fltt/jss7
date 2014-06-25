@@ -208,7 +208,6 @@ public class TestUssdServerForm extends TestingForm {
         this.lbResult.setText(res);
     }
 
-    @Override
     public void sendNotif(Notification notif) {
         super.sendNotif(notif);
 
@@ -223,7 +222,6 @@ public class TestUssdServerForm extends TestingForm {
         }
     }
 
-    @Override
     public void refreshState() {
         super.refreshState();
 

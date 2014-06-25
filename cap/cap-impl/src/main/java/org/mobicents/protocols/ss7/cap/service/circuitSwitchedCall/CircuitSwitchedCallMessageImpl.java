@@ -45,13 +45,11 @@ public abstract class CircuitSwitchedCallMessageImpl extends MessageImpl impleme
     protected static final XMLFormat<CircuitSwitchedCallMessageImpl> CIRCUIT_SWITCHED_CALL_MESSAGE_XML = new XMLFormat<CircuitSwitchedCallMessageImpl>(
             CircuitSwitchedCallMessageImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CircuitSwitchedCallMessageImpl message)
                 throws XMLStreamException {
             CAP_MESSAGE_XML.read(xml, message);
         }
 
-        @Override
         public void write(CircuitSwitchedCallMessageImpl message, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             CAP_MESSAGE_XML.write(message, xml);

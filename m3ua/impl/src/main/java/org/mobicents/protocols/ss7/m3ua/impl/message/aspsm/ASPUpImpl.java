@@ -61,7 +61,6 @@ public class ASPUpImpl extends M3UAMessageImpl implements ASPUp {
         }
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.ASP_Identifier)) {
             ((ParameterImpl) parameters.get(Parameter.ASP_Identifier)).write(buffer);

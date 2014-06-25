@@ -66,37 +66,30 @@ public class SCIBillingChargingCharacteristicsImpl implements SCIBillingCharging
         this.aocExtension = aocExtension;
     }
 
-    @Override
     public AOCBeforeAnswer getAOCBeforeAnswer() {
         return aocBeforeAnswer;
     }
 
-    @Override
     public AOCSubsequent getAOCSubsequent() {
         return aocSubsequent;
     }
 
-    @Override
     public CAMELSCIBillingChargingCharacteristicsAlt getAOCExtension() {
         return aocExtension;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -111,7 +104,6 @@ public class SCIBillingChargingCharacteristicsImpl implements SCIBillingCharging
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -182,12 +174,10 @@ public class SCIBillingChargingCharacteristicsImpl implements SCIBillingCharging
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -200,7 +190,6 @@ public class SCIBillingChargingCharacteristicsImpl implements SCIBillingCharging
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int cnt = 0;
@@ -231,7 +220,6 @@ public class SCIBillingChargingCharacteristicsImpl implements SCIBillingCharging
         asnOs.writeOctetStringData(buf);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

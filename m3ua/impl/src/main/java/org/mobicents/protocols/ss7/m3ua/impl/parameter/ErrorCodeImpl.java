@@ -48,7 +48,6 @@ public class ErrorCodeImpl extends ParameterImpl implements ErrorCode {
         this.tag = Parameter.Error_Code;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = (byte) (code >>> 24);
@@ -63,7 +62,6 @@ public class ErrorCodeImpl extends ParameterImpl implements ErrorCode {
         return this.code;
     }
 
-    @Override
     public String toString() {
         return String.format("ErrorCode code=%d Error=%s", code, this.getErrorMessage(this.code));
     }

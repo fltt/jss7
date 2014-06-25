@@ -65,27 +65,22 @@ public class ExternalClientImpl extends SequenceBase implements ExternalClient {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public LCSClientExternalID getClientIdentity() {
         return this.clientIdentity;
     }
 
-    @Override
     public GMLCRestriction getGMLCRestriction() {
         return this.gmlcRestriction;
     }
 
-    @Override
     public NotificationToMSUser getNotificationToMSUser() {
         return this.notificationToMSUser;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.clientIdentity = null;
@@ -162,7 +157,6 @@ public class ExternalClientImpl extends SequenceBase implements ExternalClient {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -193,7 +187,6 @@ public class ExternalClientImpl extends SequenceBase implements ExternalClient {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

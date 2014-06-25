@@ -54,12 +54,10 @@ public class CSGIdImpl extends BitStringBase implements CSGId {
      */
     protected static final XMLFormat<CSGIdImpl> CSG_ID_XML = new XMLFormat<CSGIdImpl>(CSGIdImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CSGIdImpl csgId) throws XMLStreamException {
             BIT_STRING_BASE_XML.read(xml, csgId);
         }
 
-        @Override
         public void write(CSGIdImpl csgId, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             BIT_STRING_BASE_XML.write(csgId, xml);
         }

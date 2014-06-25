@@ -78,12 +78,10 @@ public class ISUPProviderImpl implements ISUPProvider {
         this.messageFactory = new ISUPMessageFactoryImpl(this.parameterFactory);
     }
 
-    @Override
     public int getNi() {
         return this.ni;
     }
 
-    @Override
     public int getLocalSpc() {
         return this.localSpc;
     }

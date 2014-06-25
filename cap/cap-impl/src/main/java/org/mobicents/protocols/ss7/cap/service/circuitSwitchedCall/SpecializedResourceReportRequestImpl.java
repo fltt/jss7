@@ -65,47 +65,38 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         this.isCAPVersion4orLater = isCAPVersion4orLater;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.specializedResourceReport_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.specializedResourceReport;
     }
 
-    @Override
     public Long getLinkedId() {
         return linkedId;
     }
 
-    @Override
     public void setLinkedId(Long val) {
         linkedId = val;
     }
 
-    @Override
     public Invoke getLinkedInvoke() {
         return linkedInvoke;
     }
 
-    @Override
     public void setLinkedInvoke(Invoke val) {
         linkedInvoke = val;
     }
 
-    @Override
     public boolean getAllAnnouncementsComplete() {
         return isAllAnnouncementsComplete;
     }
 
-    @Override
     public boolean getFirstAnnouncementStarted() {
         return isFirstAnnouncementStarted;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (this.isCAPVersion4orLater) {
             if (this.isAllAnnouncementsComplete)
@@ -117,7 +108,6 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         }
     }
 
-    @Override
     public int getTagClass() {
         if (this.isCAPVersion4orLater) {
             return Tag.CLASS_CONTEXT_SPECIFIC;
@@ -126,12 +116,10 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         }
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -146,7 +134,6 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -188,12 +175,10 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         ansIS.readNullData(length);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -206,7 +191,6 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.isCAPVersion4orLater) {
@@ -219,7 +203,6 @@ public class SpecializedResourceReportRequestImpl extends CircuitSwitchedCallMes
         asnOs.writeNullData();
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

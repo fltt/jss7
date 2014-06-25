@@ -74,64 +74,52 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
         this.data = data;
     }
 
-    @Override
     public Integer getLocalCode() {
         return localCode;
     }
 
-    @Override
     public long[] getGlobalCode() {
         return globalCode;
     }
 
-    @Override
     public CriticalityType getCriticalityType() {
         return criticalityType;
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public void setLocalCode(Integer localCode) {
         this.localCode = localCode;
         this.globalCode = null;
     }
 
-    @Override
     public void setGlobalCode(long[] globalCode) {
         this.localCode = null;
         this.globalCode = globalCode;
     }
 
-    @Override
     public void setCriticalityType(CriticalityType criticalityType) {
         this.criticalityType = criticalityType;
     }
 
-    @Override
     public void setData(byte[] data) {
         this.data = data;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -146,7 +134,6 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -247,13 +234,11 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
                     + ": value field is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -266,7 +251,6 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -297,7 +281,6 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -352,7 +335,6 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
     protected static final XMLFormat<ExtensionFieldImpl> EXTENSION_FIELD_XML = new XMLFormat<ExtensionFieldImpl>(
             ExtensionFieldImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ExtensionFieldImpl extensionField)
                 throws XMLStreamException {
             long localCode = xml.getAttribute(LOCAL_CODE, Long.MIN_VALUE);
@@ -381,7 +363,6 @@ public class ExtensionFieldImpl implements ExtensionField, CAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(ExtensionFieldImpl extensionField, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (extensionField.localCode != null)

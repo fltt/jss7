@@ -42,7 +42,6 @@ public class ASPActiveAckImpl extends M3UAMessageImpl implements ASPActiveAck {
         super(MessageClass.ASP_TRAFFIC_MAINTENANCE, MessageType.ASP_ACTIVE_ACK, MessageType.S_ASP_ACTIVE_ACK);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
         if (parameters.containsKey(Parameter.Traffic_Mode_Type)) {
             ((ParameterImpl) parameters.get(Parameter.Traffic_Mode_Type)).write(buffer);

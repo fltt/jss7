@@ -64,27 +64,22 @@ public class CSGSubscriptionDataImpl extends SequenceBase implements CSGSubscrip
         this.lipaAllowedAPNList = lipaAllowedAPNList;
     }
 
-    @Override
     public CSGId getCsgId() {
         return this.csgId;
     }
 
-    @Override
     public Time getExpirationDate() {
         return this.expirationDate;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public ArrayList<APN> getLipaAllowedAPNList() {
         return this.lipaAllowedAPNList;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.csgId = null;
@@ -195,7 +190,6 @@ public class CSGSubscriptionDataImpl extends SequenceBase implements CSGSubscrip
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.csgId == null) {
@@ -231,7 +225,6 @@ public class CSGSubscriptionDataImpl extends SequenceBase implements CSGSubscrip
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

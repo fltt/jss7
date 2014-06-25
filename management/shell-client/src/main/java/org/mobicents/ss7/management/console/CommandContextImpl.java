@@ -99,7 +99,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#isConnected()
      */
-    @Override
     public boolean isControllerConnected() {
         return this.client.isConnected();
     }
@@ -109,7 +108,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#printLine(java.lang .String)
      */
-    @Override
     public void printLine(String message) {
         console.print(message);
         console.printNewLine();
@@ -120,7 +118,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#printColumns(java .util.Collection)
      */
-    @Override
     public void printColumns(Collection<String> col) {
         console.printColumns(col);
     }
@@ -130,7 +127,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#clearScreen()
      */
-    @Override
     public void clearScreen() {
         console.clearScreen();
     }
@@ -140,7 +136,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#terminateSession()
      */
-    @Override
     public void terminateSession() {
         this.terminated = true;
         this.console.stop();
@@ -151,7 +146,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#isTerminated()
      */
-    @Override
     public boolean isTerminated() {
         return this.terminated;
     }
@@ -161,7 +155,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#connectController (java.lang.String, int)
      */
-    @Override
     public void connectController(String host, int port) {
 
         try {
@@ -211,7 +204,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#disconnectController ()
      */
-    @Override
     public void disconnectController() {
         this.client.stop();
         this.prompt = this.prefix + Shell.CLI_POSTFIX;
@@ -222,7 +214,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#getDefaultControllerHost ()
      */
-    @Override
     public String getDefaultControllerHost() {
         return this.defaultControllerHost;
     }
@@ -232,7 +223,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#getDefaultControllerPort ()
      */
-    @Override
     public int getDefaultControllerPort() {
         return this.defaultControllerPort;
     }
@@ -242,7 +232,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#getControllerHost()
      */
-    @Override
     public String getControllerHost() {
         return this.controllerHost;
     }
@@ -252,7 +241,6 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#getControllerPort()
      */
-    @Override
     public int getControllerPort() {
         return this.controllerPort;
     }
@@ -262,12 +250,10 @@ public class CommandContextImpl implements CommandContext {
      *
      * @see org.mobicents.ss7.management.console.CommandContext#getHistory()
      */
-    @Override
     public CommandHistory getHistory() {
         return this.console.getHistory();
     }
 
-    @Override
     public void sendMessage(String text) {
         Message outgoing = messageFactory.createMessage(text);
         try {

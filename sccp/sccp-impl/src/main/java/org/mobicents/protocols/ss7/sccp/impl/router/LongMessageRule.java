@@ -65,7 +65,6 @@ public class LongMessageRule implements XMLSerializable {
             return false;
     }
 
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("firstSpc=").append(this.firstSpc).append(", lastSpc=").append(this.lastSpc).append(", ruleType=")

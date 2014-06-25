@@ -72,7 +72,6 @@ public abstract class TbcdString implements CAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -268,12 +267,10 @@ public abstract class TbcdString implements CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         return _PrimitiveName + " [" + this.data + "]";
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -281,7 +278,6 @@ public abstract class TbcdString implements CAPAsnPrimitive {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;

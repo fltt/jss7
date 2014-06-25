@@ -253,7 +253,6 @@ public class InformServiceCentreRequestImpl extends SmsMessageImpl implements In
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("InformServiceCentreRequest [");

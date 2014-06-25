@@ -63,32 +63,26 @@ public class FCIBCCCAMELsequence1GprsImpl extends SequenceBase implements FCIBCC
         this.appendFreeFormatData = appendFreeFormatData;
     }
 
-    @Override
     public FreeFormatDataGprs getFreeFormatData() {
         return this.freeFormatData;
     }
 
-    @Override
     public PDPID getPDPID() {
         return this.pdpID;
     }
 
-    @Override
     public AppendFreeFormatData getAppendFreeFormatData() {
         return this.appendFreeFormatData;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return _ID_FCIBCCCAMELsequence1;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -145,7 +139,6 @@ public class FCIBCCCAMELsequence1GprsImpl extends SequenceBase implements FCIBCC
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.freeFormatData == null)
@@ -169,7 +162,6 @@ public class FCIBCCCAMELsequence1GprsImpl extends SequenceBase implements FCIBCC
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -292,7 +292,6 @@ public abstract class Linkset implements XMLSerializable {
      */
     protected static final XMLFormat<Linkset> LINKSET_XML = new XMLFormat<Linkset>(Linkset.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, Linkset linkSet) throws XMLStreamException {
             linkSet.linksetName = xml.getAttribute(LINKSET_NAME).toString();
             linkSet.state = xml.getAttribute(LINKSET_STATE, LinksetState.UNAVAILABLE);
@@ -310,7 +309,6 @@ public abstract class Linkset implements XMLSerializable {
             }
         }
 
-        @Override
         public void write(Linkset linkSet, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(LINKSET_NAME, linkSet.linksetName);
             xml.setAttribute(LINKSET_STATE, LinksetState.UNAVAILABLE);

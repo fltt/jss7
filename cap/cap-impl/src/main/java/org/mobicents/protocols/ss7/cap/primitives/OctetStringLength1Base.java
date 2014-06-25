@@ -64,7 +64,6 @@ public abstract class OctetStringLength1Base implements CAPAsnPrimitive {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -118,12 +117,10 @@ public abstract class OctetStringLength1Base implements CAPAsnPrimitive {
         asnOs.write(this.data);
     }
 
-    @Override
     public int hashCode() {
         return data;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -136,7 +133,6 @@ public abstract class OctetStringLength1Base implements CAPAsnPrimitive {
         return data == other.data;
     }
 
-    @Override
     public String toString() {
         return _PrimitiveName + " [Data=" + this.data + "]";
     }

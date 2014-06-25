@@ -108,107 +108,86 @@ public class OfferedCamel4FunctionalitiesImpl extends BitStringBase implements O
             this.bitString.set(_ID_collectInformation);
     }
 
-    @Override
     public boolean getInitiateCallAttempt() {
         return this.bitString.get(_ID_initiateCallAttempt);
     }
 
-    @Override
     public boolean getSplitLeg() {
         return this.bitString.get(_ID_splitLeg);
     }
 
-    @Override
     public boolean getMoveLeg() {
         return this.bitString.get(_ID_moveLeg);
     }
 
-    @Override
     public boolean getDisconnectLeg() {
         return this.bitString.get(_ID_disconnectLeg);
     }
 
-    @Override
     public boolean getEntityReleased() {
         return this.bitString.get(_ID_entityReleased);
     }
 
-    @Override
     public boolean getDfcWithArgument() {
         return this.bitString.get(_ID_dfcWithArgument);
     }
 
-    @Override
     public boolean getPlayTone() {
         return this.bitString.get(_ID_playTone);
     }
 
-    @Override
     public boolean getDtmfMidCall() {
         return this.bitString.get(_ID_dtmfMidCall);
     }
 
-    @Override
     public boolean getChargingIndicator() {
         return this.bitString.get(_ID_chargingIndicator);
     }
 
-    @Override
     public boolean getAlertingDP() {
         return this.bitString.get(_ID_alertingDP);
     }
 
-    @Override
     public boolean getLocationAtAlerting() {
         return this.bitString.get(_ID_locationAtAlerting);
     }
 
-    @Override
     public boolean getChangeOfPositionDP() {
         return this.bitString.get(_ID_changeOfPositionDP);
     }
 
-    @Override
     public boolean getOrInteractions() {
         return this.bitString.get(_ID_orInteractions);
     }
 
-    @Override
     public boolean getWarningToneEnhancements() {
         return this.bitString.get(_ID_warningToneEnhancements);
     }
 
-    @Override
     public boolean getCfEnhancements() {
         return this.bitString.get(_ID_cfEnhancements);
     }
 
-    @Override
     public boolean getSubscribedEnhancedDialledServices() {
         return this.bitString.get(_ID_subscribedEnhancedDialledServices);
     }
 
-    @Override
     public boolean getServingNetworkEnhancedDialledServices() {
         return this.bitString.get(_ID_servingNetworkEnhancedDialledServices);
     }
 
-    @Override
     public boolean getCriteriaForChangeOfPositionDP() {
         return this.bitString.get(_ID_criteriaForChangeOfPositionDP);
     }
 
-    @Override
     public boolean getServiceChangeDP() {
         return this.bitString.get(_ID_serviceChangeDP);
     }
 
-    @Override
     public boolean getCollectInformation() {
         return this.bitString.get(_ID_collectInformation);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("OfferedCamel4FunctionalitiesImpl [");

@@ -58,22 +58,18 @@ public class ODBDataImpl extends SequenceBase implements ODBData {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public ODBGeneralData getODBGeneralData() {
         return this.oDBGeneralData;
     }
 
-    @Override
     public ODBHPLMNData getOdbHplmnData() {
         return this.odbHplmnData;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.oDBGeneralData = null;
@@ -142,7 +138,6 @@ public class ODBDataImpl extends SequenceBase implements ODBData {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.oDBGeneralData == null)
             throw new MAPException("Error while encoding" + _PrimitiveName + ": oDBGeneralData must not be null");
@@ -156,7 +151,6 @@ public class ODBDataImpl extends SequenceBase implements ODBData {
             ((MAPExtensionContainerImpl) this.extensionContainer).encodeAll(asnOs, Tag.CLASS_UNIVERSAL, Tag.SEQUENCE);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

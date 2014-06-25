@@ -90,62 +90,50 @@ public class ServiceInteractionIndicatorsTwoImpl implements ServiceInteractionIn
         this.ectTreatmentIndicator = ectTreatmentIndicator;
     }
 
-    @Override
     public ForwardServiceInteractionInd getForwardServiceInteractionInd() {
         return forwardServiceInteractionInd;
     }
 
-    @Override
     public BackwardServiceInteractionInd getBackwardServiceInteractionInd() {
         return backwardServiceInteractionInd;
     }
 
-    @Override
     public BothwayThroughConnectionInd getBothwayThroughConnectionInd() {
         return bothwayThroughConnectionInd;
     }
 
-    @Override
     public ConnectedNumberTreatmentInd getConnectedNumberTreatmentInd() {
         return connectedNumberTreatmentInd;
     }
 
-    @Override
     public boolean getNonCUGCall() {
         return nonCUGCall;
     }
 
-    @Override
     public HoldTreatmentIndicator getHoldTreatmentIndicator() {
         return holdTreatmentIndicator;
     }
 
-    @Override
     public CwTreatmentIndicator getCwTreatmentIndicator() {
         return cwTreatmentIndicator;
     }
 
-    @Override
     public EctTreatmentIndicator getEctTreatmentIndicator() {
         return ectTreatmentIndicator;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -160,7 +148,6 @@ public class ServiceInteractionIndicatorsTwoImpl implements ServiceInteractionIn
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -230,12 +217,10 @@ public class ServiceInteractionIndicatorsTwoImpl implements ServiceInteractionIn
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -248,7 +233,6 @@ public class ServiceInteractionIndicatorsTwoImpl implements ServiceInteractionIn
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -315,7 +299,6 @@ public class ServiceInteractionIndicatorsTwoImpl implements ServiceInteractionIn
         }
     };
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

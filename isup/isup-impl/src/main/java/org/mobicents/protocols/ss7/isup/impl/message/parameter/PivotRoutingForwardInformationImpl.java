@@ -73,47 +73,38 @@ public class PivotRoutingForwardInformationImpl extends AbstractInformationParam
         return _PARAMETER_CODE;
     }
 
-    @Override
     protected Map<Integer, Class<? extends AbstractInformationImpl>> getTagMapping() {
         return tagMapping;
     }
 
-    @Override
     public void setReturnToInvokingExchangePossible(ReturnToInvokingExchangePossible... duration) {
         super.setInformation(duration);
     }
 
-    @Override
     public ReturnToInvokingExchangePossible[] getReturnToInvokingExchangePossible() {
         return (ReturnToInvokingExchangePossible[])super.getInformation(ReturnToInvokingExchangePossible.class);
     }
 
-    @Override
     public void setReturnToInvokingExchangeCallIdentifier(ReturnToInvokingExchangeCallIdentifier... cid) {
         super.setInformation(cid);
     }
 
-    @Override
     public ReturnToInvokingExchangeCallIdentifier[] getReturnToInvokingExchangeCallIdentifier() {
         return (ReturnToInvokingExchangeCallIdentifier[])super.getInformation(ReturnToInvokingExchangeCallIdentifier.class);
     }
 
-    @Override
     public void setPerformingPivotIndicator(PerformingPivotIndicator... reason) {
         super.setInformation(reason);
     }
 
-    @Override
     public PerformingPivotIndicator[] getPerformingPivotIndicator() {
         return (PerformingPivotIndicator[])super.getInformation(PerformingPivotIndicator.class);
     }
 
-    @Override
     public void setInvokingPivotReason(InvokingPivotReason... reason) {
         super.setInformation(reason);
     }
 
-    @Override
     public InvokingPivotReason[] getInvokingPivotReason() {
         return (InvokingPivotReason[])super.getInformation(InvokingPivotReason.class);
     }

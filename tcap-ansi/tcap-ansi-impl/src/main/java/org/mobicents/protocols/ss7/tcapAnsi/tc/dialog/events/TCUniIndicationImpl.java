@@ -153,7 +153,6 @@ public class TCUniIndicationImpl extends DialogIndicationImpl implements TCUniIn
 
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
@@ -162,7 +161,6 @@ public class TCUniIndicationImpl extends DialogIndicationImpl implements TCUniIn
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }

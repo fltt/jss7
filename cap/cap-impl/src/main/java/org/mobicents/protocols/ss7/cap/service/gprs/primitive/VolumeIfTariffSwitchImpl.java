@@ -63,17 +63,14 @@ public class VolumeIfTariffSwitchImpl extends SequenceBase implements VolumeIfTa
         return this.volumeTariffSwitchInterval;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return _ID_VolumeIfTariffSwitch;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException {
 
         boolean isVolumeSinceLastTariffSwitchIncluded = false;
@@ -121,7 +118,6 @@ public class VolumeIfTariffSwitchImpl extends SequenceBase implements VolumeIfTa
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         try {
             asnOs.writeInteger(Tag.CLASS_CONTEXT_SPECIFIC, _ID_volumeSinceLastTariffSwitch, this.volumeSinceLastTariffSwitch);
@@ -137,7 +133,6 @@ public class VolumeIfTariffSwitchImpl extends SequenceBase implements VolumeIfTa
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

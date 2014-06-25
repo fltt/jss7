@@ -79,12 +79,10 @@ public class TypeOfNumberType extends EnumeratedBase {
             return new TypeOfNumberType(i1);
     }
 
-    @Override
     protected Hashtable<Integer, String> getIntTable() {
         return intMap;
     }
 
-    @Override
     protected Hashtable<String, Integer> getStringTable() {
         return stringMap;
     }

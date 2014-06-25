@@ -36,7 +36,6 @@ public class ASPInactiveImpl extends M3UAMessageImpl implements ASPInactive {
         super(MessageClass.ASP_TRAFFIC_MAINTENANCE, MessageType.ASP_INACTIVE, MessageType.S_ASP_INACTIVE);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
 
         if (parameters.containsKey(Parameter.Routing_Context)) {

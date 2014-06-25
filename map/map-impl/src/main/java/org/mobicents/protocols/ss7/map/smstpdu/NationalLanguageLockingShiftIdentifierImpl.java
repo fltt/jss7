@@ -43,7 +43,6 @@ public class NationalLanguageLockingShiftIdentifierImpl extends Gsm7NationalLang
         return UserDataHeader._InformationElementIdentifier_NationalLanguageLockingShift;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("NationalLanguageLockingShiftIdentifier [");

@@ -196,13 +196,11 @@ public class AddressStringImpl implements AddressString, MAPAsnPrimitive {
         TbcdString.encodeString(asnOs, this.address);
     }
 
-    @Override
     public String toString() {
         return "AddressString[AddressNature=" + this.addressNature.toString() + ", NumberingPlan="
                 + this.numberingPlan.toString() + ", Address=" + this.address + "]";
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -212,7 +210,6 @@ public class AddressStringImpl implements AddressString, MAPAsnPrimitive {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -239,7 +236,6 @@ public class AddressStringImpl implements AddressString, MAPAsnPrimitive {
     protected static final XMLFormat<AddressStringImpl> ADDRESS_STRING_XML = new XMLFormat<AddressStringImpl>(
             AddressStringImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AddressStringImpl addressStringImpl)
                 throws XMLStreamException {
             addressStringImpl.address = xml.getAttribute(NUMBER, "");
@@ -254,7 +250,6 @@ public class AddressStringImpl implements AddressString, MAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(AddressStringImpl addressStringImpl, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

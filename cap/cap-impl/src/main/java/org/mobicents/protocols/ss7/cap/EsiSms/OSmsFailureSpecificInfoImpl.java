@@ -53,12 +53,10 @@ public class OSmsFailureSpecificInfoImpl extends SequenceBase implements OSmsFai
         this.failureCause = failureCause;
     }
 
-    @Override
     public MOSMSCause getFailureCause() {
         return this.failureCause;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException,
             AsnException, MAPParsingComponentException, INAPParsingComponentException {
         this.failureCause = null;
@@ -91,7 +89,6 @@ public class OSmsFailureSpecificInfoImpl extends SequenceBase implements OSmsFai
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {

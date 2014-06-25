@@ -36,24 +36,20 @@ public class RedirectReasonImpl implements RedirectReason {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
     public byte getRedirectReason() {
         return this.redirectReason;
     }
 
-    @Override
     public void setRedirectReason(byte b) {
         this.redirectReason = (byte) (b & 0x7F);
     }
 
-    @Override
     public byte getRedirectPossibleAtPerformingExchange() {
         if(this.redirectPossibleAtPerformingExchange == null)
             return 0;
         return this.redirectPossibleAtPerformingExchange;
     }
 
-    @Override
     public void setRedirectPossibleAtPerformingExchange(byte b) {
         this.redirectPossibleAtPerformingExchange = (byte) (b & 0x07);
     }

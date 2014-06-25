@@ -58,17 +58,14 @@ public class AOCGPRSImpl extends SequenceBase implements AOCGPRS {
         this.aocSubsequent = aocSubsequent;
     }
 
-    @Override
     public CAI_GSM0224 getAOCInitial() {
         return this.aocInitial;
     }
 
-    @Override
     public AOCSubsequent getAOCSubsequent() {
         return this.aocSubsequent;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -114,7 +111,6 @@ public class AOCGPRSImpl extends SequenceBase implements AOCGPRS {
                     + ": aocInitial is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.aocInitial == null)
@@ -127,7 +123,6 @@ public class AOCGPRSImpl extends SequenceBase implements AOCGPRS {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

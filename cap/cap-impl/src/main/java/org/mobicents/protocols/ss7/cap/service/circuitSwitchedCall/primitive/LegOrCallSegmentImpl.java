@@ -68,7 +68,6 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
         this.legID = legID;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (callSegmentID != null)
             return _ID_callSegmentID;
@@ -76,12 +75,10 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
             return _ID_legID;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (callSegmentID != null)
             return true;
@@ -89,7 +86,6 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
             return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -110,7 +106,6 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -160,12 +155,10 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -178,7 +171,6 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.callSegmentID == null && this.legID == null)
@@ -201,7 +193,6 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -230,14 +221,12 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
     protected static final XMLFormat<LegOrCallSegmentImpl> TIME_INFORMATION_XML = new XMLFormat<LegOrCallSegmentImpl>(
             LegOrCallSegmentImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LegOrCallSegmentImpl legOrCallSegment)
                 throws XMLStreamException {
             legOrCallSegment.callSegmentID = xml.get(CALL_SEGMENT_ID, Integer.class);
             legOrCallSegment.legID = xml.get(LEG_ID, LegIDImpl.class);
         }
 
-        @Override
         public void write(LegOrCallSegmentImpl legOrCallSegment, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 
@@ -251,12 +240,10 @@ public class LegOrCallSegmentImpl implements LegOrCallSegment, CAPAsnPrimitive {
         }
     };
 
-    @Override
     public Integer getCallSegmentID() {
         return callSegmentID;
     }
 
-    @Override
     public LegID getLegID() {
         return legID;
     }

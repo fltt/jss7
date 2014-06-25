@@ -130,12 +130,10 @@ public class ProtocolDataImpl extends ParameterImpl implements ProtocolData {
         return data;
     }
 
-    @Override
     protected byte[] getValue() {
         return this.encode();
     }
 
-    @Override
     public String toString() {
         return String.format("Protocol opc=%d dpc=%d si=%d ni=%d sls=%d", opc, dpc, si, ni, sls);
     }

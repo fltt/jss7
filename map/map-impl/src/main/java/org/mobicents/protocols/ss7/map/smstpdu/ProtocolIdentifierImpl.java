@@ -38,7 +38,6 @@ public class ProtocolIdentifierImpl implements ProtocolIdentifier {
         return this.code;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

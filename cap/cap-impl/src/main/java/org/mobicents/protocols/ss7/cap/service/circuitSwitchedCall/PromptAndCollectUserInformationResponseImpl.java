@@ -55,37 +55,30 @@ public class PromptAndCollectUserInformationResponseImpl extends CircuitSwitched
         this.digitsResponse = digitsResponse;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.promptAndCollectUserInformation_Response;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.promptAndCollectUserInformation;
     }
 
-    @Override
     public Digits getDigitsResponse() {
         return digitsResponse;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return _ID_digitsResponse;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -100,7 +93,6 @@ public class PromptAndCollectUserInformationResponseImpl extends CircuitSwitched
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -134,12 +126,10 @@ public class PromptAndCollectUserInformationResponseImpl extends CircuitSwitched
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -152,7 +142,6 @@ public class PromptAndCollectUserInformationResponseImpl extends CircuitSwitched
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int choiceCnt = 0;
@@ -167,7 +156,6 @@ public class PromptAndCollectUserInformationResponseImpl extends CircuitSwitched
             ((DigitsImpl) this.digitsResponse).encodeData(asnOs);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

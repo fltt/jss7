@@ -50,7 +50,6 @@ public class ASPDownAckImpl extends M3UAMessageImpl implements ASPDownAck {
         }
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
 
         if (parameters.containsKey(Parameter.INFO_String)) {

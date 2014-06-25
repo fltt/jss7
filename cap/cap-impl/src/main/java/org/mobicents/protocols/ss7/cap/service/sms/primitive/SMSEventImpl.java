@@ -46,12 +46,10 @@ public class SMSEventImpl extends SequenceBase implements SMSEvent {
     private EventTypeSMS eventTypeSMS;
     private MonitorMode monitorMode;
 
-    @Override
     public EventTypeSMS getEventTypeSMS() {
         return this.eventTypeSMS;
     }
 
-    @Override
     public MonitorMode getMonitorMode() {
         return this.monitorMode;
     }
@@ -66,7 +64,6 @@ public class SMSEventImpl extends SequenceBase implements SMSEvent {
         this.monitorMode = monitorMode;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException,
             AsnException, MAPParsingComponentException {
 
@@ -119,7 +116,6 @@ public class SMSEventImpl extends SequenceBase implements SMSEvent {
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -140,7 +136,6 @@ public class SMSEventImpl extends SequenceBase implements SMSEvent {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

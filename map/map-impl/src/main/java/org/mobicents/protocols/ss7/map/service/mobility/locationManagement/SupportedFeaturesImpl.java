@@ -122,137 +122,110 @@ public class SupportedFeaturesImpl extends BitStringBase implements SupportedFea
             this.bitString.set(_INDEX_boicExHC);
     }
 
-    @Override
     public boolean getOdbAllApn() {
         return this.bitString.get(_INDEX_odbAllApn);
     }
 
-    @Override
     public boolean getOdbHPLMNApn() {
         return this.bitString.get(_INDEX_odbHPLMNApn);
     }
 
-    @Override
     public boolean getOdbVPLMNApn() {
         return this.bitString.get(_INDEX_odbVPLMNApn);
     }
 
-    @Override
     public boolean getOdbAllOg() {
         return this.bitString.get(_INDEX_odbAllOg);
     }
 
-    @Override
     public boolean getOdbAllInternationalOg() {
         return this.bitString.get(_INDEX_odbAllInternationalOg);
     }
 
-    @Override
     public boolean getOdbAllIntOgNotToHPLMNCountry() {
         return this.bitString.get(_INDEX_odbAllIntOgNotToHPLMNCountry);
     }
 
-    @Override
     public boolean getOdbAllInterzonalOg() {
         return this.bitString.get(_INDEX_odbAllInterzonalOg);
     }
 
-    @Override
     public boolean getOdbAllInterzonalOgNotToHPLMNCountry() {
         return this.bitString.get(_INDEX_odbAllInterzonalOgNotToHPLMNCountry);
     }
 
-    @Override
     public boolean getOdbAllInterzonalOgandInternatOgNotToHPLMNCountry() {
         return this.bitString.get(_INDEX_odbAllInterzonalOgandInternatOgNotToHPLMNCountry);
     }
 
-    @Override
     public boolean getRegSub() {
         return this.bitString.get(_INDEX_regSub);
     }
 
-    @Override
     public boolean getTrace() {
         return this.bitString.get(_INDEX_trace);
     }
 
-    @Override
     public boolean getLcsAllPrivExcep() {
         return this.bitString.get(_INDEX_lcsAllPrivExcep);
     }
 
-    @Override
     public boolean getLcsUniversal() {
         return this.bitString.get(_INDEX_lcsUniversal);
     }
 
-    @Override
     public boolean getLcsCallSessionRelated() {
         return this.bitString.get(_INDEX_lcsCallSessionRelated);
     }
 
-    @Override
     public boolean getLcsCallSessionUnrelated() {
         return this.bitString.get(_INDEX_lcsCallSessionUnrelated);
     }
 
-    @Override
     public boolean getLcsPLMNOperator() {
         return this.bitString.get(_INDEX_lcsPLMNOperator);
     }
 
-    @Override
     public boolean getLcsServiceType() {
         return this.bitString.get(_INDEX_lcsServiceType);
     }
 
-    @Override
     public boolean getLcsAllMOLRSS() {
         return this.bitString.get(_INDEX_lcsAllMOLRSS);
     }
 
-    @Override
     public boolean getLcsBasicSelfLocation() {
         return this.bitString.get(_INDEX_lcsBasicSelfLocation);
     }
 
-    @Override
     public boolean getLcsAutonomousSelfLocation() {
         return this.bitString.get(_INDEX_lcsAutonomousSelfLocation);
     }
 
-    @Override
     public boolean getLcsTransferToThirdParty() {
         return this.bitString.get(_INDEX_lcsTransferToThirdParty);
     }
 
-    @Override
     public boolean getSmMoPp() {
         return this.bitString.get(_INDEX_smMoPp);
     }
 
-    @Override
     public boolean getBarringOutgoingCalls() {
         return this.bitString.get(_INDEX_barringOutgoingCalls);
     }
 
-    @Override
     public boolean getBaoc() {
         return this.bitString.get(_INDEX_baoc);
     }
 
-    @Override
     public boolean getBoic() {
         return this.bitString.get(_INDEX_boic);
     }
 
-    @Override
     public boolean getBoicExHC() {
         return this.bitString.get(_INDEX_boicExHC);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

@@ -173,12 +173,10 @@ public class ParameterCompatibilityInstructionIndicatorsImpl implements Paramete
         return b;
     }
 
-    @Override
     public void setParamerterCode(byte code) {
         this.parameterCode = code;
     }
 
-    @Override
     public byte getParameterCode() {
         return this.parameterCode;
     }

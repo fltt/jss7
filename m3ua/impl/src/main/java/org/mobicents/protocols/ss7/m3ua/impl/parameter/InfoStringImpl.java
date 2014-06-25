@@ -45,12 +45,10 @@ public class InfoStringImpl extends ParameterImpl implements InfoString {
         return this.string;
     }
 
-    @Override
     protected byte[] getValue() {
         return this.string.getBytes();
     }
 
-    @Override
     public String toString() {
         return String.format("InfoString : string = %s ", this.string);
     }

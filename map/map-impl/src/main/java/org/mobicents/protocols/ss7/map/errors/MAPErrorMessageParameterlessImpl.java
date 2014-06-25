@@ -72,7 +72,6 @@ public class MAPErrorMessageParameterlessImpl extends MAPErrorMessageImpl implem
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
     }
 
-    @Override
     public String toString() {
         return "MAPErrorMessageParameterless [errorCode=" + this.errorCode + "]";
     }

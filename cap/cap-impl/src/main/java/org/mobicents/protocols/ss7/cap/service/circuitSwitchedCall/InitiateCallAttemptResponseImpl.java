@@ -81,12 +81,10 @@ public class InitiateCallAttemptResponseImpl extends CircuitSwitchedCallMessageI
         this.releaseCallArgExtensionAllowed = releaseCallArgExtensionAllowed;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.initiateCallAttempt_Response;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.initiateCallAttempt;
     }
@@ -296,17 +294,14 @@ public class InitiateCallAttemptResponseImpl extends CircuitSwitchedCallMessageI
         }
     };
 
-    @Override
     public SupportedCamelPhases getSupportedCamelPhases() {
         return supportedCamelPhases;
     }
 
-    @Override
     public OfferedCamel4Functionalities getOfferedCamel4Functionalities() {
         return offeredCamel4Functionalities;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }

@@ -76,12 +76,10 @@ public class DialogicLinkset extends Linkset {
         this.destModule = destModule;
     }
 
-    @Override
     protected void initialize() {
         // this.linksetStream = new LinksetStreamImpl();
     }
 
-    @Override
     protected void configure() throws Exception {
         if (this.mode == LinksetMode.CONFIGURED) {
             ipc = new InterProcessCommunicator(this.sourceModule, this.destModule);
@@ -89,7 +87,6 @@ public class DialogicLinkset extends Linkset {
 
     }
 
-    @Override
     public void activate() throws Exception {
         if (this.state == LinksetState.AVAILABLE) {
             throw new Exception(LinkOAMMessages.LINKSET_ALREADY_ACTIVE);
@@ -99,34 +96,28 @@ public class DialogicLinkset extends Linkset {
         this.configure();
     }
 
-    @Override
     public void deactivate() throws Exception {
         throw new Exception(LinkOAMMessages.NOT_IMPLEMENTED);
     }
 
-    @Override
     public void activateLink(String linkName) throws Exception {
         throw new Exception(LinkOAMMessages.OPERATION_NOT_SUPPORTED);
     }
 
-    @Override
     public void deactivateLink(String linkName) throws Exception {
         throw new Exception(LinkOAMMessages.OPERATION_NOT_SUPPORTED);
     }
 
-    @Override
     public void createLink(String[] arg0) throws Exception {
         throw new Exception(LinkOAMMessages.NOT_IMPLEMENTED);
     }
 
-    @Override
     public void deleteLink(String arg0) throws Exception {
         throw new Exception(LinkOAMMessages.NOT_IMPLEMENTED);
     }
 
     protected static final XMLFormat<DialogicLinkset> DAHDI_LINK_XML = new XMLFormat<DialogicLinkset>(DialogicLinkset.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DialogicLinkset linkset) throws XMLStreamException {
 
             LINKSET_XML.read(xml, linkset);
@@ -141,7 +132,6 @@ public class DialogicLinkset extends Linkset {
             }
         }
 
-        @Override
         public void write(DialogicLinkset linkset, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
 
             LINKSET_XML.write(linkset, xml);
@@ -154,7 +144,6 @@ public class DialogicLinkset extends Linkset {
     // private class LinksetStreamImpl extends LinksetStream {
     // ByteBuffer rxData = null;
     //
-    // @Override
     // public boolean poll(int arg0, int arg1) {
     // rxData = null;
     // try {
@@ -168,7 +157,6 @@ public class DialogicLinkset extends Linkset {
     // return false;
     // }
     //
-    // @Override
     // public String getName() {
     // return linksetName;
     // }
@@ -200,20 +188,17 @@ public class DialogicLinkset extends Linkset {
     // return paramArrayOfByte.length;
     // }
     //
-    // @Override
     // public int read(ByteBuffer arg0) throws IOException {
     // // TODO Auto-generated method stub
     // return 0;
     // }
     //
-    // @Override
     // public int write(ByteBuffer arg0) throws IOException {
     // // TODO Auto-generated method stub
     // return 0;
     // }
     // }
 
-    @Override
     public void print(StringBuffer sb, int leftPad, int descPad) {
 
         // left pad

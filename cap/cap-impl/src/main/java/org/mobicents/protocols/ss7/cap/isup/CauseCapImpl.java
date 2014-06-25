@@ -74,12 +74,10 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public CauseIndicators getCauseIndicators() throws CAPException {
         if (this.data == null)
             throw new CAPException("The data has not been filled");
@@ -93,22 +91,18 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -126,7 +120,6 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -154,12 +147,10 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, Tag.CLASS_UNIVERSAL, Tag.STRING_OCTET);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -172,7 +163,6 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -183,7 +173,6 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("CauseCap [");
@@ -220,7 +209,6 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
      */
     protected static final XMLFormat<CauseCapImpl> CAUSE_CAP_XML = new XMLFormat<CauseCapImpl>(CauseCapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CauseCapImpl causeCap) throws XMLStreamException {
             try {
                 causeCap.setCauseIndicators(xml.get(ISUP_CAUSE_INDICATORS_XML, CauseIndicatorsImpl.class));
@@ -229,7 +217,6 @@ public class CauseCapImpl implements CauseCap, CAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(CauseCapImpl causeCap, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             try {
                 xml.add(((CauseIndicatorsImpl) causeCap.getCauseIndicators()), ISUP_CAUSE_INDICATORS_XML,

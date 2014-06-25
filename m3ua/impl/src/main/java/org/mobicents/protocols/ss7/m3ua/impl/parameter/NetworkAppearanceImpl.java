@@ -62,7 +62,6 @@ public class NetworkAppearanceImpl extends ParameterImpl implements NetworkAppea
         return value;
     }
 
-    @Override
     protected byte[] getValue() {
         byte[] data = new byte[4];
         data[0] = (byte) (value >>> 24);
@@ -73,7 +72,6 @@ public class NetworkAppearanceImpl extends ParameterImpl implements NetworkAppea
         return data;
     }
 
-    @Override
     public String toString() {
         return String.format("NetworkAppearance value=%d", value);
     }
@@ -84,12 +82,10 @@ public class NetworkAppearanceImpl extends ParameterImpl implements NetworkAppea
     protected static final XMLFormat<NetworkAppearanceImpl> RC_XML = new XMLFormat<NetworkAppearanceImpl>(
             NetworkAppearanceImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, NetworkAppearanceImpl localRkId) throws XMLStreamException {
             localRkId.value = xml.getAttribute(VALUE).toLong();
         }
 
-        @Override
         public void write(NetworkAppearanceImpl localRkId, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             xml.setAttribute(VALUE, localRkId.value);

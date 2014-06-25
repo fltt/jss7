@@ -235,7 +235,6 @@ public class UnstructuredSSNotifyRequestImpl extends SupplementaryMessageImpl im
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("UnstructuredSSNotifyRequest [");
@@ -266,7 +265,6 @@ public class UnstructuredSSNotifyRequestImpl extends SupplementaryMessageImpl im
     protected static final XMLFormat<UnstructuredSSNotifyRequestImpl> UNSTRUCTURED_SS_NOTIFY_REQUEST_XML = new XMLFormat<UnstructuredSSNotifyRequestImpl>(
             UnstructuredSSNotifyRequestImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, UnstructuredSSNotifyRequestImpl ussdMessage)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.read(xml, ussdMessage);
@@ -275,7 +273,6 @@ public class UnstructuredSSNotifyRequestImpl extends SupplementaryMessageImpl im
 
         }
 
-        @Override
         public void write(UnstructuredSSNotifyRequestImpl ussdMessage, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.write(ussdMessage, xml);

@@ -107,7 +107,6 @@ public class ApplicationContextImpl implements ApplicationContext {
         }
     }
 
-    @Override
     public boolean isInteger() {
         if (acType == ACType.Integer)
             return true;
@@ -115,7 +114,6 @@ public class ApplicationContextImpl implements ApplicationContext {
             return false;
     }
 
-    @Override
     public boolean isObjectID() {
         if (acType == ACType.OId)
             return true;
@@ -142,12 +140,10 @@ public class ApplicationContextImpl implements ApplicationContext {
         }
     }
 
-    @Override
     public long getInteger() {
         return this.integerVal;
     }
 
-    @Override
     public void setInteger(long val) {
         this.integerVal = val;
         acType = ACType.Integer;

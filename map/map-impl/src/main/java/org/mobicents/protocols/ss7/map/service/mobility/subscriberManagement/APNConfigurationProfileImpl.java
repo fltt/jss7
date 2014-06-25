@@ -62,27 +62,22 @@ public class APNConfigurationProfileImpl extends SequenceBase implements APNConf
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public int getDefaultContext() {
         return this.defaultContext;
     }
 
-    @Override
     public boolean getCompleteDataListIncluded() {
         return this.completeDataListIncluded;
     }
 
-    @Override
     public ArrayList<APNConfiguration> getEPSDataList() {
         return this.ePSDataList;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.defaultContext = -1;
@@ -196,7 +191,6 @@ public class APNConfigurationProfileImpl extends SequenceBase implements APNConf
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.ePSDataList == null)
@@ -233,7 +227,6 @@ public class APNConfigurationProfileImpl extends SequenceBase implements APNConf
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -49,7 +49,6 @@ public class ReturnErrorImpl extends AbstractRemoteOperation implements ReturnEr
         super(OperationType.ReturnError);
     }
 
-    @Override
     public void setInvokeId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Invoke ID our of range: <-128,127>: " + i);
@@ -58,32 +57,26 @@ public class ReturnErrorImpl extends AbstractRemoteOperation implements ReturnEr
 
     }
 
-    @Override
     public Long getInvokeId() {
         return this.invokeId;
     }
 
-    @Override
     public void setErrorCode(ErrorCode ec) {
         this.errorCode = ec;
     }
 
-    @Override
     public ErrorCode getErrorCode() {
         return this.errorCode;
     }
 
-    @Override
     public void setParameter(Parameter p) {
         this.parameter = p;
     }
 
-    @Override
     public Parameter getParameter() {
         return this.parameter;
     }
 
-    @Override
     public void decode(AsnInputStream ais) throws ParameterException {
         try {
             AsnInputStream localAis = ais.readSequenceStream();
@@ -134,7 +127,6 @@ public class ReturnErrorImpl extends AbstractRemoteOperation implements ReturnEr
 
     }
 
-    @Override
     public void encode(AsnOutputStream aos) throws ParameterException {
         if (this.invokeId == null)
             throw new ParameterException("Invoke ID not set!");

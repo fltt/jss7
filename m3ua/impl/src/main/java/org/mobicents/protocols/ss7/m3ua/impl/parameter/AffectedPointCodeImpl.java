@@ -81,7 +81,6 @@ public class AffectedPointCodeImpl extends ParameterImpl implements AffectedPoin
         }
     }
 
-    @Override
     protected byte[] getValue() {
         return this.value;
     }
@@ -94,7 +93,6 @@ public class AffectedPointCodeImpl extends ParameterImpl implements AffectedPoin
         return this.pointCodes;
     }
 
-    @Override
     public String toString() {
         return String.format("AffectedPointCode pointCode=%s mask=%s", Arrays.toString(this.pointCodes),
                 Arrays.toString(this.masks));

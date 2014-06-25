@@ -39,7 +39,6 @@ public class ConnectHandler extends CommandHandlerWithHelp {
      * @see org.mobicents.ss7.management.console.CommandHandler#isAvailable(org.mobicents
      * .ss7.management.console.CommandContext)
      */
-    @Override
     public boolean isAvailable(CommandContext ctx) {
         if (ctx.isControllerConnected()) {
             ctx.printLine("Already connected");
@@ -54,7 +53,6 @@ public class ConnectHandler extends CommandHandlerWithHelp {
      * @see org.mobicents.ss7.management.console.CommandHandler#handle(org.mobicents .ss7.management.console.CommandContext,
      * java.lang.String)
      */
-    @Override
     public void handle(CommandContext ctx, String commandLine) {
         // TODO Validate command
 

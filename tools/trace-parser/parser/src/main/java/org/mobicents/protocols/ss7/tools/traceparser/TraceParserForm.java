@@ -575,7 +575,6 @@ public class TraceParserForm {
             this.name = name;
         }
 
-        @Override
         public boolean accept(File f) {
             if (f.isDirectory())
                 return true;
@@ -603,7 +602,6 @@ public class TraceParserForm {
             return false;
         }
 
-        @Override
         public String getDescription() {
             return this.name;
         }

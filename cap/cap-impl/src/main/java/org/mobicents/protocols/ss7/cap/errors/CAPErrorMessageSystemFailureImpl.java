@@ -61,27 +61,22 @@ public class CAPErrorMessageSystemFailureImpl extends CAPErrorMessageImpl implem
         return this;
     }
 
-    @Override
     public UnavailableNetworkResource getUnavailableNetworkResource() {
         return unavailableNetworkResource;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.ENUMERATED;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -96,7 +91,6 @@ public class CAPErrorMessageSystemFailureImpl extends CAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -123,7 +117,6 @@ public class CAPErrorMessageSystemFailureImpl extends CAPErrorMessageImpl implem
         this.unavailableNetworkResource = UnavailableNetworkResource.getInstance(i1);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
@@ -154,7 +147,6 @@ public class CAPErrorMessageSystemFailureImpl extends CAPErrorMessageImpl implem
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

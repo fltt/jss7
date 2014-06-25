@@ -108,7 +108,6 @@ public class ExtForwOptionsImpl extends OctetStringBase implements ExtForwOption
         return ExtForwOptionsForwardingReason.getInstance((int) ((data[0] & _MASK_ForwardingReason) >> 2));
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -212,7 +212,6 @@ public class CalledPartyBCDNumberImpl extends OctetStringBase implements CalledP
             throw new CAPException("Error when encoding AddressString: address length must not exceed 38 digits");
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -244,7 +243,6 @@ public class CalledPartyBCDNumberImpl extends OctetStringBase implements CalledP
     protected static final XMLFormat<CalledPartyBCDNumberImpl> CALLED_PARTY_BCD_NUMBER_XML = new XMLFormat<CalledPartyBCDNumberImpl>(
             CalledPartyBCDNumberImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, CalledPartyBCDNumberImpl calledPartyBCDNumber)
                 throws XMLStreamException {
             try {
@@ -265,7 +263,6 @@ public class CalledPartyBCDNumberImpl extends OctetStringBase implements CalledP
             }
         }
 
-        @Override
         public void write(CalledPartyBCDNumberImpl calledPartyBCDNumber, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
 

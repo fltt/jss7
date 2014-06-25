@@ -985,7 +985,6 @@ public class TCAPProviderImpl implements TCAPProvider, SccpListener {
             this.origTxId = txId;
         }
 
-        @Override
         public boolean equals(Object obj) {
             if (obj == null)
                 return false;
@@ -1009,7 +1008,6 @@ public class TCAPProviderImpl implements TCAPProvider, SccpListener {
             return true;
         }
 
-        @Override
         public int hashCode() {
             final int prime = 31;
             int result = 1;

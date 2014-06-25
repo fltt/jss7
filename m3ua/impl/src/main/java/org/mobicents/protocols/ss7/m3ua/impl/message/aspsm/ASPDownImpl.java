@@ -50,7 +50,6 @@ public class ASPDownImpl extends M3UAMessageImpl implements ASPDown {
         }
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
 
         if (parameters.containsKey(Parameter.INFO_String)) {

@@ -137,152 +137,122 @@ public class ODBGeneralDataImpl extends BitStringBase implements ODBGeneralData 
             this.bitString.set(_INDEX_registrationInternationalCFBarred);
     }
 
-    @Override
     public boolean getAllOGCallsBarred() {
         return this.bitString.get(_INDEX_allOGCallsBarred);
     }
 
-    @Override
     public boolean getInternationalOGCallsBarred() {
         return this.bitString.get(_INDEX_internationalOGCallsBarred);
     }
 
-    @Override
     public boolean getInternationalOGCallsNotToHPLMNCountryBarred() {
         return this.bitString.get(_INDEX_internationalOGCallsNotToHPLMNCountryBarred);
     }
 
-    @Override
     public boolean getInterzonalOGCallsBarred() {
         return this.bitString.get(_INDEX_interzonalOGCallsBarred);
     }
 
-    @Override
     public boolean getInterzonalOGCallsNotToHPLMNCountryBarred() {
         return this.bitString.get(_INDEX_interzonalOGCallsNotToHPLMNCountryBarred);
     }
 
-    @Override
     public boolean getInterzonalOGCallsAndInternationalOGCallsNotToHPLMNCountryBarred() {
         return this.bitString.get(_INDEX_interzonalOGCallsAndInternationalOGCallsNotToHPLMNCountryBarred);
     }
 
-    @Override
     public boolean getPremiumRateInformationOGCallsBarred() {
         return this.bitString.get(_INDEX_premiumRateInformationOGCallsBarred);
     }
 
-    @Override
     public boolean getPremiumRateEntertainementOGCallsBarred() {
         return this.bitString.get(_INDEX_premiumRateEntertainementOGCallsBarred);
     }
 
-    @Override
     public boolean getSsAccessBarred() {
         return this.bitString.get(_INDEX_ssAccessBarred);
     }
 
-    @Override
     public boolean getAllECTBarred() {
         return this.bitString.get(_INDEX_allECTBarred);
     }
 
-    @Override
     public boolean getChargeableECTBarred() {
         return this.bitString.get(_INDEX_chargeableECTBarred);
     }
 
-    @Override
     public boolean getInternationalECTBarred() {
         return this.bitString.get(_INDEX_internationalECTBarred);
     }
 
-    @Override
     public boolean getInterzonalECTBarred() {
         return this.bitString.get(_INDEX_interzonalECTBarred);
     }
 
-    @Override
     public boolean getDoublyChargeableECTBarred() {
         return this.bitString.get(_INDEX_doublyChargeableECTBarred);
     }
 
-    @Override
     public boolean getMultipleECTBarred() {
         return this.bitString.get(_INDEX_multipleECTBarred);
     }
 
-    @Override
     public boolean getAllPacketOrientedServicesBarred() {
         return this.bitString.get(_INDEX_allPacketOrientedServicesBarred);
     }
 
-    @Override
     public boolean getRoamerAccessToHPLMNAPBarred() {
         return this.bitString.get(_INDEX_roamerAccessToHPLMNAPBarred);
     }
 
-    @Override
     public boolean getRoamerAccessToVPLMNAPBarred() {
         return this.bitString.get(_INDEX_roamerAccessToVPLMNAPBarred);
     }
 
-    @Override
     public boolean getRoamingOutsidePLMNOGCallsBarred() {
         return this.bitString.get(_INDEX_roamingOutsidePLMNOGCallsBarred);
     }
 
-    @Override
     public boolean getAllICCallsBarred() {
         return this.bitString.get(_INDEX_allICCallsBarred);
     }
 
-    @Override
     public boolean getRoamingOutsidePLMNICCallsBarred() {
         return this.bitString.get(_INDEX_roamingOutsidePLMNICCallsBarred);
     }
 
-    @Override
     public boolean getRoamingOutsidePLMNICountryICCallsBarred() {
         return this.bitString.get(_INDEX_roamingOutsidePLMNICountryICCallsBarred);
     }
 
-    @Override
     public boolean getRoamingOutsidePLMNBarred() {
         return this.bitString.get(_INDEX_roamingOutsidePLMNBarred);
     }
 
-    @Override
     public boolean getRoamingOutsidePLMNCountryBarred() {
         return this.bitString.get(_INDEX_roamingOutsidePLMNCountryBarred);
     }
 
-    @Override
     public boolean getRegistrationAllCFBarred() {
         return this.bitString.get(_INDEX_registrationAllCFBarred);
     }
 
-    @Override
     public boolean getRegistrationCFNotToHPLMNBarred() {
         return this.bitString.get(_INDEX_registrationCFNotToHPLMNBarred);
     }
 
-    @Override
     public boolean getRegistrationInterzonalCFBarred() {
         return this.bitString.get(_INDEX_registrationInterzonalCFBarred);
     }
 
-    @Override
     public boolean getRegistrationInterzonalCFNotToHPLMNBarred() {
         return this.bitString.get(_INDEX_registrationInterzonalCFNotToHPLMNBarred);
     }
 
-    @Override
     public boolean getRegistrationInternationalCFBarred() {
         return this.bitString.get(_INDEX_registrationInternationalCFBarred);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ODBGeneralData [");

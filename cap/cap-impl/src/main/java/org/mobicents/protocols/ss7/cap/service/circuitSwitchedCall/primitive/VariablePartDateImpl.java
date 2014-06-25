@@ -58,12 +58,10 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         this.data[3] = (byte) this.encodeByte(day);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public int getYear() {
 
         if (this.data == null || this.data.length != 4)
@@ -72,7 +70,6 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         return this.decodeByte(data[0]) * 100 + this.decodeByte(data[1]);
     }
 
-    @Override
     public int getMonth() {
 
         if (this.data == null || this.data.length != 4)
@@ -81,7 +78,6 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         return this.decodeByte(data[2]);
     }
 
-    @Override
     public int getDay() {
 
         if (this.data == null || this.data.length != 4)
@@ -98,22 +94,18 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         return (val / 10) | (val % 10) << 4;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -128,7 +120,6 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -151,12 +142,10 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -169,7 +158,6 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -180,7 +168,6 @@ public class VariablePartDateImpl implements VariablePartDate, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

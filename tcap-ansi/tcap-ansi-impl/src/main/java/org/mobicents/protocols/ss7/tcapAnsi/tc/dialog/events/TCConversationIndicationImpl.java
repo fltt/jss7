@@ -110,12 +110,10 @@ public class TCConversationIndicationImpl extends DialogIndicationImpl implement
 
     }
 
-    @Override
     public boolean getDialogTermitationPermission() {
         return dialogTermitationPermission;
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
@@ -124,7 +122,6 @@ public class TCConversationIndicationImpl extends DialogIndicationImpl implement
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }

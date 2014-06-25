@@ -188,87 +188,70 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
         this.tChangeOfPositionSpecificInfo = tChangeOfPositionSpecificInfo;
     }
 
-    @Override
     public RouteSelectFailureSpecificInfo getRouteSelectFailureSpecificInfo() {
         return routeSelectFailureSpecificInfo;
     }
 
-    @Override
     public OCalledPartyBusySpecificInfo getOCalledPartyBusySpecificInfo() {
         return oCalledPartyBusySpecificInfo;
     }
 
-    @Override
     public ONoAnswerSpecificInfo getONoAnswerSpecificInfo() {
         return oNoAnswerSpecificInfo;
     }
 
-    @Override
     public OAnswerSpecificInfo getOAnswerSpecificInfo() {
         return oAnswerSpecificInfo;
     }
 
-    @Override
     public OMidCallSpecificInfo getOMidCallSpecificInfo() {
         return oMidCallSpecificInfo;
     }
 
-    @Override
     public ODisconnectSpecificInfo getODisconnectSpecificInfo() {
         return oDisconnectSpecificInfo;
     }
 
-    @Override
     public TBusySpecificInfo getTBusySpecificInfo() {
         return tBusySpecificInfo;
     }
 
-    @Override
     public TNoAnswerSpecificInfo getTNoAnswerSpecificInfo() {
         return tNoAnswerSpecificInfo;
     }
 
-    @Override
     public TAnswerSpecificInfo getTAnswerSpecificInfo() {
         return tAnswerSpecificInfo;
     }
 
-    @Override
     public TMidCallSpecificInfo getTMidCallSpecificInfo() {
         return tMidCallSpecificInfo;
     }
 
-    @Override
     public TDisconnectSpecificInfo getTDisconnectSpecificInfo() {
         return tDisconnectSpecificInfo;
     }
 
-    @Override
     public OTermSeizedSpecificInfo getOTermSeizedSpecificInfo() {
         return oTermSeizedSpecificInfo;
     }
 
-    @Override
     public CallAcceptedSpecificInfo getCallAcceptedSpecificInfo() {
         return callAcceptedSpecificInfo;
     }
 
-    @Override
     public OAbandonSpecificInfo getOAbandonSpecificInfo() {
         return oAbandonSpecificInfo;
     }
 
-    @Override
     public OChangeOfPositionSpecificInfo getOChangeOfPositionSpecificInfo() {
         return oChangeOfPositionSpecificInfo;
     }
 
-    @Override
     public TChangeOfPositionSpecificInfo getTChangeOfPositionSpecificInfo() {
         return tChangeOfPositionSpecificInfo;
     }
 
-    @Override
     public int getTag() throws CAPException {
 
         if (routeSelectFailureSpecificInfo != null) {
@@ -308,17 +291,14 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
         throw new CAPException("Error while encoding " + _PrimitiveName + ": no choice is specified");
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -336,7 +316,6 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -452,12 +431,10 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -470,7 +447,6 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (routeSelectFailureSpecificInfo != null) {
@@ -520,7 +496,6 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
         throw new CAPException("Error while encoding " + _PrimitiveName + ": no choice is specified");
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -601,7 +576,6 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
     protected static final XMLFormat<EventSpecificInformationBCSMImpl> EVENT_SPECIFIC_INFORMATION_BCSM_XML = new XMLFormat<EventSpecificInformationBCSMImpl>(
             EventSpecificInformationBCSMImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml,
                 EventSpecificInformationBCSMImpl eventSpecificInformationBCSM) throws XMLStreamException {
             eventSpecificInformationBCSM.routeSelectFailureSpecificInfo = xml.get(ROUTE_SELECT_FAILURE_SPECIFIC_INFO,
@@ -650,7 +624,6 @@ public class EventSpecificInformationBCSMImpl implements EventSpecificInformatio
             // TChangeOfPositionSpecificInfoImpl.class);
         }
 
-        @Override
         public void write(EventSpecificInformationBCSMImpl eventSpecificInformationBCSM,
                 javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (eventSpecificInformationBCSM.routeSelectFailureSpecificInfo != null) {

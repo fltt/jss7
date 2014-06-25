@@ -109,10 +109,8 @@ public class ConsoleImpl implements Console {
      * @see org.mobicents.ss7.management.console.Console#addCompleter(org.mobicents
      * .ss7.management.console.CommandLineCompleter)
      */
-    @Override
     public void addCompleter(final CommandLineCompleter completer) {
         console.addCompletion(new Completion() {
-            @Override
             public void complete(CompleteOperation co) {
                 int offset = completer.complete(cmdCtx, co.getBuffer(), co.getCursor(), co.getCompletionCandidates());
 
@@ -127,7 +125,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#isUseHistory()
      */
-    @Override
     public boolean isUseHistory() {
         return !Settings.getInstance().isHistoryDisabled();
     }
@@ -137,7 +134,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#setUseHistory(boolean)
      */
-    @Override
     public void setUseHistory(boolean useHistory) {
         Settings.getInstance().setHistoryDisabled(!useHistory);
     }
@@ -147,7 +143,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#getHistory()
      */
-    @Override
     public CommandHistory getHistory() {
         return history;
     }
@@ -157,7 +152,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#setHistoryFile(java.io.File)
      */
-    @Override
     public void setHistoryFile(File f) {
         Settings.getInstance().setHistoryFile(f);
     }
@@ -167,7 +161,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#clearScreen()
      */
-    @Override
     public void clearScreen() {
         try {
             console.clear();
@@ -181,7 +174,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#printColumns(java.util. Collection)
      */
-    @Override
     public void printColumns(Collection<String> list) {
         String[] newList = new String[list.size()];
         list.toArray(newList);
@@ -198,7 +190,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#print(java.lang.String)
      */
-    @Override
     public void print(String line) {
         try {
             console.pushToConsole(line);
@@ -212,7 +203,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#printNewLine()
      */
-    @Override
     public void printNewLine() {
         try {
             console.pushToConsole(Config.getLineSeparator());
@@ -226,7 +216,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#readLine(java.lang.String)
      */
-    @Override
     public String readLine(String prompt) {
         try {
             return console.read(prompt);
@@ -241,7 +230,6 @@ public class ConsoleImpl implements Console {
      *
      * @see org.mobicents.ss7.management.console.Console#readLine(java.lang.String, java.lang.Character)
      */
-    @Override
     public String readLine(String prompt, Character mask) {
         try {
             return console.read(prompt, mask);
@@ -254,32 +242,26 @@ public class ConsoleImpl implements Console {
     class HistoryImpl implements CommandHistory {
 
         @SuppressWarnings("unchecked")
-        @Override
         public List<String> asList() {
             return console.getHistory().getAll();
         }
 
-        @Override
         public boolean isUseHistory() {
             return !Settings.getInstance().isHistoryDisabled();
         }
 
-        @Override
         public void setUseHistory(boolean useHistory) {
             Settings.getInstance().setHistoryDisabled(!useHistory);
         }
 
-        @Override
         public void clear() {
             console.getHistory().clear();
         }
 
-        @Override
         public void setMaxSize(int maxSize) {
             Settings.getInstance().setHistorySize(maxSize);
         }
 
-        @Override
         public int getMaxSize() {
             return Settings.getInstance().getHistorySize();
         }

@@ -53,17 +53,14 @@ public class TimeGPRSIfTariffSwitchImpl extends SequenceBase implements TimeGPRS
         this.timeGPRSTariffSwitchInterval = timeGPRSTariffSwitchInterval;
     }
 
-    @Override
     public int getTimeGPRSSinceLastTariffSwitch() {
         return this.timeGPRSSinceLastTariffSwitch;
     }
 
-    @Override
     public Integer getTimeGPRSTariffSwitchInterval() {
         return this.timeGPRSTariffSwitchInterval;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException {
 
         boolean istimeGPRSSinceLastTariffSwitchIncluded = false;
@@ -111,7 +108,6 @@ public class TimeGPRSIfTariffSwitchImpl extends SequenceBase implements TimeGPRS
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -129,7 +125,6 @@ public class TimeGPRSIfTariffSwitchImpl extends SequenceBase implements TimeGPRS
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -340,7 +340,6 @@ public class UserDataImpl implements UserData {
         throw new MAPException("Not yet implemented");
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

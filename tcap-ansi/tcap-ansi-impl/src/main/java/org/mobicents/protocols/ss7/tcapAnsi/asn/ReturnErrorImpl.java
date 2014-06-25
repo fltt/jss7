@@ -46,22 +46,18 @@ public class ReturnErrorImpl implements ReturnError {
     protected Parameter parameter;
 
 
-    @Override
     public Parameter getParameter() {
         return this.parameter;
     }
 
-    @Override
     public void setParameter(Parameter p) {
         this.parameter = p;
     }
 
-    @Override
     public Long getCorrelationId() {
         return correlationId;
     }
 
-    @Override
     public void setCorrelationId(Long i) {
         if ((i == null) || (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Invoke ID our of range: <-128,127>: " + i);

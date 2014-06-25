@@ -69,25 +69,21 @@ public class SccpProviderWrapper implements SccpProvider {
 
     }
 
-    @Override
     public int getMaxUserDataLength(SccpAddress arg0, SccpAddress arg1) {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    @Override
     public void send(SccpDataMessage arg0) throws IOException {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void registerManagementEventListener(SccpManagementEventListener listener) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void deregisterManagementEventListener(SccpManagementEventListener listener) {
         // TODO Auto-generated method stub
 

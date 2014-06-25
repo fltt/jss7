@@ -36,7 +36,6 @@ public class TMSIImpl extends OctetStringBase implements TMSI {
         super(1, 4, "TMSI");
     }
 
-    @Override
     public byte[] getData() {
         return this.data;
     }

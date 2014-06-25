@@ -36,7 +36,6 @@ public class FreeFormatDataSMSImpl extends OctetStringBase implements FreeFormat
         super(1, 160, "FreeFormatDataSMS", data);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }

@@ -52,7 +52,6 @@ public class SccpResourceXMLBinding extends XMLBinding {
     protected final XMLFormat<ConcernedSignalingPointCodeMap> CONCERNEDSIGNALINGPOINTCODEMAP = new XMLFormat<ConcernedSignalingPointCodeMap>(
             ConcernedSignalingPointCodeMap.class) {
 
-        @Override
         public void write(ConcernedSignalingPointCodeMap map, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             for (FastMap.Entry<Integer, ConcernedSignalingPointCodeImpl> e = map.head(), end = map.tail(); (e = e.getNext()) != end;) {
@@ -64,7 +63,6 @@ public class SccpResourceXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ConcernedSignalingPointCodeMap obj)
                 throws XMLStreamException {
             while (xml.hasNext()) {
@@ -81,7 +79,6 @@ public class SccpResourceXMLBinding extends XMLBinding {
     protected final XMLFormat<RemoteSignalingPointCodeMap> REMOTESIGNALINGPOINTCODEMAP = new XMLFormat<RemoteSignalingPointCodeMap>(
             RemoteSignalingPointCodeMap.class) {
 
-        @Override
         public void write(RemoteSignalingPointCodeMap map, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             for (FastMap.Entry<Integer, RemoteSignalingPointCodeImpl> e = map.head(), end = map.tail(); (e = e.getNext()) != end;) {
@@ -93,7 +90,6 @@ public class SccpResourceXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RemoteSignalingPointCodeMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);
@@ -108,7 +104,6 @@ public class SccpResourceXMLBinding extends XMLBinding {
 
     protected final XMLFormat<RemoteSubSystemMap> REMOTESUBSYSTEMMAP = new XMLFormat<RemoteSubSystemMap>(
             RemoteSubSystemMap.class) {
-        @Override
         public void write(RemoteSubSystemMap map, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             for (FastMap.Entry<Integer, RemoteSubSystemImpl> e = map.head(), end = map.tail(); (e = e.getNext()) != end;) {
                 Integer id = e.getKey();
@@ -119,7 +114,6 @@ public class SccpResourceXMLBinding extends XMLBinding {
             }
         }
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, RemoteSubSystemMap obj) throws XMLStreamException {
             while (xml.hasNext()) {
                 Integer id = xml.get("id", Integer.class);

@@ -66,7 +66,6 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
         return this.roVolumeIfTariffSwitch;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (roVolumeIfNoTariffSwitch != null) {
             return _ID_roVolumeIfNoTariffSwitch;
@@ -75,12 +74,10 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (roVolumeIfNoTariffSwitch != null) {
             return true;
@@ -89,7 +86,6 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
         }
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -106,7 +102,6 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -162,12 +157,10 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -180,7 +173,6 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.roVolumeIfNoTariffSwitch == null && this.roVolumeIfTariffSwitch == null
@@ -200,7 +192,6 @@ public class TransferredVolumeRollOverImpl implements TransferredVolumeRollOver,
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

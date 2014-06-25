@@ -224,7 +224,6 @@ public class SuperChargerInfoImpl implements SuperChargerInfo, MAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("SuperChargerInfo [");

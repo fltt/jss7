@@ -35,7 +35,6 @@ public class UESBIIuAImpl extends BitStringBase implements UESBIIuA {
         super(1, 128, data.getStrictLength(), _PrimitiveName, data);
     }
 
-    @Override
     public BitSetStrictLength getData() {
         return bitString;
     }

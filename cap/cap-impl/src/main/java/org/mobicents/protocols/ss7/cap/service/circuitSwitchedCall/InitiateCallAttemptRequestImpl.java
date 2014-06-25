@@ -389,42 +389,34 @@ public class InitiateCallAttemptRequestImpl extends CircuitSwitchedCallMessageIm
         }
     };
 
-    @Override
     public DestinationRoutingAddress getDestinationRoutingAddress() {
         return destinationRoutingAddress;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public LegID getLegToBeCreated() {
         return legToBeCreated;
     }
 
-    @Override
     public Integer getNewCallSegment() {
         return newCallSegment;
     }
 
-    @Override
     public CallingPartyNumberCap getCallingPartyNumber() {
         return callingPartyNumber;
     }
 
-    @Override
     public CallReferenceNumber getCallReferenceNumber() {
         return callReferenceNumber;
     }
 
-    @Override
     public ISDNAddressString getGsmSCFAddress() {
         return gsmSCFAddress;
     }
 
-    @Override
     public boolean getSuppressTCsi() {
         return suppressTCsi;
     }

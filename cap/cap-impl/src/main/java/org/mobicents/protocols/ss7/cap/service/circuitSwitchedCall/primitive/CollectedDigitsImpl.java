@@ -84,77 +84,62 @@ public class CollectedDigitsImpl implements CollectedDigits, CAPAsnPrimitive {
         this.voiceBack = voiceBack;
     }
 
-    @Override
     public Integer getMinimumNbOfDigits() {
         return minimumNbOfDigits;
     }
 
-    @Override
     public int getMaximumNbOfDigits() {
         return maximumNbOfDigits;
     }
 
-    @Override
     public byte[] getEndOfReplyDigit() {
         return endOfReplyDigit;
     }
 
-    @Override
     public byte[] getCancelDigit() {
         return cancelDigit;
     }
 
-    @Override
     public byte[] getStartDigit() {
         return startDigit;
     }
 
-    @Override
     public Integer getFirstDigitTimeOut() {
         return firstDigitTimeOut;
     }
 
-    @Override
     public Integer getInterDigitTimeOut() {
         return interDigitTimeOut;
     }
 
-    @Override
     public ErrorTreatment getErrorTreatment() {
         return errorTreatment;
     }
 
-    @Override
     public Boolean getInterruptableAnnInd() {
         return interruptableAnnInd;
     }
 
-    @Override
     public Boolean getVoiceInformation() {
         return voiceInformation;
     }
 
-    @Override
     public Boolean getVoiceBack() {
         return voiceBack;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -169,7 +154,6 @@ public class CollectedDigitsImpl implements CollectedDigits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -266,12 +250,10 @@ public class CollectedDigitsImpl implements CollectedDigits, CAPAsnPrimitive {
                     + ": maximumNbOfDigits is mandatory but not found", CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -284,7 +266,6 @@ public class CollectedDigitsImpl implements CollectedDigits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -345,7 +326,6 @@ public class CollectedDigitsImpl implements CollectedDigits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

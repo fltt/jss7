@@ -71,12 +71,10 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         this.setGenericNumber(genericNumber);
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public GenericDigits getGenericDigits() throws CAPException {
         if (this.data == null)
             throw new CAPException("The data has not been filled");
@@ -92,7 +90,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public GenericNumber getGenericNumber() throws CAPException {
         if (this.data == null)
             throw new CAPException("The data has not been filled");
@@ -108,12 +105,10 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void setData(byte[] data) {
         this.data = data;
     }
 
-    @Override
     public void setGenericDigits(GenericDigits genericDigits) throws CAPException {
 
         if (genericDigits == null)
@@ -126,7 +121,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void setGenericNumber(GenericNumber genericNumber) throws CAPException {
 
         if (genericNumber == null)
@@ -139,44 +133,36 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public boolean getIsGenericDigits() {
         return isGenericDigits;
     }
 
-    @Override
     public boolean getIsGenericNumber() {
         return isGenericNumber;
     }
 
-    @Override
     public void setIsGenericDigits() {
         isGenericDigits = true;
         isGenericNumber = false;
     }
 
-    @Override
     public void setIsGenericNumber() {
         isGenericNumber = true;
         isGenericDigits = false;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.STRING_OCTET;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -191,7 +177,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -215,12 +200,10 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -233,7 +216,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.data == null)
@@ -244,7 +226,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);
@@ -290,7 +271,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
      */
     protected static final XMLFormat<DigitsImpl> DIGITS_XML = new XMLFormat<DigitsImpl>(DigitsImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, DigitsImpl digits) throws XMLStreamException {
             try {
                 GenericDigits gd = xml.get(ISUP_GENERIC_DIGITS_XML, GenericDigitsImpl.class);
@@ -304,7 +284,6 @@ public class DigitsImpl implements Digits, CAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(DigitsImpl digits, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             try {
                 if (digits.getIsGenericDigits())

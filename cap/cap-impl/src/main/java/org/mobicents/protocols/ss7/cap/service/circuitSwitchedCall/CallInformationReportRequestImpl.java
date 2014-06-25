@@ -66,47 +66,38 @@ public class CallInformationReportRequestImpl extends CircuitSwitchedCallMessage
         this.legID = legID;
     }
 
-    @Override
     public CAPMessageType getMessageType() {
         return CAPMessageType.callInformationReport_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return CAPOperationCode.callInformationReport;
     }
 
-    @Override
     public ArrayList<RequestedInformation> getRequestedInformationList() {
         return requestedInformationList;
     }
 
-    @Override
     public CAPExtensions getExtensions() {
         return extensions;
     }
 
-    @Override
     public ReceivingSideID getLegID() {
         return legID;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -121,7 +112,6 @@ public class CallInformationReportRequestImpl extends CircuitSwitchedCallMessage
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -195,12 +185,10 @@ public class CallInformationReportRequestImpl extends CircuitSwitchedCallMessage
                     CAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -213,7 +201,6 @@ public class CallInformationReportRequestImpl extends CircuitSwitchedCallMessage
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         if (this.requestedInformationList == null)
@@ -246,7 +233,6 @@ public class CallInformationReportRequestImpl extends CircuitSwitchedCallMessage
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

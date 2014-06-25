@@ -185,7 +185,6 @@ public class AlertServiceCentreRequestImpl extends SmsMessageImpl implements Ale
         ((AddressStringImpl) this.serviceCentreAddress).encodeAll(asnOs);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AlertServiceCentreRequest [");

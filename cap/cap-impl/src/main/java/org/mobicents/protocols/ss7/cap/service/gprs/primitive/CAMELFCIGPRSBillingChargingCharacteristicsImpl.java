@@ -53,12 +53,10 @@ public class CAMELFCIGPRSBillingChargingCharacteristicsImpl extends SequenceBase
         this.fcIBCCCAMELsequence1 = fcIBCCCAMELsequence1;
     }
 
-    @Override
     public FCIBCCCAMELsequence1Gprs getFCIBCCCAMELsequence1() {
         return this.fcIBCCCAMELsequence1;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -96,7 +94,6 @@ public class CAMELFCIGPRSBillingChargingCharacteristicsImpl extends SequenceBase
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.fcIBCCCAMELsequence1 == null)
@@ -107,7 +104,6 @@ public class CAMELFCIGPRSBillingChargingCharacteristicsImpl extends SequenceBase
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

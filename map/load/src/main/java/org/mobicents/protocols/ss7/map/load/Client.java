@@ -325,7 +325,6 @@ public class Client extends TestHarness {
      * (org.mobicents.protocols.ss7.map.api.MAPDialog, java.lang.Long,
      * org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage)
      */
-    @Override
     public void onErrorComponent(MAPDialog mapDialog, Long invokeId, MAPErrorMessage mapErrorMessage) {
         logger.error(String.format("onErrorComponent for Dialog=%d and invokeId=%d MAPErrorMessage=%s",
                 mapDialog.getLocalDialogId(), invokeId, mapErrorMessage));
@@ -337,7 +336,6 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPServiceListener#onRejectComponent
      * (org.mobicents.protocols.ss7.map.api.MAPDialog, java.lang.Long, org.mobicents.protocols.ss7.tcap.asn.comp.Problem)
      */
-    @Override
     public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
         logger.error(String.format("onRejectComponent for Dialog=%d and invokeId=%d Problem=%s isLocalOriginated=%s",
                 mapDialog.getLocalDialogId(), invokeId, problem, isLocalOriginated));
@@ -349,7 +347,6 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPServiceListener#onInvokeTimeout
      * (org.mobicents.protocols.ss7.map.api.MAPDialog, java.lang.Long)
      */
-    @Override
     public void onInvokeTimeout(MAPDialog mapDialog, Long invokeId) {
         logger.error(String.format("onInvokeTimeout for Dialog=%d and invokeId=%d", mapDialog.getLocalDialogId(), invokeId));
 
@@ -362,7 +359,6 @@ public class Client extends TestHarness {
      * #onProcessUnstructuredSSRequestIndication(org .mobicents.protocols.ss7.map.
      * api.service.supplementary.ProcessUnstructuredSSRequestIndication)
      */
-    @Override
     public void onProcessUnstructuredSSRequest(ProcessUnstructuredSSRequest procUnstrReqInd) {
         // This error condition. Client should never receive the
         // ProcessUnstructuredSSRequestIndication
@@ -377,7 +373,6 @@ public class Client extends TestHarness {
      * #onProcessUnstructuredSSResponseIndication( org.mobicents.protocols.ss7.map
      * .api.service.supplementary.ProcessUnstructuredSSResponseIndication)
      */
-    @Override
     public void onProcessUnstructuredSSResponse(ProcessUnstructuredSSResponse procUnstrResInd) {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("Rx ProcessUnstructuredSSResponseIndication.  USSD String=%s",
@@ -393,7 +388,6 @@ public class Client extends TestHarness {
      * #onUnstructuredSSRequestIndication(org.mobicents .protocols.ss7.map.api.service
      * .supplementary.UnstructuredSSRequestIndication)
      */
-    @Override
     public void onUnstructuredSSRequest(UnstructuredSSRequest unstrReqInd) {
 
         if (logger.isDebugEnabled()) {
@@ -424,7 +418,6 @@ public class Client extends TestHarness {
      * #onUnstructuredSSResponseIndication(org.mobicents .protocols.ss7.map.api.service
      * .supplementary.UnstructuredSSResponseIndication)
      */
-    @Override
     public void onUnstructuredSSResponse(UnstructuredSSResponse unstrResInd) {
         // This error condition. Client should never receive the
         // UnstructuredSSResponseIndication
@@ -439,7 +432,6 @@ public class Client extends TestHarness {
      * #onUnstructuredSSNotifyRequestIndication(org .mobicents.protocols.ss7.map.api
      * .service.supplementary.UnstructuredSSNotifyRequestIndication)
      */
-    @Override
     public void onUnstructuredSSNotifyRequest(UnstructuredSSNotifyRequest unstrNotifyInd) {
         // This error condition. Client should never receive the
         // UnstructuredSSNotifyRequestIndication
@@ -460,7 +452,6 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPDialogListener#onDialogDelimiter
      * (org.mobicents.protocols.ss7.map.api.MAPDialog)
      */
-    @Override
     public void onDialogDelimiter(MAPDialog mapDialog) {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("onDialogDelimiter for DialogId=%d", mapDialog.getLocalDialogId()));
@@ -475,7 +466,6 @@ public class Client extends TestHarness {
      * org.mobicents.protocols.ss7.map.api.primitives.AddressString,
      * org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer)
      */
-    @Override
     public void onDialogRequest(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
             MAPExtensionContainer extensionContainer) {
         if (logger.isDebugEnabled()) {
@@ -493,7 +483,6 @@ public class Client extends TestHarness {
      * org.mobicents.protocols.ss7.map.api.primitives.AddressString, org.mobicents.protocols.ss7.map.api.primitives.IMSI,
      * org.mobicents.protocols.ss7.map.api.primitives.AddressString)
      */
-    @Override
     public void onDialogRequestEricsson(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
             IMSI arg3, AddressString arg4) {
         if (logger.isDebugEnabled()) {
@@ -508,7 +497,6 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPDialogListener#onDialogAccept( org.mobicents.protocols.ss7.map.api.MAPDialog,
      * org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer)
      */
-    @Override
     public void onDialogAccept(MAPDialog mapDialog, MAPExtensionContainer extensionContainer) {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("onDialogAccept for DialogId=%d MAPExtensionContainer=%s", mapDialog.getLocalDialogId(),
@@ -524,7 +512,6 @@ public class Client extends TestHarness {
      * org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName,
      * org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer)
      */
-    @Override
     public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason,
             ApplicationContextName alternativeApplicationContext, MAPExtensionContainer extensionContainer) {
         logger.error(String.format(
@@ -539,7 +526,6 @@ public class Client extends TestHarness {
      * (org.mobicents.protocols.ss7.map.api.MAPDialog, org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice,
      * org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer)
      */
-    @Override
     public void onDialogUserAbort(MAPDialog mapDialog, MAPUserAbortChoice userReason, MAPExtensionContainer extensionContainer) {
         logger.error(String.format("onDialogUserAbort for DialogId=%d MAPUserAbortChoice=%s MAPExtensionContainer=%s",
                 mapDialog.getLocalDialogId(), userReason, extensionContainer));
@@ -553,7 +539,6 @@ public class Client extends TestHarness {
      * org.mobicents.protocols.ss7.map.api.dialog.MAPAbortSource,
      * org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer)
      */
-    @Override
     public void onDialogProviderAbort(MAPDialog mapDialog, MAPAbortProviderReason abortProviderReason,
             MAPAbortSource abortSource, MAPExtensionContainer extensionContainer) {
         logger.error(String.format(
@@ -566,7 +551,6 @@ public class Client extends TestHarness {
      *
      * @see org.mobicents.protocols.ss7.map.api.MAPDialogListener#onDialogClose(org .mobicents.protocols.ss7.map.api.MAPDialog)
      */
-    @Override
     public void onDialogClose(MAPDialog mapDialog) {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("DialogClose for Dialog=%d", mapDialog.getLocalDialogId()));
@@ -580,7 +564,6 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPDialogListener#onDialogNotice( org.mobicents.protocols.ss7.map.api.MAPDialog,
      * org.mobicents.protocols.ss7.map.api.dialog.MAPNoticeProblemDiagnostic)
      */
-    @Override
     public void onDialogNotice(MAPDialog mapDialog, MAPNoticeProblemDiagnostic noticeProblemDiagnostic) {
         logger.error(String.format("onDialogNotice for DialogId=%d MAPNoticeProblemDiagnostic=%s ",
                 mapDialog.getLocalDialogId(), noticeProblemDiagnostic));
@@ -592,7 +575,6 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPDialogListener#onDialogResease
      * (org.mobicents.protocols.ss7.map.api.MAPDialog)
      */
-    @Override
     public void onDialogRelease(MAPDialog mapDialog) {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("onDialogResease for DialogId=%d", mapDialog.getLocalDialogId()));
@@ -629,18 +611,15 @@ public class Client extends TestHarness {
      * @see org.mobicents.protocols.ss7.map.api.MAPDialogListener#onDialogTimeout
      * (org.mobicents.protocols.ss7.map.api.MAPDialog)
      */
-    @Override
     public void onDialogTimeout(MAPDialog mapDialog) {
         logger.error(String.format("onDialogTimeout for DialogId=%d", mapDialog.getLocalDialogId()));
     }
 
-    @Override
     public void onUnstructuredSSNotifyResponse(UnstructuredSSNotifyResponse unstrNotifyInd) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onMAPMessage(MAPMessage mapMessage) {
         // TODO Auto-generated method stub
 

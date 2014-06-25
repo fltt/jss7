@@ -41,7 +41,6 @@ public abstract class SEHAsStateEnterDown implements FSMStateEventHandler {
         this.asImpl = asImpl;
     }
 
-    @Override
     public void onEvent(FSMState state) {
         // Call listener and indicate of state change only if not already done
         if (!this.asImpl.state.getName().equals(State.STATE_DOWN)) {

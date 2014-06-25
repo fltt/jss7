@@ -44,7 +44,6 @@ public class PerformingRedirectIndicatorImpl extends AbstractInformationImpl imp
         super.tag = 0x03;
     }
 
-    @Override
     public void setReason(RedirectReason... reasons) {
         this.reasons.clear();
         if(reasons == null){
@@ -57,12 +56,10 @@ public class PerformingRedirectIndicatorImpl extends AbstractInformationImpl imp
         }
     }
 
-    @Override
     public RedirectReason[] getReason() {
         return this.reasons.toArray(new RedirectReason[this.reasons.size()]);
     }
 
-    @Override
     byte[] encode() throws ParameterException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         for(RedirectReason pr:this.reasons){
@@ -76,7 +73,6 @@ public class PerformingRedirectIndicatorImpl extends AbstractInformationImpl imp
         return baos.toByteArray();
     }
 
-    @Override
     void decode(byte[] data) throws ParameterException {
         for(int index = 0;index<data.length;index++){
             byte b = data[index];

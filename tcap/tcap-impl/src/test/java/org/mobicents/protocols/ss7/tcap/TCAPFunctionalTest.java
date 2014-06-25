@@ -215,19 +215,16 @@ public class TCAPFunctionalTest extends SccpHarness {
 
     private class TCAPListenerWrapper implements TCListener {
 
-        @Override
         public void onTCUni(TCUniIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCBegin(TCBeginIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCContinue(TCContinueIndication ind) {
             assertEquals(ind.getComponents().length, 2);
             ReturnResultLast rrl = (ReturnResultLast) ind.getComponents()[0];
@@ -248,43 +245,36 @@ public class TCAPFunctionalTest extends SccpHarness {
             assertEquals((long) linkedInv.getOperationCode().getLocalOperationCode(), 13);
         }
 
-        @Override
         public void onTCEnd(TCEndIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCUserAbort(TCUserAbortIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCPAbort(TCPAbortIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onTCNotice(TCNoticeIndication ind) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onDialogReleased(Dialog d) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onInvokeTimeout(Invoke tcInvokeRequest) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void onDialogTimeout(Dialog d) {
             // TODO Auto-generated method stub
 

@@ -138,7 +138,6 @@ public class SmsSignalInfoImpl implements SmsSignalInfo, MAPAsnPrimitive {
         asnOs.writeOctetStringData(data);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

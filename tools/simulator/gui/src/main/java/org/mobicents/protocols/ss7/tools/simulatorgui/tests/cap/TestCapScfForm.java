@@ -250,7 +250,6 @@ public class TestCapScfForm extends TestingForm {
         this.lbResult.setText(res);
     }
 
-    @Override
     public void sendNotif(Notification notif) {
         super.sendNotif(notif);
 
@@ -262,7 +261,6 @@ public class TestCapScfForm extends TestingForm {
         }
     }
 
-    @Override
     public void refreshState() {
         super.refreshState();
 

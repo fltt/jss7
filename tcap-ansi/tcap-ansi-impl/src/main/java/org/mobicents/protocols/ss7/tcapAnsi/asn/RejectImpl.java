@@ -45,22 +45,18 @@ public class RejectImpl implements Reject {
     private boolean localOriginated = false;
 
 
-    @Override
     public RejectProblem getProblem() {
         return rejectProblem;
     }
 
-    @Override
     public void setProblem(RejectProblem p) {
         rejectProblem = p;
     }
 
-    @Override
     public Long getCorrelationId() {
         return correlationId;
     }
 
-    @Override
     public void setCorrelationId(Long i) {
         if (i != null && (i < -128 || i > 127)) {
             throw new IllegalArgumentException("Correlation ID our of range: <-128,127>: " + i);
@@ -72,12 +68,10 @@ public class RejectImpl implements Reject {
         return ComponentType.Reject;
     }
 
-    @Override
     public boolean isLocalOriginated() {
         return localOriginated;
     }
 
-    @Override
     public void setLocalOriginated(boolean p) {
         localOriginated = p;
     }

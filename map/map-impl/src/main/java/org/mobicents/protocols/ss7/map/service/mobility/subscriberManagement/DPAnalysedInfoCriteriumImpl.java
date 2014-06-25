@@ -62,32 +62,26 @@ public class DPAnalysedInfoCriteriumImpl extends SequenceBase implements DPAnaly
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public ISDNAddressString getDialledNumber() {
         return this.dialledNumber;
     }
 
-    @Override
     public long getServiceKey() {
         return this.serviceKey;
     }
 
-    @Override
     public ISDNAddressString getGsmSCFAddress() {
         return this.gsmSCFAddress;
     }
 
-    @Override
     public DefaultCallHandling getDefaultCallHandling() {
         return this.defaultCallHandling;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
         this.dialledNumber = null;
         this.serviceKey = -1;
@@ -191,7 +185,6 @@ public class DPAnalysedInfoCriteriumImpl extends SequenceBase implements DPAnaly
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         try {
 
@@ -222,7 +215,6 @@ public class DPAnalysedInfoCriteriumImpl extends SequenceBase implements DPAnaly
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

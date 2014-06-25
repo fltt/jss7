@@ -58,52 +58,42 @@ public class RedirectForwardInformationImpl extends AbstractInformationParameter
         decode(data);
     }
 
-    @Override
     public int getCode() {
         return _PARAMETER_CODE;
     }
 
-    @Override
     protected Map<Integer, Class<? extends AbstractInformationImpl>> getTagMapping() {
         return tagMapping;
     }
 
-    @Override
     public void setReturnToInvokingExchangePossible(ReturnToInvokingExchangePossible... duration) {
         super.setInformation(duration);
     }
 
-    @Override
     public ReturnToInvokingExchangePossible[] getReturnToInvokingExchangePossible() {
         return (ReturnToInvokingExchangePossible[])super.getInformation(ReturnToInvokingExchangePossible.class);
     }
 
-    @Override
     public void setReturnToInvokingExchangeCallIdentifier(ReturnToInvokingExchangeCallIdentifier... cid) {
         super.setInformation(cid);
     }
 
-    @Override
     public ReturnToInvokingExchangeCallIdentifier[] getReturnToInvokingExchangeCallIdentifier() {
         return (ReturnToInvokingExchangeCallIdentifier[])super.getInformation(ReturnToInvokingExchangeCallIdentifier.class);
     }
 
-    @Override
     public void setPerformingRedirectIndicator(PerformingRedirectIndicator... reason) {
         super.setInformation(reason);
     }
 
-    @Override
     public PerformingRedirectIndicator[] getPerformingRedirectIndicator() {
         return (PerformingRedirectIndicator[])super.getInformation(PerformingRedirectIndicator.class);
     }
 
-    @Override
     public void setInvokingRedirectReason(InvokingRedirectReason... reason) {
         super.setInformation(reason);
     }
 
-    @Override
     public InvokingRedirectReason[] getInvokingRedirectReason() {
         return (InvokingRedirectReason[])super.getInformation(InvokingRedirectReason.class);
     }

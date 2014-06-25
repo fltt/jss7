@@ -62,12 +62,10 @@ public class TNoAnswerSpecificInfoImpl extends SequenceBase implements TNoAnswer
         this.forwardingDestinationNumber = forwardingDestinationNumber;
     }
 
-    @Override
     public boolean getCallForwarded() {
         return callForwarded;
     }
 
-    @Override
     public CalledPartyNumberCap getForwardingDestinationNumber() {
         return forwardingDestinationNumber;
     }
@@ -106,7 +104,6 @@ public class TNoAnswerSpecificInfoImpl extends SequenceBase implements TNoAnswer
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -122,7 +119,6 @@ public class TNoAnswerSpecificInfoImpl extends SequenceBase implements TNoAnswer
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -149,7 +145,6 @@ public class TNoAnswerSpecificInfoImpl extends SequenceBase implements TNoAnswer
     protected static final XMLFormat<TNoAnswerSpecificInfoImpl> T_NO_ANSWER_SPECIFIC_INFO = new XMLFormat<TNoAnswerSpecificInfoImpl>(
             TNoAnswerSpecificInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, TNoAnswerSpecificInfoImpl tNoAnswerSpecificInfo)
                 throws XMLStreamException {
             Boolean bval = xml.get(CALL_FORWARDED, Boolean.class);
@@ -159,7 +154,6 @@ public class TNoAnswerSpecificInfoImpl extends SequenceBase implements TNoAnswer
                     CalledPartyNumberCapImpl.class);
         }
 
-        @Override
         public void write(TNoAnswerSpecificInfoImpl tNoAnswerSpecificInfo, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             if (tNoAnswerSpecificInfo.callForwarded)

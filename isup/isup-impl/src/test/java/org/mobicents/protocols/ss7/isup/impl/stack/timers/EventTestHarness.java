@@ -303,7 +303,6 @@ public abstract class EventTestHarness /* extends TestCase */implements ISUPList
             super.sendTransferMessageToLocalUser(msg, seqControl);
         }
 
-        @Override
         public void sendMessage(Mtp3TransferPrimitive mtpMsg) throws IOException {
 
             // here we have to parse ISUPMsg and store in receivedRemote
@@ -325,7 +324,6 @@ public abstract class EventTestHarness /* extends TestCase */implements ISUPList
         // // /* (non-Javadoc)
         // // * @see org.mobicents.protocols.ss7.mtp.Mtp3UserPart#execute()
         // // */
-        // // @Override
         // // public void execute() throws IOException {
         // //
         // //
@@ -334,7 +332,6 @@ public abstract class EventTestHarness /* extends TestCase */implements ISUPList
         // /* (non-Javadoc)
         // * @see org.mobicents.protocols.ss7.mtp.Mtp3UserPart#read(java.nio.ByteBuffer)
         // */
-        // @Override
         // public int read(ByteBuffer arg0) throws IOException {
         // if(toRead.size()>0)
         // {
@@ -348,7 +345,6 @@ public abstract class EventTestHarness /* extends TestCase */implements ISUPList
         // /* (non-Javadoc)
         // * @see org.mobicents.protocols.ss7.mtp.Mtp3UserPart#write(java.nio.ByteBuffer)
         // */
-        // @Override
         // public int write(ByteBuffer arg0) throws IOException {
         // // here we have to parse ISUPMsg and store in receivedRemote
         // long tstamp = System.currentTimeMillis();

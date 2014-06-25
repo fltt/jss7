@@ -41,17 +41,14 @@ public class PDPTypeNumberImpl extends OctetStringLength1Base implements PDPType
         super("PDPTypeNumber", value != null ? value.getCode() : 0);
     }
 
-    @Override
     public PDPTypeNumberValue getPDPTypeNumberValue() {
         return PDPTypeNumberValue.getInstance(data);
     }
 
-    @Override
     public int getData() {
         return data;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

@@ -74,7 +74,6 @@ public class RouteRow implements AsStateListener {
         }
     }
 
-    @Override
     public void onAsActive(AsImpl asImpl) {
         // We only send MTP3 RESUME to MTP3 user if its not already sent for
         // this DPC
@@ -85,7 +84,6 @@ public class RouteRow implements AsStateListener {
         }
     }
 
-    @Override
     public void onAsInActive(AsImpl asImpl) {
         // Send MTP3 PAUSE to MTP3 user only if its not already sent for this
         // DPC
@@ -107,12 +105,10 @@ public class RouteRow implements AsStateListener {
         }
     }
 
-    @Override
     public String toString() {
         return "RouteRow [dpc=" + dpc + ", mtp3Status=" + mtp3Status + ", asSet=" + servedByAsSet + "]";
     }
 
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -120,7 +116,6 @@ public class RouteRow implements AsStateListener {
         return result;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;

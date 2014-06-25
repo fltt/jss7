@@ -66,27 +66,22 @@ public class PDNGWUpdateImpl extends SequenceBase implements PDNGWUpdate {
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public APN getAPN() {
         return this.apn;
     }
 
-    @Override
     public PDNGWIdentity getPdnGwIdentity() {
         return this.pdnGwIdentity;
     }
 
-    @Override
     public Integer getContextId() {
         return this.contextId;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.apn = null;
@@ -151,7 +146,6 @@ public class PDNGWUpdateImpl extends SequenceBase implements PDNGWUpdate {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -175,7 +169,6 @@ public class PDNGWUpdateImpl extends SequenceBase implements PDNGWUpdate {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

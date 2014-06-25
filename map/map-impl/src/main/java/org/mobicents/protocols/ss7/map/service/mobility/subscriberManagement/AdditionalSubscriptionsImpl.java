@@ -47,22 +47,18 @@ public class AdditionalSubscriptionsImpl extends BitStringBase implements Additi
             this.bitString.set(_INDEX_EmergencyReset);
     }
 
-    @Override
     public boolean getPrivilegedUplinkRequest() {
         return this.bitString.get(_INDEX_PrivilegedUplinkRequest);
     }
 
-    @Override
     public boolean getEmergencyUplinkRequest() {
         return this.bitString.get(_INDEX_EmergencyUplinkRequest);
     }
 
-    @Override
     public boolean getEmergencyReset() {
         return this.bitString.get(_INDEX_EmergencyReset);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

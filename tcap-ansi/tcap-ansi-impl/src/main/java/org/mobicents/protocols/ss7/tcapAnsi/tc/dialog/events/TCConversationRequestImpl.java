@@ -118,12 +118,10 @@ public class TCConversationRequestImpl extends DialogRequestImpl implements TCCo
         return returnMessageOnError;
     }
 
-    @Override
     public boolean getDialogTermitationPermission() {
         return dialogTermitationPermission;
     }
 
-    @Override
     public void setDialogTermitationPermission(boolean dialogTermitationPermission) {
         this.dialogTermitationPermission = dialogTermitationPermission;
         if (dialogTermitationPermission)
@@ -132,22 +130,18 @@ public class TCConversationRequestImpl extends DialogRequestImpl implements TCCo
             this.type = EventType.ConversationWithoutPerm;
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
 
-    @Override
     public void setSecurityContext(SecurityContext val) {
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }
 
-    @Override
     public void setConfidentiality(Confidentiality val) {
         confidentiality = val;
     }

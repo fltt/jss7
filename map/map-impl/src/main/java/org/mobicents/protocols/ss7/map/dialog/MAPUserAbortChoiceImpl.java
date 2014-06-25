@@ -89,7 +89,6 @@ public class MAPUserAbortChoiceImpl implements MAPUserAbortChoice {
         this.isUserSpecificReason = true;
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

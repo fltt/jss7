@@ -359,12 +359,10 @@ public class AspImpl implements XMLSerializable, Asp {
      */
     protected static final XMLFormat<AspImpl> ASP_XML = new XMLFormat<AspImpl>(AspImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AspImpl aspImpl) throws XMLStreamException {
             aspImpl.name = xml.getAttribute(NAME, "");
         }
 
-        @Override
         public void write(AspImpl aspImpl, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             xml.setAttribute(NAME, aspImpl.name);
         }

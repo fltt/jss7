@@ -63,17 +63,14 @@ public class GPRSQoSImpl implements GPRSQoS, CAPAsnPrimitive {
         this.longQoSFormat = longQoSFormat;
     }
 
-    @Override
     public QoSSubscribed getShortQoSFormat() {
         return this.shortQoSFormat;
     }
 
-    @Override
     public ExtQoSSubscribed getLongQoSFormat() {
         return this.longQoSFormat;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (shortQoSFormat != null) {
             return _ID_shortQoSFormat;
@@ -83,17 +80,14 @@ public class GPRSQoSImpl implements GPRSQoS, CAPAsnPrimitive {
 
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -110,7 +104,6 @@ public class GPRSQoSImpl implements GPRSQoS, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -166,12 +159,10 @@ public class GPRSQoSImpl implements GPRSQoS, CAPAsnPrimitive {
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -184,7 +175,6 @@ public class GPRSQoSImpl implements GPRSQoS, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
         if (this.shortQoSFormat == null && this.longQoSFormat == null || this.shortQoSFormat != null
                 && this.longQoSFormat != null) {
@@ -203,7 +193,6 @@ public class GPRSQoSImpl implements GPRSQoS, CAPAsnPrimitive {
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

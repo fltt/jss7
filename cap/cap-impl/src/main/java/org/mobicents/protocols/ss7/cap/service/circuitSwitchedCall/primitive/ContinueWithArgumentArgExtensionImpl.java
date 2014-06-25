@@ -121,7 +121,6 @@ public class ContinueWithArgumentArgExtensionImpl extends SequenceBase implement
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream aos) throws CAPException {
 
         try {
@@ -145,7 +144,6 @@ public class ContinueWithArgumentArgExtensionImpl extends SequenceBase implement
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -178,7 +176,6 @@ public class ContinueWithArgumentArgExtensionImpl extends SequenceBase implement
     protected static final XMLFormat<ContinueWithArgumentArgExtensionImpl> CALL_SEGMENT_TO_CANCEL_XML = new XMLFormat<ContinueWithArgumentArgExtensionImpl>(
             ContinueWithArgumentArgExtensionImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml,
                 ContinueWithArgumentArgExtensionImpl continueWithArgumentArgExtension) throws XMLStreamException {
 
@@ -195,7 +192,6 @@ public class ContinueWithArgumentArgExtensionImpl extends SequenceBase implement
                     .get(LEG_OR_CALL_SEGMENT, LegOrCallSegmentImpl.class);
         }
 
-        @Override
         public void write(ContinueWithArgumentArgExtensionImpl continueWithArgumentArgExtension,
                 javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
 
@@ -217,22 +213,18 @@ public class ContinueWithArgumentArgExtensionImpl extends SequenceBase implement
         }
     };
 
-    @Override
     public boolean getSuppressDCsi() {
         return suppressDCSI;
     }
 
-    @Override
     public boolean getSuppressNCsi() {
         return suppressNCSI;
     }
 
-    @Override
     public boolean getSuppressOutgoingCallBarring() {
         return suppressOutgoingCallBarring;
     }
 
-    @Override
     public LegOrCallSegment getLegOrCallSegment() {
         return legOrCallSegment;
     }

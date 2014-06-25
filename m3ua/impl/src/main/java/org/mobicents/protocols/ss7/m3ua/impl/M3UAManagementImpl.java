@@ -259,12 +259,10 @@ public class M3UAManagementImpl extends Mtp3UserPartBaseImpl implements M3UAMana
         fsmTicker.shutdown();
     }
 
-    @Override
     public boolean isStarted() {
         return this.isStarted;
     }
 
-    @Override
     public void addM3UAManagementEventListener(M3UAManagementEventListener m3uaManagementEventListener) {
         synchronized (this) {
             if (this.managementEventListeners.contains(m3uaManagementEventListener))
@@ -277,7 +275,6 @@ public class M3UAManagementImpl extends Mtp3UserPartBaseImpl implements M3UAMana
         }
     }
 
-    @Override
     public void removeM3UAManagementEventListener(M3UAManagementEventListener m3uaManagementEventListener) {
         synchronized (this) {
             if (!this.managementEventListeners.contains(m3uaManagementEventListener))
@@ -1002,7 +999,6 @@ public class M3UAManagementImpl extends Mtp3UserPartBaseImpl implements M3UAMana
         }
     }
 
-    @Override
     public void sendMessage(Mtp3TransferPrimitive mtp3TransferPrimitive) throws IOException {
         ProtocolData data = this.parameterFactory.createProtocolData(mtp3TransferPrimitive.getOpc(),
                 mtp3TransferPrimitive.getDpc(), mtp3TransferPrimitive.getSi(), mtp3TransferPrimitive.getNi(),

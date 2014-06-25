@@ -69,32 +69,26 @@ public class MAPErrorMessageBusySubscriberImpl extends MAPErrorMessageImpl imple
         return this;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return extensionContainer;
     }
 
-    @Override
     public boolean getCcbsPossible() {
         return ccbsPossible;
     }
 
-    @Override
     public boolean getCcbsBusy() {
         return ccbsBusy;
     }
 
-    @Override
     public void setExtensionContainer(MAPExtensionContainer val) {
         this.extensionContainer = val;
     }
 
-    @Override
     public void setCcbsPossible(boolean val) {
         this.ccbsPossible = val;
     }
 
-    @Override
     public void setCcbsBusy(boolean val) {
         this.ccbsBusy = val;
     }
@@ -111,7 +105,6 @@ public class MAPErrorMessageBusySubscriberImpl extends MAPErrorMessageImpl imple
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -126,7 +119,6 @@ public class MAPErrorMessageBusySubscriberImpl extends MAPErrorMessageImpl imple
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
 
         try {
@@ -196,13 +188,11 @@ public class MAPErrorMessageBusySubscriberImpl extends MAPErrorMessageImpl imple
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
 
         try {
@@ -215,7 +205,6 @@ public class MAPErrorMessageBusySubscriberImpl extends MAPErrorMessageImpl imple
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.ccbsPossible == false && this.ccbsBusy == false && this.extensionContainer == null)
@@ -236,7 +225,6 @@ public class MAPErrorMessageBusySubscriberImpl extends MAPErrorMessageImpl imple
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

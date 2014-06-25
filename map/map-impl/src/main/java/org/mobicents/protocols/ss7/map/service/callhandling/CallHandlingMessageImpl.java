@@ -31,7 +31,6 @@ import org.mobicents.protocols.ss7.map.primitives.MAPAsnPrimitive;
  */
 public abstract class CallHandlingMessageImpl extends MessageImpl implements CallHandlingMessage, MAPAsnPrimitive {
 
-    @Override
     public MAPDialogCallHandling getMAPDialog() {
         return (MAPDialogCallHandling) super.getMAPDialog();
     }

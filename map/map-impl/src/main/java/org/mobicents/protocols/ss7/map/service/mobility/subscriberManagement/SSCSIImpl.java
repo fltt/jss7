@@ -61,27 +61,22 @@ public class SSCSIImpl extends SequenceBase implements SSCSI {
         this.csiActive = csiActive;
     }
 
-    @Override
     public SSCamelData getSsCamelData() {
         return this.ssCamelData;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public boolean getNotificationToCSE() {
         return this.notificationToCSE;
     }
 
-    @Override
     public boolean getCsiActive() {
         return this.csiActive;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.ssCamelData = null;
@@ -166,7 +161,6 @@ public class SSCSIImpl extends SequenceBase implements SSCSI {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.ssCamelData == null) {
             throw new MAPException("Error while encoding " + _PrimitiveName
@@ -192,7 +186,6 @@ public class SSCSIImpl extends SequenceBase implements SSCSI {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

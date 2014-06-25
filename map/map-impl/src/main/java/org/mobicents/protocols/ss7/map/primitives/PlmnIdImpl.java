@@ -64,7 +64,6 @@ public class PlmnIdImpl extends OctetStringBase implements PlmnId {
         return data;
     }
 
-    @Override
     public int getMcc() {
 
         if (this.data == null || this.data.length != 3)
@@ -77,7 +76,6 @@ public class PlmnIdImpl extends OctetStringBase implements PlmnId {
         return a1 * 100 + a2 * 10 + a3;
     }
 
-    @Override
     public int getMnc() {
 
         if (this.data == null || this.data.length != 3)
@@ -93,7 +91,6 @@ public class PlmnIdImpl extends OctetStringBase implements PlmnId {
             return a1 * 100 + a2 * 10 + a3;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this._PrimitiveName);

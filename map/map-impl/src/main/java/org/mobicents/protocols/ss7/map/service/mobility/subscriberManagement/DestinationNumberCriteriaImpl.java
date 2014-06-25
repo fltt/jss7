@@ -61,22 +61,18 @@ public class DestinationNumberCriteriaImpl extends SequenceBase implements Desti
         this.destinationNumberLengthList = destinationNumberLengthList;
     }
 
-    @Override
     public MatchType getMatchType() {
         return this.matchType;
     }
 
-    @Override
     public ArrayList<ISDNAddressString> getDestinationNumberList() {
         return this.destinationNumberList;
     }
 
-    @Override
     public ArrayList<Integer> getDestinationNumberLengthList() {
         return this.destinationNumberLengthList;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.matchType = null;
@@ -190,7 +186,6 @@ public class DestinationNumberCriteriaImpl extends SequenceBase implements Desti
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.matchType == null) {
             throw new MAPException("Error while encoding " + _PrimitiveName
@@ -244,7 +239,6 @@ public class DestinationNumberCriteriaImpl extends SequenceBase implements Desti
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

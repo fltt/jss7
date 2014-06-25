@@ -70,37 +70,30 @@ public class QualityOfServiceImpl extends SequenceBase implements QualityOfServi
         this.negotiatedQoSExtension = negotiatedQoSExtension;
     }
 
-    @Override
     public GPRSQoS getRequestedQoS() {
         return this.requestedQoS;
     }
 
-    @Override
     public GPRSQoS getSubscribedQoS() {
         return this.subscribedQoS;
     }
 
-    @Override
     public GPRSQoS getNegotiatedQoS() {
         return this.negotiatedQoS;
     }
 
-    @Override
     public GPRSQoSExtension getRequestedQoSExtension() {
         return this.requestedQoSExtension;
     }
 
-    @Override
     public GPRSQoSExtension getSubscribedQoSExtension() {
         return this.subscribedQoSExtension;
     }
 
-    @Override
     public GPRSQoSExtension getNegotiatedQoSExtension() {
         return this.negotiatedQoSExtension;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
 
@@ -185,7 +178,6 @@ public class QualityOfServiceImpl extends SequenceBase implements QualityOfServi
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.requestedQoS != null) {
@@ -235,7 +227,6 @@ public class QualityOfServiceImpl extends SequenceBase implements QualityOfServi
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

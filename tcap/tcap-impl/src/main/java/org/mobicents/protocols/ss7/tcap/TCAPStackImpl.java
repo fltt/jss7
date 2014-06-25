@@ -77,7 +77,6 @@ public class TCAPStackImpl implements TCAPStack {
         this.tcapCounterProvider = new TCAPCounterProviderImpl(this.tcapProvider);
     }
 
-    @Override
     public String getName() {
         return name;
     }
@@ -136,7 +135,6 @@ public class TCAPStackImpl implements TCAPStack {
         return tcapProvider;
     }
 
-    @Override
     public TCAPCounterProvider getCounterProvider() {
         return tcapCounterProvider;
     }
@@ -236,17 +234,14 @@ public class TCAPStackImpl implements TCAPStack {
         return previewMode;
     }
 
-    @Override
     public void setDoNotSendProtocolVersion(boolean val) {
         doNotSendProtocolVersion = val;
     }
 
-    @Override
     public boolean getDoNotSendProtocolVersion() {
         return doNotSendProtocolVersion;
     }
 
-    @Override
     public void setStatisticsEnabled(boolean val) {
         if (started) {
             this.tcapCounterProvider = new TCAPCounterProviderImpl(this.tcapProvider);
@@ -254,7 +249,6 @@ public class TCAPStackImpl implements TCAPStack {
         statisticsEnabled = val;
     }
 
-    @Override
     public boolean getStatisticsEnabled() {
         return statisticsEnabled;
     }

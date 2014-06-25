@@ -57,7 +57,6 @@ public abstract class CAPServiceBaseImpl implements CAPServiceBase {
         this.capProviderImpl = capProviderImpl;
     }
 
-    @Override
     public CAPProvider getCAPProvider() {
         return this.capProviderImpl;
     }

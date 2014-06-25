@@ -58,14 +58,12 @@ public class ByteArrayContainer {
     public static final XMLFormat<ByteArrayContainer> ISUP_BYTE_ARRAY_XML = new XMLFormat<ByteArrayContainer>(
             ByteArrayContainer.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ByteArrayContainer arr) throws XMLStreamException {
 
             String s = xml.getAttribute(VALUE, DEFAULT_VALUE);
             arr.setData(DatatypeConverter.parseHexBinary(s));
         }
 
-        @Override
         public void write(ByteArrayContainer arr, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             byte[] data = arr.getData();
             String s;

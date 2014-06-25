@@ -60,7 +60,6 @@ public class TCUserAbortIndicationImpl extends DialogIndicationImpl implements T
         this.acn = acn;
     }
 
-    @Override
     public SecurityContext getSecurityContext() {
         return securityContext;
     }
@@ -69,7 +68,6 @@ public class TCUserAbortIndicationImpl extends DialogIndicationImpl implements T
         securityContext = val;
     }
 
-    @Override
     public Confidentiality getConfidentiality() {
         return confidentiality;
     }
@@ -78,7 +76,6 @@ public class TCUserAbortIndicationImpl extends DialogIndicationImpl implements T
         confidentiality = val;
     }
 
-    @Override
     public UserInformationElement getUserAbortInformation() {
         return userAbortInformation;
     }

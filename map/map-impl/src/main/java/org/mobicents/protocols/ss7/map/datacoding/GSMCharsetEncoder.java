@@ -65,7 +65,6 @@ public class GSMCharsetEncoder extends CharsetEncoder {
         return this.encodingData;
     }
 
-    @Override
     protected void implReset() {
         bitpos = 0;
         carryOver = 0;
@@ -75,7 +74,6 @@ public class GSMCharsetEncoder extends CharsetEncoder {
     /**
      * TODO :
      */
-    @Override
     protected CoderResult implFlush(ByteBuffer out) {
 
         if (!out.hasRemaining()) {
@@ -86,7 +84,6 @@ public class GSMCharsetEncoder extends CharsetEncoder {
 
     byte rawData = 0;
 
-    @Override
     protected CoderResult encodeLoop(CharBuffer in, ByteBuffer out) {
 
         if (this.encodingData != null && this.encodingData.leadingBuffer != null) {

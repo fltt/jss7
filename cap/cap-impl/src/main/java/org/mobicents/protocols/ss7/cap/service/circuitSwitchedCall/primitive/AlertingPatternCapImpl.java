@@ -58,12 +58,10 @@ public class AlertingPatternCapImpl extends OctetStringBase implements AlertingP
         this.data[2] = (byte) alertingPattern.getData();
     }
 
-    @Override
     public byte[] getData() {
         return data;
     }
 
-    @Override
     public AlertingPattern getAlertingPattern() {
 
         if (this.data != null && this.data.length == 3)
@@ -72,7 +70,6 @@ public class AlertingPatternCapImpl extends OctetStringBase implements AlertingP
             return null;
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -94,13 +91,11 @@ public class AlertingPatternCapImpl extends OctetStringBase implements AlertingP
     protected static final XMLFormat<AlertingPatternCapImpl> ALERTING_PATTERN_CAP_XML = new XMLFormat<AlertingPatternCapImpl>(
             AlertingPatternCapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, AlertingPatternCapImpl alertingPattern)
                 throws XMLStreamException {
             alertingPattern.setAlertingPattern(xml.get(ALERTING_PATTERN, AlertingPatternImpl.class));
         }
 
-        @Override
         public void write(AlertingPatternCapImpl alertingPattern, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             AlertingPattern ap = alertingPattern.getAlertingPattern();

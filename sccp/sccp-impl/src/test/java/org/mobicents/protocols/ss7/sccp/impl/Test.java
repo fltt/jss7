@@ -42,7 +42,6 @@ public class Test implements SccpListener {
         this.sccpProvider.deregisterSccpListener(this.localSsn);
     }
 
-    @Override
     public void onMessage(SccpDataMessage message) {
         localAddress = message.getCalledPartyAddress();
         SccpAddress remoteAddress = message.getCallingPartyAddress();
@@ -62,7 +61,6 @@ public class Test implements SccpListener {
         }
     }
 
-    @Override
     public void onNotice(SccpNoticeMessage message) {
     }
 
@@ -75,7 +73,6 @@ public class Test implements SccpListener {
     public void onState(int dpc, int ssn, boolean inService, int multiplicityIndicator) {
     }
 
-    @Override
     public void onPcState(int dpc, SignallingPointStatus status, int restrictedImportanceLevel,
             RemoteSccpStatus remoteSccpStatus) {
     }

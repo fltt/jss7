@@ -62,19 +62,16 @@ public class MessageReassemblyTest extends SccpHarness {
     public void tearDownClass() throws Exception {
     }
 
-    @Override
     protected void createStack1() {
         this.sccpStack1 = createStack(sccpStack1Name);
         this.sccpProvider1 = sccpStack1.getSccpProvider();
     }
 
-    @Override
     protected void createStack2() {
         this.sccpStack2 = createStack(sccpStack2Name);
         this.sccpProvider2 = sccpStack2.getSccpProvider();
     }
 
-    @Override
     protected SccpStackImpl createStack(String name) {
         SccpStackImpl stack = new SccpStackImplProxy(name);
         final String dir = Util.getTmpTestDir();

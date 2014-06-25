@@ -203,7 +203,6 @@ public class UssdClientExample implements MAPDialogListener, MAPServiceSupplemen
 
     }
 
-    @Override
     public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason,
             ApplicationContextName alternativeApplicationContext, MAPExtensionContainer extensionContainer) {
         // TODO Auto-generated method stub

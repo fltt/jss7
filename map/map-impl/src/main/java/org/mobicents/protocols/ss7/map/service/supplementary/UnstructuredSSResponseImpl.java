@@ -166,7 +166,6 @@ public class UnstructuredSSResponseImpl extends SupplementaryMessageImpl impleme
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("UnstructuredSSResponse [");
@@ -185,14 +184,12 @@ public class UnstructuredSSResponseImpl extends SupplementaryMessageImpl impleme
     protected static final XMLFormat<UnstructuredSSResponseImpl> UNSTRUCTURED_SS_RESPONSE_XML = new XMLFormat<UnstructuredSSResponseImpl>(
             UnstructuredSSResponseImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, UnstructuredSSResponseImpl ussdMessage)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.read(xml, ussdMessage);
 
         }
 
-        @Override
         public void write(UnstructuredSSResponseImpl ussdMessage, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.write(ussdMessage, xml);

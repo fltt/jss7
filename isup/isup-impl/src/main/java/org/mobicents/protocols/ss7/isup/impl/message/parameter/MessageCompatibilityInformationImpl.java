@@ -47,12 +47,10 @@ public class MessageCompatibilityInformationImpl extends AbstractISUPParameter i
         decode(body);
     }
 
-    @Override
     public int getCode() {
         return _PARAMETER_CODE;
     }
 
-    @Override
     public void setMessageCompatibilityInstructionIndicators(MessageCompatibilityInstructionIndicator... indicators) {
         this.indicators.clear();
         for(MessageCompatibilityInstructionIndicator i:indicators){
@@ -62,12 +60,10 @@ public class MessageCompatibilityInformationImpl extends AbstractISUPParameter i
         }
     }
 
-    @Override
     public MessageCompatibilityInstructionIndicator[] getMessageCompatibilityInstructionIndicators() {
         return this.indicators.toArray(new MessageCompatibilityInstructionIndicator[this.indicators.size()]);
     }
 
-    @Override
     public int decode(byte[] b) throws ParameterException {
         if (b == null || b.length == 0) {
             throw new ParameterException("byte[] must  not be null and length must  be greater than 0");
@@ -91,7 +87,6 @@ public class MessageCompatibilityInformationImpl extends AbstractISUPParameter i
         return b.length;
     }
 
-    @Override
     public byte[] encode() throws ParameterException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream(this.indicators.size());
         final int limit = this.indicators.size() -1;

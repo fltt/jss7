@@ -57,38 +57,32 @@ public class ExtendedRoutingInfoImpl implements ExtendedRoutingInfo, MAPAsnPrimi
         this.camelRoutingInfo = camelRoutingInfo;
     }
 
-    @Override
     public RoutingInfo getRoutingInfo() {
         return this.routingInfo;
     }
 
-    @Override
     public CamelRoutingInfo getCamelRoutingInfo() {
         return this.camelRoutingInfo;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (routingInfo != null)
             return ((RoutingInfoImpl) routingInfo).getTag();
         return TAG_camel;
     }
 
-    @Override
     public int getTagClass() {
         if (routingInfo != null)
             return ((RoutingInfoImpl) routingInfo).getTagClass();
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (routingInfo != null)
             return ((RoutingInfoImpl) routingInfo).getIsPrimitive();
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -102,7 +96,6 @@ public class ExtendedRoutingInfoImpl implements ExtendedRoutingInfo, MAPAsnPrimi
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -147,12 +140,10 @@ public class ExtendedRoutingInfoImpl implements ExtendedRoutingInfo, MAPAsnPrimi
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, this.getIsPrimitive(), tag);
@@ -164,7 +155,6 @@ public class ExtendedRoutingInfoImpl implements ExtendedRoutingInfo, MAPAsnPrimi
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.routingInfo == null && this.camelRoutingInfo == null)
             throw new MAPException("Both routingInfo and camelRoutingInfo must not be null");

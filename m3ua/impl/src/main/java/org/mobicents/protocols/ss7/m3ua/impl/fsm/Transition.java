@@ -67,7 +67,6 @@ public class Transition {
         return this.destination;
     }
 
-    @Override
     public String toString() {
         return name;
     }

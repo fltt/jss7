@@ -55,12 +55,10 @@ public class ROTimeGPRSIfTariffSwitchImpl extends SequenceBase implements ROTime
         this.roTimeGPRSTariffSwitchInterval = roTimeGPRSTariffSwitchInterval;
     }
 
-    @Override
     public Integer getROTimeGPRSSinceLastTariffSwitch() {
         return this.roTimeGPRSSinceLastTariffSwitch;
     }
 
-    @Override
     public Integer getROTimeGPRSTariffSwitchInterval() {
         return this.roTimeGPRSTariffSwitchInterval;
     }
@@ -73,7 +71,6 @@ public class ROTimeGPRSIfTariffSwitchImpl extends SequenceBase implements ROTime
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException {
 
         this.roTimeGPRSSinceLastTariffSwitch = null;
@@ -112,7 +109,6 @@ public class ROTimeGPRSIfTariffSwitchImpl extends SequenceBase implements ROTime
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -131,7 +127,6 @@ public class ROTimeGPRSIfTariffSwitchImpl extends SequenceBase implements ROTime
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

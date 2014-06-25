@@ -62,27 +62,22 @@ public class AllocationRetentionPriorityImpl extends SequenceBase implements All
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public int getPriorityLevel() {
         return this.priorityLevel;
     }
 
-    @Override
     public Boolean getPreEmptionCapability() {
         return this.preEmptionCapability;
     }
 
-    @Override
     public Boolean getPreEmptionVulnerability() {
         return this.preEmptionVulnerability;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.priorityLevel = -1;
@@ -158,7 +153,6 @@ public class AllocationRetentionPriorityImpl extends SequenceBase implements All
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         try {
@@ -183,7 +177,6 @@ public class AllocationRetentionPriorityImpl extends SequenceBase implements All
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

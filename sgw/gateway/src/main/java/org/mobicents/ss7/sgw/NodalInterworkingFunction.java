@@ -135,7 +135,6 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
         this.started = false;
     }
 
-    @Override
     public long perform() {
         Mtp3TransferPrimitive currPrimitive;
         if (!started) {

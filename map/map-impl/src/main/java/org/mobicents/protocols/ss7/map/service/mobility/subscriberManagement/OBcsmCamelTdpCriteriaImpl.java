@@ -75,37 +75,30 @@ public class OBcsmCamelTdpCriteriaImpl extends SequenceBase implements OBcsmCame
         this.extensionContainer = extensionContainer;
     }
 
-    @Override
     public OBcsmTriggerDetectionPoint getOBcsmTriggerDetectionPoint() {
         return this.oBcsmTriggerDetectionPoint;
     }
 
-    @Override
     public DestinationNumberCriteria getDestinationNumberCriteria() {
         return this.destinationNumberCriteria;
     }
 
-    @Override
     public ArrayList<ExtBasicServiceCode> getBasicServiceCriteria() {
         return this.basicServiceCriteria;
     }
 
-    @Override
     public CallTypeCriteria getCallTypeCriteria() {
         return this.callTypeCriteria;
     }
 
-    @Override
     public ArrayList<CauseValue> getOCauseValueCriteria() {
         return this.oCauseValueCriteria;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         this.oBcsmTriggerDetectionPoint = null;
@@ -243,7 +236,6 @@ public class OBcsmCamelTdpCriteriaImpl extends SequenceBase implements OBcsmCame
 
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.oBcsmTriggerDetectionPoint == null)
             throw new MAPException("Error while encoding " + _PrimitiveName + ": oBcsmTriggerDetectionPoint required.");
@@ -298,7 +290,6 @@ public class OBcsmCamelTdpCriteriaImpl extends SequenceBase implements OBcsmCame
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

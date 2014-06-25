@@ -104,13 +104,11 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
     }
 
 
-    @Override
     public UUID getSessionId() {
         return sessionId;
     }
 
 
-    @Override
     public long getTcUniReceivedCount() {
         return tcUniReceivedCount.get();
     }
@@ -119,7 +117,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcUniReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getTcUniSentCount() {
         return tcUniSentCount.get();
     }
@@ -128,7 +125,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcUniSentCount.addAndGet(1);
     }
 
-    @Override
     public long getTcBeginReceivedCount() {
         return tcBeginReceivedCount.get();
     }
@@ -137,7 +133,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcBeginReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getTcBeginSentCount() {
         return tcBeginSentCount.get();
     }
@@ -146,7 +141,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcBeginSentCount.addAndGet(1);
     }
 
-    @Override
     public long getTcContinueReceivedCount() {
         return tcContinueReceivedCount.get();
     }
@@ -155,7 +149,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcContinueReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getTcContinueSentCount() {
         return tcContinueSentCount.get();
     }
@@ -164,7 +157,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcContinueSentCount.addAndGet(1);
     }
 
-    @Override
     public long getTcEndReceivedCount() {
         return tcEndReceivedCount.get();
     }
@@ -173,7 +165,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcEndReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getTcEndSentCount() {
         return tcEndSentCount.get();
     }
@@ -182,7 +173,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcEndSentCount.addAndGet(1);
     }
 
-    @Override
     public long getTcPAbortReceivedCount() {
         return tcPAbortReceivedCount.get();
     }
@@ -191,7 +181,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcPAbortReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getTcPAbortSentCount() {
         return tcPAbortSentCount.get();
     }
@@ -200,7 +189,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcPAbortSentCount.addAndGet(1);
     }
 
-    @Override
     public long getTcUserAbortReceivedCount() {
         return tcUserAbortReceivedCount.get();
     }
@@ -209,7 +197,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcUserAbortReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getTcUserAbortSentCount() {
         return tcUserAbortSentCount.get();
     }
@@ -218,7 +205,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         tcUserAbortSentCount.addAndGet(1);
     }
 
-    @Override
     public long getInvokeReceivedCount() {
         return invokeReceivedCount.get();
     }
@@ -227,7 +213,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         invokeReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getInvokeSentCount() {
         return invokeSentCount.get();
     }
@@ -236,7 +221,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         invokeSentCount.addAndGet(1);
     }
 
-    @Override
     public long getReturnResultReceivedCount() {
         return returnResultReceivedCount.get();
     }
@@ -245,7 +229,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         returnResultReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getReturnResultSentCount() {
         return returnResultSentCount.get();
     }
@@ -254,7 +237,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         returnResultSentCount.addAndGet(1);
     }
 
-    @Override
     public long getReturnResultLastReceivedCount() {
         return returnResultLastReceivedCount.get();
     }
@@ -263,7 +245,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         returnResultLastReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getReturnResultLastSentCount() {
         return returnResultLastSentCount.get();
     }
@@ -272,7 +253,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         returnResultLastSentCount.addAndGet(1);
     }
 
-    @Override
     public long getReturnErrorReceivedCount() {
         return returnErrorReceivedCount.get();
     }
@@ -281,7 +261,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         returnErrorReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getReturnErrorSentCount() {
         return returnErrorSentCount.get();
     }
@@ -290,7 +269,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         returnErrorSentCount.addAndGet(1);
     }
 
-    @Override
     public long getRejectReceivedCount() {
         return rejectReceivedCount.get();
     }
@@ -299,7 +277,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         rejectReceivedCount.addAndGet(1);
     }
 
-    @Override
     public long getRejectSentCount() {
         return rejectSentCount.get();
     }
@@ -308,7 +285,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         rejectSentCount.addAndGet(1);
     }
 
-    @Override
     public long getDialogTimeoutCount() {
         return dialogTimeoutCount.get();
     }
@@ -317,7 +293,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         dialogTimeoutCount.addAndGet(1);
     }
 
-    @Override
     public long getDialogReleaseCount() {
         return dialogReleaseCount.get();
     }
@@ -327,12 +302,10 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
     }
 
 
-    @Override
     public long getCurrentDialogsCount() {
         return provider.getCurrentDialogsCount();
     }
 
-    @Override
     public long getAllEstablishedDialogsCount() {
         return allEstablishedDialogsCount.get();
     }
@@ -341,7 +314,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         allEstablishedDialogsCount.addAndGet(1);
     }
 
-    @Override
     public long getAllLocalEstablishedDialogsCount() {
         return allLocalEstablishedDialogsCount.get();
     }
@@ -350,7 +322,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         allLocalEstablishedDialogsCount.addAndGet(1);
     }
 
-    @Override
     public long getAllRemoteEstablishedDialogsCount() {
         return allRemoteEstablishedDialogsCount.get();
     }
@@ -359,7 +330,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         allRemoteEstablishedDialogsCount.addAndGet(1);
     }
 
-    @Override
     public Long getMinDialogsCount(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(MIN_DIALOGS_COUNT, compainName);
         this.statDataCollection.updateData(MIN_DIALOGS_COUNT, provider.getCurrentDialogsCount());
@@ -373,7 +343,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(MIN_DIALOGS_COUNT, newVal);
     }
 
-    @Override
     public Long getMaxDialogsCount(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(MAX_DIALOGS_COUNT, compainName);
         this.statDataCollection.updateData(MAX_DIALOGS_COUNT, provider.getCurrentDialogsCount());
@@ -387,7 +356,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(MAX_DIALOGS_COUNT, newVal);
     }
 
-    @Override
     public long getAllDialogsDuration() {
         return allDialogsDuration.get();
     }
@@ -396,7 +364,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         allDialogsDuration.addAndGet(diff);
     }
 
-    @Override
     public Map<String, LongValue> getOutgoingDialogsPerApplicatioContextName(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(OUTGOING_DIALOGS_PER_APPLICATION_CONTEXT_NAME, compainName);
         this.statDataCollection.updateData(OUTGOING_DIALOGS_PER_APPLICATION_CONTEXT_NAME, provider.getCurrentDialogsCount());
@@ -410,7 +377,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(OUTGOING_DIALOGS_PER_APPLICATION_CONTEXT_NAME, name);
     }
 
-    @Override
     public Map<String, LongValue> getIncomingDialogsPerApplicatioContextName(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(INCOMING_DIALOGS_PER_APPLICATION_CONTEXT_NAME, compainName);
         this.statDataCollection.updateData(INCOMING_DIALOGS_PER_APPLICATION_CONTEXT_NAME, provider.getCurrentDialogsCount());
@@ -424,7 +390,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(INCOMING_DIALOGS_PER_APPLICATION_CONTEXT_NAME, name);
     }
 
-    @Override
     public Map<String, LongValue> getOutgoingInvokesPerOperationCode(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(OUTGOING_INVOKES_PER_OPERATION_CODE, compainName);
         this.statDataCollection.updateData(OUTGOING_INVOKES_PER_OPERATION_CODE, provider.getCurrentDialogsCount());
@@ -438,7 +403,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(OUTGOING_INVOKES_PER_OPERATION_CODE, name);
     }
 
-    @Override
     public Map<String, LongValue> getIncomingInvokesPerOperationCode(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(INCOMING_INVOKES_PER_OPERATION_CODE, compainName);
         this.statDataCollection.updateData(INCOMING_INVOKES_PER_OPERATION_CODE, provider.getCurrentDialogsCount());
@@ -452,7 +416,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(INCOMING_INVOKES_PER_OPERATION_CODE, name);
     }
 
-    @Override
     public Map<String, LongValue> getOutgoingErrorsPerErrorCode(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(OUTGOING_ERRORS_PER_ERROR_CODE, compainName);
         this.statDataCollection.updateData(OUTGOING_ERRORS_PER_ERROR_CODE, provider.getCurrentDialogsCount());
@@ -466,7 +429,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(OUTGOING_ERRORS_PER_ERROR_CODE, name);
     }
 
-    @Override
     public Map<String, LongValue> getIncomingErrorsPerErrorCode(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(INCOMING_ERRORS_PER_ERROR_CODE, compainName);
         this.statDataCollection.updateData(INCOMING_ERRORS_PER_ERROR_CODE, provider.getCurrentDialogsCount());
@@ -480,7 +442,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(INCOMING_ERRORS_PER_ERROR_CODE, name);
     }
 
-    @Override
     public Map<String, LongValue> getOutgoingRejectPerProblem(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(OUTGOING_REJECT_PER_PROBLEM, compainName);
         this.statDataCollection.updateData(OUTGOING_REJECT_PER_PROBLEM, provider.getCurrentDialogsCount());
@@ -494,7 +455,6 @@ public class TCAPCounterProviderImpl implements TCAPCounterProvider {
         this.statDataCollection.updateData(OUTGOING_REJECT_PER_PROBLEM, name);
     }
 
-    @Override
     public Map<String, LongValue> getIncomingRejectPerProblem(String compainName) {
         StatResult res = this.statDataCollection.restartAndGet(INCOMING_REJECT_PER_PROBLEM, compainName);
         this.statDataCollection.updateData(INCOMING_REJECT_PER_PROBLEM, provider.getCurrentDialogsCount());

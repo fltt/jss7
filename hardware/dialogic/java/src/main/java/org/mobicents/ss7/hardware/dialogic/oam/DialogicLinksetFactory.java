@@ -40,12 +40,10 @@ public class DialogicLinksetFactory extends LinksetFactory {
         super();
     }
 
-    @Override
     public String getName() {
         return NAME;
     }
 
-    @Override
     public Linkset createLinkset(String[] options) throws Exception {
         // the expected command is "linkset create dialogic opc 1 apc 2 ni 3
         // srcmod 61 dstmod 34 linkset1". We know length is 14

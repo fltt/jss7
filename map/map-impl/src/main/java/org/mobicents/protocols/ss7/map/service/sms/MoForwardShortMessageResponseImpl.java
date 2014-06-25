@@ -180,7 +180,6 @@ public class MoForwardShortMessageResponseImpl extends SmsMessageImpl implements
             ((MAPExtensionContainerImpl) this.extensionContainer).encodeAll(asnOs);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

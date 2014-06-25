@@ -92,7 +92,6 @@ public class ValidityPeriodImpl implements ValidityPeriod {
         return this.enhancedFormatValue;
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

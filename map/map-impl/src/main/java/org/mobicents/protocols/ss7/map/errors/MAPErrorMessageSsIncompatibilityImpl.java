@@ -73,32 +73,26 @@ public class MAPErrorMessageSsIncompatibilityImpl extends MAPErrorMessageImpl im
         return this;
     }
 
-    @Override
     public SSCode getSSCode() {
         return ssCode;
     }
 
-    @Override
     public BasicServiceCode getBasicService() {
         return basicService;
     }
 
-    @Override
     public SSStatus getSSStatus() {
         return ssStatus;
     }
 
-    @Override
     public void setSSCode(SSCode val) {
         ssCode = val;
     }
 
-    @Override
     public void setBasicService(BasicServiceCode val) {
         basicService = val;
     }
 
-    @Override
     public void setSSStatus(SSStatus val) {
         ssStatus = val;
     }
@@ -115,7 +109,6 @@ public class MAPErrorMessageSsIncompatibilityImpl extends MAPErrorMessageImpl im
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
 
         try {
@@ -130,7 +123,6 @@ public class MAPErrorMessageSsIncompatibilityImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
 
         try {
@@ -194,13 +186,11 @@ public class MAPErrorMessageSsIncompatibilityImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
 
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
 
         try {
@@ -213,7 +203,6 @@ public class MAPErrorMessageSsIncompatibilityImpl extends MAPErrorMessageImpl im
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.ssCode == null && this.basicService == null && this.ssStatus == null)
@@ -230,7 +219,6 @@ public class MAPErrorMessageSsIncompatibilityImpl extends MAPErrorMessageImpl im
             ((SSStatusImpl) this.ssStatus).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _tag_ss_Status);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

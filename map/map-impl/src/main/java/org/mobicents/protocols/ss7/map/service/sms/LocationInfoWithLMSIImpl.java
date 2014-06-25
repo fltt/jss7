@@ -266,7 +266,6 @@ public class LocationInfoWithLMSIImpl implements LocationInfoWithLMSI, MAPAsnPri
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("LocationInfoWithLMSIImpl [");

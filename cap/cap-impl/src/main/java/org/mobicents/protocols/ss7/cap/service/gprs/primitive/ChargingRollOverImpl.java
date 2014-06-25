@@ -59,7 +59,6 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         this.elapsedTimeRollOver = elapsedTimeRollOver;
     }
 
-    @Override
     public TransferredVolumeRollOver getTransferredVolumeRollOver() {
         return this.transferredVolumeRollOver;
     }
@@ -68,7 +67,6 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         return this.elapsedTimeRollOver;
     }
 
-    @Override
     public int getTag() throws CAPException {
         if (transferredVolumeRollOver != null) {
             return _ID_transferredVolumeRollOver;
@@ -77,12 +75,10 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
 
         if (transferredVolumeRollOver != null) {
@@ -92,7 +88,6 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -109,7 +104,6 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -159,12 +153,10 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -177,7 +169,6 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.transferredVolumeRollOver == null && this.elapsedTimeRollOver == null
@@ -192,7 +183,6 @@ public class ChargingRollOverImpl implements ChargingRollOver, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

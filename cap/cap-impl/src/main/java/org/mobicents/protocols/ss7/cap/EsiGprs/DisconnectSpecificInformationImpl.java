@@ -57,12 +57,10 @@ public class DisconnectSpecificInformationImpl extends SequenceBase implements D
         this.routeingAreaUpdate = routeingAreaUpdate;
     }
 
-    @Override
     public InitiatingEntity getInitiatingEntity() {
         return this.initiatingEntity;
     }
 
-    @Override
     public boolean getRouteingAreaUpdate() {
         return this.routeingAreaUpdate;
     }
@@ -75,7 +73,6 @@ public class DisconnectSpecificInformationImpl extends SequenceBase implements D
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws CAPParsingComponentException, IOException, AsnException,
             MAPParsingComponentException {
         this.initiatingEntity = null;
@@ -118,7 +115,6 @@ public class DisconnectSpecificInformationImpl extends SequenceBase implements D
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         try {
@@ -135,7 +131,6 @@ public class DisconnectSpecificInformationImpl extends SequenceBase implements D
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

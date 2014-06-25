@@ -80,32 +80,26 @@ public class VariablePartImpl implements VariablePart, CAPAsnPrimitive {
         this.price = price;
     }
 
-    @Override
     public Integer getInteger() {
         return integer;
     }
 
-    @Override
     public Digits getNumber() {
         return number;
     }
 
-    @Override
     public VariablePartTime getTime() {
         return time;
     }
 
-    @Override
     public VariablePartDate getDate() {
         return date;
     }
 
-    @Override
     public VariablePartPrice getPrice() {
         return price;
     }
 
-    @Override
     public int getTag() throws CAPException {
 
         if (this.integer != null) {
@@ -123,17 +117,14 @@ public class VariablePartImpl implements VariablePart, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -148,7 +139,6 @@ public class VariablePartImpl implements VariablePart, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -201,12 +191,10 @@ public class VariablePartImpl implements VariablePart, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -219,7 +207,6 @@ public class VariablePartImpl implements VariablePart, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         int choiceCnt = 0;
@@ -254,7 +241,6 @@ public class VariablePartImpl implements VariablePart, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

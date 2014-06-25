@@ -255,7 +255,6 @@ public class TestSmsClientForm extends TestingForm {
         this.lbResult.setText(res);
     }
 
-    @Override
     public void sendNotif(Notification notif) {
         super.sendNotif(notif);
 
@@ -270,7 +269,6 @@ public class TestSmsClientForm extends TestingForm {
         // }
     }
 
-    @Override
     public void refreshState() {
         super.refreshState();
 

@@ -159,51 +159,41 @@ public class M3UAManagementTest {
             return noOfTimeStartCalled;
         }
 
-        @Override
         public AssociationListener getAssociationListener() {
             return this.associationListener;
         }
 
-        @Override
         public String getHostAddress() {
             return null;
         }
 
-        @Override
         public int getHostPort() {
             return 0;
         }
 
-        @Override
         public String getName() {
             return this.name;
         }
 
-        @Override
         public String getPeerAddress() {
             return null;
         }
 
-        @Override
         public int getPeerPort() {
             return 0;
         }
 
-        @Override
         public String getServerName() {
             return null;
         }
 
-        @Override
         public boolean isStarted() {
             return false;
         }
 
-        @Override
         public void send(PayloadData payloadData) throws Exception {
         }
 
-        @Override
         public void setAssociationListener(AssociationListener associationListener) {
             this.associationListener = associationListener;
         }
@@ -224,19 +214,16 @@ public class M3UAManagementTest {
             this.noOfTimeStartCalled--;
         }
 
-        @Override
         public IpChannelType getIpChannelType() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public AssociationType getAssociationType() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public String[] getExtraHostAddresses() {
             // TODO Auto-generated method stub
             return null;
@@ -247,31 +234,26 @@ public class M3UAManagementTest {
          *
          * @see org.mobicents.protocols.api.Association#isConnected()
          */
-        @Override
         public boolean isConnected() {
             // TODO Auto-generated method stub
             return false;
         }
 
-        @Override
         public void acceptAnonymousAssociation(AssociationListener arg0) throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void rejectAnonymousAssociation() {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void stopAnonymousAssociation() throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public boolean isUp() {
             // TODO Auto-generated method stub
             return false;
@@ -283,7 +265,6 @@ public class M3UAManagementTest {
 
         private FastMap<String, TestAssociation> associations = new FastMap<String, TestAssociation>();
 
-        @Override
         public Association addAssociation(String hostAddress, int hostPort, String peerAddress, int peerPort, String assocName)
                 throws Exception {
             TestAssociation testAssociation = new TestAssociation(assocName);
@@ -291,182 +272,151 @@ public class M3UAManagementTest {
             return testAssociation;
         }
 
-        @Override
         public Server addServer(String serverName, String hostAddress, int port) throws Exception {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public Association addServerAssociation(String peerAddress, int peerPort, String serverName, String assocName)
                 throws Exception {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public Association getAssociation(String assocName) throws Exception {
             return this.associations.get(assocName);
         }
 
-        @Override
         public Map<String, Association> getAssociations() {
             return null;
         }
 
-        @Override
         public int getConnectDelay() {
             return 0;
         }
 
-        @Override
         public String getName() {
             return null;
         }
 
-        @Override
         public List<Server> getServers() {
             return null;
         }
 
-        @Override
         public int getWorkerThreads() {
             return 0;
         }
 
-        @Override
         public boolean isSingleThread() {
             return false;
         }
 
-        @Override
         public void removeAssociation(String assocName) throws Exception {
 
         }
 
-        @Override
         public void removeServer(String serverName) throws Exception {
 
         }
 
-        @Override
         public void setConnectDelay(int connectDelay) {
 
         }
 
-        @Override
         public void setSingleThread(boolean arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void setWorkerThreads(int arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void start() throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void startAssociation(String assocName) throws Exception {
             TestAssociation testAssociation = this.associations.get(assocName);
             testAssociation.start();
         }
 
-        @Override
         public void startServer(String arg0) throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void stop() throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void stopAssociation(String arg0) throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void stopServer(String arg0) throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public String getPersistDir() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public void setPersistDir(String arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public Association addAssociation(String arg0, int arg1, String arg2, int arg3, String arg4, IpChannelType arg5,
                 String[] extraHostAddresses) throws Exception {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public Server addServer(String arg0, String arg1, int arg2, IpChannelType arg3, String[] extraHostAddresses)
                 throws Exception {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public Association addServerAssociation(String arg0, int arg1, String arg2, String arg3, IpChannelType arg4)
                 throws Exception {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public void removeAllResourses() throws Exception {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void addManagementEventListener(ManagementEventListener arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public Server addServer(String arg0, String arg1, int arg2, IpChannelType arg3, boolean arg4, int arg5, String[] arg6)
                 throws Exception {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public ServerListener getServerListener() {
             // TODO Auto-generated method stub
             return null;
         }
 
-        @Override
         public void removeManagementEventListener(ManagementEventListener arg0) {
             // TODO Auto-generated method stub
 
         }
 
-        @Override
         public void setServerListener(ServerListener arg0) {
             // TODO Auto-generated method stub
 
@@ -477,7 +427,6 @@ public class M3UAManagementTest {
          *
          * @see org.mobicents.protocols.api.Management#isStarted()
          */
-        @Override
         public boolean isStarted() {
             // TODO Auto-generated method stub
             return false;

@@ -53,17 +53,14 @@ public class GSMSecurityContextDataImpl extends SequenceBase implements GSMSecur
         this.cksn = cksn;
     }
 
-    @Override
     public Kc getKc() {
         return this.kc;
     }
 
-    @Override
     public Cksn getCksn() {
         return this.cksn;
     }
 
-    @Override
     protected void _decode(AsnInputStream asnIS, int length) throws MAPParsingComponentException, IOException, AsnException {
 
         AsnInputStream ais = asnIS.readSequenceStreamData(length);
@@ -107,7 +104,6 @@ public class GSMSecurityContextDataImpl extends SequenceBase implements GSMSecur
                     MAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
         if (this.kc == null || this.cksn == null) {
             throw new MAPException("Error while encoding " + _PrimitiveName
@@ -121,7 +117,6 @@ public class GSMSecurityContextDataImpl extends SequenceBase implements GSMSecur
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName + " [");

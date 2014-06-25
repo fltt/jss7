@@ -97,62 +97,50 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
         this.mapProtocolVersion = mapProtocolVersion;
     }
 
-    @Override
     public MAPMessageType getMessageType() {
         return MAPMessageType.sendIdentification_Request;
     }
 
-    @Override
     public int getOperationCode() {
         return MAPOperationCode.sendIdentification;
     }
 
-    @Override
     public TMSI getTmsi() {
         return this.tmsi;
     }
 
-    @Override
     public Integer getNumberOfRequestedVectors() {
         return this.numberOfRequestedVectors;
     }
 
-    @Override
     public boolean getSegmentationProhibited() {
         return this.segmentationProhibited;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public ISDNAddressString getMscNumber() {
         return this.mscNumber;
     }
 
-    @Override
     public LAIFixedLength getPreviousLAI() {
         return this.previousLAI;
     }
 
-    @Override
     public Integer getHopCounter() {
         return this.hopCounter;
     }
 
-    @Override
     public boolean getMtRoamingForwardingSupported() {
         return this.mtRoamingForwardingSupported;
     }
 
-    @Override
     public ISDNAddressString getNewVLRNumber() {
         return this.newVLRNumber;
     }
 
-    @Override
     public LMSI getNewLmsi() {
         return this.newLmsi;
     }
@@ -161,7 +149,6 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
         return mapProtocolVersion;
     }
 
-    @Override
     public int getTag() throws MAPException {
         if (this.mapProtocolVersion >= 3) {
             return Tag.SEQUENCE;
@@ -170,12 +157,10 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
         }
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         if (this.mapProtocolVersion >= 3) {
             return false;
@@ -185,7 +170,6 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
 
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws MAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -199,7 +183,6 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws MAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -371,12 +354,10 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
 
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws MAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws MAPException {
         try {
             asnOs.writeTag(tagClass, getIsPrimitive(), tag);
@@ -388,7 +369,6 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws MAPException {
 
         if (this.tmsi == null) {
@@ -437,7 +417,6 @@ public class SendIdentificationRequestImpl extends MobilityMessageImpl implement
 
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_PrimitiveName);

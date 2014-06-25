@@ -61,32 +61,26 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
         this.dpAssignment = dpAssignment;
     }
 
-    @Override
     public MiscCallInfoMessageType getMessageType() {
         return messageType;
     }
 
-    @Override
     public MiscCallInfoDpAssignment getDpAssignment() {
         return dpAssignment;
     }
 
-    @Override
     public int getTag() throws INAPException {
         return Tag.SEQUENCE;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_UNIVERSAL;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return false;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws INAPParsingComponentException {
         try {
             int length = ansIS.readLength();
@@ -100,7 +94,6 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws INAPParsingComponentException {
         try {
             this._decode(ansIS, length);
@@ -151,13 +144,11 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
                     + ": messageType is mandatory but not found ", INAPParsingComponentExceptionReason.MistypedParameter);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws INAPException {
 
         this.encodeAll(asnOs, Tag.CLASS_UNIVERSAL, Tag.SEQUENCE);
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws INAPException {
 
         try {
@@ -170,7 +161,6 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws INAPException {
 
         if (this.messageType == null)
@@ -188,7 +178,6 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
         }
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -213,7 +202,6 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
     protected static final XMLFormat<MiscCallInfoImpl> MISC_CALL_INFO_XML = new XMLFormat<MiscCallInfoImpl>(
             MiscCallInfoImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, MiscCallInfoImpl miscCallInfo) throws XMLStreamException {
             Integer integ = xml.get(MESSAGE_TYPE, Integer.class);
             if (integ != null) {
@@ -226,7 +214,6 @@ public class MiscCallInfoImpl implements MiscCallInfo, INAPAsnPrimitive {
             }
         }
 
-        @Override
         public void write(MiscCallInfoImpl miscCallInfo, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
 
             if (miscCallInfo.messageType != null) {

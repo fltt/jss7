@@ -63,27 +63,22 @@ public class BearerCapabilityImpl implements BearerCapability, CAPAsnPrimitive {
         this.bearerCap = bearerCap;
     }
 
-    @Override
     public BearerCap getBearerCap() {
         return bearerCap;
     }
 
-    @Override
     public int getTag() throws CAPException {
         return _ID_bearerCap;
     }
 
-    @Override
     public int getTagClass() {
         return Tag.CLASS_CONTEXT_SPECIFIC;
     }
 
-    @Override
     public boolean getIsPrimitive() {
         return true;
     }
 
-    @Override
     public void decodeAll(AsnInputStream ansIS) throws CAPParsingComponentException {
 
         try {
@@ -101,7 +96,6 @@ public class BearerCapabilityImpl implements BearerCapability, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void decodeData(AsnInputStream ansIS, int length) throws CAPParsingComponentException {
 
         try {
@@ -142,12 +136,10 @@ public class BearerCapabilityImpl implements BearerCapability, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs) throws CAPException {
         this.encodeAll(asnOs, this.getTagClass(), this.getTag());
     }
 
-    @Override
     public void encodeAll(AsnOutputStream asnOs, int tagClass, int tag) throws CAPException {
 
         try {
@@ -160,7 +152,6 @@ public class BearerCapabilityImpl implements BearerCapability, CAPAsnPrimitive {
         }
     }
 
-    @Override
     public void encodeData(AsnOutputStream asnOs) throws CAPException {
 
         if (this.bearerCap == null)
@@ -169,7 +160,6 @@ public class BearerCapabilityImpl implements BearerCapability, CAPAsnPrimitive {
         ((BearerCapImpl) this.bearerCap).encodeData(asnOs);
     }
 
-    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
@@ -190,12 +180,10 @@ public class BearerCapabilityImpl implements BearerCapability, CAPAsnPrimitive {
     protected static final XMLFormat<BearerCapabilityImpl> BEARER_CAPABILITY_XML = new XMLFormat<BearerCapabilityImpl>(
             BearerCapabilityImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, BearerCapabilityImpl bearerCap) throws XMLStreamException {
             bearerCap.setBearerCap(xml.get(BEARER_CAP_XML, BearerCapImpl.class));
         }
 
-        @Override
         public void write(BearerCapabilityImpl bearerCap, javolution.xml.XMLFormat.OutputElement xml) throws XMLStreamException {
             if (bearerCap.getBearerCap() != null)
                 xml.add(((BearerCapImpl) bearerCap.getBearerCap()), BEARER_CAP_XML, BearerCapImpl.class);

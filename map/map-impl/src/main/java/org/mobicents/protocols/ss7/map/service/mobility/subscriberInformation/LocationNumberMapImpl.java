@@ -78,7 +78,6 @@ public class LocationNumberMapImpl extends OctetStringBase implements LocationNu
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("LocationNumberMap [");
@@ -114,7 +113,6 @@ public class LocationNumberMapImpl extends OctetStringBase implements LocationNu
     protected static final XMLFormat<LocationNumberMapImpl> LOCATION_NUMBER_MAP_XML = new XMLFormat<LocationNumberMapImpl>(
             LocationNumberMapImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, LocationNumberMapImpl locationNumberMap)
                 throws XMLStreamException {
             try {
@@ -124,7 +122,6 @@ public class LocationNumberMapImpl extends OctetStringBase implements LocationNu
             }
         }
 
-        @Override
         public void write(LocationNumberMapImpl locationNumberMap, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             try {

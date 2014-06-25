@@ -60,12 +60,10 @@ public class PassAlongMessageImpl extends ISUPMessageImpl implements PassAlongMe
         return _MESSAGE_TYPE;
     }
 
-    @Override
     public void setEmbeddedMessage(ISUPMessage msg) {
         this.embedded = msg;
     }
 
-    @Override
     public ISUPMessage getEmbeddedMessage() {
         return embedded;
     }
@@ -74,7 +72,6 @@ public class PassAlongMessageImpl extends ISUPMessageImpl implements PassAlongMe
         return this.embedded == null ? false: this.embedded.hasAllMandatoryParameters();
     }
 
-    @Override
     public int encode(ByteArrayOutputStream bos) throws ParameterException {
         if(this.embedded!=null){
             throw new ParameterException("No embedded message");
@@ -88,7 +85,6 @@ public class PassAlongMessageImpl extends ISUPMessageImpl implements PassAlongMe
         return bos.size();
     }
 
-    @Override
     public int decode(byte[] b, ISUPMessageFactory messageFactory,ISUPParameterFactory parameterFactory) throws ParameterException {
         int index = 0;
         //decode CIC and PAM message type.

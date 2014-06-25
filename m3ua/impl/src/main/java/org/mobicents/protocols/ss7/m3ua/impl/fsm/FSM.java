@@ -159,7 +159,6 @@ public class FSM extends M3UATask {
         }
     }
 
-    @Override
     public String toString() {
         return String.format("FSM.name=%s old state=%s, current state=%s", this.name,
                 (this.oldState != null) ? this.oldState.getName() : "",

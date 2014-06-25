@@ -41,7 +41,6 @@ public class ASPInactiveAckImpl extends M3UAMessageImpl implements ASPInactiveAc
         super(MessageClass.ASP_TRAFFIC_MAINTENANCE, MessageType.ASP_INACTIVE_ACK, MessageType.S_ASP_INACTIVE_ACK);
     }
 
-    @Override
     protected void encodeParams(ByteBuffer buffer) {
 
         if (parameters.containsKey(Parameter.Routing_Context)) {

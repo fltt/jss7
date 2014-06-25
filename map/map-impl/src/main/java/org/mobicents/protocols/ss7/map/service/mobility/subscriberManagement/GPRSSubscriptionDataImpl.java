@@ -67,22 +67,18 @@ public class GPRSSubscriptionDataImpl extends SequenceBase implements GPRSSubscr
         this.apnOiReplacement = apnOiReplacement;
     }
 
-    @Override
     public boolean getCompleteDataListIncluded() {
         return this.completeDataListIncluded;
     }
 
-    @Override
     public ArrayList<PDPContext> getGPRSDataList() {
         return this.gprsDataList;
     }
 
-    @Override
     public MAPExtensionContainer getExtensionContainer() {
         return this.extensionContainer;
     }
 
-    @Override
     public APNOIReplacement getApnOiReplacement() {
         return this.apnOiReplacement;
     }
@@ -219,7 +215,6 @@ public class GPRSSubscriptionDataImpl extends SequenceBase implements GPRSSubscr
             ((APNOIReplacementImpl) this.apnOiReplacement).encodeAll(asnOs, Tag.CLASS_CONTEXT_SPECIFIC, _TAG_apnOiReplacement);
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("GPRSSubscriptionData [");

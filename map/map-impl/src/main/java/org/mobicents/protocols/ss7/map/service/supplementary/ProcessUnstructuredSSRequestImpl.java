@@ -236,7 +236,6 @@ public class ProcessUnstructuredSSRequestImpl extends SupplementaryMessageImpl i
         }
     }
 
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ProcessUnstructuredSSRequest [");
@@ -267,7 +266,6 @@ public class ProcessUnstructuredSSRequestImpl extends SupplementaryMessageImpl i
     protected static final XMLFormat<ProcessUnstructuredSSRequestImpl> PROCESS_UNSTRUCTURED_SS_REQUEST_XML = new XMLFormat<ProcessUnstructuredSSRequestImpl>(
             ProcessUnstructuredSSRequestImpl.class) {
 
-        @Override
         public void read(javolution.xml.XMLFormat.InputElement xml, ProcessUnstructuredSSRequestImpl ussdMessage)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.read(xml, ussdMessage);
@@ -276,7 +274,6 @@ public class ProcessUnstructuredSSRequestImpl extends SupplementaryMessageImpl i
 
         }
 
-        @Override
         public void write(ProcessUnstructuredSSRequestImpl ussdMessage, javolution.xml.XMLFormat.OutputElement xml)
                 throws XMLStreamException {
             USSD_MESSAGE_XML.write(ussdMessage, xml);

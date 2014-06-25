@@ -82,100 +82,82 @@ public class SccpMan implements SccpManMBean, Stoppable {
         return this.sccpStack;
     }
 
-    @Override
     public boolean isRouteOnGtMode() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().isRouteOnGtMode();
     }
 
-    @Override
     public void setRouteOnGtMode(boolean val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setRouteOnGtMode(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getRemoteSpc() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc();
     }
 
-    @Override
     public void setRemoteSpc(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setRemoteSpc(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getLocalSpc() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc();
     }
 
-    @Override
     public void setLocalSpc(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setLocalSpc(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getNi() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getNi();
     }
 
-    @Override
     public void setNi(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setNi(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getRemoteSsn() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSsn();
     }
 
-    @Override
     public void setRemoteSsn(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setRemoteSsn(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public int getLocalSsn() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSsn();
     }
 
-    @Override
     public void setLocalSsn(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setLocalSsn(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public GlobalTitleType getGlobalTitleType() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getGlobalTitleType();
     }
 
-    @Override
     public String getGlobalTitleType_Value() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getGlobalTitleType().toString();
     }
 
-    @Override
     public void setGlobalTitleType(GlobalTitleType val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setGlobalTitleType(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public NatureOfAddressType getNatureOfAddress() {
         return new NatureOfAddressType(this.testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress()
                 .getValue());
     }
 
-    @Override
     public String getNatureOfAddress_Value() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress().toString();
     }
 
-    @Override
     public void setNatureOfAddress(NatureOfAddressType val) {
         try {
             this.testerHost.getConfigurationData().getSccpConfigurationData()
@@ -187,18 +169,15 @@ public class SccpMan implements SccpManMBean, Stoppable {
         this.testerHost.markStore();
     }
 
-    @Override
     public NumberingPlanSccpType getNumberingPlan() {
         return new NumberingPlanSccpType(this.testerHost.getConfigurationData().getSccpConfigurationData().getNumberingPlan()
                 .getValue());
     }
 
-    @Override
     public String getNumberingPlan_Value() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getNumberingPlan().toString();
     }
 
-    @Override
     public void setNumberingPlan(NumberingPlanSccpType val) {
         try {
             this.testerHost.getConfigurationData().getSccpConfigurationData()
@@ -210,50 +189,42 @@ public class SccpMan implements SccpManMBean, Stoppable {
         this.testerHost.markStore();
     }
 
-    @Override
     public int getTranslationType() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getTranslationType();
     }
 
-    @Override
     public void setTranslationType(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setTranslationType(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public String getCallingPartyAddressDigits() {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getCallingPartyAddressDigits();
     }
 
-    @Override
     public void setCallingPartyAddressDigits(String val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setCallingPartyAddressDigits(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public void putGlobalTitleType(String val) {
         GlobalTitleType x = GlobalTitleType.createInstance(val);
         if (x != null)
             this.setGlobalTitleType(x);
     }
 
-    @Override
     public void putNatureOfAddress(String val) {
         NatureOfAddressType x = NatureOfAddressType.createInstance(val);
         if (x != null)
             this.setNatureOfAddress(x);
     }
 
-    @Override
     public void putNumberingPlan(String val) {
         NumberingPlanSccpType x = NumberingPlanSccpType.createInstance(val);
         if (x != null)
             this.setNumberingPlan(x);
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("SCCP: Rspc: ");
@@ -281,7 +252,6 @@ public class SccpMan implements SccpManMBean, Stoppable {
         }
     }
 
-    @Override
     public void stop() {
         try {
             this.stopSccp();
@@ -291,7 +261,6 @@ public class SccpMan implements SccpManMBean, Stoppable {
         }
     }
 
-    @Override
     public void execute() {
         if (this.resource != null) {
             RemoteSignalingPointCode rspc = this.resource.getRemoteSpc(1);

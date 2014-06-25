@@ -45,7 +45,6 @@ public class NoGlobalTitle extends GlobalTitle {
      *
      * @see org.mobicents.protocols.ss7.sccp.parameter.GlobalTitle#getIndicator()
      */
-    @Override
     public GlobalTitleIndicator getIndicator() {
         return GlobalTitleIndicator.NO_GLOBAL_TITLE_INCLUDED;
     }
@@ -55,7 +54,6 @@ public class NoGlobalTitle extends GlobalTitle {
      *
      * @see org.mobicents.protocols.ss7.sccp.parameter.GlobalTitle#getDigits()
      */
-    @Override
     public String getDigits() {
         return this.digits;
     }

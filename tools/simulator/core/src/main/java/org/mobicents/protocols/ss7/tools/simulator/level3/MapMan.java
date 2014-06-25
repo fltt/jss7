@@ -66,166 +66,139 @@ public class MapMan implements MapManMBean, Stoppable {
         this.sccpStack = val;
     }
 
-    // @Override
     // public int getRemoteSsn() {
     // return this.testerHost.getConfigurationData().getMapConfigurationData().getRemoteSsn();
     // }
     //
-    // @Override
     // public void setRemoteSsn(int val) {
     // this.testerHost.getConfigurationData().getMapConfigurationData().setRemoteSsn(val);
     // this.testerHost.markStore();
     // }
     //
-    // @Override
     // public int getLocalSsn() {
     // return this.testerHost.getConfigurationData().getMapConfigurationData().getLocalSsn();
     // }
     //
-    // @Override
     // public void setLocalSsn(int val) {
     // this.testerHost.getConfigurationData().getMapConfigurationData().setLocalSsn(val);
     // this.testerHost.markStore();
     // }
 
-    @Override
     public String getRemoteAddressDigits() {
         return this.testerHost.getConfigurationData().getMapConfigurationData().getRemoteAddressDigits();
     }
 
-    @Override
     public void setRemoteAddressDigits(String val) {
         this.testerHost.getConfigurationData().getMapConfigurationData().setRemoteAddressDigits(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public String getOrigReference() {
         return this.testerHost.getConfigurationData().getMapConfigurationData().getOrigReference();
     }
 
-    @Override
     public void setOrigReference(String val) {
         this.testerHost.getConfigurationData().getMapConfigurationData().setOrigReference(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public AddressNatureType getOrigReferenceAddressNature() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getOrigReferenceAddressNature().getIndicator());
     }
 
-    @Override
     public String getOrigReferenceAddressNature_Value() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getOrigReferenceAddressNature().getIndicator()).toString();
     }
 
-    @Override
     public void setOrigReferenceAddressNature(AddressNatureType val) {
         this.testerHost.getConfigurationData().getMapConfigurationData()
                 .setOrigReferenceAddressNature(AddressNature.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public NumberingPlanMapType getOrigReferenceNumberingPlan() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getOrigReferenceNumberingPlan().getIndicator());
     }
 
-    @Override
     public String getOrigReferenceNumberingPlan_Value() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getOrigReferenceNumberingPlan().getIndicator()).toString();
     }
 
-    @Override
     public void setOrigReferenceNumberingPlan(NumberingPlanMapType val) {
         this.testerHost.getConfigurationData().getMapConfigurationData()
                 .setOrigReferenceNumberingPlan(NumberingPlan.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public String getDestReference() {
         return this.testerHost.getConfigurationData().getMapConfigurationData().getDestReference();
     }
 
-    @Override
     public void setDestReference(String val) {
         this.testerHost.getConfigurationData().getMapConfigurationData().setDestReference(val);
         this.testerHost.markStore();
     }
 
-    @Override
     public AddressNatureType getDestReferenceAddressNature() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getDestReferenceAddressNature().getIndicator());
     }
 
-    @Override
     public String getDestReferenceAddressNature_Value() {
         return new AddressNatureType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getDestReferenceAddressNature().getIndicator()).toString();
     }
 
-    @Override
     public void setDestReferenceAddressNature(AddressNatureType val) {
         this.testerHost.getConfigurationData().getMapConfigurationData()
                 .setDestReferenceAddressNature(AddressNature.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public NumberingPlanMapType getDestReferenceNumberingPlan() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getDestReferenceNumberingPlan().getIndicator());
     }
 
-    @Override
     public String getDestReferenceNumberingPlan_Value() {
         return new NumberingPlanMapType(this.testerHost.getConfigurationData().getMapConfigurationData()
                 .getDestReferenceNumberingPlan().getIndicator()).toString();
     }
 
-    @Override
     public void setDestReferenceNumberingPlan(NumberingPlanMapType val) {
         this.testerHost.getConfigurationData().getMapConfigurationData()
                 .setDestReferenceNumberingPlan(NumberingPlan.getInstance(val.intValue()));
         this.testerHost.markStore();
     }
 
-    @Override
     public void putOrigReferenceAddressNature(String val) {
         AddressNatureType x = AddressNatureType.createInstance(val);
         if (x != null)
             this.setOrigReferenceAddressNature(x);
     }
 
-    @Override
     public void putOrigReferenceNumberingPlan(String val) {
         NumberingPlanMapType x = NumberingPlanMapType.createInstance(val);
         if (x != null)
             this.setOrigReferenceNumberingPlan(x);
     }
 
-    @Override
     public void putDestReferenceAddressNature(String val) {
         AddressNatureType x = AddressNatureType.createInstance(val);
         if (x != null)
             this.setDestReferenceAddressNature(x);
     }
 
-    @Override
     public void putDestReferenceNumberingPlan(String val) {
         NumberingPlanMapType x = NumberingPlanMapType.createInstance(val);
         if (x != null)
             this.setDestReferenceNumberingPlan(x);
     }
 
-    @Override
     public String getState() {
         StringBuilder sb = new StringBuilder();
         sb.append("TCAP+MAP: Started");
@@ -243,7 +216,6 @@ public class MapMan implements MapManMBean, Stoppable {
         }
     }
 
-    @Override
     public void stop() {
         try {
             this.stopMap();
@@ -253,7 +225,6 @@ public class MapMan implements MapManMBean, Stoppable {
         }
     }
 
-    @Override
     public void execute() {
     }
 

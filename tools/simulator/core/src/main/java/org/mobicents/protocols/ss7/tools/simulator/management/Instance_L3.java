@@ -74,12 +74,10 @@ public class Instance_L3 extends EnumeratedBase {
             return new Instance_L3(i1);
     }
 
-    @Override
     protected Hashtable<Integer, String> getIntTable() {
         return intMap;
     }
 
-    @Override
     protected Hashtable<String, Integer> getStringTable() {
         return stringMap;
     }

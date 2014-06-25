@@ -218,7 +218,6 @@ public class DialogPrimitiveFactoryImpl implements DialogPrimitiveFactory {
         return TcapFactory.createUserInformation();
     }
 
-    @Override
     public UserInformationElement createUserInformationElement() {
         return TcapFactory.createUserInformationElement();
     }
