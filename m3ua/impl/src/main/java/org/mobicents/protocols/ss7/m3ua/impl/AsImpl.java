@@ -376,7 +376,7 @@ public class AsImpl implements XMLSerializable, As {
             case 8:
                 if (this.m3UAManagementImpl.isUseLsbForLinksetSelection()) {
                     this.aspSlsMask = 0xf8;
-                    this.aspSlsShiftPlaces = 0x04;
+                    this.aspSlsShiftPlaces = 0x03;
                 } else {
                     this.aspSlsMask = 0x1f;
                     this.aspSlsShiftPlaces = 0x00;
