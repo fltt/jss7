@@ -21,6 +21,10 @@ catalog.xml
 maven-ant-tasks.jar
 test-output
 transaction.log
+.checkstyle
+release/checkout
+release/upload
+release/zip
 # vim files
 *.swp
 /.gitk-tmp.*
