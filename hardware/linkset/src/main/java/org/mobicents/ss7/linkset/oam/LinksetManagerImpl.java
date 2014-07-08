@@ -468,12 +468,12 @@ public class LinksetManagerImpl implements LinksetManager {
 
             for (FastMap.Entry<String, Linkset> e = this.linksets.head(), end = this.linksets.tail(); (e = e.getNext()) != end;) {
                 Linkset value = e.getValue();
-                writer.write(value);
+                writer.write(value, LINKSET);
             }
 
             writer.close();
         } catch (Exception e) {
-            this.logger.error("Error while persisting the state in file", e);
+            logger.error("Error while persisting the state in file", e);
         }
     }
 
@@ -496,7 +496,7 @@ public class LinksetManagerImpl implements LinksetManager {
             // http://markmail.org/message/c6lsehxlxv2hua5p. It shouldn't throw
             // Exception
             while (reader.hasNext()) {
-                Linkset linkset = reader.read();
+                Linkset linkset = reader.read(LINKSET);
                 linkset.setScheduler(scheduler);
                 linkset.activateLinks();
                 try {
@@ -507,9 +507,9 @@ public class LinksetManagerImpl implements LinksetManager {
 
                 this.linksets.put(linkset.getName(), linkset);
             }
+            reader.close();
         } catch (Exception ex) {
-            // this.logger.info(
-            // "Error while re-creating Linksets from persisted file", ex);
+            // logger.info("Error while re-creating Linksets from persisted file", ex);
         }
     }
 
