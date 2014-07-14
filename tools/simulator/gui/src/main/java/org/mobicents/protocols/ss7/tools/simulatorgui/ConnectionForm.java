@@ -86,7 +86,7 @@ public class ConnectionForm extends JFrame {
     // });
     // }
 
-    public ConnectionForm() {
+    public ConnectionForm(int rmiPort) {
         setResizable(false);
         setTitle("Connecting to a testerHost ...");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +126,7 @@ public class ConnectionForm extends JFrame {
 
         tbUrl = new JTextField();
         tbUrl.setEnabled(false);
-        tbUrl.setText("service:jmx:rmi:///jndi/rmi://localhost:9999/server");
+        tbUrl.setText("service:jmx:rmi:///jndi/rmi://localhost:"+String.valueOf(rmiPort)+"/server");
         tbUrl.setBounds(6, 103, 398, 20);
         panel.add(tbUrl);
         tbUrl.setColumns(10);

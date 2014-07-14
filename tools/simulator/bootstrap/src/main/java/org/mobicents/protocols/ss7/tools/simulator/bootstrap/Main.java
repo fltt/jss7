@@ -191,6 +191,7 @@ public class Main {
         System.out.println();
         System.out.println("options:");
         System.out.println("    -n, --name=<simulator name>   Simulator name. If not passed default is main");
+        System.out.println("    -r, --rmi=<rmi port>          Core's RMI port");
         System.out.println();
         System.exit(0);
     }
@@ -253,7 +254,7 @@ public class Main {
             System.out.println("No command passed");
             this.genericHelp();
         } else if (this.command.equals("gui")) {
-            EventQueue.invokeLater(new MainGui(appName));
+            EventQueue.invokeLater(new MainGui(appName, rmiPort));
         } else if (this.command.equals("core")) {
             MainCore mainCore = new MainCore();
             mainCore.start(appName, httpPort, rmiPort);

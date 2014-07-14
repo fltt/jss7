@@ -28,25 +28,30 @@ import java.awt.EventQueue;
  */
 public class MainGui implements Runnable {
 
+    private final int rmiPort;
     private final String appName;
 
-    public MainGui(String appName) {
+    public MainGui(String appName, int rmiPort) {
         this.appName = appName;
+        this.rmiPort = rmiPort;
     }
 
     public static void main(String[] args) {
 
+        int rmiPort = 9999;
         String appName = "main";
         if (args != null && args.length > 0) {
             appName = args[0];
+            if (args.length > 1)
+                rmiPort = Integer.valueOf(args[1]);
         }
 
-        EventQueue.invokeLater(new MainGui(appName));
+        EventQueue.invokeLater(new MainGui(appName, rmiPort));
     }
 
     public void run() {
         try {
-            ConnectionForm frame = new ConnectionForm();
+            ConnectionForm frame = new ConnectionForm(rmiPort);
             frame.setAppName(appName);
             frame.setVisible(true);
         } catch (Exception e) {
