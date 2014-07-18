@@ -100,7 +100,8 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
     public static String SOURCE_NAME = "TestSmsClient";
 
     private final String name;
-    private MapMan mapMan;
+    private MapMan hlrMapMan;
+    private MapMan mscMapMan;
 
     private boolean isStarted = false;
     private int countSriReq = 0;
@@ -136,8 +137,12 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
         this.testerHost = testerHost;
     }
 
-    public void setMapMan(MapMan val) {
-        this.mapMan = val;
+    public void setHLRMapMan(MapMan val) {
+        this.hlrMapMan = val;
+    }
+
+    public void setMSCMapMan(MapMan val) {
+        this.mscMapMan = val;
     }
 
     public AddressNatureType getAddressNature() {
@@ -442,7 +447,11 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
         this.countErrRcvd = 0;
         this.countErrSent = 0;
 
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
+        MAPProvider mapProvider = hlrMapMan.getMAPStack().getMAPProvider();
+        mapProvider.getMAPServiceSms().acivate();
+        mapProvider.getMAPServiceSms().addMAPServiceListener(this);
+        mapProvider.addMAPDialogListener(this);
+        mapProvider = mscMapMan.getMAPStack().getMAPProvider();
         mapProvider.getMAPServiceSms().acivate();
         mapProvider.getMAPServiceSms().addMAPServiceListener(this);
         mapProvider.addMAPDialogListener(this);
@@ -453,8 +462,12 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
     }
 
     public void stop() {
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
+        MAPProvider mapProvider = hlrMapMan.getMAPStack().getMAPProvider();
         isStarted = false;
+        mapProvider.getMAPServiceSms().deactivate();
+        mapProvider.getMAPServiceSms().removeMAPServiceListener(this);
+        mapProvider.removeMAPDialogListener(this);
+        mapProvider = mscMapMan.getMAPStack().getMAPProvider();
         mapProvider.getMAPServiceSms().deactivate();
         mapProvider.getMAPServiceSms().removeMAPServiceListener(this);
         mapProvider.removeMAPDialogListener(this);
@@ -518,7 +531,7 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
     private String doMoForwardSM(String msg, String destIsdnNumber, String origIsdnNumber, String serviceCentreAddr, int msgRef, int segmCnt, int segmNum) {
 
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
+        MAPProvider mapProvider = this.mscMapMan.getMAPStack().getMAPProvider();
 
         MAPApplicationContextVersion vers;
         MAPApplicationContextName acn = MAPApplicationContextName.shortMsgMORelayContext;
@@ -561,8 +574,8 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
             SmsSubmitTpdu tpdu = new SmsSubmitTpduImpl(false, false, false, ++mesRef, destAddress, pi, validityPeriod, userData);
             SmsSignalInfo si = mapProvider.getMAPParameterFactory().createSmsSignalInfo(tpdu, null);
 
-            MAPDialogSms curDialog = mapProvider.getMAPServiceSms().createNewDialog(mapAppContext, this.mapMan.createOrigAddress(), null,
-                    this.mapMan.createDestAddress(serviceCentreAddr, this.testerHost.getConfigurationData().getTestSmsClientConfigurationData().getSmscSsn()),
+            MAPDialogSms curDialog = mapProvider.getMAPServiceSms().createNewDialog(mapAppContext, this.mscMapMan.createOrigAddress(), null,
+                    this.mscMapMan.createDestAddress(serviceCentreAddr, this.testerHost.getConfigurationData().getTestSmsClientConfigurationData().getSmscSsn()),
                     null);
 
             if (si.getData().length < 110 || vers == MAPApplicationContextVersion.version1) {
@@ -625,7 +638,7 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
     private String doAlertServiceCentre(String destIsdnNumber, String serviceCentreAddr) {
 
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
+        MAPProvider mapProvider = this.hlrMapMan.getMAPStack().getMAPProvider();
 
         MAPApplicationContextVersion vers;
         MAPApplicationContextName acn = MAPApplicationContextName.shortMsgAlertContext;
@@ -647,8 +660,8 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
                     this.testerHost.getConfigurationData().getTestSmsClientConfigurationData().getAddressNature(),
                     this.testerHost.getConfigurationData().getTestSmsClientConfigurationData().getNumberingPlan(), serviceCentreAddr);
 
-            MAPDialogSms curDialog = mapProvider.getMAPServiceSms().createNewDialog(mapAppContext, this.mapMan.createOrigAddress(), null,
-                    this.mapMan.createDestAddress(serviceCentreAddr, this.testerHost.getConfigurationData().getTestSmsClientConfigurationData().getSmscSsn()),
+            MAPDialogSms curDialog = mapProvider.getMAPServiceSms().createNewDialog(mapAppContext, this.hlrMapMan.createOrigAddress(), null,
+                    this.hlrMapMan.createDestAddress(serviceCentreAddr, this.testerHost.getConfigurationData().getTestSmsClientConfigurationData().getSmscSsn()),
                     null);
 
             curDialog.addAlertServiceCentreRequest(msisdn, serviceCentreAddressDA);
@@ -718,7 +731,7 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
     }
 
     private void sendMtError(MAPDialogSms curDialog, long invokeId, MtFSMReaction mtFSMReaction) throws MAPException {
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
+        MAPProvider mapProvider = this.mscMapMan.getMAPStack().getMAPProvider();
         String uData;
         switch (mtFSMReaction.intValue()) {
         case MtFSMReaction.VAL_ERROR_MEMORY_CAPACITY_EXCEEDED:
@@ -829,8 +842,6 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
         this.countMoFsmResp++;
 
-        MAPDialogSms curDialog = ind.getMAPDialog();
-        long invokeId = curDialog.getLocalDialogId();
         currentRequestDef += "Rsvd moResp;";
         this.testerHost.sendNotif(SOURCE_NAME, "Rcvd: moResp", "", Level.DEBUG);
     }
@@ -846,8 +857,6 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
         this.countMoFsmResp++;
 
-        MAPDialogSms curDialog = ind.getMAPDialog();
-        long invokeId = curDialog.getLocalDialogId();
         currentRequestDef += "Rsvd moResp;";
         this.testerHost.sendNotif(SOURCE_NAME, "Rcvd: moResp", "", Level.DEBUG);
     }
@@ -929,7 +938,7 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
         this.countSriReq++;
 
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
+        MAPProvider mapProvider = this.hlrMapMan.getMAPStack().getMAPProvider();
         MAPDialogSms curDialog = ind.getMAPDialog();
         long invokeId = ind.getInvokeId();
 
@@ -1146,7 +1155,6 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
         this.countRsmdsReq++;
 
-        MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
         MAPDialogSms curDialog = ind.getMAPDialog();
         long invokeId = ind.getInvokeId();
 
@@ -1186,8 +1194,6 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
         this.countAscResp++;
 
-        MAPDialogSms curDialog = ind.getMAPDialog();
-        long invokeId = curDialog.getLocalDialogId();
         currentRequestDef += "Rsvd ascResp;";
         this.testerHost.sendNotif(SOURCE_NAME, "Rcvd: ascResp", "", Level.DEBUG);
     }

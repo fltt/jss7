@@ -37,6 +37,7 @@ public class SccpConfigurationData {
     protected static final String LOCAL_SPC = "localSpc";
     protected static final String NI = "ni";
     protected static final String REMOTE_SSN = "remoteSsn";
+    protected static final String HLR_SSN = "hlrSsn";
     protected static final String LOCAL_SSN = "localSsn";
     protected static final String GLOBAL_TITLE_TYPE = "globalTitleType";
     protected static final String ADDRESS_NATURE = "addressNature";
@@ -47,6 +48,7 @@ public class SccpConfigurationData {
     private boolean routeOnGtMode;
     private int remoteSpc = 0;
     private int localSpc = 0;
+    private int hlrSsn = 6;
     private int localSsn;
     private int remoteSsn;
     private int ni = 0;
@@ -78,6 +80,14 @@ public class SccpConfigurationData {
 
     public void setLocalSpc(int localSpc) {
         this.localSpc = localSpc;
+    }
+
+    public int getHLRSsn() {
+        return hlrSsn;
+    }
+
+    public void setHLRSsn(int hlrSsn) {
+        this.hlrSsn = hlrSsn;
     }
 
     public int getLocalSsn() {
@@ -153,6 +163,7 @@ public class SccpConfigurationData {
             xml.setAttribute(LOCAL_SPC, sccp.getLocalSpc());
             xml.setAttribute(NI, sccp.getNi());
             xml.setAttribute(REMOTE_SSN, sccp.getRemoteSsn());
+            xml.setAttribute(HLR_SSN, sccp.getHLRSsn());
             xml.setAttribute(LOCAL_SSN, sccp.getLocalSsn());
             xml.setAttribute(TRANSLATION_TYTE, sccp.getTranslationType());
 
@@ -168,6 +179,7 @@ public class SccpConfigurationData {
             sccp.setLocalSpc(xml.getAttribute(LOCAL_SPC).toInt());
             sccp.setNi(xml.getAttribute(NI).toInt());
             sccp.setRemoteSsn(xml.getAttribute(REMOTE_SSN).toInt());
+            sccp.setHLRSsn(xml.getAttribute(HLR_SSN).toInt());
             sccp.setLocalSsn(xml.getAttribute(LOCAL_SSN).toInt());
             sccp.setTranslationType(xml.getAttribute(TRANSLATION_TYTE).toInt());
 

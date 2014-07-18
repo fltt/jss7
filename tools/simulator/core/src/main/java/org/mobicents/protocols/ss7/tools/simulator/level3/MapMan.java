@@ -205,9 +205,12 @@ public class MapMan implements MapManMBean, Stoppable {
         return sb.toString();
     }
 
-    public boolean start() {
+    public boolean start(boolean isHLR) {
+        int ssn = (isHLR)
+                ? testerHost.getSccpMan().getHLRSsn()
+                : testerHost.getSccpMan().getLocalSsn();
         try {
-            this.initMap(this.sccpStack, this.testerHost.getSccpMan().getLocalSsn());
+            this.initMap(this.sccpStack, ssn);
             this.testerHost.sendNotif(SOURCE_NAME, "TCAP+MAP has been started", "", Level.INFO);
             return true;
         } catch (Throwable e) {

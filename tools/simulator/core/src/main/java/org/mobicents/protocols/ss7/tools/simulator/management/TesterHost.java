@@ -103,7 +103,8 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
     // Layers
     private Stoppable instance_L1_B = null;
     private Stoppable instance_L2_B = null;
-    private Stoppable instance_L3_B = null;
+    private Stoppable instance_L3_B1 = null;
+    private Stoppable instance_L3_B2 = null;
     private Stoppable instance_TestTask_B = null;
 
     // levels
@@ -382,10 +383,14 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
     }
 
     public String getL3State() {
-        if (this.instance_L3_B != null)
-            return this.instance_L3_B.getState();
-        else
-            return "";
+        if (this.instance_L3_B1 != null)
+            return this.instance_L3_B1.getState();
+        else {
+            if (this.instance_L3_B2 != null)
+                return this.instance_L3_B2.getState();
+            else
+                return "";
+        }
     }
 
     public String getTestTaskState() {
@@ -462,6 +467,7 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         // L3
         started = false;
         MapMan curMap = null;
+        MapMan curHLRMap = null;
         CapMan curCap = null;
         switch (this.configurationData.getInstance_L3().intValue()) {
             case Instance_L3.VAL_MAP:
@@ -469,10 +475,21 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
                     this.sendNotif(TesterHost.SOURCE_NAME, "Error initializing TCAP+MAP: No SccpStack is defined at L2", "",
                             Level.WARN);
                 } else {
-                    this.instance_L3_B = this.map;
-                    this.map.setSccpStack(sccpStack);
-                    started = this.map.start();
-                    curMap = this.map;
+                    curMap = map;
+                    curHLRMap = new MapMan(appName+" HLR");
+                    curHLRMap.setTesterHost(this);
+                    curHLRMap.setDestReference(curMap.getDestReference());
+                    curHLRMap.setDestReferenceAddressNature(curMap.getDestReferenceAddressNature());
+                    curHLRMap.setDestReferenceNumberingPlan(curMap.getDestReferenceNumberingPlan());
+                    curHLRMap.setOrigReference(curMap.getOrigReference());
+                    curHLRMap.setOrigReferenceAddressNature(curMap.getOrigReferenceAddressNature());
+                    curHLRMap.setOrigReferenceNumberingPlan(curMap.getOrigReferenceNumberingPlan());
+                    curHLRMap.setRemoteAddressDigits(curMap.getRemoteAddressDigits());
+                    instance_L3_B1 = curMap;
+                    instance_L3_B2 = curHLRMap;
+                    curMap.setSccpStack(sccpStack);
+                    curHLRMap.setSccpStack(sccpStack);
+                    started = curMap.start(false) && curHLRMap.start(true);
                 }
                 break;
             case Instance_L3.VAL_CAP:
@@ -480,7 +497,7 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
                     this.sendNotif(TesterHost.SOURCE_NAME, "Error initializing TCAP+CAP: No SccpStack is defined at L2", "",
                             Level.WARN);
                 } else {
-                    this.instance_L3_B = this.cap;
+                    this.instance_L3_B1 = this.cap;
                     this.cap.setSccpStack(sccpStack);
                     started = this.cap.start();
                     curCap = this.cap;
@@ -534,7 +551,8 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
                             "", Level.WARN);
                 } else {
                     this.instance_TestTask_B = this.testSmsClientMan;
-                    this.testSmsClientMan.setMapMan(curMap);
+                    this.testSmsClientMan.setHLRMapMan(curHLRMap);
+                    this.testSmsClientMan.setMSCMapMan(curMap);
                     started = this.testSmsClientMan.start();
                 }
                 break;
@@ -599,9 +617,13 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         }
 
         // L3
-        if (this.instance_L3_B != null) {
-            this.instance_L3_B.stop();
-            this.instance_L3_B = null;
+        if (this.instance_L3_B1 != null) {
+            this.instance_L3_B1.stop();
+            this.instance_L3_B1 = null;
+        }
+        if (this.instance_L3_B2 != null) {
+            this.instance_L3_B2.stop();
+            this.instance_L3_B2 = null;
         }
 
         // L2
@@ -624,8 +646,11 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
         if (this.instance_L2_B != null) {
             this.instance_L2_B.execute();
         }
-        if (this.instance_L3_B != null) {
-            this.instance_L3_B.execute();
+        if (this.instance_L3_B1 != null) {
+            this.instance_L3_B1.execute();
+        }
+        if (this.instance_L3_B2 != null) {
+            this.instance_L3_B2.execute();
         }
         if (this.instance_TestTask_B != null) {
             this.instance_TestTask_B.execute();
@@ -775,6 +800,7 @@ public class TesterHost extends NotificationBroadcasterSupport implements Tester
             this.sccp.setLocalSpc(_sccp.getLocalSpc());
             this.sccp.setNi(_sccp.getNi());
             this.sccp.setRemoteSsn(_sccp.getRemoteSsn());
+            this.sccp.setHLRSsn(_sccp.getHLRSsn());
             this.sccp.setLocalSsn(_sccp.getLocalSsn());
             this.sccp.setGlobalTitleType(_sccp.getGlobalTitleType());
             this.sccp.setNatureOfAddress(new NatureOfAddressType(_sccp.getNatureOfAddress().getValue()));

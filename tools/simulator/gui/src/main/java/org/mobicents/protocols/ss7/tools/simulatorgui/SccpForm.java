@@ -60,6 +60,7 @@ public class SccpForm extends JDialog {
     private JTextField tbLocalSpc;
     private JTextField tbNi;
     private JTextField tbRemoteSsn;
+    private JTextField tbHLRSsn;
     private JTextField tbLocalSsn;
     private JTextField tbTranslationType;
     private JComboBox cbGlobalTitleType;
@@ -175,6 +176,15 @@ public class SccpForm extends JDialog {
         lblLocalSsn.setBounds(10, 138, 112, 14);
         panel.add(lblLocalSsn);
 
+        tbHLRSsn = new JTextField();
+        tbHLRSsn.setColumns(10);
+        tbHLRSsn.setBounds(154, 166, 129, 20);
+        panel.add(tbHLRSsn);
+
+        JLabel lblHLRSsn = new JLabel("HLR Ssn");
+        lblHLRSsn.setBounds(10, 169, 112, 14);
+        panel.add(lblHLRSsn);
+
         panel_1 = new JPanel();
         panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
         panel_1.setLayout(null);
@@ -229,7 +239,7 @@ public class SccpForm extends JDialog {
 
         rbRouteDpcSsn = new JRadioButton("Route on DPC and SSN mode");
         buttonGroup.add(rbRouteDpcSsn);
-        rbRouteDpcSsn.setBounds(6, 164, 332, 23);
+        rbRouteDpcSsn.setBounds(6, 195, 332, 23);
         panel.add(rbRouteDpcSsn);
 
         rbRouteGt = new JRadioButton("Route on GlobalTitle mode");
@@ -239,19 +249,19 @@ public class SccpForm extends JDialog {
             }
         });
         buttonGroup.add(rbRouteGt);
-        rbRouteGt.setBounds(10, 247, 332, 23);
+        rbRouteGt.setBounds(10, 278, 332, 23);
         panel.add(rbRouteGt);
 
         JLabel lblNewLabel = new JLabel(
                 "<html>\r\nCallingPartyAddress:  RoutingIndicator=RoutingOnDpcAndSsn, PC=localSpc, GT=null, SSN=localSsn<br>\r\nCalledPartyAddress:  RoutingIndicator=RoutingOnDpcAndSsn PC=remoteSpc, GT=null, SSN=remoteSsn\r\n</html>");
         lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-        lblNewLabel.setBounds(10, 190, 564, 50);
+        lblNewLabel.setBounds(10, 221, 564, 50);
         panel.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel(
                 "<html>\r\nCallingPartyAddress:  RoutingIndicator=RoutingOnGt, PC=0, GT=CallingPartyAddress digits, SSN=localSsn<br>\r\nCalledPartyAddress:  RoutingIndicator=RoutingOnGt, PC=0, GT and SSN is supplied by upper levels<br>\r\nAll messages will be routed to remoteSpc except messages with CallingPartyAddress digits or extra local addresses\r\n</html>");
         lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
-        lblNewLabel_1.setBounds(10, 277, 564, 78);
+        lblNewLabel_1.setBounds(10, 308, 564, 78);
         panel.add(lblNewLabel_1);
     }
 
@@ -282,6 +292,7 @@ public class SccpForm extends JDialog {
         tbLocalSpc.setText(((Integer) this.sccp.getLocalSpc()).toString());
         tbNi.setText(((Integer) this.sccp.getNi()).toString());
         tbRemoteSsn.setText(((Integer) this.sccp.getRemoteSsn()).toString());
+        tbHLRSsn.setText(((Integer) this.sccp.getHLRSsn()).toString());
         tbLocalSsn.setText(((Integer) this.sccp.getLocalSsn()).toString());
         tbTranslationType.setText(((Integer) this.sccp.getTranslationType()).toString());
 
@@ -362,6 +373,7 @@ public class SccpForm extends JDialog {
         int localSpc = 0;
         int ni = 0;
         int remoteSsn = 0;
+        int hlrSsn = 6;
         int localSsn = 0;
         int translationType = 0;
         try {
@@ -389,6 +401,12 @@ public class SccpForm extends JDialog {
             return false;
         }
         try {
+            hlrSsn = Integer.parseInt(tbHLRSsn.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Exception when parsing hlrSsn value: " + e.toString());
+            return false;
+        }
+        try {
             localSsn = Integer.parseInt(tbLocalSsn.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Exception when parsing LocalSsn value: " + e.toString());
@@ -407,6 +425,7 @@ public class SccpForm extends JDialog {
         this.sccp.setLocalSpc(localSpc);
         this.sccp.setNi(ni);
         this.sccp.setRemoteSsn(remoteSsn);
+        this.sccp.setHLRSsn(hlrSsn);
         this.sccp.setLocalSsn(localSsn);
         this.sccp.setTranslationType(translationType);
 

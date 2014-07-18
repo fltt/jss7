@@ -50,6 +50,10 @@ public interface SccpManMBean {
 
     void setLocalSsn(int val);
 
+    int getHLRSsn();
+
+    void setHLRSsn(int val);
+
     GlobalTitleType getGlobalTitleType();
 
     String getGlobalTitleType_Value();

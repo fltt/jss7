@@ -48,6 +48,7 @@ public class SccpConfigurationData_OldFormat extends SccpConfigurationData {
             sccp.setLocalSpc(xml.getAttribute(LOCAL_SPC).toInt());
             sccp.setNi(xml.getAttribute(NI).toInt());
             sccp.setRemoteSsn(xml.getAttribute(REMOTE_SSN).toInt());
+            sccp.setHLRSsn(xml.getAttribute(HLR_SSN).toInt());
             sccp.setLocalSsn(xml.getAttribute(LOCAL_SSN).toInt());
             sccp.setTranslationType(xml.getAttribute(TRANSLATION_TYTE).toInt());
 
