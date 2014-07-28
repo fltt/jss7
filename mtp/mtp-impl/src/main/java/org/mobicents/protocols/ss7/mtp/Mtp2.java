@@ -521,8 +521,8 @@ public class Mtp2 {
 
     private void queueFISU() {
 
-        this.txFrame.len = 3;
         this.txFrame = this.stateFrame;
+        this.txFrame.len = 3;
         this.txFrame.frame[0] = (byte) (this.sendBSN | (this.sendBIB << 7));
         this.txFrame.frame[1] = (byte) (this.retransmissionFSN_LastSent | (this.sendFIB << 7));
         this.txFrame.frame[2] = 0;
@@ -790,10 +790,29 @@ public class Mtp2 {
 
         int li = rxFrame.frame[2] & 0x3f;
 
-        // Why it was 5?
-        // if (li + 3 > rxLen) {
-        if (li + 3 > rxFrame.len) {
-
+        if ((li < 63) ? (li + 5 != rxFrame.len) : (rxFrame.len < 68)) {
+            if (logger.isDebugEnabled()) {
+                int i,j;
+                StringBuffer tmp=new StringBuffer();
+                logger.debug("Invalid LI field: expected = " + (rxFrame.len - 5) + ", received = " + li);
+                for (i=0; i<rxFrame.len; i++) {
+                    if ((i > 0) && ((i % 8) == 0))
+                        tmp.append('\n');
+                    if ((i % 8) == 0) {
+                        if (i < 16)
+                            tmp.append('0');
+                        tmp.append(Integer.toString(i, 16));
+                        tmp.append(':');
+                    }
+                    tmp.append(' ');
+                    j = rxFrame.frame[i];
+                    j &= 0xff;
+                    if (j < 16)
+                        tmp.append('0');
+                    tmp.append(Integer.toString(j, 16));
+                }
+                logger.debug("Frame: "+tmp.toString());
+            }
             return;
         }
 
@@ -1016,9 +1035,10 @@ public class Mtp2 {
                     break;
                 case FastHDLC.RETURN_EMPTY_FLAG:
                     rxFrame.len = 0;
+                    rxCRC = 0xffff;
                     break;
                 default:
-                    if (rxFrame.len > 279) {
+                    if (rxFrame.len >= 278) {
                         rxState.state = 0;
                         rxFrame.len = 0;
                         rxCRC = 0xffff;

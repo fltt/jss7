@@ -39,7 +39,8 @@ public class FastHDLC {
      *
      * HDLC Search State table -- Look for a frame header. The return value of this table is as follows:
      *
-     * |---8---|---7---|---6---|---5---|---4---|---3---|---2---|---1---| | Z E R O E S | Next | Bits Consumed |
+     * |---8---|---7---|---6---|---5---|---4---|---3---|---2---|---1---|
+     * |      Z E R O E S      |  Next |         Bits Consumed         |
      * |-------|-------|-------|-------|-------|-------|-------|-------|
      *
      * The indexes for this table are the state (0 or 1) and the next 8 bits of the stream.
@@ -59,8 +60,10 @@ public class FastHDLC {
      *
      * The format for the return value is:
      *
-     * Bits 15: Status (1=Valid Data, 0=Control Frame (see bits 7-0 for type)) Bits 14-12: Number of ones in a row, so far Bits
-     * 11-8: The number of bits consumed (0-10) Bits 7-0: The return data (if appropriate)
+     * Bits 15:    Status (1=Valid Data, 0=Control Frame (see bits 7-0 for type))
+     * Bits 14-12: Number of ones in a row, so far
+     * Bits 11-8:  The number of bits consumed (0-10)
+     * Bits 7-0:   The return data (if appropriate)
      *
      * The next state is simply bit #15
      */
