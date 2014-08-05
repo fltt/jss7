@@ -409,13 +409,6 @@ public class Mtp2 {
             logger.debug(String.format("(%s) Starting initial alignment", name));
         }
 
-        // Comment from Oleg: this is done initialy to setup correct spot in tx
-        // buffer: dunno, I just believe, for now.
-        if (resetTxOffset) {
-            // txOffset = 3;
-            this.txFrame.offset = 3; // I really dont get this shift.
-        }
-
         this.reset();
 
         // switch state
@@ -556,9 +549,8 @@ public class Mtp2 {
 
                     // in service, we need to check buffer, otherwise its RTR
                     if (this.retransmissionFSN != _OFF_RTR) {
-                        Mtp2Buffer buffer = this.transmissionBuffer[this.retransmissionFSN];
                         // we shoudl use getters, but its faster with "."
-                        this.txFrame = buffer;
+                        this.txFrame = this.transmissionBuffer[this.retransmissionFSN];
                         this.txFrame.offset = 0;
                         this.txFrame.frame[0] = (byte) (this.sendBSN | (this.sendBIB << 7));
                         this.txFrame.frame[1] = (byte) (this.retransmissionFSN | (this.sendFIB << 7));

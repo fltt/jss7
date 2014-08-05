@@ -326,10 +326,7 @@ public class Mtp3 implements Runnable {
                         mtp2.sltmTest.ack();
 
                         // notify top layer that link is up
-                        if (!l4IsUp) {
-                            l4IsUp = true;
-                            linkUp(mtp2);
-                        }
+                        linkUp(mtp2);
                     } else {
                         if (logger.isEnabledFor(Level.WARN)) {
                             logger.warn("SLTA pattern does not match: \n" + Arrays.toString(rxFrame.frame) + "\n"
@@ -451,11 +448,16 @@ public class Mtp3 implements Runnable {
         }
 
         linkset.add(link);
-        if (linkset.isActive() && this.mtp3Listener != null) {
-            try {
-                mtp3Listener.linkUp();
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (!linkset.isActive())
+            logger.error("Linkset not active!");
+        if (!l4IsUp) {
+            l4IsUp = true;
+            if (mtp3Listener != null) {
+                try {
+                    mtp3Listener.linkUp();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         if (logger.isInfoEnabled()) {
@@ -478,7 +480,7 @@ public class Mtp3 implements Runnable {
         link.fail();
 
         // notify mtp user part
-        if (!linkset.isActive()) {
+        if (!linkset.isActive() && l4IsUp) {
             l4IsUp = false;
             if (mtp3Listener != null) {
                 try {

@@ -42,11 +42,11 @@ public class Linkset {
         for (int i = 0; i < links.length; i++) {
             if (links[i] == null) {
                 links[i] = link;
+                count++;
+                remap();
                 break;
             }
         }
-        count++;
-        remap();
     }
 
     /**
@@ -58,11 +58,11 @@ public class Linkset {
         for (int i = 0; i < links.length; i++) {
             if (links[i] == link) {
                 links[i] = null;
+                count--;
+                remap();
                 break;
             }
         }
-        count--;
-        remap();
     }
 
     /**
