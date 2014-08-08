@@ -165,10 +165,5 @@ echo ""
 echo "========================================================================="
 echo ""
 
-      "$JAVA" $JAVA_OPTS \
-         -Djava.ext.dirs="$SIMULATOR_ENDORSED_DIRS" \
-         -classpath "$SIMULATOR_CLASSPATH" \
-         org.mobicents.protocols.ss7.tools.simulator.bootstrap.Main "$@"
-      SIMULATOR_STATUS=$?
-
-#java -Djava.ext.dirs=`pwd`/lib -Dmms.home=. -cp .:mms-standalone-2.0.0.BETA1-SNAPSHOT.jar org.mobicents.media.server.bootstrap.jmx.JMXMain
+exec "$JAVA" $JAVA_OPTS -Djava.ext.dirs="$SIMULATOR_ENDORSED_DIRS" \
+     -classpath "$SIMULATOR_CLASSPATH" org.mobicents.protocols.ss7.tools.simulator.bootstrap.Main "$@"

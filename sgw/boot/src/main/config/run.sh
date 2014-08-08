@@ -165,10 +165,5 @@ echo ""
 echo "========================================================================="
 echo ""
 
-      "$JAVA" $JAVA_OPTS \
-         -Djava.ext.dirs="$SGW_ENDORSED_DIRS" \
-         -classpath "$SGW_CLASSPATH" \
-         org.mobicents.ss7.sgw.boot.Main "$@"
-      SGW_STATUS=$?
-
-#java -Djava.ext.dirs=`pwd`/lib -Dmms.home=. -cp .:mms-standalone-2.0.0.BETA1-SNAPSHOT.jar org.mobicents.media.server.bootstrap.jmx.JMXMain
+exec "$JAVA" $JAVA_OPTS -Djava.ext.dirs="$SGW_ENDORSED_DIRS" \
+     -classpath "$SGW_CLASSPATH" org.mobicents.ss7.sgw.boot.Main "$@"
