@@ -152,6 +152,7 @@ public class Mtp2 {
     private HdlcState txState = new HdlcState();
 
     // Buffers used for IO
+    private int txBufferSize;
     private byte[] txBuffer;
     private byte[] rxBuffer;
 
@@ -368,6 +369,7 @@ public class Mtp2 {
         // init buffers
         this.ioBufferSize = this.channel.getIOBufferSize();
         this.rxBuffer = new byte[this.ioBufferSize];
+        txBufferSize = 0;
         this.txBuffer = new byte[this.ioBufferSize];
         // open channel and notify L3
         channel.open();
@@ -384,7 +386,7 @@ public class Mtp2 {
         setState(MTP2_OUT_OF_SERVICE);
         // send Out of service indicator when link starts.
         queueLSSU(Mtp2.FRAME_STATUS_INDICATION_OS);
-        processTx(this.ioBufferSize);
+        processTx();
         startInitialAlignment();
     }
 
@@ -492,14 +494,13 @@ public class Mtp2 {
     }
 
     private void queueLSSU(int indicator) {
-        // if (this.txLen != txOffset) {
-        if (this.txFrame != null && this.txFrame.len != this.txFrame.offset) {
-            fillLSSUBuffer(this.nextStateFrame, indicator);
-            this.pendingLSSU = true; // should we check on entering here?
-        } else {
-            this.txFrame = this.stateFrame; // set proper frame
-            fillLSSUBuffer(this.txFrame, indicator);
-        }
+        this.txFrame = this.stateFrame; // set proper frame
+        fillLSSUBuffer(this.txFrame, indicator);
+    }
+
+    private void queueNextLSSU(int indicator) {
+        fillLSSUBuffer(this.nextStateFrame, indicator);
+        this.pendingLSSU = true; // should we check on entering here?
     }
 
     private void fillLSSUBuffer(Mtp2Buffer b, int indicator) {
@@ -525,6 +526,8 @@ public class Mtp2 {
     private void queueNextFrame() {
         if (this.state != MTP2_INSERVICE && this.pendingLSSU) {
             this.txFrame = nextStateFrame;
+            nextStateFrame = stateFrame;
+            stateFrame = txFrame;
             this.pendingLSSU = false;
 
         } else {
@@ -571,7 +574,7 @@ public class Mtp2 {
     }
 
     public static final int PPP_FCS(int fcs, int c) {
-        return ((fcs) >> 8) ^ fcstab[((fcs) ^ (c)) & 0xff];
+        return (fcs >> 8) ^ fcstab[(fcs ^ c) & 0xff];
     }
 
     private void processLssu() {
@@ -587,10 +590,10 @@ public class Mtp2 {
                         stop_T2();
                         if (emergency) {
                             this.T4_TIMEOUT = T4_TIMEOUT_EMERGENCY;
-                            queueLSSU(FRAME_STATUS_INDICATION_E);
+                            queueNextLSSU(FRAME_STATUS_INDICATION_E);
                         } else {
                             this.T4_TIMEOUT = T4_TIMEOUT_NORMAL;
-                            queueLSSU(FRAME_STATUS_INDICATION_N);
+                            queueNextLSSU(FRAME_STATUS_INDICATION_N);
                         }
                         start_T3();
 
@@ -604,9 +607,9 @@ public class Mtp2 {
                         this.T4_TIMEOUT = T4_TIMEOUT_EMERGENCY;
                         // 3. queue response
                         if (emergency) {
-                            queueLSSU(FRAME_STATUS_INDICATION_E);
+                            queueNextLSSU(FRAME_STATUS_INDICATION_E);
                         } else {
-                            queueLSSU(FRAME_STATUS_INDICATION_N);
+                            queueNextLSSU(FRAME_STATUS_INDICATION_N);
                         }
                         // 4. start T3
                         start_T3();
@@ -773,6 +776,28 @@ public class Mtp2 {
         }
     }
 
+    private void printFrame(Mtp2Buffer frame) {
+        int i,j;
+        StringBuffer tmp=new StringBuffer();
+        for (i=0; i<frame.len; i++) {
+            if ((i > 0) && ((i % 8) == 0))
+                tmp.append('\n');
+            if ((i % 8) == 0) {
+                if (i < 16)
+                    tmp.append('0');
+                tmp.append(Integer.toString(i, 16));
+                tmp.append(':');
+            }
+            tmp.append(' ');
+            j = frame.frame[i];
+            j &= 0xff;
+            if (j < 16)
+                tmp.append('0');
+            tmp.append(Integer.toString(j, 16));
+        }
+        logger.debug("Frame: "+tmp.toString());
+    }
+
     private void processFrame() {
 
         int bsn = rxFrame.frame[0] & 0x7F;
@@ -784,26 +809,8 @@ public class Mtp2 {
 
         if ((li < 63) ? (li + 5 != rxFrame.len) : (rxFrame.len < 68)) {
             if (logger.isDebugEnabled()) {
-                int i,j;
-                StringBuffer tmp=new StringBuffer();
                 logger.debug("Invalid LI field: expected = " + (rxFrame.len - 5) + ", received = " + li);
-                for (i=0; i<rxFrame.len; i++) {
-                    if ((i > 0) && ((i % 8) == 0))
-                        tmp.append('\n');
-                    if ((i % 8) == 0) {
-                        if (i < 16)
-                            tmp.append('0');
-                        tmp.append(Integer.toString(i, 16));
-                        tmp.append(':');
-                    }
-                    tmp.append(' ');
-                    j = rxFrame.frame[i];
-                    j &= 0xff;
-                    if (j < 16)
-                        tmp.append('0');
-                    tmp.append(Integer.toString(j, 16));
-                }
-                logger.debug("Frame: "+tmp.toString());
+                printFrame(rxFrame);
             }
             return;
         }
@@ -880,10 +887,10 @@ public class Mtp2 {
                 (this.retransmissionFSN_LastAcked > this.retransmissionFSN_LastSent && (bsn < this.retransmissionFSN_LastAcked && bsn > this.retransmissionFSN_LastSent))) {
             this.bsnErrors++;
             if (this.bsnErrors > 2) {
-                this.bsnErrors = 0;
-                this.mtp3.linkFailed(this);
                 alignmentBroken("Broken BSN constrains: fsn_lasAcked = " + this.retransmissionFSN_LastAcked
                         + ", fsn_LastSent = " + this.retransmissionFSN_LastSent + ", bsn = " + bsn);
+                this.bsnErrors = 0;
+                this.mtp3.linkFailed(this);
             }
 
             return;
@@ -981,23 +988,19 @@ public class Mtp2 {
      */
     private void processRx(byte[] buff, int len) {
         int i = 0;
+        int res;
+        boolean loop;
         // start HDLC alg
         while (i < len) {
-            while (rxState.bits <= 24 && i < len) {
-                int b = buff[i++] & 0xff;
-                hdlc.fasthdlc_rx_load_nocheck(rxState, b);
-                if (rxState.state == 0) {
-                    // octet counting mode
-                    nCount = (nCount + 1) % 16;
-                    if (nCount == 0) {
-                        countError("on receive");
-                    }
-                }
-            }
-
-            int res = hdlc.fasthdlc_rx_run(rxState);
-
-            switch (res) {
+            while ((i < len) && (hdlc.fasthdlc_rx_load(rxState, buff[i]) == 0))
+                i++;
+            loop = true;
+            while (loop) {
+                res = hdlc.fasthdlc_rx_run(rxState);
+                switch (res) {
+                case FastHDLC.RETURN_EMPTY_FLAG:
+                    loop = false;
+                    break;
                 case FastHDLC.RETURN_COMPLETE_FLAG:
                     // frame received and we count it
                     countFrame();
@@ -1011,7 +1014,7 @@ public class Mtp2 {
                         // good frame received
                         processFrame();
                     } else {
-                        countError("hdlc complete, wrong terms.");
+                        countError("hdlc complete, wrong terms");
                     }
                     rxFrame.len = 0;
                     rxCRC = 0xffff;
@@ -1023,11 +1026,13 @@ public class Mtp2 {
                     // eCount = 0;
                     countFrame();
                     // "on receive, hdlc discard"
-                    countError("hdlc discard.");
+                    countError("hdlc discard");
                     break;
-                case FastHDLC.RETURN_EMPTY_FLAG:
-                    rxFrame.len = 0;
-                    rxCRC = 0xffff;
+                case FastHDLC.RETURN_NO_SYNC_FLAG:
+                    // octet counting mode
+                    nCount = (nCount + 1) % 16;
+                    if (nCount == 0)
+                        countError("frame sync");
                     break;
                 default:
                     if (rxFrame.len >= 278) {
@@ -1039,42 +1044,45 @@ public class Mtp2 {
                         countError("Overlong MTP frame, entering octet mode on link '" + name + "'");
                     } else {
                         rxFrame.frame[rxFrame.len++] = (byte) res;
-                        rxCRC = PPP_FCS(rxCRC, res & 0xff);
+                        rxCRC = PPP_FCS(rxCRC, res);
                     }
+                }
             }
         }
     }
 
-    private void processTx(int bytesRead) throws IOException {
-        for (int i = 0; i < bytesRead && i < this.ioBufferSize; i++) {
-            if (txState.bits < 8) {
+    private void processTx() throws IOException {
+        int b;
+        while (txBufferSize < txBuffer.length) {
+            b = hdlc.fasthdlc_tx_run(txState);
+            if (b < 0) {
                 // need more bits
-                if (doCRC == 0 && txFrame.offset < txFrame.len) {
-                    int data = txFrame.frame[txFrame.offset++] & 0xff;
-                    hdlc.fasthdlc_tx_load(txState, data);
-                    txCRC = PPP_FCS(txCRC, data);
-                    if (txFrame.offset == txFrame.len) {
-                        doCRC = 1;
+                switch (doCRC) {
+                case 0:
+                    if (txFrame.offset < txFrame.len) {
+                        int data = txFrame.frame[txFrame.offset++];
+                        hdlc.fasthdlc_tx_load_nocheck(txState, data);
+                        txCRC = PPP_FCS(txCRC, data);
+                    } else {
                         txCRC ^= 0xffff;
+                        hdlc.fasthdlc_tx_load_nocheck(txState, txCRC);
+                        doCRC = 1;
                     }
-                } else if (doCRC == 1) {
-                    hdlc.fasthdlc_tx_load_nocheck(txState, (txCRC) & 0xff);
+                    break;
+                case 1:
+                    hdlc.fasthdlc_tx_load_nocheck(txState, txCRC >> 8);
                     doCRC = 2;
-                } else if (doCRC == 2) {
-                    hdlc.fasthdlc_tx_load_nocheck(txState, (txCRC >> 8) & 0xff);
-                    doCRC = 0;
-                } else {
-                    // nextFrame();
-
+                    break;
+                default:
+                    hdlc.fasthdlc_tx_frame_nocheck(txState);
                     queueNextFrame();
-
                     txFrame.offset = 0;
                     txCRC = 0xffff;
-                    hdlc.fasthdlc_tx_frame_nocheck(txState);
+                    doCRC = 0;
                 }
+            } else {
+                txBuffer[txBufferSize++] = (byte)b;
             }
-            // txBuffer.put(i, (byte) hdlc.fasthdlc_tx_run_nocheck(txState));
-            txBuffer[i] = (byte) hdlc.fasthdlc_tx_run_nocheck(txState);
         }
     }
 
@@ -1082,13 +1090,11 @@ public class Mtp2 {
         if (started) {
             try {
                 int bytesRead = channel.read(rxBuffer);
-                if (bytesRead > 0) {
+                if (bytesRead > 0)
                     processRx(rxBuffer, bytesRead);
-                }
             } catch (Exception e) {
-                if (logger.isEnabledFor(Level.ERROR)) {
+                if (logger.isEnabledFor(Level.ERROR))
                     logger.error(String.format("(%s) Can not read data from channel", name), e);
-                }
                 this.setState(MTP2_OUT_OF_SERVICE);
                 mtp3.linkFailed(this);
             }
@@ -1096,12 +1102,18 @@ public class Mtp2 {
     }
 
     public void doWrite() {
-        if (!started) {
+        if (!started)
             return;
-        }
         try {
-            processTx(this.ioBufferSize);
-            channel.write(txBuffer, this.ioBufferSize);
+            processTx();
+            int bytesWritten = channel.write(txBuffer, txBufferSize);
+            if (bytesWritten == 0) {
+            } else if (bytesWritten < txBuffer.length) {
+                txBufferSize -= bytesWritten;
+                System.arraycopy(txBuffer, bytesWritten, txBuffer, 0, txBufferSize);
+            } else {
+                txBufferSize = 0;
+            }
         } catch (Exception e) {
             if (logger.isEnabledFor(Level.ERROR)) {
                 logger.error(String.format("(%s) Can not write data to channel", name), e);
@@ -1187,7 +1199,8 @@ public class Mtp2 {
     private void countError(String info) {
         eCount++;
 
-        // logger.info("ERROR:" + info);
+        if ((state != MTP2_OUT_OF_SERVICE) && (state != MTP2_NOT_ALIGNED))
+            logger.info(String.format("ERROR (%s): %s", name, info));
         switch (state) {
             case MTP2_ALIGNED_READY:
             case MTP2_INSERVICE:
