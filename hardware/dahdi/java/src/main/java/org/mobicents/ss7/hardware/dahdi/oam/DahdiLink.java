@@ -48,7 +48,7 @@ public class DahdiLink extends Link implements Mtp2Listener {
     private int code = -1;
 
     // TODO : Should Buffer Size also configurable from command line?
-    private int ioBufferSize = 32;
+    private int ioBufferSize = 400;
 
     private static final String LINK_SPAN = "span";
     private static final String LINK_CHANNEL_ID = "channelId";
@@ -184,7 +184,7 @@ public class DahdiLink extends Link implements Mtp2Listener {
             link.span = xml.getAttribute(LINK_SPAN, -1);
             link.channelID = xml.getAttribute(LINK_CHANNEL_ID, -1);
             link.code = xml.getAttribute(LINK_CODE, -1);
-            link.ioBufferSize = xml.getAttribute(LINK_IO_BUFFER_SIZE, 32);
+            link.ioBufferSize = xml.getAttribute(LINK_IO_BUFFER_SIZE, 400);
 
             try {
                 link.configure();
