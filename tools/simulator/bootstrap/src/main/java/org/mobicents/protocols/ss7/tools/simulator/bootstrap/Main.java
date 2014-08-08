@@ -55,6 +55,7 @@ public class Main {
     private String appName = "main";
     private int rmiPort = -1;
     private int httpPort = -1;
+    private boolean autostart = false;
 
     public static void main(String[] args) throws Throwable {
         String homeDir = getHomeDir(args);
@@ -79,14 +80,15 @@ public class Main {
 
         int c;
         String arg;
-        LongOpt[] longopts = new LongOpt[5];
+        LongOpt[] longopts = new LongOpt[6];
         longopts[0] = new LongOpt("help", LongOpt.NO_ARGUMENT, null, 'h');
         longopts[1] = new LongOpt("name", LongOpt.REQUIRED_ARGUMENT, null, 'n');
         longopts[2] = new LongOpt("http", LongOpt.REQUIRED_ARGUMENT, null, 't');
         longopts[3] = new LongOpt("rmi", LongOpt.REQUIRED_ARGUMENT, null, 'r');
-        longopts[4] = new LongOpt("core", LongOpt.NO_ARGUMENT, null, 0);
+        longopts[4] = new LongOpt("start", LongOpt.NO_ARGUMENT, null, 's');
+        longopts[5] = new LongOpt("core", LongOpt.NO_ARGUMENT, null, 0);
 
-        Getopt g = new Getopt(APP_NAME, args, "-:n:t:r:h", longopts);
+        Getopt g = new Getopt(APP_NAME, args, "-:n:t:r:hs", longopts);
         g.setOpterr(false); // We'll do our own error handling
         //
         while ((c = g.getopt()) != -1) {
@@ -109,6 +111,10 @@ public class Main {
                         System.err.println("RMI port should be in range 0 to 65000");
                         System.exit(0);
                     }
+                    break;
+                case 's':
+                    // autostart
+                    autostart = true;
                     break;
                 case 'n':
                     // name
@@ -180,6 +186,7 @@ public class Main {
         System.out.println("    -n, --name=<simulator name>     Simulator name. If not passed default is main");
         System.out.println("    -t, --http=<http port>          Http port for core");
         System.out.println("    -r, --rmi=<rmi port>            RMI port for core");
+        System.out.println("    -s, --start                     Start simulation");
         System.out.println();
         System.exit(0);
     }
@@ -257,7 +264,7 @@ public class Main {
             EventQueue.invokeLater(new MainGui(appName, rmiPort));
         } else if (this.command.equals("core")) {
             MainCore mainCore = new MainCore();
-            mainCore.start(appName, httpPort, rmiPort);
+            mainCore.start(appName, httpPort, rmiPort, autostart);
         }
 
     }

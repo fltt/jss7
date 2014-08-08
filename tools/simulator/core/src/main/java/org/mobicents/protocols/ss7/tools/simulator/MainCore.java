@@ -150,12 +150,12 @@ public class MainCore {
         }
 
         MainCore main = new MainCore();
-        main.start(appName, httpPort, rmiPort);
+        main.start(appName, httpPort, rmiPort, false);
 
     }
 
-    public void start(String appName, int httpPort, int rmiPort) throws MalformedObjectNameException,
-            MBeanRegistrationException, InstanceNotFoundException, IOException {
+    public void start(String appName, int httpPort, int rmiPort, boolean autostart)
+        throws MalformedObjectNameException, MBeanRegistrationException, InstanceNotFoundException, IOException {
         System.out.println("Application has been loaded...");
 
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
@@ -262,6 +262,8 @@ public class MainCore {
         }
 
         System.out.println("Waiting for commands...");
+        if (autostart)
+            host.start();
 
         while (true) {
             try {
