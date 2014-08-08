@@ -121,17 +121,15 @@ public class Channel implements Mtp1 {
      * @return the number of bytes actualy read.
      */
     public int read(byte[] buffer) throws IOException {
-        int result = readData(fd, buffer, ioBufferSize);
-        if (result == -1) {
+        int result = readData(fd, buffer, buffer.length);
+        if (result < 0) {
             doUnregister(fd);
             close();
             int zapid = 31 * (span - 1) + channelID;
             fd = openChannel(zapid, ioBufferSize);
             doRegister(fd);
-
             return 0;
         }
-
         return result;
     }
 
@@ -144,11 +142,10 @@ public class Channel implements Mtp1 {
      * @param len the length of the buffer.
      */
     public int write(byte[] buffer) throws IOException {
-        writeData(fd, buffer, buffer.length);
-        return buffer.length; // ?
+        return write(buffer, buffer.length);
     }
 
-    public native void writeData(int fd, byte[] buffer, int len);
+    public native int writeData(int fd, byte[] buffer, int len);
 
     /**
      * Registers pipe for polling.
@@ -209,8 +206,17 @@ public class Channel implements Mtp1 {
         return ((Selector) selector).register(this);
     }
 
-    public void write(byte[] data, int len) throws IOException {
-        this.writeData(fd, data, len);
+    public int write(byte[] data, int len) throws IOException {
+        int result = writeData(fd, data, len);
+        if (result < 0) {
+            doUnregister(fd);
+            close();
+            int zapid = 31 * (span - 1) + channelID;
+            fd = openChannel(zapid, ioBufferSize);
+            doRegister(fd);
+            return 0;
+        }
+        return result;
     }
 
     public int read(ByteBuffer arg0) throws IOException {

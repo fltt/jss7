@@ -71,7 +71,7 @@ public interface Mtp1 extends Stream {
      * @param buffer the buffer containing data to write.
      * @param bytesToWrite
      */
-    void write(byte[] buffer, int bytesToWrite) throws IOException;
+    int write(byte[] buffer, int bytesToWrite) throws IOException;
 
     /**
      * Open message transfer part layer 1.

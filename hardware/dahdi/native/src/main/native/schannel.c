@@ -175,46 +175,27 @@ JNIEXPORT jint JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_openChannel
  */
 JNIEXPORT jint JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_readData
   (JNIEnv *env, jobject obj, jint fd, jbyteArray buff, jint ioBufferSize) {
-    int res = 0;
-    int count = 0;
-    int errorCount=0;
-    unsigned char buffer[1024];
+    int res;
+    int errorCount = 0;
     jbyte *elements = (*env)->GetByteArrayElements(env, buff, 0);
-  
     for (;;) {
-	//trying to read data
-    	res = read(fd, buffer, 1024);
-    	if(res > 0) {
-    	    //copy data to java array
-	    int k;
-    	    for (k = 0; k < res; k++) {
-    		elements[k + count] = buffer[k];
-    	    }
-    	    count = count + res;
-    	    break;
-	} else if( res == 0 ) {
-    	    break;
-	} else {
-	    if (errno == EAGAIN || errno == EWOULDBLOCK) {
-		break;
-	    } else if (errno == EINTR) {
-		errorCount++;
-		if(errorCount==10)
-		    return -1;
-    	    /* try again */
-	    } else if (errno == ELAST) {
-    	    /* zap event */
-		errorCount++;
-		if(errorCount==10)
-		    return -1;
-	    } else {
-		    /*some unexpected error*/
-    		break;
-	    }
-	}
+        res = read(fd, elements, ioBufferSize);
+        if (res < 0) {
+            switch (errno) {
+            case EINTR:
+            case ELAST:
+                if (++errorCount < 10)
+                    continue;
+                break;
+            case EAGAIN:
+                // case EWOULDBLOCK:
+                res = 0;
+            }
+        }
+        break;
     }
     (*env)->ReleaseByteArrayElements(env, buff, elements, 0);
-    return count;
+    return res;
 }
     
 
@@ -225,48 +206,29 @@ JNIEXPORT jint JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_readData
  * Method:    write
  * Signature: ([BI)V
  */
-JNIEXPORT void JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_writeData
+JNIEXPORT jint JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_writeData
   (JNIEnv *env, jobject obj, jint fd, jbyteArray buff, jint length) {
     int res;
-    int len = length;
-    int errorCount=0;
-    
-    unsigned char buffer[len];
+    int errorCount = 0;
     jbyte *elements = (*env)->GetByteArrayElements(env, buff, 0);
-    
-    //copy data
-    int i;
-    for (i = 0; i < len; i++) {
-	buffer[i] = elements[i];
-    }
-    
-    //writting data
     for (;;) {
-	res = write(fd, buffer, len);
-	if (res == 0) {
-	    break;
-	} else if (res < 0) {
-	    if (errno == EAGAIN || errno == EWOULDBLOCK) {
-		break;
-	    } else if (errno == EINTR) {
-		//try again
-		errorCount++;
-		if(errorCount==10)
-		   break;
-	    } else if (errno == ELAST) {
-		//fetch zap event
-		errorCount++;
-		if(errorCount==10)
-		   break;
-	    } else {
-		//unexpected error
-		break;
-	    }
-	} else {
-	    break;
-	}
+	res = write(fd, elements, length);
+        if (res < 0) {
+            switch (errno) {
+            case EINTR:
+            case ELAST:
+                if (++errorCount < 10)
+                    continue;
+                break;
+            case EAGAIN:
+                // case EWOULDBLOCK:
+                res = 0;
+            }
+        }
+        break;
     }
     (*env)->ReleaseByteArrayElements(env, buff, elements, 0);
+    return res;
 }   
  
  
