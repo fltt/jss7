@@ -23,13 +23,12 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 
-import javolution.util.FastSet;
-
 import org.mobicents.ss7.management.transceiver.ChannelProvider;
 import org.mobicents.ss7.management.transceiver.ChannelSelectionKey;
 import org.mobicents.ss7.management.transceiver.ChannelSelector;
 import org.mobicents.ss7.management.transceiver.Message;
 import org.mobicents.ss7.management.transceiver.ShellChannel;
+
 
 /**
  *
@@ -63,10 +62,8 @@ public class Client {
         selector = provider.openSelector();
         skey = channel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
 
-        channel.connect(endpoint);
-        if (channel.isConnectionPending()) {
-            while (!channel.isConnected()) {
-                channel.finishConnect();
+        if (!channel.connect(endpoint)) {
+            while (!channel.finishConnect()) {
                 try {
                     Thread.currentThread().sleep(1);
                 } catch (Exception e) {
@@ -78,42 +75,25 @@ public class Client {
 
     public Message run(Message outgoing) throws IOException {
 
-        if (!this.isConnected) {
+        if (!this.isConnected)
             return provider.getMessageFactory().createMessage("Not yet connected");
-        }
 
-        int count = 30;
-        wrote = false;
+        if (outgoing != null)
+            channel.send(outgoing);
 
-        // Wait for 300 secs to get message
-        while (count > 0) {
-            FastSet<ChannelSelectionKey> keys = selector.selectNow();
-
-            for (FastSet.Record record = keys.head(), end = keys.tail(); (record = record.getNext()) != end;) {
-                ChannelSelectionKey key = (ChannelSelectionKey) keys.valueOf(record);
-                ShellChannel chan = (ShellChannel) key.channel();
-
-                if (!wrote && key.isWritable()) {
-                    if (outgoing != null) {
-                        chan.send(outgoing);
-                    }
-                    wrote = true;
-                }
-
-                if (key.isReadable()) {
-                    Message msg = (Message) chan.receive();
-                    return msg;
-                }
-            }// End of For loop
-
+        int i;
+        Message msg;
+        for (i = 0; i < 150; i++) {
+            selector.selectNow();
+            msg = (Message) channel.receive();
+            if (msg != null)
+                return msg;
             try {
-                Thread.sleep(1000);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
             }
-            count--;
-        }// end of while
+        }
         throw new IOException("No response from server");
-
     }
 
     protected void stop() {
