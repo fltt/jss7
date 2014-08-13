@@ -162,10 +162,5 @@ fi
 #echo "========================================================================="
 #echo ""
 
-      "$JAVA" $JAVA_OPTS \
-         -Djava.ext.dirs="$SHELL_ENDORSED_DIRS" \
-         -classpath "$SHELL_CLASSPATH" \
-         org.mobicents.ss7.management.console.Shell "$@"
-      SHELL_STATUS=$?
-
-#java -Djava.ext.dirs=`pwd`/lib -Dmms.home=. -cp .:mms-standalone-2.0.0.BETA1-SNAPSHOT.jar org.mobicents.media.server.bootstrap.jmx.JMXMain
+exec "$JAVA" $JAVA_OPTS -Djava.ext.dirs="$SHELL_ENDORSED_DIRS" \
+             -classpath "$SHELL_CLASSPATH" org.mobicents.ss7.management.console.Shell "$@"
