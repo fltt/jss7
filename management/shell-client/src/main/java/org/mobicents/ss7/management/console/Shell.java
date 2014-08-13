@@ -18,6 +18,8 @@
  */
 package org.mobicents.ss7.management.console;
 
+import java.util.Vector;
+
 /**
  * <p>
  * This class represents the Command Line Interface for managing the Mobicents SS7 stack.
@@ -44,6 +46,7 @@ public class Shell {
         System.out.println("Valid Options");
         System.out.println("-v           Display version number and exit");
         System.out.println("-h           This help screen");
+        System.out.println("-c <command> Execute command before entering interactive mode");
     }
 
     public Shell() {
@@ -55,7 +58,32 @@ public class Shell {
         shell.start(args);
     }
 
+    private void processLine(CommandContext commandContext, String line) {
+        line = line.trim();
+        if (line.equals(""))
+            return;
+        if (line.equals("clear") || line.equals("cls")) {
+            commandContext.clearScreen();
+            return;
+        }
+        CommandHandler commandHandler = null;
+        for (CommandHandler commandHandlerTemp : ConsoleImpl.commandHandlerList) {
+            if (commandHandlerTemp.handles(line)) {
+                commandHandler = commandHandlerTemp;
+                break;
+            }
+        }
+        if (commandHandler != null) {
+            if (!commandHandler.isAvailable(commandContext))
+                return;
+            commandHandler.handle(commandContext, line);
+        } else {
+            commandContext.printLine("Unexpected command \"" + line + "\"");
+        }
+    }
+
     private void start(String[] args) throws Exception {
+        Vector<String> commands = new Vector<String>();
 
         // Take care of Cmd Line arguments
         if (args != null && args.length > 0) {
@@ -72,6 +100,12 @@ public class Shell {
                 System.exit(0);
             }
 
+            int i = 0;
+            while ((i < args.length) && (args[i++].compareTo("-c") == 0)) {
+                if (i >= args.length)
+                    break;
+                commands.add(args[i++]);
+            }
         }
 
         System.out.println(WELCOME_MESSAGE);
@@ -86,43 +120,12 @@ public class Shell {
         // console.start();
         String line;
         // console.pushToConsole(ANSIColors.GREEN_TEXT());
-        while ((!commandContext.isTerminated() && ((line = commandContext.readLine()) != null))) {
-            line = line.trim();
-
-            if (line.equals("")) {
-                continue;
-            }
-            // if (line.equalsIgnoreCase("password")) {
-            // line = console.read("password: ", Character.valueOf((char) 0));
-            // console.pushToConsole("password typed:" + line + "\n");
-            //
-            // }
-            if (line.equals("clear") || line.equals("cls")) {
-                commandContext.clearScreen();
-                continue;
-            }
-
-            // this.consoleListener.commandEntered(line);
-
-            CommandHandler commandHandler = null;
-            for (CommandHandler commandHandlerTemp : ConsoleImpl.commandHandlerList) {
-                if (commandHandlerTemp.handles(line)) {
-                    commandHandler = commandHandlerTemp;
-                    break;
-                }
-            }
-
-            if (commandHandler != null) {
-
-                if (!commandHandler.isAvailable(commandContext)) {
-                    continue;
-                }
-
-                commandHandler.handle(commandContext, line);
-            } else {
-                commandContext.printLine("Unexpected command \"" + line + "\"");
-            }
-
+        while (commands.size() > 0) {
+            line = commands.firstElement();
+            commands.removeElementAt(0);
+            processLine(commandContext, line);
         }
+        while ((!commandContext.isTerminated() && ((line = commandContext.readLine()) != null)))
+            processLine(commandContext, line);
     }
 }
