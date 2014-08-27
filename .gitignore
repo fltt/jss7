@@ -1,5 +1,9 @@
 # ignore .svn metadata files
 .svn
+# ignore make support directories
+/build
+/libs
+/packages
 # ignore Maven generated target folders
 ~
 target
