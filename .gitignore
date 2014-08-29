@@ -1,6 +1,7 @@
 # ignore .svn metadata files
 .svn
-# ignore make support directories
+# ignore make support files and directories
+localdefs.mk
 /build
 /libs
 /packages
