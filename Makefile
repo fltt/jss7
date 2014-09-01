@@ -56,6 +56,7 @@ SOURCES_PATH := src/main/java
 RESOURCES_PATH := src/main/resources
 NATIVE_SOURCES_PATH := src/main/native
 
+EXTERNAL_LIBRARIES_DIR := libs
 
 BUILD_DIR := build
 
@@ -69,6 +70,7 @@ JAVAH_CLASSES_LIST := $(BUILD_DIR)/javah-classes
 
 CLASSES_DIR := $(BUILD_DIR)/classes
 RESOURCES_DIR := $(BUILD_DIR)/resources
+RESOURCES_FILTER_SCRIPT := $(BUILD_DIR)/sed-script
 JARS_DIR := $(BUILD_DIR)/$(resources.jars)
 
 OBJECTS_DIR := $(BUILD_DIR)/obj
@@ -84,6 +86,8 @@ ARCHITECTURE := linux
 else
 ARCHITECTURE := unknown
 endif
+
+LIBRARIES := $(shell test -d $(EXTERNAL_LIBRARIES_DIR) && $(FIND) $(EXTERNAL_LIBRARIES_DIR) -name '*.jar')
 
 
 compile:
@@ -109,7 +113,6 @@ endif
 endif # def HAVE_JDEPS
 
 
-LIBRARIES := $(strip $(wildcard libs/*.jar libs/*/*.jar))
 CLASSPATH := -cp $(subst $(empty) $(empty),:,$(CLASSES_DIR) $(LIBRARIES))
 
 .PHONY: clean
@@ -170,6 +173,7 @@ else # ndef BUILD_PHASE
 $(BUILD_DIR) $(CLASSES_DIR) $(JARS_DIR) $(NATIVE_DIR):
 	$(MKDIR_P) $@
 
+EXTRA_VARIABLES := resources.jars
 JARS_LIST :=
 
 FIND_SOURCES = $(shell test -d $(1)$(SOURCES_PATH) && $(FIND) $(1)$(SOURCES_PATH) -name '*.java')
@@ -178,6 +182,27 @@ SOURCES_TO_CLASSES = $(patsubst $(1)$(SOURCES_PATH)/%.java,$(CLASSES_DIR)/%.clas
 CLASSNAME_TO_SOURCEFILE = $(patsubst %,/$(SOURCES_PATH)/%.java,$(subst .,/,$(1)))
 
 FIND_NATIVE_SOURCES = $(shell test -d $(1)$(NATIVE_SOURCES_PATH) && $(FIND) $(1)$(NATIVE_SOURCES_PATH) -name '*.c')
+
+LIBS_AND_VERS := $(shell echo $(basename $(notdir $(LIBRARIES))) | $(SED) -Ee 's,([^ ]*)-(([0-9.]+)(-[^ ]*)?),\1:\2,g')
+
+
+define PARSE_LIB_AND_VER =
+
+MK_NAME := $(word 1,$(subst :, ,$(1)))
+MK_VERSION := $(word 2,$(subst :, ,$(1)))
+MK_JARNAME := $$(if $$(MK_VERSION),$$(MK_NAME)-$$(MK_VERSION).jar,$$(MK_NAME).jar)
+
+$$(MK_NAME).version := $$(MK_VERSION)
+$$(MK_NAME).basename := $$(MK_JARNAME)
+$$(MK_NAME).buildname := $$(filter %/$$(MK_JARNAME),$$(LIBRARIES))
+$$(MK_NAME).jarname := $$(addprefix $(resources.jars)/,$$(MK_JARNAME))
+
+EXTRA_VARIABLES += $$(MK_NAME).version $$(MK_NAME).jarname
+
+endef # PARSE_LIB_AND_VER
+
+
+$(foreach var,$(LIBS_AND_VERS),$(eval $(call PARSE_LIB_AND_VER,$(var))))
 
 
 ifeq ($(BUILD_PHASE),1)
@@ -192,8 +217,8 @@ clean_javac_sourcepaths_list: | $(BUILD_DIR)
 	@: >$(JAVAC_SOURCEPATHS_LIST)
 
 $(JAVAC_SOURCEPATHS_LIST): | clean_javac_sourcepaths_list
-	@echo "Building $@"
-	@$(foreach var,$(SOURCE_DIRECTORIES),$(file >>$@,-sourcepath $(var)$(SOURCES_PATH)))
+	@echo "Building $@" \
+	$(foreach var,$(SOURCE_DIRECTORIES),$(file >>$@,-sourcepath $(var)$(SOURCES_PATH)))
 
 .PHONY: $(JAVAC_SOURCE_FILES_LIST)
 
@@ -206,8 +231,8 @@ clean_source_files_full_list: | $(BUILD_DIR)
 	@: >$(SOURCE_FILES_FULL_LIST)
 
 $(SOURCE_FILES_FULL_LIST): | clean_source_files_full_list
-	@echo "Building $@"
-	@$(foreach var,$(SOURCE_FILES),$(file >>$@,$(var)))
+	@echo "Building $@" \
+	$(foreach var,$(SOURCE_FILES),$(file >>$@,$(var)))
 
 
 define BUILD_MAKE_RULES =
@@ -231,7 +256,7 @@ compile: $$(call SOURCES_TO_CLASSES,$(3),$(4))
 
 $$(foreach var,$(4),$$(eval $$(call SOURCES_TO_CLASSES,$(3),$$(var)): $$(var)))
 
-$(JARS_DIR)/$$(MK_JARNAME): $$(call SOURCES_TO_CLASSES,$(3),$(4)) $$(foreach var,$(6),$$(value $$(var).buildname)) $$(call LIB_TO_JAR,$$(call MK_JARS_TO_LIB,$(6)))
+$(JARS_DIR)/$$(MK_JARNAME): $$(call SOURCES_TO_CLASSES,$(3),$(4)) $$(foreach var,$(6),$$(value $$(var).buildname))
 
 endef # BUILD_MAKE_RULES
 
@@ -244,8 +269,8 @@ clean_exported_classes_list: | $(BUILD_DIR)
 	@: >$(EXPORTED_CLASSES_LIST)
 
 $(EXPORTED_CLASSES_LIST): | clean_exported_classes_list
-	@echo "Building $@"
-	@$(foreach var,$(JAVAH_CLASSES),$(file >>$@,$(call CLASSNAME_TO_SOURCEFILE,$(var)) $(var)))
+	@echo "Building $@" \
+	$(foreach var,$(JAVAH_CLASSES),$(file >>$@,$(call CLASSNAME_TO_SOURCEFILE,$(var)) $(var)))
 
 define BUILD_NATIVE_MAKE_RULES =
 
@@ -272,38 +297,20 @@ $(CLASSES_DIR)/%.class: | $(JAVAC_SOURCEPATHS_LIST) $(JAVAC_SOURCE_FILES_LIST) $
 else # eq ($(BUILD_PHASE),1)
 
 
-EXTRA_VARIABLES := resources.jars
-
 FIND_RESOURCES = $(shell test -d $(1)$(RESOURCES_PATH) && $(FIND) $(1)$(RESOURCES_PATH) -type f)
 RESOURCES_TO_JAR = $(patsubst $(1)$(RESOURCES_PATH)/%,$(RESOURCES_DIR)/$(2)/%,$(3))
-MK_JARS_TO_LIB = $(wildcard $(patsubst %,libs/%.jar,$(1)) $(patsubst %,libs/%-[0-9]*.jar,$(1)) \
-                            $(patsubst %,libs/*/%.jar,$(1)) $(patsubst %,libs/*/%-[0-9]*.jar,$(1)))
-LIB_TO_JAR = $(addprefix $(JARS_DIR)/,$(notdir $(1)))
 
 SOURCES_TO_OBJECTS = $(patsubst $(2)$(NATIVE_SOURCES_PATH)/%.c,$(OBJECTS_DIR)/$(1)/%.o,$(3))
 SOURCES_TO_DEPENDENCIES = $(patsubst $(2)$(NATIVE_SOURCES_PATH)/%.c,$(OBJECTS_DIR)/$(1)/%.d,$(3))
-
-RESOURCES_FILTER_SCRIPT = $(foreach var,$(EXTRA_VARIABLES), -e 's|$${$(var)}|$($(var))|g')
 
 MISSING_RESOURCE_JARS :=
 
 
 define BUILD_EXTRA_JAR_RULES =
 
-ifndef $(1).jarname
-
-MK_EXTERNAL_JARS := $$(firstword $$(call MK_JARS_TO_LIB,$(1)))
-
-$(1).jarname := $$(addprefix $(resources.jars)/,$$(notdir $$(MK_EXTERNAL_JARS)))
-
 ifdef $(1).jarname
 
-$(1).version := $$(patsubst $(1)-%.jar,%,$$(filter $(1)-%.jar,$$(notdir $$(MK_EXTERNAL_JARS))))
-$(1).basename := $$(notdir $$(MK_EXTERNAL_JARS))
-
-EXTRA_VARIABLES += $(1).version $(1).jarname
-
-$$(call LIB_TO_JAR,$$(MK_EXTERNAL_JARS)): $$(MK_EXTERNAL_JARS) | $(JARS_DIR)
+$$($(1).jarname): $$($(1).buildname) | $(JARS_DIR)
 	$(CP) $$< $$@
 
 else # def $(1).jarname
@@ -311,8 +318,6 @@ else # def $(1).jarname
 MISSING_RESOURCE_JARS += $(1)
 
 endif # def $(1).jarname
-
-endif # ndef $(1).jarname
 
 endef # BUILD_EXTRA_JAR_RULES
 
@@ -339,7 +344,7 @@ $$(foreach var,$(5),$$(eval $$(call RESOURCES_TO_JAR,$(3),$(1),$$(var)): $$(var)
 
 $$(foreach var,$(6),$$(eval $$(call BUILD_EXTRA_JAR_RULES,$$(var))))
 
-$(JARS_DIR)/$$(MK_JARNAME): $$(call SOURCES_TO_CLASSES,$(3),$(4)) $$(call RESOURCES_TO_JAR,$(3),$(1),$(5)) $$(foreach var,$(6),$$(value $$(var).buildname)) $$(call LIB_TO_JAR,$$(call MK_JARS_TO_LIB,$(6))) | $(JARS_DIR)
+$(JARS_DIR)/$$(MK_JARNAME): $$(call SOURCES_TO_CLASSES,$(3),$(4)) $$(call RESOURCES_TO_JAR,$(3),$(1),$(5)) $$(foreach var,$(6),$$(value $$(var).buildname)) | $(JARS_DIR)
 	if test -f $$@; then cmd=u; else cmd=c; fi && \
 	$(JAR) $$$${cmd}vf $$@ \
 	  $$(addprefix -C $(CLASSES_DIR) ,$$(patsubst $(CLASSES_DIR)/%,'%',$$(filter $(CLASSES_DIR)/%,$$?) \
@@ -356,7 +361,7 @@ ifeq ($(ARCHITECTURE),unknown)
 $$(error Unsupported OS: $(shell $(OS)))
 endif
 
--include $$(call SOURCES_TO_DEPENDENCIES,$(1),$(2),$(4))
+include $$(call SOURCES_TO_DEPENDENCIES,$(1),$(2),$(4))
 
 $$(call SOURCES_TO_DEPENDENCIES,$(1),$(2),$(4)): $(4)
 	$(MKDIR_P) $$$$(dirname $$@) && \
@@ -396,9 +401,18 @@ $(NATIVE_DIR)/$$(MK_LIBNAME): $$(call SOURCES_TO_OBJECTS,$(1),$(3),$(4)) | $(NAT
 endef # BUILD_NATIVE_MAKE_RULES
 
 
-$(RESOURCES_DIR)/%:
+.PHONY: clean_resources_filter_script $(RESOURCES_FILTER_SCRIPT)
+
+clean_resources_filter_script: | $(BUILD_DIR)
+	@: >$(RESOURCES_FILTER_SCRIPT)
+
+$(RESOURCES_FILTER_SCRIPT): | clean_resources_filter_script
+	@echo "Building $@" \
+	$(foreach var,$(EXTRA_VARIABLES),$(file >>$(RESOURCES_FILTER_SCRIPT),'-es|$${$(var)}|$($(var))|g'))
+
+$(RESOURCES_DIR)/%: | $(RESOURCES_FILTER_SCRIPT)
 	$(MKDIR_P) $$(dirname $@) && \
-	$(SED)$(RESOURCES_FILTER_SCRIPT) $^ >$@
+	$(CAT) $(RESOURCES_FILTER_SCRIPT) | $(XARGS) $(SED) $^ >$@
 
 
 endif # eq ($(BUILD_PHASE),1)
@@ -452,8 +466,11 @@ include tools/simulator/core/build.mk
 include tools/simulator/gui/build.mk
 include tools/trace-parser/parser/build.mk
 
+# Contains EXTRA_VARIABLES
 include docs/sources/build.mk
-# !!! include docs/jdocbook-mobicents/build.mk
+# Documentation contains maven-jdocbook-plugin's specific extensions which
+# prevent compilation from generic tools (tried both xsltproc and fop)
+# include docs/jdocbook-mobicents/build.mk
 
 ifeq ($(ENABLE_DAHDI),true)
 include hardware/dahdi/native/build.mk
