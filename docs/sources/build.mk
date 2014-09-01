@@ -21,7 +21,7 @@ docs.application.dirname := ss7
 docs.bookid := SS7Stack
 version := $(MK_VERSION)
 
-EXTRA_VARIABLES := THIS.PLATFORM JEE.PLATFORM THIS.ISSUE_TRACKER_URL THIS.RELEASE_SOURCE_CODE_URL \
+EXTRA_VARIABLES += THIS.PLATFORM JEE.PLATFORM THIS.ISSUE_TRACKER_URL THIS.RELEASE_SOURCE_CODE_URL \
                    THIS.TRUNK_SOURCE_CODE_URL THIS.RELEASE_BINARY_URL author.email.amit \
                    author.email.bartosz author.email.sergey author.email.vinu docs.application.name \
                    docs.application.dirname docs.bookid version
