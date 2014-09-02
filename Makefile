@@ -35,14 +35,19 @@ JDEPS ?= jdeps
 
 # Every UNIX-like OS should have these (and a Bourne-like shell).
 CAT ?= cat
-CP ?= cp -lf
+CHMOD ?= chmod
+LINK ?= ln -f
+CP ?= cp -f
 FGREP ?= fgrep
 FIND ?= find
+GIT ?= git
 MKDIR_P ?= mkdir -p
 MV ?= mv
 OS ?= uname -o
 RM ?= rm -f
 SED ?= sed
+SHA1 ?= sha1sum
+TAR ?= tar
 WHICH ?= which
 XARGS ?= xargs
 
@@ -78,8 +83,11 @@ INCLUDE_DIR := $(BUILD_DIR)/include
 NATIVE_DIR := $(BUILD_DIR)/$(resources.libs)
 
 # stress-tool-[0-9]*.jar is not released
+STAGE_DIR := $(BUILD_DIR)/packages
 PACKAGE_DIR := packages
 
+
+release.version := 2.1.0.FINAL-p1
 
 ifeq ($(shell $(OS)),GNU/Linux)
 ARCHITECTURE := linux
@@ -170,10 +178,10 @@ else # ndef BUILD_PHASE
 
 .PHONY: compile jars package
 
-$(BUILD_DIR) $(CLASSES_DIR) $(JARS_DIR) $(NATIVE_DIR):
+$(BUILD_DIR) $(CLASSES_DIR) $(JARS_DIR) $(NATIVE_DIR) $(PACKAGE_DIR):
 	$(MKDIR_P) $@
 
-EXTRA_VARIABLES := resources.jars
+EXTRA_VARIABLES := resources.jars release.version
 JARS_LIST :=
 
 FIND_SOURCES = $(shell test -d $(1)$(SOURCES_PATH) && $(FIND) $(1)$(SOURCES_PATH) -name '*.java')
@@ -311,7 +319,7 @@ define BUILD_EXTRA_JAR_RULES =
 ifdef $(1).jarname
 
 $$($(1).jarname): $$($(1).buildname) | $(JARS_DIR)
-	$(CP) $$< $$@
+	$(LINK) $$< $$@
 
 else # def $(1).jarname
 
@@ -450,7 +458,6 @@ include sccp/sccp-impl/build.mk
 include scheduler/build.mk
 # Contains EXTRA_VARIABLES
 include service/build.mk
-# !!! run.jar
 include sgw/boot/build.mk
 include sgw/gateway/build.mk
 include statistics/api/build.mk
@@ -460,7 +467,6 @@ include tcap-ansi/tcap-ansi-api/build.mk
 include tcap-ansi/tcap-ansi-impl/build.mk
 include tcap/tcap-api/build.mk
 include tcap/tcap-impl/build.mk
-# !!! run.jar
 include tools/simulator/bootstrap/build.mk
 include tools/simulator/core/build.mk
 include tools/simulator/gui/build.mk
@@ -480,9 +486,6 @@ ifeq ($(ENABLE_DIALOGIC),true)
 include hardware/dialogic/native/build.mk
 endif
 
-# !!!
-# include release/build.mk
-
 -include $(JAVA_DEPENDENCIES)
 
 ifdef MISSING_RESOURCE_JARS
@@ -492,38 +495,223 @@ endif
 jars: $(JARS_LIST)
 
 
+MISC_BUILD_LIST := release/README.TXT
+
+
+ASN_JAR_BUILD_LIST := $(asn.buildname)
+
+
+SCTP_JAR_BUILD_LIST := $(sctp-api.buildname) $(sctp-impl.buildname)
+
+
+SS7_SERVICE_JAR_BUILD_LIST := $(asn.buildname) $(cap-api.buildname) $(capi-impl.buildname) \
+                              $(commons.buildname) $(congestion.buildname) $(inap-api.buildname) \
+                              $(inap-impl.buildname) $(isup-api.buildname) $(isup-impl.buildname) \
+                              $(javolution.buildname) $(linkset.buildname) $(m3ua-api.buildname) \
+                              $(m3ua-impl.buildname) $(map-api.buildname) $(map-impl.buildname) \
+                              $(mobicents-dialogic.buildname) $(mobicents-ss7.buildname) \
+                              $(mtp.buildname) $(mtp-api.buildname) $(sccp-api.buildname) \
+                              $(sccp-impl.buildname) $(scheduler.buildname) $(sctp-api.buildname) \
+                              $(sctp-impl.buildname) $(shell-server-api.buildname) \
+                              $(shell-server-impl.buildname) $(shell-transport.buildname) \
+                              $(statistics-api.buildname) $(statistics-impl.buildname) \
+                              $(stream.buildname) $(tcap-api.buildname) $(tcap-impl.buildname)
+
+# jboss.server.data.dir, jboss.bind.address
+SS7_SERVICE_RESOURCES_LIST := service/src/main/config/jboss-beans.xml \
+                              service/src/main/config/jboss-structure.xml
+
+
+SGW_BIN_BUILD_LIST := sgw/boot/src/main/config/init_redhat.sh \
+                      sgw/boot/src/main/config/run.bat \
+                      sgw/boot/src/main/config/run.sh
+
+# sgw.home.dir
+SGW_CONF_BUILD_LIST := sgw/boot/src/main/config/bootstrap-beans.xml \
+                       sgw/boot/src/main/config/log4j.xml
+
+# sgw.home.dir, sgw.bind.address
+SGW_DEPLOY_BUILD_LIST := sgw/boot/src/main/config/sgw-beans.xml
+
+# ? $(activation.buildname) $(dtdparser121.buildname) $(java-getopt.buildname)
+# ? $(jaxb-api.buildname) $(jboss-logging-spi.buildname) $(jboss-mdr.buildname)
+# ? $(jboss-reflect.buildname) $(jbossxb.buildname) $(xml-apis.buildname)
+SGW_JAR_BUILD_LIST := $(boot.buildname) $(commons.buildname) $(gateway.buildname) \
+                      $(javolution.buildname) $(jboss-common-core.buildname) \
+                      $(jboss-dependency.buildname) $(jboss-kernel.buildname) \
+                      $(linkset.buildname) $(log4j.buildname) $(m3ua-api.buildname) \
+                      $(m3ua-impl.buildname) $(mobicents-dahdi.buildname) \
+                      $(mobicents-dialogic.buildname) $(mtp.buildname) $(mtp-api.buildname) \
+                      $(scheduler.buildname) $(sctp-api.buildname) $(sctp-impl.buildname) \
+                      $(shell-server-api.buildname) $(shell-server-impl.buildname) \
+                      $(shell-transport.buildname) $(stream.buildname)
+
+SGW_NATIVE_BUILD_LIST :=
+
+ifeq ($(ENABLE_DAHDI),true)
+SGW_NATIVE_BUILD_LIST += $(libmobicents-dahdi-linux.buildname)
+endif
+
+ifeq ($(ENABLE_DIALOGIC),true)
+SGW_NATIVE_BUILD_LIST += $(libmobicents-dialogic-linux.buildname)
+endif
+
+SGW_DATA_BUILD_LIST := sgw/boot/src/main/config/linksetmanager.xml
+
+
+SS7_SIMULATOR_BIN_BUILD_LIST := tools/simulator/bootstrap/src/main/config/run.bat \
+                                tools/simulator/bootstrap/src/main/config/run.sh
+
+SS7_SIMULATOR_CONF_BUILD_LIST := tools/simulator/bootstrap/src/main/config/log4j.xml
+
+SS7_SIMULATOR_DATA_BUILD_LIST := tools/simulator/bootstrap/src/main/config/data.txt
+
+# ? $(java-getopt.buildname)
+SS7_SIMULATOR_JAR_BUILD_LIST := $(asn.buildname) $(cap-api.buildname) $(cap-impl.buildname) \
+                                $(commons.buildname) $(congestion.buildname) $(inap-api.buildname) \
+                                $(inap-impl.buildname) $(isup-api.buildname) $(isup-impl.buildname) \
+                                $(javolution.buildname) $(jmxtools.buildname) $(log4j.buildname) \
+                                $(m3ua-api.buildname) $(m3ua-impl.buildname) $(map-api.buildname) \
+                                $(map-impl.buildname) $(mobicents-dialogic.buildname) $(mtp.buildname) \
+                                $(mtp-api.buildname) $(sccp-api.buildname) $(sccp-impl.buildname) \
+                                $(sctp-api.buildname) $(sctp-impl.buildname) $(simulator-core.buildname) \
+                                $(simulator-gui.buildname) $(statistics-api.buildname) \
+                                $(statistics-impl.buildname) $(stream.buildname) $(tcap-api.buildname) \
+                                $(tcap-impl.buildname)
+
+
+SS7_PROTOCOLS_BUILD_LIST := $(cap-api.buildname) $(cap-impl.buildname) $(inap-api.buildname) \
+                            $(inap-impl.buildname) $(isup-api.buildname) $(isup-impl.buildname) \
+                            $(map-api.buildname) $(map-impl.buildname) $(tcap-api.buildname) \
+                            $(tcap-impl.buildname)
+
+
+SS7_SHELL_BIN_BUILD_LIST := management/shell-client/src/main/config/ss7-cli.bat \
+                            management/shell-client/src/main/config/ss7-cli.sh
+
+# ? $(jansi.buildname)
+SS7_SHELL_LIB_BUILD_LIST := $(javolution.buildname) $(jreadline.buildname) $(linkset-cli.buildname) \
+                            $(m3ua-cli-m3ua.buildname) $(m3ua-cli-sctp.buildname) \
+                            $(mobicents-ss7-shell.buildname) $(sccp-cli.buildname) \
+                            $(shell-transport.buildname)
+
+
+SS7_NATIVE_LIB_BUILD_LIST :=
+
+ifeq ($(ENABLE_DAHDI),true)
+SS7_NATIVE_LIB_BUILD_LIST += $(libmobicents-dahdi-linux.buildname)
+endif
+
+ifeq ($(ENABLE_DIALOGIC),true)
+SS7_NATIVE_LIB_BUILD_LIST += $(libmobicents-dialogic-linux.buildname)
+endif
+
+
+# ???
+# SS7_DOC_BUILD_LIST := ?
+
+
 ifeq ($(BUILD_PHASE),1)
 
 
-package: $(bootstrap.buildname) $(smsc-resource-adaptors-du.buildname) $(smsc-services-du.buildname) \
-         $(smsc-cli.buildname) $(smpp-simulator.buildname) $(smpp-simulator-bootstrap.buildname)
+$(PACKAGE_DIR)/mobicents-ss7-$(release.version).tar.gz: $(ASN_JAR_BUILD_LIST) $(SCTP_JAR_BUILD_LIST) $(SS7_SERVICE_JAR_BUILD_LIST) $(boot.buildname) $(SGW_JAR_BUILD_LIST) $(simulator-bootstrap.buildname) $(SS7_SIMULATOR_JAR_BUILD_LIST) $(SS7_PROTOCOLS_BUILD_LIST) $(SS7_SHELL_LIB_BUILD_LIST)
+
+package: $(PACKAGE_DIR)/mobicents-ss7-$(release.version).tar.gz
 
 
 else #eq ($(BUILD_PHASE),1)
 
 
-$(PACKAGE_DIR)/%.jar: $(JARS_DIR)/%.jar
-	$(MKDIR_P) $$(dirname $@) && \
-	$(CP) $^ $@
+INTO_STAGE = $(addprefix $(STAGE_DIR)/$(if $(1),$(1)/,),$(notdir $(2)))
 
-$(PACKAGE_DIR)/smsc/%.jar: $(JARS_DIR)/%.jar
-	$(MKDIR_P) $$(dirname $@) && \
-	$(CP) $^ $@
 
-$(PACKAGE_DIR)/smpp-simulator/%.jar: $(JARS_DIR)/%.jar
-	$(MKDIR_P) $$(dirname $@) && \
-	$(CP) $^ $@
+define BUILD_PACKAGE_RULES =
 
-$(PACKAGE_DIR)/smpp-simulator/run.jar: $(smpp-simulator-bootstrap.buildname)
-	$(MKDIR_P) $$(dirname $@) && \
-	$(CP) $^ $@
+$(2) := $$(call INTO_STAGE,$(3),$$($(1)))
 
-package: $(PACKAGE_DIR)/$(smsc-cli.basename) \
-         $(PACKAGE_DIR)/smsc/$(bootstrap.basename) \
-         $(PACKAGE_DIR)/smsc/$(smsc-resource-adaptors-du.basename) \
-         $(PACKAGE_DIR)/smsc/$(smsc-services-du.basename) \
-         $(PACKAGE_DIR)/smpp-simulator/$(smpp-simulator.basename) \
-         $(PACKAGE_DIR)/smpp-simulator/run.jar
+$(STAGE_DIR)/$(3):
+	$(MKDIR_P) $$@
+
+$$(foreach var,$$($(1)),$$(eval $$(call INTO_STAGE,$(3),$$(var)): $$(var) | $(STAGE_DIR)/$(3)))
+
+endef # BUILD_PACKAGE_RULES
+
+
+define ADD_PACKAGE_RULES =
+
+$(2) += $$(call INTO_STAGE,$(3),$$($(1)))
+
+$(STAGE_DIR)/$(3):
+	$(MKDIR_P) $$@
+
+$$(foreach var,$$($(1)),$$(eval $$(call INTO_STAGE,$(3),$$(var)): $$(var) | $(STAGE_DIR)/$(3)))
+
+endef # ADD_PACKAGE_RULES
+
+
+$(STAGE_DIR)/%:
+	$(LINK) $^ $@
+
+$(STAGE_DIR)/%.sh:
+	$(CP) $^ $@ && $(CHMOD) a+x $@
+
+
+$(eval $(call BUILD_PACKAGE_RULES,MISC_BUILD_LIST,MISC_STAGE_LIST,))
+
+$(eval $(call BUILD_PACKAGE_RULES,ASN_JAR_BUILD_LIST,ASN_STAGE_LIST,asn))
+
+$(eval $(call BUILD_PACKAGE_RULES,SCTP_JAR_BUILD_LIST,SCTP_STAGE_LIST,sctp))
+
+$(eval $(call BUILD_PACKAGE_RULES,SS7_SERVICE_JAR_BUILD_LIST,SS7_SERVICE_STAGE_LIST,ss7/mobicents-ss7-service/lib))
+$(eval $(call ADD_PACKAGE_RULES,SS7_SERVICE_RESOURCES_LIST,SS7_SERVICE_STAGE_LIST,ss7/mobicents-ss7-service/META-INF))
+
+$(eval $(call BUILD_PACKAGE_RULES,SGW_BIN_BUILD_LIST,SGW_STAGE_LIST,ss7/mobicents-sgw/bin))
+$(eval $(call ADD_PACKAGE_RULES,SGW_CONF_BUILD_LIST,SGW_STAGE_LIST,ss7/mobicents-sgw/conf))
+$(eval $(call ADD_PACKAGE_RULES,SGW_DEPLOY_BUILD_LIST,SGW_STAGE_LIST,ss7/mobicents-sgw/deploy))
+$(eval $(call ADD_PACKAGE_RULES,SGW_JAR_BUILD_LIST,SGW_STAGE_LIST,ss7/mobicents-sgw/lib))
+$(eval $(call ADD_PACKAGE_RULES,SGW_NATIVE_BUILD_LIST,SGW_STAGE_LIST,ss7/mobicents-sgw/native))
+$(eval $(call ADD_PACKAGE_RULES,SGW_DATA_BUILD_LIST,SGW_STAGE_LIST,ss7/mobicents-sgw/ss7))
+
+SGW_STAGE_LIST += $(STAGE_DIR)/ss7/mobicents-sgw/bin/run.jar
+
+$(STAGE_DIR)/ss7/mobicents-sgw/bin/run.jar: $(boot.buildname) | $(STAGE_DIR)/ss7/mobicents-sgw/bin
+
+$(eval $(call BUILD_PACKAGE_RULES,SS7_SIMULATOR_BIN_BUILD_LIST,SS7_SIMULATOR_STAGE_LIST,ss7/mobicents-ss7-simulator/bin))
+$(eval $(call ADD_PACKAGE_RULES,SS7_SIMULATOR_CONF_BUILD_LIST,SS7_SIMULATOR_STAGE_LIST,ss7/mobicents-ss7-simulator/conf))
+$(eval $(call ADD_PACKAGE_RULES,SS7_SIMULATOR_DATA_BUILD_LIST,SS7_SIMULATOR_STAGE_LIST,ss7/mobicents-ss7-simulator/data))
+$(eval $(call ADD_PACKAGE_RULES,SS7_SIMULATOR_JAR_BUILD_LIST,SS7_SIMULATOR_STAGE_LIST,ss7/mobicents-ss7-simulator/lib))
+
+SS7_SIMULATOR_STAGE_LIST += $(STAGE_DIR)/ss7/mobicents-ss7-simulator/bin/run.jar
+
+$(STAGE_DIR)/ss7/mobicents-ss7-simulator/bin/run.jar: $(simulator-bootstrap.buildname) | $(STAGE_DIR)/ss7/mobicents-ss7-simulator/bin
+
+$(eval $(call BUILD_PACKAGE_RULES,SS7_PROTOCOLS_BUILD_LIST,SS7_PROTOCOLS_STAGE_LIST,ss7/protocols))
+
+$(eval $(call BUILD_PACKAGE_RULES,SS7_SHELL_BIN_BUILD_LIST,SS7_SHELL_STAGE_LIST,ss7/shell/bin))
+$(eval $(call ADD_PACKAGE_RULES,SS7_SHELL_LIB_BUILD_LIST,SS7_SHELL_STAGE_LIST,ss7/shell/lib))
+
+$(eval $(call BUILD_PACKAGE_RULES,SS7_NATIVE_LIB_BUILD_LIST,SS7_NATIVE_STAGE_LIST,ss7/native))
+
+$(STAGE_DIR)/ss7:
+	$(MKDIR_P) $@
+
+SS7_MISC_STAGE_LIST := $(STAGE_DIR)/ss7/build.xml
+
+$(STAGE_DIR)/ss7/build.xml: release/release-build.xml | $(STAGE_DIR)/ss7
+
+
+# ???
+# $(PACKAGE_DIR)/mobicents-ss7-$(release.version)-src.tar.gz: | $(PACKAGE_DIR)
+# 	$(GIT) archive --format=tar.gz --prefix=ss7/ -o $@ HEAD
+
+$(PACKAGE_DIR)/mobicents-ss7-$(release.version).tar.gz: $(MISC_STAGE_LIST) $(ASN_STAGE_LIST) $(SCTP_STAGE_LIST) $(SS7_SERVICE_STAGE_LIST) $(SGW_STAGE_LIST) $(SS7_SIMULATOR_STAGE_LIST) $(SS7_PROTOCOLS_STAGE_LIST) $(SS7_SHELL_STAGE_LIST) $(SS7_NATIVE_STAGE_LIST) $(SS7_MISC_STAGE_LIST) | $(PACKAGE_DIR)
+	$(TAR) -czv -f $@ -C $(STAGE_DIR) $(patsubst $(STAGE_DIR)/%,'%',$^)
+
+$(PACKAGE_DIR)/%.sha1.asc: $(PACKAGE_DIR)/%
+	$(SHA1) $< | (read a b; echo $$a) >$@
+
+package: $(PACKAGE_DIR)/mobicents-ss7-$(release.version).tar.gz \
+         $(PACKAGE_DIR)/mobicents-ss7-$(release.version).tar.gz.sha1.asc
 
 
 endif # eq ($(BUILD_PHASE),1)
