@@ -37,37 +37,35 @@ static int setnonblock_fd(int fd) {
 static int openFileChannel(jint zapid,jint ioBufferSize) {
     struct dahdi_bufferinfo bi;
     char devname[100];
-    int res;
-    int fd;
-
-    fd = open("/dev/dahdi/channel", O_RDWR);	
-    if (fd < 0) {
+    int fd, res;
+#if 0
+    fd = open("/dev/dahdi/channel", O_RDWR);
+    if (fd < 0)
         return -1;
-    }	
-
-	res = ioctl(fd, DAHDI_SPECIFY, &zapid);
-	if(res<0) {
-		return -1;
-	}
-
+    res = ioctl(fd, DAHDI_SPECIFY, &zapid);
+    if(res<0)
+        return -1;
+#else
+    int span, channel;
+    span = zapid / 31;
+    channel = zapid % 31;
+    snprintf(devname, sizeof(devname), "/dev/dahdi/chan/%0.3d/%0.3d", span + 1, channel);
+    fd = open(devname, O_RDWR);
+    if (fd < 0)
+        return -1;
+#endif
     bi.txbufpolicy = DAHDI_POLICY_IMMEDIATE;
     bi.rxbufpolicy = DAHDI_POLICY_IMMEDIATE;
     bi.numbufs = ZAP_NUM_BUF;
     bi.bufsize = ioBufferSize;
- 
     ioctl(fd, DAHDI_SET_BUFINFO, &bi);
- 
     res = setnonblock_fd(fd);
-    if (res < 0) {
+    if (res < 0)
         return -1;
-    }
-    
-	res = ioctl(fd, DAHDI_SET_BLOCKSIZE, &ioBufferSize);
-	if (res < 0) {
+    res = ioctl(fd, DAHDI_SET_BLOCKSIZE, &ioBufferSize);
+    if (res < 0)
         return -1;
-    }
-
-    return fd;    	
+    return fd;
 }
 
 JNIEXPORT void JNICALL Java_org_mobicents_ss7_hardware_dahdi_Selector_doRegister (JNIEnv *env, jobject obj, jint fd) {
