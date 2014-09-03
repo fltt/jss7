@@ -426,6 +426,7 @@ $(RESOURCES_DIR)/%: | $(RESOURCES_FILTER_SCRIPT)
 endif # eq ($(BUILD_PHASE),1)
 
 
+include asn/asn-impl/build.mk
 include cap/cap-api/build.mk
 include cap/cap-impl/build.mk
 include commons/build.mk
@@ -455,6 +456,8 @@ include mtp/mtp-impl/build.mk
 include sccp/sccp-api/build.mk
 include sccp/sccp-cli/build.mk
 include sccp/sccp-impl/build.mk
+include sctp/sctp-api/build.mk
+include sctp/sctp-impl/build.mk
 include scheduler/build.mk
 # Contains EXTRA_VARIABLES
 include service/build.mk
