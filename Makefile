@@ -708,7 +708,7 @@ $(STAGE_DIR)/ss7/build.xml: release/release-build.xml | $(STAGE_DIR)/ss7
 # 	$(GIT) archive --format=tar.gz --prefix=ss7/ -o $@ HEAD
 
 $(PACKAGE_DIR)/mobicents-ss7-$(release.version).tar.gz: $(MISC_STAGE_LIST) $(ASN_STAGE_LIST) $(SCTP_STAGE_LIST) $(SS7_SERVICE_STAGE_LIST) $(SGW_STAGE_LIST) $(SS7_SIMULATOR_STAGE_LIST) $(SS7_PROTOCOLS_STAGE_LIST) $(SS7_SHELL_STAGE_LIST) $(SS7_NATIVE_STAGE_LIST) $(SS7_MISC_STAGE_LIST) | $(PACKAGE_DIR)
-	$(TAR) -czv -f $@ -C $(STAGE_DIR) $(patsubst $(STAGE_DIR)/%,'%',$^)
+	$(RM) $@ && $(TAR) -czv -f $@ -C $(STAGE_DIR) $(patsubst $(STAGE_DIR)/%,'%',$^)
 
 $(PACKAGE_DIR)/%.sha1.asc: $(PACKAGE_DIR)/%
 	$(SHA1) $< | (read a b; echo $$a) >$@
