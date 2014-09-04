@@ -536,12 +536,13 @@ SGW_CONF_BUILD_LIST := sgw/boot/src/main/config/bootstrap-beans.xml \
 # sgw.home.dir, sgw.bind.address
 SGW_DEPLOY_BUILD_LIST := sgw/boot/src/main/config/sgw-beans.xml
 
-# ? $(activation.buildname) $(dtdparser121.buildname) $(java-getopt.buildname)
-# ? $(jaxb-api.buildname) $(jboss-logging-spi.buildname) $(jboss-mdr.buildname)
-# ? $(jboss-reflect.buildname) $(jbossxb.buildname) $(xml-apis.buildname)
+# ?? $(activation.buildname) $(dtdparser121.buildname)
+# ?? $(jaxb-api.buildname) $(xml-apis.buildname) $(jbossxb.buildname)
 SGW_JAR_BUILD_LIST := $(boot.buildname) $(commons.buildname) $(gateway.buildname) \
-                      $(javolution.buildname) $(jboss-common-core.buildname) \
-                      $(jboss-dependency.buildname) $(jboss-kernel.buildname) \
+                      $(java-getopt.buildname) $(javolution.buildname) \
+                      $(jboss-common-core.buildname) $(jboss-dependency.buildname) \
+                      $(jboss-kernel.buildname) $(jboss-logging-spi.buildname) \
+                      $(jboss-mdr.buildname) $(jboss-reflect.buildname) $(jboss-xml-binding.buildname) \
                       $(linkset.buildname) $(log4j.buildname) $(m3ua-api.buildname) \
                       $(m3ua-impl.buildname) $(mobicents-dahdi.buildname) \
                       $(mobicents-dialogic.buildname) $(mtp.buildname) $(mtp-api.buildname) \
@@ -569,18 +570,17 @@ SS7_SIMULATOR_CONF_BUILD_LIST := tools/simulator/bootstrap/src/main/config/log4j
 
 SS7_SIMULATOR_DATA_BUILD_LIST := tools/simulator/bootstrap/src/main/config/data.txt
 
-# ? $(java-getopt.buildname)
 SS7_SIMULATOR_JAR_BUILD_LIST := $(asn.buildname) $(cap-api.buildname) $(cap-impl.buildname) \
-                                $(commons.buildname) $(congestion.buildname) $(inap-api.buildname) \
-                                $(inap-impl.buildname) $(isup-api.buildname) $(isup-impl.buildname) \
-                                $(javolution.buildname) $(jmxtools.buildname) $(log4j.buildname) \
-                                $(m3ua-api.buildname) $(m3ua-impl.buildname) $(map-api.buildname) \
-                                $(map-impl.buildname) $(mobicents-dialogic.buildname) $(mtp.buildname) \
-                                $(mtp-api.buildname) $(sccp-api.buildname) $(sccp-impl.buildname) \
-                                $(sctp-api.buildname) $(sctp-impl.buildname) $(simulator-core.buildname) \
-                                $(simulator-gui.buildname) $(statistics-api.buildname) \
-                                $(statistics-impl.buildname) $(stream.buildname) $(tcap-api.buildname) \
-                                $(tcap-impl.buildname)
+                                $(commons.buildname) $(congestion.buildname) $(java-getopt.buildname) \
+                                $(inap-api.buildname) $(inap-impl.buildname) $(isup-api.buildname) \
+                                $(isup-impl.buildname) $(javolution.buildname) $(jmxtools.buildname) \
+                                $(log4j.buildname) $(m3ua-api.buildname) $(m3ua-impl.buildname) \
+                                $(map-api.buildname) $(map-impl.buildname) $(mobicents-dialogic.buildname) \
+                                $(mtp.buildname) $(mtp-api.buildname) $(sccp-api.buildname) \
+                                $(sccp-impl.buildname) $(sctp-api.buildname) $(sctp-impl.buildname) \
+                                $(simulator-core.buildname) $(simulator-gui.buildname) \
+                                $(statistics-api.buildname) $(statistics-impl.buildname) \
+                                $(stream.buildname) $(tcap-api.buildname) $(tcap-impl.buildname)
 
 
 SS7_PROTOCOLS_BUILD_LIST := $(cap-api.buildname) $(cap-impl.buildname) $(inap-api.buildname) \
@@ -592,7 +592,7 @@ SS7_PROTOCOLS_BUILD_LIST := $(cap-api.buildname) $(cap-impl.buildname) $(inap-ap
 SS7_SHELL_BIN_BUILD_LIST := management/shell-client/src/main/config/ss7-cli.bat \
                             management/shell-client/src/main/config/ss7-cli.sh
 
-# ? $(jansi.buildname)
+# ?? $(jansi.buildname)
 SS7_SHELL_LIB_BUILD_LIST := $(javolution.buildname) $(jreadline.buildname) $(linkset-cli.buildname) \
                             $(m3ua-cli-m3ua.buildname) $(m3ua-cli-sctp.buildname) \
                             $(mobicents-ss7-shell.buildname) $(sccp-cli.buildname) \
