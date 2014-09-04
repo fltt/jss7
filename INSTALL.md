@@ -1,7 +1,7 @@
 Build Instructions
 ==================
-This project contains both the original Maven `pom.xml`s and the new
-`Makefile` and associated `build.mk` files.
+This project contains both the original Maven `pom.xml` files and the
+new `Makefile` and associated `build.mk` files.
 
 This document describe how to use GNU `make` to build the release
 package.
@@ -18,8 +18,8 @@ the `libs` subdirectory:
 * [javolution-5.5.1.jar][]
 * [jmxtools-1.2.1.jar][]
 * [jreadline-0.17.jar][]
-* [log4j-1.2.17.zip][]: the JAR (`log4j-1.2.17.jar`) is inside the ZIP
-* [JBoss AS 5.1.0.GA][]: copy at least the following JARs from the
+* [log4j-1.2.17.zip][], the JAR (`log4j-1.2.17.jar`) is inside the ZIP
+* [JBoss AS 5.1.0.GA][], copy at least the following JARs from the
   `jboss-5.1.0.GA/lib` directory:
   * jboss-common-core.jar
   * jboss-dependency.jar
@@ -64,13 +64,12 @@ compilation will be automatically enabled.
 The benefit of incremental compilation is that when one or more
 (re)source file is modified, only the minimum required
 class/jar/whatever is rebuilt.
-This is useful if you intend to work on the source.
+This is highly desirable while developing the source code.
 
-However, for generating the list of dependencies may last for many
-minutes (but only the first time, when a full compilation is performed),
-if you only need to build it once, you may disable incremental
-compilation creating a file named `localdefs.mk` in the main directory
--- where the `Makefile` is located -- containing the following text:
+However, should it be necessary (e.g., to spare you a few seconds if you
+intend to compile the source only once), you may disable it creating a
+file named `localdefs.mk` in the main directory -- where the `Makefile`
+is located -- containing the following text:
 
     HAVE_JDEPS = false
 
@@ -103,7 +102,7 @@ Alternatively, you may add them to the `make` command line, e.g.:
 If the Digium/Dialogic drivers are installed system-wide, the compiler
 should be able to find the required include files and libraries.
 
-If it fails, try adding the `CPPFLAGS` and `LDFLAGS` variables to the
+Should it fail, try adding the `CPPFLAGS` and `LDFLAGS` variables to the
 `make` command line, e.g.:
 
     make "CPPFLAGS=-I/path/to/dpk/INC -I/path/to/dahdi/include"
@@ -150,7 +149,7 @@ directly.
 [javolution-5.5.1.jar]: http://download.java.net/maven/2/javolution/javolution/5.5.1/javolution-5.5.1.jar
 [jmxtools-1.2.1.jar]: http://simile.mit.edu/maven/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.jar
 [jreadline-0.17.jar]: https://repository.jboss.org/nexus/content/repositories/releases/org/jboss/jreadline/jreadline/0.17/jreadline-0.17.jar
-[log4j-1.2.17.jar]: http://www.eu.apache.org/dist/logging/log4j/1.2.17/log4j-1.2.17.zip
+[log4j-1.2.17.zip]: http://www.eu.apache.org/dist/logging/log4j/1.2.17/log4j-1.2.17.zip
 [JBoss AS 5.1.0.GA]: http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip/download
 [DAHDI drivers]: http://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-2.10.0+2.10.0.tar.gz
 [DSI Development Package]: http://www.dialogic.com/en/products/signaling-and-ss7-components/download/dsi-network-interface-boards.aspx

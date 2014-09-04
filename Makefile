@@ -34,6 +34,7 @@ JAVAH ?= javah
 JDEPS ?= jdeps
 
 # Every UNIX-like OS should have these (and a Bourne-like shell).
+AWK ?= awk
 CAT ?= cat
 CHMOD ?= chmod
 LINK ?= ln -f
@@ -136,6 +137,7 @@ ifdef JDEPS
 	    echo "Updating $(JAVA_DEPENDENCIES)" && \
 	    $(FIND) $(CLASSES_DIR) -name '*.class' -cnewer $(JAVA_DEPENDENCIES) >$(JAVA_DEPENDENCIES).tmp && \
 	    $(CAT) $(JAVA_DEPENDENCIES).tmp | while read cf; do \
+	      cf=$$(echo $$cf | sed -e 's,\$$,\\$$,g'); \
 	      $(SED) -Ee "\,^$$cf: ,d" $(JAVA_DEPENDENCIES) >$(JAVA_DEPENDENCIES).bak && \
 	      $(MV) $(JAVA_DEPENDENCIES).bak $(JAVA_DEPENDENCIES); \
 	    done \
@@ -143,11 +145,15 @@ ifdef JDEPS
 	    echo "Building $(JAVA_DEPENDENCIES)" && \
 	    $(FIND) $(CLASSES_DIR) -name '*.class' >$(JAVA_DEPENDENCIES).tmp; \
 	  fi && \
+	  echo "BEGIN {" >$(SOURCE_FILES_FULL_LIST).awk && \
+	  sed -E 's,^.*(/$(SOURCES_PATH)/.*)$$,sf["\1"]="&",' $(SOURCE_FILES_FULL_LIST) >>$(SOURCE_FILES_FULL_LIST).awk && \
+	  echo "}" >>$(SOURCE_FILES_FULL_LIST).awk && \
+	  echo '{ if (sf[$$2]) print $$1 " " sf[$$2] }' >>$(SOURCE_FILES_FULL_LIST).awk && \
 	  echo "$(CAT) $(JAVA_DEPENDENCIES).tmp | $(XARGS) $(JDEPS) -v" && \
 	  $(CAT) $(JAVA_DEPENDENCIES).tmp | $(XARGS) $(JDEPS) -v | \
-	    $(SED) -Ene 's,\.,/,g;s,^ +([^ ]+) *-> *([^ ]+).*$$,"-es|^([^ ]*/$(SOURCES_PATH)/\2\\.java)$$|$(CLASSES_DIR)/\1\\.class: \\1|p;t",p' | \
-	    $(XARGS) -I % $(SED) -En % $(SOURCE_FILES_FULL_LIST) >>$(JAVA_DEPENDENCIES) && \
-	  $(RM) $(JAVA_DEPENDENCIES).tmp; \
+	    $(SED) -Ene 's,\.,/,g;s,^ +([^ ]+) *-> *([^ ]+).*$$,$(CLASSES_DIR)/\1.class: /$(SOURCES_PATH)/\2.java,p' | \
+	    $(AWK) -f $(SOURCE_FILES_FULL_LIST).awk >>$(JAVA_DEPENDENCIES) && \
+	  $(RM) $(SOURCE_FILES_FULL_LIST).awk $(JAVA_DEPENDENCIES).tmp; \
 	fi
 else # def JDEPS
 	@if test -s $(SOURCE_FILES_FULL_LIST) -a  -s $(JAVAC_SOURCE_FILES_LIST); then \
