@@ -37,11 +37,11 @@ JDEPS ?= jdeps
 AWK ?= awk
 CAT ?= cat
 CHMOD ?= chmod
-LINK ?= ln -f
 CP ?= cp -f
 FGREP ?= fgrep
 FIND ?= find
-GIT ?= git
+# ??? GIT ?= git
+LINK ?= ln -f
 MKDIR_P ?= mkdir -p
 MV ?= mv
 OS ?= uname -o
@@ -113,7 +113,7 @@ endif
 
 else # def HAVE_JDEPS
 
-JDEPS := $(firstword $(wildcard $(if $(filter /%,$(JDEPS)),$(JDEPS),$(addsuffix /$(JDEPS),$(subst :, ,$(PATH)))) ))
+JDEPS := $(firstword $(wildcard $(if $(filter /%,$(JDEPS)),$(JDEPS),$(addsuffix /$(JDEPS),$(subst :, ,$(PATH))))))
 
 ifndef JDEPS
 $(info NOTE: jdeps not found: incremental compilation disabled)
@@ -137,7 +137,7 @@ ifdef JDEPS
 	    echo "Updating $(JAVA_DEPENDENCIES)" && \
 	    $(FIND) $(CLASSES_DIR) -name '*.class' -cnewer $(JAVA_DEPENDENCIES) >$(JAVA_DEPENDENCIES).tmp && \
 	    $(CAT) $(JAVA_DEPENDENCIES).tmp | while read cf; do \
-	      cf=$$(echo $$cf | sed -e 's,\$$,\\$$,g'); \
+	      cf=$$(echo $$cf | $(SED) -e 's,\$$,\\$$,g'); \
 	      $(SED) -Ee "\,^$$cf: ,d" $(JAVA_DEPENDENCIES) >$(JAVA_DEPENDENCIES).bak && \
 	      $(MV) $(JAVA_DEPENDENCIES).bak $(JAVA_DEPENDENCIES); \
 	    done \
@@ -146,7 +146,7 @@ ifdef JDEPS
 	    $(FIND) $(CLASSES_DIR) -name '*.class' >$(JAVA_DEPENDENCIES).tmp; \
 	  fi && \
 	  echo "BEGIN {" >$(SOURCE_FILES_FULL_LIST).awk && \
-	  sed -E 's,^.*(/$(SOURCES_PATH)/.*)$$,sf["\1"]="&",' $(SOURCE_FILES_FULL_LIST) >>$(SOURCE_FILES_FULL_LIST).awk && \
+	  $(SED) -E 's,^.*(/$(SOURCES_PATH)/.*)$$,sf["\1"]="&",' $(SOURCE_FILES_FULL_LIST) >>$(SOURCE_FILES_FULL_LIST).awk && \
 	  echo "}" >>$(SOURCE_FILES_FULL_LIST).awk && \
 	  echo '{ if (sf[$$2]) print $$1 " " sf[$$2] }' >>$(SOURCE_FILES_FULL_LIST).awk && \
 	  echo "$(CAT) $(JAVA_DEPENDENCIES).tmp | $(XARGS) $(JDEPS) -v" && \
@@ -212,6 +212,9 @@ $$(MK_NAME).buildname := $$(filter %/$$(MK_JARNAME),$$(LIBRARIES))
 $$(MK_NAME).jarname := $$(addprefix $(resources.jars)/,$$(MK_JARNAME))
 
 EXTRA_VARIABLES += $$(MK_NAME).version $$(MK_NAME).jarname
+
+$$($$(MK_NAME).jarname): $$($$(MK_NAME).buildname) | $(JARS_DIR)
+	$(LINK) $$< $$@
 
 endef # PARSE_LIB_AND_VER
 
@@ -322,16 +325,9 @@ MISSING_RESOURCE_JARS :=
 
 define BUILD_EXTRA_JAR_RULES =
 
-ifdef $(1).jarname
-
-$$($(1).jarname): $$($(1).buildname) | $(JARS_DIR)
-	$(LINK) $$< $$@
-
-else # def $(1).jarname
-
+ifndef $(1).jarname
 MISSING_RESOURCE_JARS += $(1)
-
-endif # def $(1).jarname
+endif
 
 endef # BUILD_EXTRA_JAR_RULES
 
@@ -351,6 +347,9 @@ $(1).jarname := $(resources.jars)/$$(MK_JARNAME)
 
 EXTRA_VARIABLES += $(1).version $(1).jarname
 JARS_LIST += $(JARS_DIR)/$$(MK_JARNAME)
+
+$$($(1).jarname): $$($(1).buildname) | $(JARS_DIR)
+	$(LINK) $$< $$@
 
 compile: $$(call SOURCES_TO_CLASSES,$(3),$(4))
 
@@ -426,7 +425,8 @@ $(RESOURCES_FILTER_SCRIPT): | clean_resources_filter_script
 
 $(RESOURCES_DIR)/%: | $(RESOURCES_FILTER_SCRIPT)
 	$(MKDIR_P) $$(dirname $@) && \
-	$(CAT) $(RESOURCES_FILTER_SCRIPT) | $(XARGS) $(SED) $^ >$@
+	$(CP) $< $@ && \
+	$(CAT) $(RESOURCES_FILTER_SCRIPT) | $(XARGS) $(SED) -i $@
 
 
 endif # eq ($(BUILD_PHASE),1)
