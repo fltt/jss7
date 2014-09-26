@@ -213,7 +213,7 @@ $$(MK_NAME).jarname := $$(addprefix $(resources.jars)/,$$(MK_JARNAME))
 
 EXTRA_VARIABLES += $$(MK_NAME).version $$(MK_NAME).jarname
 
-$$($$(MK_NAME).jarname): $$($$(MK_NAME).buildname) | $(JARS_DIR)
+$(BUILD_DIR)/$$($$(MK_NAME).jarname): $$($$(MK_NAME).buildname) | $(JARS_DIR)
 	$(LINK) $$< $$@
 
 endef # PARSE_LIB_AND_VER
@@ -316,6 +316,7 @@ else # eq ($(BUILD_PHASE),1)
 
 FIND_RESOURCES = $(shell test -d $(1)$(RESOURCES_PATH) && $(FIND) $(1)$(RESOURCES_PATH) -type f)
 RESOURCES_TO_JAR = $(patsubst $(1)$(RESOURCES_PATH)/%,$(RESOURCES_DIR)/$(2)/%,$(3))
+LIB_TO_JAR = $(addprefix $(JARS_DIR)/,$(notdir $(1)))
 
 SOURCES_TO_OBJECTS = $(patsubst $(2)$(NATIVE_SOURCES_PATH)/%.c,$(OBJECTS_DIR)/$(1)/%.o,$(3))
 SOURCES_TO_DEPENDENCIES = $(patsubst $(2)$(NATIVE_SOURCES_PATH)/%.c,$(OBJECTS_DIR)/$(1)/%.d,$(3))
@@ -348,16 +349,13 @@ $(1).jarname := $(resources.jars)/$$(MK_JARNAME)
 EXTRA_VARIABLES += $(1).version $(1).jarname
 JARS_LIST += $(JARS_DIR)/$$(MK_JARNAME)
 
-$$($(1).jarname): $$($(1).buildname) | $(JARS_DIR)
-	$(LINK) $$< $$@
-
 compile: $$(call SOURCES_TO_CLASSES,$(3),$(4))
 
 $$(foreach var,$(5),$$(eval $$(call RESOURCES_TO_JAR,$(3),$(1),$$(var)): $$(var)))
 
 $$(foreach var,$(6),$$(eval $$(call BUILD_EXTRA_JAR_RULES,$$(var))))
 
-$(JARS_DIR)/$$(MK_JARNAME): $$(call SOURCES_TO_CLASSES,$(3),$(4)) $$(call RESOURCES_TO_JAR,$(3),$(1),$(5)) $$(foreach var,$(6),$$(value $$(var).buildname)) | $(JARS_DIR)
+$(JARS_DIR)/$$(MK_JARNAME): $$(call SOURCES_TO_CLASSES,$(3),$(4)) $$(call RESOURCES_TO_JAR,$(3),$(1),$(5)) $$(foreach var,$(6),$$(call LIB_TO_JAR,$$(value $$(var).buildname))) | $(JARS_DIR)
 	if test -f $$@; then cmd=u; else cmd=c; fi && \
 	$(JAR) $$$${cmd}vf $$@ \
 	  $$(addprefix -C $(CLASSES_DIR) ,$$(patsubst $(CLASSES_DIR)/%,'%',$$(filter $(CLASSES_DIR)/%,$$?) \
