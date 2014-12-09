@@ -410,16 +410,9 @@ public class Mtp3 implements Runnable {
     }
 
     public void linkInService(Mtp2 link) {
-        // restart traffic
-        if (logger.isDebugEnabled()) {
-            logger.debug(String.format("(%s) Sending TRA(Traffic Restart Allowed) message", link.getName()));
-        }
-
         if (link.mtp2Listener != null) {
             link.mtp2Listener.linkInService();
         }
-
-        restartTraffic(link);
 
         // create and assign Tester;
         if (link.sltmTest == null) {
@@ -453,6 +446,14 @@ public class Mtp3 implements Runnable {
             logger.error("Linkset not active!");
         if (!l4IsUp) {
             l4IsUp = true;
+
+            // restart traffic
+            if (logger.isDebugEnabled()) {
+                logger.debug(String.format("(%s) Sending TRA(Traffic Restart Allowed) message", link.getName()));
+            }
+
+            restartTraffic(link);
+
             if (mtp3Listener != null) {
                 try {
                     mtp3Listener.linkUp();
@@ -629,34 +630,26 @@ public class Mtp3 implements Runnable {
         }
 
         public long perform() {
-            if (this.started)
+            if (!this.started)
                 return 0;
 
             if (ttl > 0) {
                 ttl--;
+                scheduler.submitHeatbeat(this);
                 return 0;
             }
 
-            switch (tryCount) {
-                case -1:
-                    // sending first message
-                    ttl = Mtp3.TIMEOUT_T1_SLTM;
-                    ping();
-                    scheduler.submitHeatbeat(this);
-                    break;
-                case 0:
-                    // first message was not answered, sending second
-                    ttl = Mtp3.TIMEOUT_T1_SLTM;
-                    ping();
-                    scheduler.submitHeatbeat(this);
-                    break;
-                case 1:
-                    if (logger.isDebugEnabled()) {
-                        logger.debug(String.format("(%s) SLTM message was not acknowledged, Link failed", link.getName()));
-                    }
-                    // second message was not answered, report failure
-                    linkFailed(link);
-                    this.started = false;
+            if (tryCount < 1) {
+                ttl = Mtp3.TIMEOUT_T1_SLTM;
+                ping();
+                scheduler.submitHeatbeat(this);
+            } else {
+                if (logger.isDebugEnabled()) {
+                    logger.debug(String.format("(%s) SLTM message was not acknowledged, Link failed", link.getName()));
+                }
+                // second message was not answered, report failure
+                linkFailed(link);
+                this.started = false;
             }
 
             return 0;
