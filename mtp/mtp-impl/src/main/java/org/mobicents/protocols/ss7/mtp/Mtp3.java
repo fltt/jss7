@@ -447,7 +447,8 @@ public class Mtp3 implements Runnable {
             link.mtp2Listener.linkUp();
         }
 
-        linkset.add(link);
+        if (!linkset.add(link))
+            return;
         if (!linkset.isActive())
             logger.error("Linkset not active!");
         if (!l4IsUp) {
@@ -563,7 +564,7 @@ public class Mtp3 implements Runnable {
             this.started = true;
 
             // reset count of tries
-            tryCount = 0;
+            tryCount = -1;
 
             this.activate(true);
 
@@ -676,7 +677,7 @@ public class Mtp3 implements Runnable {
     }
 
     public static final int sls(byte[] sif, int shift) {
-        int sls = (sif[3 + shift] & 0xf0) >>> 4;
+        int sls = (sif[3 + shift] >> 4) & 0x0f;
         return sls;
     }
 

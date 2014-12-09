@@ -19,6 +19,9 @@
 
 package org.mobicents.protocols.ss7.mtp;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 /**
  * Implements relation between link code and signaling link selection indicator.
  *
@@ -28,25 +31,41 @@ public class Linkset {
     /** The list of links. Maximum available 16 links */
     private Mtp2[] links = new Mtp2[16];
     private int count;
+    private final Logger logger;
 
     /** The relation between sls and link */
     private int[] map = new int[16];
+
+    public Linkset() {
+        int i;
+        for (i = 0; i < map.length; i++)
+            map[i] = -1;
+        logger = Logger.getLogger(Linkset.class).getLogger("linkset");
+    }
 
     /**
      * Adds link to this link set.
      *
      * @param link the link to add
      */
-    public void add(Mtp2 link) {
+    public boolean add(Mtp2 link) {
         // add link at the first empty place
+        int j = -1;
         for (int i = 0; i < links.length; i++) {
             if (links[i] == null) {
-                links[i] = link;
-                count++;
-                remap();
-                break;
-            }
+                if (j < 0)
+                    j = i;
+            } else if (links[i] == link)
+                return false;
         }
+        if (j < 0)
+            return false; // Linkset is full
+        links[j] = link;
+        count++;
+        if ((map[link.getSls()] != -1) && (logger.isEnabledFor(Level.ERROR)))
+            logger.error(String.format("(%s) Duplicate SLC", link.getName()));
+        map[link.getSls()] = j;
+        return true;
     }
 
     /**
@@ -59,7 +78,9 @@ public class Linkset {
             if (links[i] == link) {
                 links[i] = null;
                 count--;
-                remap();
+                if ((map[link.getSls()] < 0) && (logger.isEnabledFor(Level.ERROR)))
+                    logger.error(String.format("(%s) Missing SLC", link.getName()));
+                map[link.getSls()] = -1;
                 break;
             }
         }
@@ -81,43 +102,7 @@ public class Linkset {
      * @return
      */
     public Mtp2 select(byte sls) {
-        return links[map[sls]];
-    }
-
-    /**
-     * This method is called each time when number of links has changed to reestablish relation between link selection indicator
-     * and link
-     */
-    private void remap() {
-        int k = -1;
-        for (int i = 0; i < map.length; i++) {
-            boolean found = false;
-
-            for (int j = k + 1; j < links.length; j++) {
-                if (links[j] != null) {
-                    found = true;
-                    k = j;
-                    map[i] = k;
-                    break;
-                }
-            }
-
-            if (found) {
-                continue;
-            }
-
-            for (int j = 0; j < k; j++) {
-                if (links[j] != null) {
-                    found = true;
-                    k = j;
-                    map[i] = k;
-                    break;
-                }
-            }
-
-            if (!found) {
-                map[i] = 0;
-            }
-        }
+        int i = map[sls];
+        return (i < 0) ? null : links[i];
     }
 }
