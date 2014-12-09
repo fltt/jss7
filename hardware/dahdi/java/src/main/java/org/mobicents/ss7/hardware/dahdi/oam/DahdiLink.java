@@ -71,19 +71,22 @@ public class DahdiLink extends Link implements Mtp2Listener {
     protected void configure() throws Exception {
 
         if (this.mode == LinkMode.CONFIGURED) {
-            if (this.channel == null) {
+            if (channel == null)
                 channel = new Channel();
-                mtp2 = new Mtp2(this.linkName.toString() + "-" + this.code, this.channel, scheduler); // TODO : Optimize the
-                                                                                                      // String usage
+            channel.setChannelID(channelID);
+            channel.setCode(code);
+            channel.setIOBufferSize(this.ioBufferSize);
+            channel.setLinkName(linkName.toString());
+            channel.setSpan(this.span);
+            if (mtp2 == null) {
+                mtp2 = new Mtp2(linkName.toString() + "-" + code, channel, scheduler); // TODO : Optimize the
+                                                                                            // String usage
+            } else {
+                mtp2.setName(linkName.toString() + "-" + code);
+                mtp2.setSls(code);
             }
 
-            this.mtp2.setMtp2Listener(this);
-
-            channel.setChannelID(this.channelID);
-            channel.setCode(this.code);
-            channel.setIOBufferSize(this.ioBufferSize);
-            channel.setLinkName(this.linkName.toString());
-            channel.setSpan(this.span);
+            mtp2.setMtp2Listener(this);
         }
     }
 
