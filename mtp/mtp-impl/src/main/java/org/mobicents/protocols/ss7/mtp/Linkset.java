@@ -37,9 +37,6 @@ public class Linkset {
     private int[] map = new int[16];
 
     public Linkset() {
-        int i;
-        for (i = 0; i < map.length; i++)
-            map[i] = -1;
         logger = Logger.getLogger(Linkset.class).getLogger("linkset");
     }
 
@@ -62,9 +59,7 @@ public class Linkset {
             return false; // Linkset is full
         links[j] = link;
         count++;
-        if ((map[link.getSls()] != -1) && (logger.isEnabledFor(Level.ERROR)))
-            logger.error(String.format("(%s) Duplicate SLC", link.getName()));
-        map[link.getSls()] = j;
+        remap();
         return true;
     }
 
@@ -78,9 +73,7 @@ public class Linkset {
             if (links[i] == link) {
                 links[i] = null;
                 count--;
-                if ((map[link.getSls()] < 0) && (logger.isEnabledFor(Level.ERROR)))
-                    logger.error(String.format("(%s) Missing SLC", link.getName()));
-                map[link.getSls()] = -1;
+                remap();
                 break;
             }
         }
@@ -102,7 +95,47 @@ public class Linkset {
      * @return
      */
     public Mtp2 select(byte sls) {
-        int i = map[sls];
-        return (i < 0) ? null : links[i];
+        return (count > 0) ? links[map[sls]] : null;
+    }
+
+    /**
+     * This method is called each time when number of links has changed to reestablish relation between link selection indicator
+     * and link
+     */
+    private void remap() {
+        if (count < 1)
+            return;
+        int i, sls = -1;
+        for (i = 0; i < map.length; i++)
+            map[i] = -1;
+        for (i = 0; i < links.length; i++) {
+            if (links[i] == null)
+                continue;
+            sls = links[i].getSls();
+            if ((map[sls] >= 0) && (logger.isEnabledFor(Level.ERROR)))
+                logger.error(String.format("(%s) Duplicate SLC", links[i].getName()));
+            map[sls] = i;
+        }
+        int j, k = -1;
+        int[] map2 = new int[map.length + 1];
+        for (i = j = 0; i < map.length; i++) {
+            if (map[i] < 0)
+                continue;
+            if (i == sls)
+                k = j;
+            map2[j++] = map[i];
+        }
+        map2[j] = -1;
+        for (i = 1; i < map.length; i++) {
+            if (++sls >= map.length)
+                sls = 0;
+            j = map2[++k];
+            if (j < 0) {
+                k = 0;
+                j = map2[0];
+            }
+            if (map[sls] < 0)
+                map[sls] = j;
+        }
     }
 }
