@@ -554,6 +554,8 @@ public class Mtp2 {
                     if (this.retransmissionFSN != _OFF_RTR) {
                         // we shoudl use getters, but its faster with "."
                         this.txFrame = this.transmissionBuffer[this.retransmissionFSN];
+                        if (logger.isEnabledFor(Level.DEBUG))
+                            printFrame("TX MSU", txFrame);
                         this.txFrame.offset = 0;
                         this.txFrame.frame[0] = (byte) (this.sendBSN | (this.sendBIB << 7));
                         this.txFrame.frame[1] = (byte) (this.retransmissionFSN | (this.sendFIB << 7));
@@ -771,12 +773,14 @@ public class Mtp2 {
     }
 
     private void processMSU(int len) {
+        if (logger.isEnabledFor(Level.DEBUG))
+            printFrame("RX MSU", rxFrame);
         if (this.mtp3 != null) {
             mtp3.onMessage(rxFrame, this);
         }
     }
 
-    private void printFrame(Mtp2Buffer frame) {
+    private void printFrame(String prefix, Mtp2Buffer frame) {
         int i,j;
         StringBuffer tmp=new StringBuffer();
         for (i=0; i<frame.len; i++) {
@@ -795,7 +799,7 @@ public class Mtp2 {
                 tmp.append('0');
             tmp.append(Integer.toString(j, 16));
         }
-        logger.debug("Frame: "+tmp.toString());
+        logger.debug(prefix+": "+tmp.toString());
     }
 
     private void processFrame() {
@@ -810,7 +814,7 @@ public class Mtp2 {
         if ((li < 63) ? (li + 5 != rxFrame.len) : (rxFrame.len < 68)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Invalid LI field: expected = " + (rxFrame.len - 5) + ", received = " + li);
-                printFrame(rxFrame);
+                printFrame("Frame RX", rxFrame);
             }
             return;
         }
