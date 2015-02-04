@@ -65,6 +65,7 @@ public class SccpForm extends JDialog {
     private JTextField tbTranslationType;
     private JComboBox cbGlobalTitleType;
     private JComboBox cbAddressNature;
+    private JComboBox cbAddressNature2;
     private JComboBox cbNumberingPlan;
     private JTextField tbCallingPartyAddressDigits;
     private JRadioButton rbRouteDpcSsn;
@@ -78,7 +79,7 @@ public class SccpForm extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setResizable(false);
         setTitle("SCCP settings");
-        setBounds(100, 100, 590, 651);
+        setBounds(100, 100, 590, 682);
 
         JPanel panel = new JPanel();
         getContentPane().add(panel, BorderLayout.CENTER);
@@ -126,7 +127,7 @@ public class SccpForm extends JDialog {
                 loadDataA();
             }
         });
-        button.setBounds(10, 555, 245, 23);
+        button.setBounds(10, 586, 245, 23);
         panel.add(button);
 
         JButton button_1 = new JButton("Load default values for side B");
@@ -135,7 +136,7 @@ public class SccpForm extends JDialog {
                 loadDataB();
             }
         });
-        button_1.setBounds(265, 555, 234, 23);
+        button_1.setBounds(265, 586, 234, 23);
         panel.add(button_1);
 
         JButton button_2 = new JButton("Reload");
@@ -144,7 +145,7 @@ public class SccpForm extends JDialog {
                 reloadData();
             }
         });
-        button_2.setBounds(10, 589, 144, 23);
+        button_2.setBounds(10, 620, 144, 23);
         panel.add(button_2);
 
         JButton button_3 = new JButton("Save");
@@ -155,7 +156,7 @@ public class SccpForm extends JDialog {
                 }
             }
         });
-        button_3.setBounds(255, 589, 117, 23);
+        button_3.setBounds(255, 620, 117, 23);
         panel.add(button_3);
 
         JButton button_4 = new JButton("Cancel");
@@ -164,7 +165,7 @@ public class SccpForm extends JDialog {
                 getJFrame().dispose();
             }
         });
-        button_4.setBounds(382, 589, 117, 23);
+        button_4.setBounds(382, 620, 117, 23);
         panel.add(button_4);
 
         tbLocalSsn = new JTextField();
@@ -188,7 +189,7 @@ public class SccpForm extends JDialog {
         panel_1 = new JPanel();
         panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
         panel_1.setLayout(null);
-        panel_1.setBounds(10, 366, 564, 178);
+        panel_1.setBounds(10, 366, 564, 209);
         panel.add(panel_1);
 
         JLabel lblParametersForCreating = new JLabel("Parameters for creating SccpAddress (when routing on GT)");
@@ -196,28 +197,36 @@ public class SccpForm extends JDialog {
         panel_1.add(lblParametersForCreating);
 
         JLabel lblTranslationType = new JLabel("Translation type");
-        lblTranslationType.setBounds(10, 119, 136, 14);
+        lblTranslationType.setBounds(10, 150, 136, 14);
         panel_1.add(lblTranslationType);
 
         JLabel label_2 = new JLabel("AddressNature");
         label_2.setBounds(10, 57, 136, 14);
         panel_1.add(label_2);
 
-        JLabel label_3 = new JLabel("NumberingPlan");
+        JLabel label_3 = new JLabel("AddressNature 2");
         label_3.setBounds(10, 88, 136, 14);
         panel_1.add(label_3);
 
+        JLabel label_4 = new JLabel("NumberingPlan");
+        label_4.setBounds(10, 119, 136, 14);
+        panel_1.add(label_4);
+
         tbTranslationType = new JTextField();
         tbTranslationType.setColumns(10);
-        tbTranslationType.setBounds(156, 116, 130, 20);
+        tbTranslationType.setBounds(156, 147, 130, 20);
         panel_1.add(tbTranslationType);
 
         cbAddressNature = new JComboBox();
         cbAddressNature.setBounds(156, 54, 294, 20);
         panel_1.add(cbAddressNature);
 
+        cbAddressNature2 = new JComboBox();
+        cbAddressNature2.setBounds(156, 85, 294, 20);
+        panel_1.add(cbAddressNature2);
+
         cbNumberingPlan = new JComboBox();
-        cbNumberingPlan.setBounds(156, 85, 294, 20);
+        cbNumberingPlan.setBounds(156, 116, 294, 20);
         panel_1.add(cbNumberingPlan);
 
         JLabel lblGlobaltitleType = new JLabel("GlobalTitle type");
@@ -229,12 +238,12 @@ public class SccpForm extends JDialog {
         panel_1.add(cbGlobalTitleType);
 
         JLabel lblCallingpartyaddressDigits = new JLabel("CallingPartyAddress digits");
-        lblCallingpartyaddressDigits.setBounds(10, 150, 176, 14);
+        lblCallingpartyaddressDigits.setBounds(10, 181, 176, 14);
         panel_1.add(lblCallingpartyaddressDigits);
 
         tbCallingPartyAddressDigits = new JTextField();
         tbCallingPartyAddressDigits.setColumns(10);
-        tbCallingPartyAddressDigits.setBounds(219, 147, 231, 20);
+        tbCallingPartyAddressDigits.setBounds(219, 178, 231, 20);
         panel_1.add(tbCallingPartyAddressDigits);
 
         rbRouteDpcSsn = new JRadioButton("Route on DPC and SSN mode");
@@ -286,6 +295,7 @@ public class SccpForm extends JDialog {
 
         M3uaForm.setEnumeratedBaseComboBox(cbGlobalTitleType, this.sccp.getGlobalTitleType());
         M3uaForm.setEnumeratedBaseComboBox(cbAddressNature, this.sccp.getNatureOfAddress());
+        M3uaForm.setEnumeratedBaseComboBox(cbAddressNature2, this.sccp.getNatureOfAddress2());
         M3uaForm.setEnumeratedBaseComboBox(cbNumberingPlan, this.sccp.getNumberingPlan());
 
         tbRemoteSpc.setText(((Integer) this.sccp.getRemoteSpc()).toString());
@@ -323,6 +333,7 @@ public class SccpForm extends JDialog {
 
         M3uaForm.setEnumeratedBaseComboBox(cbGlobalTitleType, new GlobalTitleType(GlobalTitleType.VAL_TT_NP_ES_NOA));
         M3uaForm.setEnumeratedBaseComboBox(cbAddressNature, new NatureOfAddressType(NatureOfAddress.INTERNATIONAL.getValue()));
+        M3uaForm.setEnumeratedBaseComboBox(cbAddressNature2, new NatureOfAddressType(NatureOfAddress.NATIONAL.getValue()));
         M3uaForm.setEnumeratedBaseComboBox(cbNumberingPlan, new NumberingPlanSccpType(NumberingPlan.ISDN_TELEPHONY.getValue()));
 
         tbRemoteSpc.setText("2");
@@ -357,6 +368,7 @@ public class SccpForm extends JDialog {
 
         M3uaForm.setEnumeratedBaseComboBox(cbGlobalTitleType, new GlobalTitleType(GlobalTitleType.VAL_TT_NP_ES_NOA));
         M3uaForm.setEnumeratedBaseComboBox(cbAddressNature, new NatureOfAddressType(NatureOfAddress.INTERNATIONAL.getValue()));
+        M3uaForm.setEnumeratedBaseComboBox(cbAddressNature2, new NatureOfAddressType(NatureOfAddress.NATIONAL.getValue()));
         M3uaForm.setEnumeratedBaseComboBox(cbNumberingPlan, new NumberingPlanSccpType(NumberingPlan.ISDN_TELEPHONY.getValue()));
 
         tbRemoteSpc.setText("1");
@@ -431,6 +443,7 @@ public class SccpForm extends JDialog {
 
         this.sccp.setGlobalTitleType((GlobalTitleType) cbGlobalTitleType.getSelectedItem());
         this.sccp.setNatureOfAddress((NatureOfAddressType) cbAddressNature.getSelectedItem());
+        this.sccp.setNatureOfAddress2((NatureOfAddressType) cbAddressNature2.getSelectedItem());
         this.sccp.setNumberingPlan((NumberingPlanSccpType) cbNumberingPlan.getSelectedItem());
 
         this.sccp.setCallingPartyAddressDigits(tbCallingPartyAddressDigits.getText());
@@ -442,6 +455,7 @@ public class SccpForm extends JDialog {
     private void setRouteOnGtEnabled(boolean val) {
         this.cbGlobalTitleType.setEnabled(val);
         this.cbAddressNature.setEnabled(val);
+        this.cbAddressNature2.setEnabled(val);
         this.cbNumberingPlan.setEnabled(val);
         this.tbTranslationType.setEnabled(val);
         this.tbCallingPartyAddressDigits.setEnabled(val);

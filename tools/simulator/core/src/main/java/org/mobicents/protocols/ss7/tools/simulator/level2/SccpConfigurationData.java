@@ -41,6 +41,7 @@ public class SccpConfigurationData {
     protected static final String LOCAL_SSN = "localSsn";
     protected static final String GLOBAL_TITLE_TYPE = "globalTitleType";
     protected static final String ADDRESS_NATURE = "addressNature";
+    protected static final String ADDRESS_NATURE_2 = "addressNature2";
     protected static final String NUMBERING_PLAN = "numberingPlan";
     protected static final String TRANSLATION_TYTE = "translationType";
     protected static final String CALLING_PARTY_ADDRESS_DIGITS = "callingPartyAddressDigits";
@@ -54,6 +55,7 @@ public class SccpConfigurationData {
     private int ni = 0;
     private GlobalTitleType globalTitleType = new GlobalTitleType(GlobalTitleType.VAL_TT_NP_ES_NOA);
     private NatureOfAddress natureOfAddress = NatureOfAddress.INTERNATIONAL;
+    private NatureOfAddress natureOfAddress2 = NatureOfAddress.NATIONAL;
     private NumberingPlan numberingPlan = NumberingPlan.ISDN_MOBILE;
     private int translationType = 0;
     private String callingPartyAddressDigits = "";
@@ -126,8 +128,16 @@ public class SccpConfigurationData {
         return natureOfAddress;
     }
 
+    public NatureOfAddress getNatureOfAddress2() {
+        return natureOfAddress2;
+    }
+
     public void setNatureOfAddress(NatureOfAddress natureOfAddress) {
         this.natureOfAddress = natureOfAddress;
+    }
+
+    public void setNatureOfAddress2(NatureOfAddress natureOfAddress) {
+        this.natureOfAddress2 = natureOfAddress;
     }
 
     public NumberingPlan getNumberingPlan() {
@@ -169,6 +179,7 @@ public class SccpConfigurationData {
 
             xml.add(sccp.getGlobalTitleType().toString(), GLOBAL_TITLE_TYPE, String.class);
             xml.add(sccp.getNatureOfAddress().toString(), ADDRESS_NATURE, String.class);
+            xml.add(sccp.getNatureOfAddress2().toString(), ADDRESS_NATURE_2, String.class);
             xml.add(sccp.getNumberingPlan().toString(), NUMBERING_PLAN, String.class);
             xml.add(sccp.getCallingPartyAddressDigits(), CALLING_PARTY_ADDRESS_DIGITS, String.class);
         }
@@ -187,6 +198,8 @@ public class SccpConfigurationData {
             sccp.setGlobalTitleType(GlobalTitleType.createInstance(gtt));
             String an = (String) xml.get(ADDRESS_NATURE, String.class);
             sccp.setNatureOfAddress(NatureOfAddress.valueOf(an));
+            String an2 = (String) xml.get(ADDRESS_NATURE_2, String.class);
+            sccp.setNatureOfAddress2(NatureOfAddress.valueOf(an2));
             String np = (String) xml.get(NUMBERING_PLAN, String.class);
             sccp.setNumberingPlan(NumberingPlan.valueOf(np));
             sccp.setCallingPartyAddressDigits((String) xml.get(CALLING_PARTY_ADDRESS_DIGITS, String.class));

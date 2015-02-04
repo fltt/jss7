@@ -64,7 +64,13 @@ public interface SccpManMBean {
 
     String getNatureOfAddress_Value();
 
+    NatureOfAddressType getNatureOfAddress2();
+
+    String getNatureOfAddress2_Value();
+
     void setNatureOfAddress(NatureOfAddressType val);
+
+    void setNatureOfAddress2(NatureOfAddressType val);
 
     NumberingPlanSccpType getNumberingPlan();
 
@@ -87,6 +93,8 @@ public interface SccpManMBean {
     void putGlobalTitleType(String val);
 
     void putNatureOfAddress(String val);
+
+    void putNatureOfAddress2(String val);
 
     void putNumberingPlan(String val);
 

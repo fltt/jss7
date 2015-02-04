@@ -167,10 +167,30 @@ public class SccpMan implements SccpManMBean, Stoppable {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress().toString();
     }
 
+    public NatureOfAddressType getNatureOfAddress2() {
+        return new NatureOfAddressType(this.testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress2()
+                .getValue());
+    }
+
+    public String getNatureOfAddress2_Value() {
+        return this.testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress2().toString();
+    }
+
     public void setNatureOfAddress(NatureOfAddressType val) {
         try {
             this.testerHost.getConfigurationData().getSccpConfigurationData()
                     .setNatureOfAddress(NatureOfAddress.valueOf(val.intValue()));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.testerHost.markStore();
+    }
+
+    public void setNatureOfAddress2(NatureOfAddressType val) {
+        try {
+            this.testerHost.getConfigurationData().getSccpConfigurationData()
+                    .setNatureOfAddress2(NatureOfAddress.valueOf(val.intValue()));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -226,6 +246,12 @@ public class SccpMan implements SccpManMBean, Stoppable {
         NatureOfAddressType x = NatureOfAddressType.createInstance(val);
         if (x != null)
             this.setNatureOfAddress(x);
+    }
+
+    public void putNatureOfAddress2(String val) {
+        NatureOfAddressType x = NatureOfAddressType.createInstance(val);
+        if (x != null)
+            this.setNatureOfAddress2(x);
     }
 
     public void putNumberingPlan(String val) {
@@ -334,6 +360,12 @@ public class SccpMan implements SccpManMBean, Stoppable {
             mask = "R";
             ((RouterImpl) this.router).addRule(2, RuleType.Solitary, null, OriginationType.RemoteOriginated, pattern, mask, 2,
                     -1, null);
+            if (testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress().getValue() !=
+                testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress2().getValue()) {
+                pattern = new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE, 0, this.createGlobalTitle2("*"), 0);
+                ((RouterImpl) this.router).addRule(3, RuleType.Solitary, null, OriginationType.RemoteOriginated, pattern, mask, 2,
+                                                   -1, null);
+            }
         }
     }
 
@@ -391,6 +423,32 @@ public class SccpMan implements SccpManMBean, Stoppable {
                         .getTranslationType(), this.testerHost.getConfigurationData().getSccpConfigurationData()
                         .getNumberingPlan(), this.testerHost.getConfigurationData().getSccpConfigurationData()
                         .getNatureOfAddress(), address);
+                break;
+        }
+        return gt;
+    }
+
+    public GlobalTitle createGlobalTitle2(String address) {
+        GlobalTitle gt = null;
+        switch (this.testerHost.getConfigurationData().getSccpConfigurationData().getGlobalTitleType().intValue()) {
+            case GlobalTitleType.VAL_NOA_ONLY:
+                gt = GlobalTitle.getInstance(this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getNatureOfAddress2(), address);
+                break;
+            case GlobalTitleType.VAL_TT_ONLY:
+                gt = GlobalTitle.getInstance(this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getTranslationType(), address);
+                break;
+            case GlobalTitleType.VAL_TT_NP_ES:
+                gt = GlobalTitle.getInstance(this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getTranslationType(), this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getNumberingPlan(), address);
+                break;
+            case GlobalTitleType.VAL_TT_NP_ES_NOA:
+                gt = GlobalTitle.getInstance(this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getTranslationType(), this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getNumberingPlan(), this.testerHost.getConfigurationData().getSccpConfigurationData()
+                        .getNatureOfAddress2(), address);
                 break;
         }
         return gt;
