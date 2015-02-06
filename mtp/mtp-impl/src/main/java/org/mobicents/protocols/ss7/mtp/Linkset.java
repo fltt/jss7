@@ -19,6 +19,8 @@
 
 package org.mobicents.protocols.ss7.mtp;
 
+import java.util.*;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -33,9 +35,6 @@ public class Linkset {
     private int count;
     private final Logger logger;
 
-    /** The relation between sls and link */
-    private int[] map = new int[16];
-
     public Linkset() {
         logger = Logger.getLogger(Linkset.class).getLogger("linkset");
     }
@@ -46,20 +45,49 @@ public class Linkset {
      * @param link the link to add
      */
     public boolean add(Mtp2 link) {
-        // add link at the first empty place
-        int j = -1;
-        for (int i = 0; i < links.length; i++) {
-            if (links[i] == null) {
-                if (j < 0)
-                    j = i;
-            } else if (links[i] == link)
-                return false;
+        if ((count >= links.length) || (link == null))
+            return false;
+        if (count++ == 0) {
+            Arrays.fill(links, link);
+            return true;
         }
-        if (j < 0)
-            return false; // Linkset is full
-        links[j] = link;
-        count++;
-        remap();
+        int i = link.getSls();
+        if ((links[i].getSls() == i) && (logger.isEnabledFor(Level.ERROR)))
+            logger.error(String.format("(%s) Duplicate SLC (%s)", link.getName(), links[i].getName()));
+        links[i] = link;
+        int quota = links.length / count;
+        if (--quota == 0)
+            return true;
+        Vector<Integer> vi;
+        Map<Mtp2, Vector<Integer>> assignedSls = new IdentityHashMap<Mtp2, Vector<Integer>>();
+        for (i = 0; i < links.length; i++) {
+            if (links[i].getSls() == i)
+                continue;
+            if (links[i] == link)
+                return false;
+            vi = assignedSls.get(links[i]);
+            if (vi == null) {
+                vi = new Vector<Integer>();
+                assignedSls.put(links[i], vi);
+            }
+            vi.add(new Integer(i));
+        }
+        for (Map.Entry<Mtp2, Vector<Integer>> as : assignedSls.entrySet())
+            Collections.shuffle(as.getValue());
+        Integer sls;
+        while (quota-- > 0) {
+            Vector<Map.Entry<Mtp2, Vector<Integer>>> linkslist = new Vector<Map.Entry<Mtp2, Vector<Integer>>>(assignedSls.entrySet());
+            // Take SLSs for the new link from links with greatest number of assigned SLSs
+            Collections.sort(linkslist, new Comparator<Map.Entry<Mtp2, Vector<Integer>>>() {
+                    public int compare(Map.Entry<Mtp2, Vector<Integer>> a, Map.Entry<Mtp2, Vector<Integer>> b) {
+                        return b.getValue().size() - a.getValue().size();
+                    }
+                });
+            vi = linkslist.firstElement().getValue();
+            sls = vi.iterator().next();
+            vi.remove(sls);
+            links[sls.intValue()] = link;
+        }
         return true;
     }
 
@@ -69,13 +97,36 @@ public class Linkset {
      * @param link the link to remove.
      */
     public void remove(Mtp2 link) {
+        if (link == null)
+            return;
+        Vector<Integer> vi;
+        Map<Mtp2, Vector<Integer>> assignedSls = new IdentityHashMap<Mtp2, Vector<Integer>>();
         for (int i = 0; i < links.length; i++) {
-            if (links[i] == link) {
-                links[i] = null;
-                count--;
-                remap();
-                break;
+            vi = assignedSls.get(links[i]);
+            if (vi == null) {
+                vi = new Vector<Integer>();
+                assignedSls.put(links[i], vi);
             }
+            vi.add(new Integer(i));
+        }
+        Vector<Integer> freeSls = assignedSls.remove(link);
+        if (freeSls == null)
+            return;
+        if (--count == 0) {
+            Arrays.fill(links, null);
+            return;
+        }
+        Collections.shuffle(freeSls);
+        for (Integer sls : freeSls) {
+            Vector<Map.Entry<Mtp2, Vector<Integer>>> linkslist = new Vector<Map.Entry<Mtp2, Vector<Integer>>>(assignedSls.entrySet());
+            // Give freed SLSs to links with smallest number of assigned SLSs
+            Collections.sort(linkslist, new Comparator<Map.Entry<Mtp2, Vector<Integer>>>() {
+                    public int compare(Map.Entry<Mtp2, Vector<Integer>> a, Map.Entry<Mtp2, Vector<Integer>> b) {
+                        return a.getValue().size() - b.getValue().size();
+                    }
+                });
+            linkslist.firstElement().getValue().add(sls);
+            links[sls.intValue()] = linkslist.firstElement().getKey();
         }
     }
 
@@ -95,47 +146,6 @@ public class Linkset {
      * @return
      */
     public Mtp2 select(byte sls) {
-        return (count > 0) ? links[map[sls]] : null;
-    }
-
-    /**
-     * This method is called each time when number of links has changed to reestablish relation between link selection indicator
-     * and link
-     */
-    private void remap() {
-        if (count < 1)
-            return;
-        int i, sls = -1;
-        for (i = 0; i < map.length; i++)
-            map[i] = -1;
-        for (i = 0; i < links.length; i++) {
-            if (links[i] == null)
-                continue;
-            sls = links[i].getSls();
-            if ((map[sls] >= 0) && (logger.isEnabledFor(Level.ERROR)))
-                logger.error(String.format("(%s) Duplicate SLC", links[i].getName()));
-            map[sls] = i;
-        }
-        int j, k = -1;
-        int[] map2 = new int[map.length + 1];
-        for (i = j = 0; i < map.length; i++) {
-            if (map[i] < 0)
-                continue;
-            if (i == sls)
-                k = j;
-            map2[j++] = map[i];
-        }
-        map2[j] = -1;
-        for (i = 1; i < map.length; i++) {
-            if (++sls >= map.length)
-                sls = 0;
-            j = map2[++k];
-            if (j < 0) {
-                k = 0;
-                j = map2[0];
-            }
-            if (map[sls] < 0)
-                map[sls] = j;
-        }
+        return links[sls];
     }
 }
