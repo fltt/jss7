@@ -52,6 +52,8 @@ public class Linkset {
             return true;
         }
         int i = link.getSls();
+        if (links[i] == link)
+            return false;
         if ((links[i].getSls() == i) && (logger.isEnabledFor(Level.ERROR)))
             logger.error(String.format("(%s) Duplicate SLC (%s)", link.getName(), links[i].getName()));
         links[i] = link;
