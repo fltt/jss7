@@ -24,7 +24,6 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CoderResult;
-import java.util.BitSet;
 
 /**
  *
@@ -34,17 +33,13 @@ import java.util.BitSet;
  */
 public class GSMCharsetEncoder extends CharsetEncoder {
 
+    private int bytepos = 0;
     private int bitpos = 0;
-    private int carryOver;
+    private int carryOver = 0;
+    private char lastChar = ' ';
+    private boolean continueFromLast = false;
     private GSMCharset cs;
     private GSMCharsetEncodingData encodingData;
-
-    // The mask to check if corresponding bit in read byte is 1 or 0 and hence
-    // store it i BitSet accordingly
-    byte[] mask = new byte[] { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40 };
-
-    // BitSet to hold the bits of passed char to be encoded
-    BitSet bitSet = new BitSet();
 
     static final byte ESCAPE = 0x1B;
 
@@ -52,9 +47,6 @@ public class GSMCharsetEncoder extends CharsetEncoder {
         super(cs, averageBytesPerChar, maxBytesPerChar);
         implReset();
         this.cs = (GSMCharset) cs;
-
-        if (encodingData != null)
-            encodingData.totalSeptetCount = 0;
     }
 
     public void setGSMCharsetEncodingData(GSMCharsetEncodingData encodingData) {
@@ -66,69 +58,16 @@ public class GSMCharsetEncoder extends CharsetEncoder {
     }
 
     protected void implReset() {
+        bytepos = 0;
         bitpos = 0;
         carryOver = 0;
-        bitSet.clear();
+        lastChar = ' ';
+        continueFromLast = false;
+        if (encodingData != null)
+            encodingData.totalSeptetCount = 0;
     }
 
-    /**
-     * TODO :
-     */
     protected CoderResult implFlush(ByteBuffer out) {
-
-        if (!out.hasRemaining()) {
-            return CoderResult.OVERFLOW;
-        }
-        return CoderResult.UNDERFLOW;
-    }
-
-    byte rawData = 0;
-
-    protected CoderResult encodeLoop(CharBuffer in, ByteBuffer out) {
-
-        if (this.encodingData != null && this.encodingData.leadingBuffer != null) {
-            int septetCount = (this.encodingData.leadingBuffer.length * 8 + 6) / 7;
-            bitpos = septetCount % 8;
-            this.encodingData.totalSeptetCount = septetCount;
-            for (int ind = 0; ind < this.encodingData.leadingBuffer.length; ind++) {
-                out.put(this.encodingData.leadingBuffer[ind]);
-            }
-        }
-
-        char lastChar = ' ';
-        while (in.hasRemaining()) {
-
-            // Read the first char
-            char c = in.get();
-            lastChar = c;
-
-            boolean found = false;
-            // searching a char in the main character table
-            for (int i = 0; i < this.cs.mainTable.length; i++) {
-                if (this.cs.mainTable[i] == c) {
-                    found = true;
-                    this.putByte(i, out);
-                    break;
-                }
-            }
-
-            // searching a char in the extension character table
-            if (!found && this.cs.extensionTable != null) {
-                for (int i = 0; i < this.cs.mainTable.length; i++) {
-                    if (this.cs.extensionTable[i] == c) {
-                        found = true;
-                        this.putByte(GSMCharsetEncoder.ESCAPE, out);
-                        this.putByte(i, out);
-                        break;
-                    }
-                }
-            }
-
-            if (!found) {
-                // found no suitable symbol - encode a space char
-                this.putByte(0x20, out);
-            }
-        }
 
         if (bitpos != 0) {
             // USSD: replace 7-bit pad with <CR>
@@ -136,18 +75,89 @@ public class GSMCharsetEncoder extends CharsetEncoder {
                 carryOver |= 0x1A;
 
             // writing a carryOver data
+            if (out.remaining() < 1)
+                return CoderResult.OVERFLOW;
             out.put((byte) carryOver);
+            bitpos = 0;
         } else {
 
             // USSD: adding extra <CR> if the last symbol is <CR> and no padding
-            if (this.encodingData != null && this.encodingData.ussdStyleEncoding && lastChar == '\r')
+            if (this.encodingData != null && this.encodingData.ussdStyleEncoding && lastChar == '\r') {
+                if (out.remaining() < 1)
+                    return CoderResult.OVERFLOW;
                 out.put((byte) 0x0D);
+            }
         }
 
         return CoderResult.UNDERFLOW;
     }
 
-    private void putByte(int data, ByteBuffer out) {
+    protected CoderResult encodeLoop(CharBuffer in, ByteBuffer out) {
+
+        if (this.encodingData != null && this.encodingData.leadingBuffer != null) {
+            int septetCount = (this.encodingData.leadingBuffer.length * 8 + 6) / 7;
+            bitpos = septetCount % 8;
+            this.encodingData.totalSeptetCount = septetCount;
+            for (; bytepos < this.encodingData.leadingBuffer.length; bytepos++) {
+                if (out.remaining() < 1)
+                    return CoderResult.OVERFLOW;
+                out.put(this.encodingData.leadingBuffer[bytepos]);
+            }
+        }
+
+        while (in.hasRemaining()) {
+
+            if (continueFromLast) {
+                continueFromLast = false;
+            } else {
+                // Read the first char
+                lastChar = in.get();
+            }
+
+            boolean found = false;
+            // searching a char in the main character table
+            for (int i = 0; i < this.cs.mainTable.length; i++) {
+                if (this.cs.mainTable[i] == lastChar) {
+                    if (putByte(i, out)) {
+                        continueFromLast = true;
+                        return CoderResult.OVERFLOW;
+                    }
+                    found = true;
+                    break;
+                }
+            }
+
+            // searching a char in the extension character table
+            if (!found && this.cs.extensionTable != null) {
+                for (int i = 0; i < this.cs.mainTable.length; i++) {
+                    if (this.cs.extensionTable[i] == lastChar) {
+                        if (putEscByte(i, out)) {
+                            continueFromLast = true;
+                            return CoderResult.OVERFLOW;
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!found) {
+                // found no suitable symbol - encode a space char
+                if (putByte(0x20, out)) {
+                    continueFromLast = true;
+                    return CoderResult.OVERFLOW;
+                }
+            }
+        }
+
+        return CoderResult.UNDERFLOW;
+    }
+
+    private boolean putByte(int data, ByteBuffer out) {
+        if (out.remaining()*8 < 15 - bitpos) {
+            implFlush(out);
+            return true;
+        }
 
         if (bitpos == 0) {
             carryOver = data;
@@ -164,5 +174,38 @@ public class GSMCharsetEncoder extends CharsetEncoder {
 
         if (this.encodingData != null)
             this.encodingData.totalSeptetCount++;
+        return false;
+    }
+
+    private boolean putEscByte(int data, ByteBuffer out) {
+        if (out.remaining()*8 < 22 - bitpos) {
+            implFlush(out);
+            return true;
+        }
+
+        if (bitpos == 0) {
+            int i1 = data << 7;
+            out.put((byte) (i1 | GSMCharsetEncoder.ESCAPE));
+            carryOver = data >>> 1;
+        } else {
+            int i1 = GSMCharsetEncoder.ESCAPE << (8 - bitpos);
+            out.put((byte) (i1 | carryOver));
+            if (bitpos == 7) {
+                carryOver = data;
+            } else {
+                carryOver = GSMCharsetEncoder.ESCAPE >>> bitpos;
+                i1 = data << (8 - bitpos - 1);
+                out.put((byte) (i1 | carryOver));
+                carryOver = data >>> (bitpos + 1);
+            }
+        }
+
+        bitpos += 2;
+        if (bitpos >= 8)
+            bitpos -= 8;
+
+        if (this.encodingData != null)
+            this.encodingData.totalSeptetCount += 2;
+        return false;
     }
 }
