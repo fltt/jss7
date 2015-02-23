@@ -19,13 +19,20 @@
 
 package org.mobicents.protocols.ss7.map.smstpdu;
 
+import java.util.Vector;
+
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+import java.nio.charset.CoderResult;
+import java.nio.charset.CodingErrorAction;
 
 import org.mobicents.protocols.ss7.map.api.MAPException;
+import org.mobicents.protocols.ss7.map.api.MAPSmsTpduParameterFactory;
 import org.mobicents.protocols.ss7.map.api.datacoding.NationalLanguageIdentifier;
+import org.mobicents.protocols.ss7.map.api.smstpdu.CharacterSet;
 import org.mobicents.protocols.ss7.map.api.smstpdu.ConcatenatedMessage;
 import org.mobicents.protocols.ss7.map.api.smstpdu.DataCodingScheme;
 import org.mobicents.protocols.ss7.map.api.smstpdu.Gsm7NationalLanguageIdentifier;
@@ -324,16 +331,306 @@ public class UserDataImpl implements UserData {
         }
     }
 
-    public static UserData[] encodeSplitedMessagesSet(String msg, DataCodingScheme dataCodingScheme,
-            Gsm7NationalLanguageIdentifier nationalLanguageLockingShift,
-            Gsm7NationalLanguageIdentifier nationalLanguageSingleShift, boolean referenceIs16bit,
-            UserDataHeaderElement[] extraUserDataHeader) throws MAPException {
+    public static UserData[] encodeGSM7SplitMessagesSet(MAPSmsTpduParameterFactory mapSmsTpduParameterFactory,
+                                                        String msg, DataCodingScheme dataCodingScheme,
+                                                        boolean referenceIs16bit, int messageReferenceNumber,
+                                                        int messageSegmentCount, int messageSegmentNumber,
+                                                        UserDataHeader userDataHeader) throws MAPException {
+        byte[] buf2 = null;
+        boolean encodedUserDataHeaderIndicator = false;
+        if (userDataHeader != null) {
+            buf2 = userDataHeader.getEncodedData();
+        } else if ((messageSegmentCount > 0) && (messageSegmentNumber > 0)) {
+            userDataHeader = mapSmsTpduParameterFactory.createUserDataHeader();
+            UserDataHeaderElement concatenatedShortMessagesIdentifier = mapSmsTpduParameterFactory
+                .createConcatenatedShortMessagesIdentifier(referenceIs16bit, messageReferenceNumber,
+                                                           messageSegmentCount, messageSegmentNumber);
+            userDataHeader.addInformationElement(concatenatedShortMessagesIdentifier);
+            buf2 = userDataHeader.getEncodedData();
+        }
+        if ((buf2 != null) && (buf2.length > 0))
+            encodedUserDataHeaderIndicator = true;
 
-        // TODO: implement the splitMessage tool: splitting a sms message into several messages depending on data coding
-        throw new MAPException("Not yet implemented");
+        byte[] encodedData = null;
+        ByteBuffer bb = ByteBuffer.allocateDirect(140);
+        CoderResult res;
+        GSMCharsetEncoder encoder = (GSMCharsetEncoder)gsm7Charset.newEncoder();
+        Vector<byte[]> encodedDataVector = new Vector<byte[]>();
+        Vector<Integer> encodedDataLengthVector = new Vector<Integer>();
+
+        if (encodedUserDataHeaderIndicator || (msg.length() <= 160)) {
+            // Try encoding single segment (if encodedUserDataHeaderIndicator == true,
+            // don't encode multiple segments in any case)
+            encoder.setGSMCharsetEncodingData(new GSMCharsetEncodingData(buf2));
+            CharBuffer msgBuffer = CharBuffer.wrap(msg);
+            res = encoder.encode(msgBuffer, bb, true);
+            if (res.isError())
+                return null;
+            if (encodedUserDataHeaderIndicator || res.isUnderflow()) {
+                // The message fits a single segment or we are forced to
+                // encode a single segment (i.e., there is a UserDataHeader)
+                encoder.flush(bb);
+                bb.flip();
+                encodedData = new byte[bb.limit()];
+                bb.get(encodedData);
+                encodedDataVector.add(encodedData);
+                encodedDataLengthVector.add(new Integer(encoder.getGSMCharsetEncodingData().getTotalSeptetCount()));
+            }
+        }
+
+        if (encodedData == null) {
+            // There is no UserDataHeader and the
+            // message doesn't fit a single segment
+
+            // Fake UserDataHeader
+            if (referenceIs16bit) {
+                buf2 = new byte[7];
+            } else {
+                buf2 = new byte[6];
+            }
+            encoder.setGSMCharsetEncodingData(new GSMCharsetEncodingData(buf2));
+            CharBuffer msgBuffer = CharBuffer.wrap(msg);
+
+            do {
+                encoder.reset();
+                res = encoder.encode(msgBuffer, bb, true);
+                if (res.isError())
+                    return null;
+                if (res.isUnderflow())
+                    encoder.flush(bb);
+                bb.flip();
+                encodedData = new byte[bb.limit()];
+                bb.get(encodedData);
+                bb.clear();
+                encodedDataVector.add(encodedData);
+                encodedDataLengthVector.add(new Integer(encoder.getGSMCharsetEncodingData().getTotalSeptetCount()));
+
+                // Do not encode more than 255 segments
+                if (encodedDataVector.size() > 254)
+                    break;
+            } while (res.isOverflow());
+        }
+
+        UserData[] userDataArray = new UserData[encodedDataVector.size()];
+        DataCodingScheme newDataCodingScheme =
+            new DataCodingSchemeImpl(dataCodingScheme.getDataCodingGroup(),
+                                     dataCodingScheme.getMessageClass(),
+                                     dataCodingScheme.getDataCodingSchemaIndicationType(),
+                                     dataCodingScheme.getSetIndicationActive(),
+                                     CharacterSet.GSM7, false);
+
+        if (encodedDataVector.size() > 1) {
+            messageSegmentNumber = 0;
+            for (byte[] userData : encodedDataVector) {
+                userDataHeader = mapSmsTpduParameterFactory.createUserDataHeader();
+                UserDataHeaderElement concatenatedShortMessagesIdentifier = mapSmsTpduParameterFactory
+                    .createConcatenatedShortMessagesIdentifier(referenceIs16bit, messageReferenceNumber,
+                                                               encodedDataVector.size(), messageSegmentNumber + 1);
+                userDataHeader.addInformationElement(concatenatedShortMessagesIdentifier);
+                buf2 = userDataHeader.getEncodedData();
+                System.arraycopy(buf2, 0, userData, 0, buf2.length);
+                userDataArray[messageSegmentNumber] = new UserDataImpl(userData, newDataCodingScheme,
+                                                                       encodedDataLengthVector.get(messageSegmentNumber).intValue(),
+                                                                       true, null);
+                messageSegmentNumber++;
+            }
+        } else {
+            byte[] userData = encodedDataVector.firstElement();
+            userDataArray[0] = new UserDataImpl(userData, newDataCodingScheme,
+                                                encodedDataLengthVector.get(0).intValue(),
+                                                encodedUserDataHeaderIndicator, null);
+        }
+
+        return userDataArray;
     }
 
-    public static ConcatenatedMessage decodeSplittedMessagesSet(UserData[] encodedArray, DataCodingScheme dataCodingScheme)
+    public static UserData[] encode8BitDataSplitMessagesSet(MAPSmsTpduParameterFactory mapSmsTpduParameterFactory,
+                                                            byte[] msg, DataCodingScheme dataCodingScheme,
+                                                            boolean referenceIs16bit, int messageReferenceNumber,
+                                                            int messageSegmentCount, int messageSegmentNumber,
+                                                            UserDataHeader userDataHeader) throws MAPException {
+        int bufferLimit = 140;
+        byte[] buf2 = null;
+        boolean encodedUserDataHeaderIndicator = false;
+        ByteBuffer bb = ByteBuffer.allocateDirect(bufferLimit);
+        if (userDataHeader != null) {
+            buf2 = userDataHeader.getEncodedData();
+        } else if ((messageSegmentCount > 0) && (messageSegmentNumber > 0)) {
+            userDataHeader = mapSmsTpduParameterFactory.createUserDataHeader();
+            UserDataHeaderElement concatenatedShortMessagesIdentifier = mapSmsTpduParameterFactory
+                .createConcatenatedShortMessagesIdentifier(referenceIs16bit, messageReferenceNumber,
+                                                           messageSegmentCount, messageSegmentNumber);
+            userDataHeader.addInformationElement(concatenatedShortMessagesIdentifier);
+            buf2 = userDataHeader.getEncodedData();
+        }
+        if ((buf2 != null) && (buf2.length > 0)) {
+            encodedUserDataHeaderIndicator = true;
+            bb.put(buf2);
+        }
+
+        if ((!encodedUserDataHeaderIndicator) && (msg.length > 140)) {
+            if (referenceIs16bit) {
+                bufferLimit = 133;
+            } else {
+                bufferLimit = 134;
+            }
+            bb.limit(bufferLimit);
+        }
+
+        byte[] encodedData;
+        Vector<byte[]> encodedDataVector = new Vector<byte[]>();
+
+        int len;
+        int offset = 0;
+        do {
+            len = msg.length - offset;
+            if (len > bb.remaining())
+                len = bb.remaining();
+            bb.put(msg, offset, len);
+            offset += len;
+            bb.flip();
+            encodedData = new byte[bb.limit()];
+            bb.get(encodedData);
+            bb.clear();
+            bb.limit(bufferLimit);
+            encodedDataVector.add(encodedData);
+
+            // Do not encode more than 255 segments
+            if (encodedDataVector.size() > 254)
+                break;
+        } while ((offset < msg.length) && !encodedUserDataHeaderIndicator);
+
+        UserData[] userDataArray = new UserData[encodedDataVector.size()];
+        DataCodingScheme newDataCodingScheme =
+            new DataCodingSchemeImpl(dataCodingScheme.getDataCodingGroup(),
+                                     dataCodingScheme.getMessageClass(),
+                                     dataCodingScheme.getDataCodingSchemaIndicationType(),
+                                     dataCodingScheme.getSetIndicationActive(),
+                                     CharacterSet.GSM8, false);
+
+        if (encodedDataVector.size() > 1) {
+            messageSegmentNumber = 0;
+            for (byte[] userData : encodedDataVector) {
+                userDataHeader = mapSmsTpduParameterFactory.createUserDataHeader();
+                UserDataHeaderElement concatenatedShortMessagesIdentifier = mapSmsTpduParameterFactory
+                    .createConcatenatedShortMessagesIdentifier(referenceIs16bit, messageReferenceNumber,
+                                                               encodedDataVector.size(), messageSegmentNumber + 1);
+                userDataHeader.addInformationElement(concatenatedShortMessagesIdentifier);
+                buf2 = userDataHeader.getEncodedData();
+                encodedData = new byte[buf2.length + userData.length];
+                System.arraycopy(buf2, 0, encodedData, 0, buf2.length);
+                System.arraycopy(userData, 0, encodedData, buf2.length, userData.length);
+                userDataArray[messageSegmentNumber++] = new UserDataImpl(encodedData, newDataCodingScheme,
+                                                                         encodedData.length, true, null);
+            }
+        } else {
+            byte[] userData = encodedDataVector.firstElement();
+            userDataArray[0] = new UserDataImpl(userData, newDataCodingScheme, userData.length,
+                                                encodedUserDataHeaderIndicator, null);
+        }
+
+        return userDataArray;
+    }
+
+    public static UserData[] encodeUCS2SplitMessagesSet(MAPSmsTpduParameterFactory mapSmsTpduParameterFactory,
+                                                        String msg, DataCodingScheme dataCodingScheme,
+                                                        boolean referenceIs16bit, int messageReferenceNumber,
+                                                        int messageSegmentCount, int messageSegmentNumber,
+                                                        UserDataHeader userDataHeader) throws MAPException {
+        int bufferLimit = 140;
+        byte[] buf2 = null;
+        boolean encodedUserDataHeaderIndicator = false;
+        ByteBuffer bb = ByteBuffer.allocateDirect(bufferLimit);
+        if (userDataHeader != null) {
+            buf2 = userDataHeader.getEncodedData();
+        } else if ((messageSegmentCount > 0) && (messageSegmentNumber > 0)) {
+            userDataHeader = mapSmsTpduParameterFactory.createUserDataHeader();
+            UserDataHeaderElement concatenatedShortMessagesIdentifier = mapSmsTpduParameterFactory
+                .createConcatenatedShortMessagesIdentifier(referenceIs16bit, messageReferenceNumber,
+                                                           messageSegmentCount, messageSegmentNumber);
+            userDataHeader.addInformationElement(concatenatedShortMessagesIdentifier);
+            buf2 = userDataHeader.getEncodedData();
+        }
+        if ((buf2 != null) && (buf2.length > 0)) {
+            if ((buf2.length & 0x01) != 0)
+                bb.limit(139);
+            encodedUserDataHeaderIndicator = true;
+            bb.put(buf2);
+        }
+
+        CoderResult res;
+        byte[] replacement = new byte[2];
+        replacement[0] = 0;
+        replacement[1] = 0x20;
+        CharsetEncoder encoder = ucs2Charset.newEncoder().replaceWith(replacement);
+        encoder = encoder
+            .onMalformedInput(CodingErrorAction.IGNORE)
+            .onUnmappableCharacter(CodingErrorAction.REPLACE);
+
+        if ((!encodedUserDataHeaderIndicator) && (msg.length() > 70)) {
+            if (referenceIs16bit) {
+                bufferLimit = 132;
+            } else {
+                bufferLimit = 134;
+            }
+            bb.limit(bufferLimit);
+        }
+
+        byte[] encodedData;
+        Vector<byte[]> encodedDataVector = new Vector<byte[]>();
+        CharBuffer msgBuffer = CharBuffer.wrap(msg);
+
+        do {
+            res = encoder.encode(msgBuffer, bb, true);
+            if (res.isError())
+                return null;
+            if (res.isUnderflow())
+                res = encoder.flush(bb);
+            bb.flip();
+            encodedData = new byte[bb.limit()];
+            bb.get(encodedData);
+            bb.clear();
+            bb.limit(bufferLimit);
+            encodedDataVector.add(encodedData);
+
+            // Do not encode more than 255 segments
+            if (encodedDataVector.size() > 254)
+                break;
+        } while (res.isOverflow() && !encodedUserDataHeaderIndicator);
+
+        UserData[] userDataArray = new UserData[encodedDataVector.size()];
+        DataCodingScheme newDataCodingScheme =
+            new DataCodingSchemeImpl(dataCodingScheme.getDataCodingGroup(),
+                                     dataCodingScheme.getMessageClass(),
+                                     dataCodingScheme.getDataCodingSchemaIndicationType(),
+                                     dataCodingScheme.getSetIndicationActive(),
+                                     CharacterSet.UCS2, false);
+
+        if (encodedDataVector.size() > 1) {
+            messageSegmentNumber = 0;
+            for (byte[] userData : encodedDataVector) {
+                userDataHeader = mapSmsTpduParameterFactory.createUserDataHeader();
+                UserDataHeaderElement concatenatedShortMessagesIdentifier = mapSmsTpduParameterFactory
+                    .createConcatenatedShortMessagesIdentifier(referenceIs16bit, messageReferenceNumber,
+                                                               encodedDataVector.size(), messageSegmentNumber + 1);
+                userDataHeader.addInformationElement(concatenatedShortMessagesIdentifier);
+                buf2 = userDataHeader.getEncodedData();
+                encodedData = new byte[buf2.length + userData.length];
+                System.arraycopy(buf2, 0, encodedData, 0, buf2.length);
+                System.arraycopy(userData, 0, encodedData, buf2.length, userData.length);
+                userDataArray[messageSegmentNumber++] = new UserDataImpl(encodedData, newDataCodingScheme,
+                                                                         encodedData.length, true, null);
+            }
+        } else {
+            byte[] userData = encodedDataVector.firstElement();
+            userDataArray[0] = new UserDataImpl(userData, newDataCodingScheme, userData.length,
+                                                encodedUserDataHeaderIndicator, null);
+        }
+
+        return userDataArray;
+    }
+
+    public static ConcatenatedMessage decodeSplitMessagesSet(UserData[] encodedArray, DataCodingScheme dataCodingScheme)
             throws MAPException {
 
         // TODO: implement the splitMessage tool: decoding splitted sms messages into a solid message

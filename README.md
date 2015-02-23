@@ -20,6 +20,9 @@ The new features include:
   the [build instructions][] -- note that the Maven base build system is
   still available and required to build the documentation and run the
   tests
+* a second Nature of Address parameter in the simulator's SCCP
+  configuration used to build additional routing rules
+* add to UserDataImpl helper functions to split long messages
 
 The bug fixes include:
 
@@ -31,6 +34,8 @@ The bug fixes include:
 * HDLC broken write policy (it was "write and forget", now it is "write
   and retry again later, if the buffer is full")
 * Shell CLI reactivity
+* SLS to MTP2 links mapping algorithm
+* SLTM/SLTA ping scheduling and TRA sending
 * and many others (run `git log` for a detailed list)
 
 
