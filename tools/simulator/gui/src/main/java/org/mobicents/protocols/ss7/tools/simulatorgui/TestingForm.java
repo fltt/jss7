@@ -353,7 +353,7 @@ public class TestingForm extends JDialog {
     public void sendNotif(Notification notif) {
 
         Date d1 = new Date(notif.getTimeStamp());
-        String s1 = DateFormat.getDateInstance().format(d1);
+        String s1 = DateFormat.getDateTimeInstance().format(d1);
 
         Vector<String> newRow = new Vector<String>();
         newRow.add(s1);
