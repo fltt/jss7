@@ -1,5 +1,5 @@
 MK_NAME := sctp-impl
-MK_VERSION := 1.5.0-SNAPSHOT
+MK_VERSION := 1.5.0-SNAPSHOT-p1
 
 MK_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
