@@ -88,7 +88,7 @@ public class IntConcurrentLinkedList<E> {
 
         if (cacheSize == 0)
             // need new node
-            tempNode = new Node(key, value);
+            tempNode = new Node<E>(key, value);
         else {
             // obtain node from cache decrease cache size
             tempNode = cacheHead.next;
@@ -120,7 +120,7 @@ public class IntConcurrentLinkedList<E> {
 
         if (cacheSize == 0)
             // need new node
-            tempNode = new Node(key, value);
+            tempNode = new Node<E>(key, value);
         else {
             // obtain node from cache decrease cache size
             tempNode = cacheHead.next;

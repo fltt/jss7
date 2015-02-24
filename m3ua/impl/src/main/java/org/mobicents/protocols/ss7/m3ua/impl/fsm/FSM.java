@@ -44,7 +44,7 @@ public class FSM extends M3UATask {
 
     protected FSMState currentState;
 
-    private FastMap attributes = new FastMap();
+    private FastMap<String, Object> attributes = new FastMap<String, Object>();
 
     private FSMState oldState;
 

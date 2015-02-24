@@ -21,8 +21,8 @@
  */
 package org.mobicents.protocols.sctp;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 
 import com.sun.nio.sctp.AbstractNotificationHandler;
 import com.sun.nio.sctp.AssociationChangeNotification;
@@ -165,7 +165,7 @@ class AssociationHandler extends AbstractNotificationHandler<AssociationImpl> {
 	@Override
 	public  HandlerResult handleNotification(PeerAddressChangeNotification notification, AssociationImpl associtaion) {
 		//associtaion.peerSocketAddress = notification.address();
-		if(logger.isEnabledFor(Priority.WARN)){
+		if(logger.isEnabledFor(Level.WARN)){
 			logger.warn(String.format("Peer Address changed to=%s for Association=%s", notification.address(), associtaion.getName()));
 		}
 		return HandlerResult.CONTINUE;

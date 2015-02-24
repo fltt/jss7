@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -352,13 +353,13 @@ public class TestingForm extends JDialog {
     public void sendNotif(Notification notif) {
 
         Date d1 = new Date(notif.getTimeStamp());
-        String s1 = d1.toLocaleString();
+        String s1 = DateFormat.getDateInstance().format(d1);
 
-        Vector newRow = new Vector();
+        Vector<String> newRow = new Vector<String>();
         newRow.add(s1);
         newRow.add(notif.getType());
         newRow.add(notif.getMessage());
-        newRow.add(notif.getUserData());
+        newRow.add(notif.getUserData().toString());
         model.getDataVector().add(0, newRow);
 
         model.newRowsAdded(new TableModelEvent(model));

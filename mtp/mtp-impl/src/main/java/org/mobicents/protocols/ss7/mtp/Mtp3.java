@@ -67,7 +67,7 @@ public class Mtp3 implements Runnable {
      */
     private byte[] localFrame = new byte[279];
     /** List of signaling channels wrapped with MTP2 */
-    private List<Mtp2> links = new ArrayList();
+    private List<Mtp2> links = new ArrayList<Mtp2>();
 
     /** Active links */
     private Linkset linkset = new Linkset();

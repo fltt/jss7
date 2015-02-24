@@ -48,12 +48,12 @@ public class ConcurrentLinkedList<E> implements BlockingQueue<E> {
     private Integer cacheSize = 0;
 
     // notifiers
-    private Notifier notifierHead = new Notifier();
-    private Notifier notifierTail = new Notifier();
+    private Notifier<E> notifierHead = new Notifier<E>();
+    private Notifier<E> notifierTail = new Notifier<E>();
 
     // cached garbage items
-    private Notifier notifierCacheHead = new Notifier();
-    private Notifier notifierCacheTail = new Notifier();
+    private Notifier<E> notifierCacheHead = new Notifier<E>();
+    private Notifier<E> notifierCacheTail = new Notifier<E>();
 
     private Integer notifierSize = 0;
     private Integer cacheNotifierSize = 0;
@@ -135,10 +135,10 @@ public class ConcurrentLinkedList<E> implements BlockingQueue<E> {
             return false;
         }
 
-        if (cacheSize == 0)
+        if (cacheSize == 0) {
             // need new node
-            tempNode = new Node(value);
-        else {
+            tempNode = new Node<E>(value);
+        } else {
             // obtain node from cache decrease cache size
             tempNode = cacheHead.next;
             cacheHead.next = tempNode.next;
@@ -185,10 +185,10 @@ public class ConcurrentLinkedList<E> implements BlockingQueue<E> {
 
         aquireAccess();
 
-        if (cacheSize == 0)
+        if (cacheSize == 0) {
             // need new node
-            tempNode = new Node(value);
-        else {
+            tempNode = new Node<E>(value);
+        } else {
             // obtain node from cache decrease cache size
             tempNode = cacheHead.next;
             cacheHead.next = tempNode.next;
@@ -309,10 +309,10 @@ public class ConcurrentLinkedList<E> implements BlockingQueue<E> {
 
         if (size == 0) {
             Notifier<E> tempNotifier;
-            if (cacheNotifierSize == 0)
+            if (cacheNotifierSize == 0) {
                 // need new node
-                tempNotifier = new Notifier();
-            else {
+                tempNotifier = new Notifier<E>();
+            } else {
                 // obtain node from cache decrease cache size
                 tempNotifier = notifierCacheHead.next;
                 notifierCacheHead.next = tempNotifier.next;
@@ -386,7 +386,7 @@ public class ConcurrentLinkedList<E> implements BlockingQueue<E> {
             Notifier<E> tempNotifier;
             if (cacheNotifierSize == 0)
                 // need new node
-                tempNotifier = new Notifier();
+                tempNotifier = new Notifier<E>();
             else {
                 // obtain node from cache decrease cache size
                 tempNotifier = notifierCacheHead.next;
@@ -677,8 +677,8 @@ public class ConcurrentLinkedList<E> implements BlockingQueue<E> {
 
     private class Notifier<E> {
         private Object lock = new Object();
-        Notifier next;
-        Notifier previous;
+        Notifier<E> next;
+        Notifier<E> previous;
     }
 
     private class Node<E> {
