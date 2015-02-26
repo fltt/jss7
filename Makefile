@@ -124,10 +124,21 @@ endif # def HAVE_JDEPS
 
 CLASSPATH := -cp $(subst $(empty) $(empty),:,$(CLASSES_DIR) $(LIBRARIES))
 
-.PHONY: clean
 
-%:
-	@$(MAKE) BUILD_PHASE=1 $@
+.PHONY: clean compile jars package phase_2
+
+
+$(BUILD_DIR)/% $(PACKAGE_DIR)/%:
+	@$(MAKE) BUILD_PHASE=1 $@ && \
+	$(MAKE) phase_2 && \
+	$(MAKE) BUILD_PHASE=3 $@
+
+compile jars package:
+	@$(MAKE) BUILD_PHASE=1 $@ && \
+	$(MAKE) phase_2 && \
+	$(MAKE) BUILD_PHASE=3 $@
+
+phase_2:
 	@$(MKDIR_P) $(CLASSES_DIR)
 ifdef JDEPS
 	@if test -s $(JAVAC_SOURCE_FILES_LIST); then \
@@ -173,7 +184,6 @@ endif # def JDEPS
 	    $(CAT) $(JAVAH_CLASSES_LIST) | $(XARGS) $(JAVAH) -d $(INCLUDE_DIR) $(CLASSPATH); \
 	  fi \
 	fi
-	@$(MAKE) BUILD_PHASE=2 $@
 
 clean:
 	$(RM) -r $(BUILD_DIR) $(PACKAGE_DIR)
