@@ -43,7 +43,7 @@ public class ShellChannel extends ShellSelectableChannel {
     // receiver buffer
     private ByteBuffer rxBuffer = ByteBuffer.allocateDirect(8192);
     // transmittor buffer
-    private ByteBuffer txBuffer = ByteBuffer.allocateDirect(8192);
+    private ByteBuffer txBuffer = ByteBuffer.allocateDirect(65536);
 
     // provider instance
     private ChannelProvider provider;
