@@ -37,7 +37,6 @@ public class GSMCharsetEncoder extends CharsetEncoder {
     private int bitpos = 0;
     private int carryOver = 0;
     private char lastChar = ' ';
-    private boolean continueFromLast = false;
     private GSMCharset cs;
     private GSMCharsetEncodingData encodingData;
 
@@ -62,7 +61,6 @@ public class GSMCharsetEncoder extends CharsetEncoder {
         bitpos = 0;
         carryOver = 0;
         lastChar = ' ';
-        continueFromLast = false;
         if (encodingData != null)
             encodingData.totalSeptetCount = 0;
     }
@@ -107,19 +105,15 @@ public class GSMCharsetEncoder extends CharsetEncoder {
 
         while (in.hasRemaining()) {
 
-            if (continueFromLast) {
-                continueFromLast = false;
-            } else {
-                // Read the first char
-                lastChar = in.get();
-            }
+            // Read the first char
+            lastChar = in.get();
 
             boolean found = false;
             // searching a char in the main character table
             for (int i = 0; i < this.cs.mainTable.length; i++) {
                 if (this.cs.mainTable[i] == lastChar) {
                     if (putByte(i, out)) {
-                        continueFromLast = true;
+                        in.position(in.position() - 1);
                         return CoderResult.OVERFLOW;
                     }
                     found = true;
@@ -132,7 +126,7 @@ public class GSMCharsetEncoder extends CharsetEncoder {
                 for (int i = 0; i < this.cs.mainTable.length; i++) {
                     if (this.cs.extensionTable[i] == lastChar) {
                         if (putEscByte(i, out)) {
-                            continueFromLast = true;
+                            in.position(in.position() - 1);
                             return CoderResult.OVERFLOW;
                         }
                         found = true;
@@ -144,7 +138,7 @@ public class GSMCharsetEncoder extends CharsetEncoder {
             if (!found) {
                 // found no suitable symbol - encode a space char
                 if (putByte(0x20, out)) {
-                    continueFromLast = true;
+                    in.position(in.position() - 1);
                     return CoderResult.OVERFLOW;
                 }
             }

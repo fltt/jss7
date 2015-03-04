@@ -581,6 +581,7 @@ public class UserDataImpl implements UserData {
         CharBuffer msgBuffer = CharBuffer.wrap(msg);
 
         do {
+            encoder.reset();
             res = encoder.encode(msgBuffer, bb, true);
             if (res.isError())
                 return null;
