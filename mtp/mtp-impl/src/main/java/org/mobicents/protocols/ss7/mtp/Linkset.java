@@ -32,7 +32,6 @@ import org.apache.log4j.Logger;
 public class Linkset {
     /** The list of links. Maximum available 16 links */
     private Mtp2[] links = new Mtp2[16];
-    private int count;
     private final Logger logger;
 
     public Linkset() {
@@ -45,26 +44,16 @@ public class Linkset {
      * @param link the link to add
      */
     public boolean add(Mtp2 link) {
-        if ((count >= links.length) || (link == null))
+        if (link == null)
             return false;
-        if (count++ == 0) {
+        if (links[0] == null) {
             Arrays.fill(links, link);
             return true;
         }
-        int i = link.getSls();
-        if (links[i] == link)
-            return false;
-        if ((links[i].getSls() == i) && (logger.isEnabledFor(Level.ERROR)))
-            logger.error(String.format("(%s) Duplicate SLC (%s)", link.getName(), links[i].getName()));
-        links[i] = link;
-        int quota = links.length / count;
-        if (--quota == 0)
-            return true;
+        int i;
         Vector<Integer> vi;
         Map<Mtp2, Vector<Integer>> assignedSls = new IdentityHashMap<Mtp2, Vector<Integer>>();
         for (i = 0; i < links.length; i++) {
-            if (links[i].getSls() == i)
-                continue;
             if (links[i] == link)
                 return false;
             vi = assignedSls.get(links[i]);
@@ -74,8 +63,21 @@ public class Linkset {
             }
             vi.add(new Integer(i));
         }
-        for (Map.Entry<Mtp2, Vector<Integer>> as : assignedSls.entrySet())
+        i = link.getSls();
+        if (links[i].getSls() == i) {
+            if (logger.isEnabledFor(Level.ERROR))
+                logger.error(String.format("(%s) Duplicate SLC (%s)", link.getName(), links[i].getName()));
+            return false;
+        }
+        links[i] = link;
+        int quota = links.length / (assignedSls.size() + 1);
+        if (--quota == 0)
+            return true;
+        for (Map.Entry<Mtp2, Vector<Integer>> as : assignedSls.entrySet()) {
+            // Assigned SLC must not be reallocated to other links
+            as.getValue().remove(new Integer(as.getKey().getSls()));
             Collections.shuffle(as.getValue());
+        }
         Integer sls;
         while (quota-- > 0) {
             Vector<Map.Entry<Mtp2, Vector<Integer>>> linkslist = new Vector<Map.Entry<Mtp2, Vector<Integer>>>(assignedSls.entrySet());
@@ -99,7 +101,7 @@ public class Linkset {
      * @param link the link to remove.
      */
     public void remove(Mtp2 link) {
-        if (link == null)
+        if ((links[0] == null) || (link == null))
             return;
         Vector<Integer> vi;
         Map<Mtp2, Vector<Integer>> assignedSls = new IdentityHashMap<Mtp2, Vector<Integer>>();
@@ -114,7 +116,7 @@ public class Linkset {
         Vector<Integer> freeSls = assignedSls.remove(link);
         if (freeSls == null)
             return;
-        if (--count == 0) {
+        if (assignedSls.size() == 0) {
             Arrays.fill(links, null);
             return;
         }
@@ -138,7 +140,7 @@ public class Linkset {
      * @return true if linkset has at least one active link.
      */
     public boolean isActive() {
-        return count > 0;
+        return (links[0] != null);
     }
 
     /**
