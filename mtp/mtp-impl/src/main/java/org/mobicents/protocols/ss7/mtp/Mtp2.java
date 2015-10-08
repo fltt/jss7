@@ -554,11 +554,11 @@ public class Mtp2 {
                     if (this.retransmissionFSN != _OFF_RTR) {
                         // we shoudl use getters, but its faster with "."
                         this.txFrame = this.transmissionBuffer[this.retransmissionFSN];
-                        if (logger.isEnabledFor(Level.DEBUG))
-                            printFrame("TX MSU", txFrame);
                         this.txFrame.offset = 0;
                         this.txFrame.frame[0] = (byte) (this.sendBSN | (this.sendBIB << 7));
                         this.txFrame.frame[1] = (byte) (this.retransmissionFSN | (this.sendFIB << 7));
+                        if (logger.isEnabledFor(Level.DEBUG))
+                            printFrame("TX MSU", txFrame);
 
                         if (this.retransmissionFSN == this.retransmissionFSN_LastSent) {
                             this.retransmissionFSN = _OFF_RTR;
@@ -781,16 +781,21 @@ public class Mtp2 {
     }
 
     private void printFrame(String prefix, Mtp2Buffer frame) {
-        int i,j;
-        StringBuffer tmp=new StringBuffer();
+        int i, j;
+        StringBuffer tmp=new StringBuffer(prefix);
+        tmp.append(": Length = ");
+        tmp.append(frame.len);
+        tmp.append('\n');
         for (i=0; i<frame.len; i++) {
-            if ((i > 0) && ((i % 8) == 0))
+            if ((i > 0) && ((i % 16) == 0))
                 tmp.append('\n');
-            if ((i % 8) == 0) {
+            if ((i % 16) == 0) {
                 if (i < 16)
                     tmp.append('0');
                 tmp.append(Integer.toString(i, 16));
                 tmp.append(':');
+            } else if ((i % 8) == 0) {
+                tmp.append(' ');
             }
             tmp.append(' ');
             j = frame.frame[i];
@@ -799,7 +804,7 @@ public class Mtp2 {
                 tmp.append('0');
             tmp.append(Integer.toString(j, 16));
         }
-        logger.debug(prefix+": "+tmp.toString());
+        logger.debug(tmp.toString());
     }
 
     private void processFrame() {
