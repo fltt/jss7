@@ -261,8 +261,9 @@ public class Scheduler {
                 // sleep till next cycle
                 cycleDuration = System.nanoTime() - cycleStart;
                 if (cycleDuration < 4000000L) {
+                    cycleDuration = 4000000L - cycleDuration;
                     try {
-                        sleep(4L - cycleDuration / 1000000L, (int) ((4000000L - cycleDuration) % 1000000L));
+                        sleep(cycleDuration / 1000000L, (int) (cycleDuration % 1000000L));
                     } catch (InterruptedException e) {
                         // lets continue
                     }
@@ -273,10 +274,11 @@ public class Scheduler {
                 cycleStart = cycleStart + 4000000L;
                 currQueue = MANAGEMENT_QUEUE;
 
-                // if(cycleDuration2>4100000L)
-                // System.out.println("TIME LONGER THEN 4.1MS,DURATION:" + cycleDuration);
-                // else if(cycleDuration2<3900000L)
-                // System.out.println("TIME SHORTER THEN 3.9MS,DURATION:" + cycleDuration);
+                // if (cycleDuration2>4100000L) {
+                //     System.out.println("TIME LONGER THEN 4.1MS,DURATION:" + cycleDuration2);
+                // } else if (cycleDuration2<3900000L) {
+                //     System.out.println("TIME SHORTER THEN 3.9MS,DURATION:" + cycleDuration2);
+                // }
             }
         }
 

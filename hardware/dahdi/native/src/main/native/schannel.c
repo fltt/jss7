@@ -181,7 +181,6 @@ JNIEXPORT jint JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_readData
         if (res < 0) {
             switch (errno) {
             case EINTR:
-            case ELAST:
                 if (++errorCount < 10)
                     continue;
                 break;
@@ -210,11 +209,10 @@ JNIEXPORT jint JNICALL Java_org_mobicents_ss7_hardware_dahdi_Channel_writeData
     int errorCount = 0;
     jbyte *elements = (*env)->GetByteArrayElements(env, buff, 0);
     for (;;) {
-	res = write(fd, elements, length);
+        res = write(fd, elements, length);
         if (res < 0) {
             switch (errno) {
             case EINTR:
-            case ELAST:
                 if (++errorCount < 10)
                     continue;
                 break;

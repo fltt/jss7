@@ -66,6 +66,7 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
 
     private Mtp3 mtp3 = null;
     private ConcurrentLinkedQueue<byte[]> queue = new ConcurrentLinkedQueue<byte[]>();
+    private int queue_size = 0;
 
     public DahdiLinkset() {
         super();
@@ -273,11 +274,19 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
 
     public void linkUp() {
         queue.clear();
+        if (logger.isDebugEnabled()) {
+            queue_size = 0;
+            logger.debug(String.format("DAHDI(%s) clear - Queue Size: %d", linksetName, queue_size));
+        }
         this.state = LinksetState.AVAILABLE;
     }
 
     public void receive(byte[] msgBuff) {
         queue.offer(msgBuff);
+        if (logger.isDebugEnabled()) {
+            ++queue_size;
+            logger.debug(String.format("DAHDI(%s) offer - Queue Size: %d", linksetName, queue_size));
+        }
     }
 
     private class LinksetStreamImpl extends LinksetStream {
@@ -305,16 +314,15 @@ public class DahdiLinkset extends Linkset implements Mtp3Listener {
         }
 
         public int read(byte[] paramArrayOfByte) throws IOException {
-            if (queue.isEmpty()) {
-                return 0;
-            }
-
             byte[] data = queue.poll();
-            if (data != null) {
-                System.arraycopy(data, 0, paramArrayOfByte, 0, data.length);
+            if (data == null)
+                return 0;
+            if (logger.isDebugEnabled()) {
+                --queue_size;
+                logger.debug(String.format("DAHDI(%s) poll - Queue Size: %d", linksetName, queue_size));
             }
-
-            return paramArrayOfByte == null ? 0 : data.length;
+            System.arraycopy(data, 0, paramArrayOfByte, 0, data.length);
+            return data.length;
         }
 
         public SelectorKey register(StreamSelector selector) throws IOException {

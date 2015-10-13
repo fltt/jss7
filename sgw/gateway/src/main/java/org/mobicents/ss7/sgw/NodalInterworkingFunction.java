@@ -63,7 +63,6 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
 
     // max data size is 2176;
     private byte[] rxBuffer = new byte[2176];
-    private byte[] tempBuffer;
 
     private ConcurrentLinkedQueue<byte[]> mtpqueue = new ConcurrentLinkedQueue<byte[]>();
     private ConcurrentLinkedQueue<Mtp3TransferPrimitive> m3uaqueue = new ConcurrentLinkedQueue<Mtp3TransferPrimitive>();
@@ -145,13 +144,15 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
             FastList<SelectorKey> selected = linkSetSelector.selectNow(OP_READ_WRITE, 1);
             for (FastList.Node<SelectorKey> n = selected.head(), end = selected.tail(); (n = n.getNext()) != end;) {
                 SelectorKey key = n.getValue();
-                int size = ((LinksetStream) key.getStream()).read(rxBuffer);
-                if (size > 0) {
-                    tempBuffer = new byte[size];
+                LinksetStream lss = (LinksetStream) key.getStream();
+                int size = lss.read(rxBuffer);
+                while (size > 0) {
+                    byte[] tempBuffer = new byte[size];
                     System.arraycopy(rxBuffer, 0, tempBuffer, 0, size);
 
                     currPrimitive = mtp3TransferPrimitiveFactory.createMtp3TransferPrimitive(tempBuffer);
                     this.m3UAManagement.sendMessage(currPrimitive);
+                    size = lss.read(rxBuffer);
                 }
             }
         } catch (IOException e) {
