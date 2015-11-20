@@ -558,7 +558,7 @@ public class Mtp2 {
                         this.txFrame.frame[0] = (byte) (this.sendBSN | (this.sendBIB << 7));
                         this.txFrame.frame[1] = (byte) (this.retransmissionFSN | (this.sendFIB << 7));
                         if (logger.isEnabledFor(Level.DEBUG))
-                            printFrame("TX MSU", txFrame);
+                            printFrame("TX MSU", txFrame, true);
 
                         if (this.retransmissionFSN == this.retransmissionFSN_LastSent) {
                             this.retransmissionFSN = _OFF_RTR;
@@ -774,26 +774,28 @@ public class Mtp2 {
 
     private void processMSU(int len) {
         if (logger.isEnabledFor(Level.DEBUG))
-            printFrame("RX MSU", rxFrame);
+            printFrame("RX MSU", rxFrame, false);
         if (this.mtp3 != null) {
             mtp3.onMessage(rxFrame, this);
         }
     }
 
-    private void printFrame(String prefix, Mtp2Buffer frame) {
+    private void printFrame(String prefix, Mtp2Buffer frame, boolean tx) {
         int i, j;
         StringBuffer tmp=new StringBuffer(prefix);
         tmp.append(": Length = ");
-        tmp.append(frame.len);
-        tmp.append('\n');
+        tmp.append(tx?frame.len+2:frame.len);
         for (i=0; i<frame.len; i++) {
-            if ((i > 0) && ((i % 16) == 0))
-                tmp.append('\n');
+            if ((i % 16) == 0)
+                tmp.append("\nE1DUMP ");
             if ((i % 16) == 0) {
-                if (i < 16)
-                    tmp.append('0');
+                if (i < 16) {
+                    tmp.append("00000");
+                } else {
+                    tmp.append("0000");
+                }
                 tmp.append(Integer.toString(i, 16));
-                tmp.append(':');
+                tmp.append(' ');
             } else if ((i % 8) == 0) {
                 tmp.append(' ');
             }
@@ -803,6 +805,37 @@ public class Mtp2 {
             if (j < 16)
                 tmp.append('0');
             tmp.append(Integer.toString(j, 16));
+        }
+        if (tx) {
+            if ((i % 16) == 0)
+                tmp.append("\nE1DUMP ");
+            if ((i % 16) == 0) {
+                if (i < 16) {
+                    tmp.append("00000");
+                } else {
+                    tmp.append("0000");
+                }
+                tmp.append(Integer.toString(i, 16));
+                tmp.append(' ');
+            } else if ((i % 8) == 0) {
+                tmp.append(' ');
+            }
+            tmp.append(" 00");
+            i++;
+            if ((i % 16) == 0)
+                tmp.append("\nE1DUMP ");
+            if ((i % 16) == 0) {
+                if (i < 16) {
+                    tmp.append("00000");
+                } else {
+                    tmp.append("0000");
+                }
+                tmp.append(Integer.toString(i, 16));
+                tmp.append(' ');
+            } else if ((i % 8) == 0) {
+                tmp.append(' ');
+            }
+            tmp.append(" 00");
         }
         logger.debug(tmp.toString());
     }
@@ -819,7 +852,7 @@ public class Mtp2 {
         if ((li < 63) ? (li + 5 != rxFrame.len) : (rxFrame.len < 68)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Invalid LI field: expected = " + (rxFrame.len - 5) + ", received = " + li);
-                printFrame("Frame RX", rxFrame);
+                printFrame("Frame RX", rxFrame, false);
             }
             return;
         }
