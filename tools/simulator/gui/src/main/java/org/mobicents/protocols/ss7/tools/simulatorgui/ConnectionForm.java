@@ -115,17 +115,16 @@ public class ConnectionForm extends JFrame {
             }
         });
         buttonGroup.add(rbLocal);
-        rbLocal.setSelected(true);
         rbLocal.setBounds(6, 47, 239, 23);
         panel.add(rbLocal);
 
         JRadioButton rbRemote = new JRadioButton("Connect to the existing testerHost via JMX");
         buttonGroup.add(rbRemote);
+        rbRemote.setSelected(true);
         rbRemote.setBounds(6, 73, 293, 23);
         panel.add(rbRemote);
 
         tbUrl = new JTextField();
-        tbUrl.setEnabled(false);
         tbUrl.setText("service:jmx:rmi:///jndi/rmi://localhost:"+String.valueOf(rmiPort)+"/server");
         tbUrl.setBounds(6, 103, 398, 20);
         panel.add(tbUrl);
@@ -149,6 +148,7 @@ public class ConnectionForm extends JFrame {
         panel.add(lblHostName);
 
         tbAppName = new JTextField();
+        tbAppName.setEnabled(false);
         tbAppName.setBounds(114, 8, 150, 20);
         panel.add(tbAppName);
         tbAppName.setColumns(10);
