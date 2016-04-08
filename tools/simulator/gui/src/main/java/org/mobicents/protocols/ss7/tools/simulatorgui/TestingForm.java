@@ -212,6 +212,7 @@ public class TestingForm extends JDialog {
 
         btStart = new JButton("Start");
         panel_a_but.add(btStart);
+        btStart.setEnabled(false);
 
         btStop = new JButton("Stop");
         panel_a_but.add(btStop);
@@ -324,6 +325,7 @@ public class TestingForm extends JDialog {
     public void setData(SimulatorGuiForm mainForm, final TesterHostMBean host) {
         this.host = host;
         this.mainForm = mainForm;
+        btStart.setEnabled(!host.isStarted());
 
         this.tm = new javax.swing.Timer(5000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
