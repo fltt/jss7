@@ -57,7 +57,9 @@ public class SccpForm extends JDialog {
 
     private static final long serialVersionUID = 7571177143420596631L;
     private JTextField tbRemoteSpc;
+    private JTextField tbRemoteSpc2;
     private JTextField tbLocalSpc;
+    private JTextField tbLocalSpc2;
     private JTextField tbNi;
     private JTextField tbRemoteSsn;
     private JTextField tbHLRSsn;
@@ -94,10 +96,20 @@ public class SccpForm extends JDialog {
         tbRemoteSpc.setBounds(154, 11, 129, 20);
         panel.add(tbRemoteSpc);
 
+        tbRemoteSpc2 = new JTextField();
+        tbRemoteSpc2.setColumns(10);
+        tbRemoteSpc2.setBounds(294, 11, 129, 20);
+        panel.add(tbRemoteSpc2);
+
         tbLocalSpc = new JTextField();
         tbLocalSpc.setColumns(10);
         tbLocalSpc.setBounds(154, 42, 129, 20);
         panel.add(tbLocalSpc);
+
+        tbLocalSpc2 = new JTextField();
+        tbLocalSpc2.setColumns(10);
+        tbLocalSpc2.setBounds(294, 42, 129, 20);
+        panel.add(tbLocalSpc2);
 
         JLabel lblOpc = new JLabel("Local Spc");
         lblOpc.setBounds(10, 45, 134, 14);
@@ -299,7 +311,9 @@ public class SccpForm extends JDialog {
         M3uaForm.setEnumeratedBaseComboBox(cbNumberingPlan, this.sccp.getNumberingPlan());
 
         tbRemoteSpc.setText(((Integer) this.sccp.getRemoteSpc()).toString());
+        tbRemoteSpc2.setText(((Integer) this.sccp.getRemoteSpc2()).toString());
         tbLocalSpc.setText(((Integer) this.sccp.getLocalSpc()).toString());
+        tbLocalSpc2.setText(((Integer) this.sccp.getLocalSpc2()).toString());
         tbNi.setText(((Integer) this.sccp.getNi()).toString());
         tbRemoteSsn.setText(((Integer) this.sccp.getRemoteSsn()).toString());
         tbHLRSsn.setText(((Integer) this.sccp.getHLRSsn()).toString());
@@ -337,7 +351,9 @@ public class SccpForm extends JDialog {
         M3uaForm.setEnumeratedBaseComboBox(cbNumberingPlan, new NumberingPlanSccpType(NumberingPlan.ISDN_TELEPHONY.getValue()));
 
         tbRemoteSpc.setText("2");
+        tbRemoteSpc2.setText("4");
         tbLocalSpc.setText("1");
+        tbLocalSpc2.setText("3");
         tbNi.setText("2");
         tbTranslationType.setText("0");
 
@@ -372,7 +388,9 @@ public class SccpForm extends JDialog {
         M3uaForm.setEnumeratedBaseComboBox(cbNumberingPlan, new NumberingPlanSccpType(NumberingPlan.ISDN_TELEPHONY.getValue()));
 
         tbRemoteSpc.setText("1");
+        tbRemoteSpc2.setText("3");
         tbLocalSpc.setText("2");
+        tbLocalSpc2.setText("4");
         tbNi.setText("2");
         tbTranslationType.setText("0");
 
@@ -382,7 +400,9 @@ public class SccpForm extends JDialog {
 
     private boolean saveData() {
         int remoteSpc = 0;
+        int remoteSpc2 = 0;
         int localSpc = 0;
+        int localSpc2 = 0;
         int ni = 0;
         int remoteSsn = 0;
         int hlrSsn = 6;
@@ -395,9 +415,21 @@ public class SccpForm extends JDialog {
             return false;
         }
         try {
+            remoteSpc2 = Integer.parseInt(tbRemoteSpc2.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Exception when parsing Dpc2 value: " + e.toString());
+            return false;
+        }
+        try {
             localSpc = Integer.parseInt(tbLocalSpc.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Exception when parsing Opc value: " + e.toString());
+            return false;
+        }
+        try {
+            localSpc2 = Integer.parseInt(tbLocalSpc2.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Exception when parsing Opc2 value: " + e.toString());
             return false;
         }
         try {
@@ -434,7 +466,9 @@ public class SccpForm extends JDialog {
         this.sccp.setRouteOnGtMode(this.rbRouteGt.isSelected());
 
         this.sccp.setRemoteSpc(remoteSpc);
+        this.sccp.setRemoteSpc2(remoteSpc2);
         this.sccp.setLocalSpc(localSpc);
+        this.sccp.setLocalSpc2(localSpc2);
         this.sccp.setNi(ni);
         this.sccp.setRemoteSsn(remoteSsn);
         this.sccp.setHLRSsn(hlrSsn);

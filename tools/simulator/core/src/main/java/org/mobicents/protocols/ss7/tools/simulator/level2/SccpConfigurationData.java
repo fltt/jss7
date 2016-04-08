@@ -34,7 +34,9 @@ public class SccpConfigurationData {
 
     protected static final String REMOTE_ON_GT_MODE = "routeOnGtMode";
     protected static final String REMOTE_SPC = "remoteSpc";
+    protected static final String REMOTE_SPC_2 = "remoteSpc2";
     protected static final String LOCAL_SPC = "localSpc";
+    protected static final String LOCAL_SPC_2 = "localSpc2";
     protected static final String NI = "ni";
     protected static final String REMOTE_SSN = "remoteSsn";
     protected static final String HLR_SSN = "hlrSsn";
@@ -48,7 +50,9 @@ public class SccpConfigurationData {
 
     private boolean routeOnGtMode;
     private int remoteSpc = 0;
+    private int remoteSpc2 = 0;
     private int localSpc = 0;
+    private int localSpc2 = 0;
     private int hlrSsn = 6;
     private int localSsn;
     private int remoteSsn;
@@ -72,16 +76,32 @@ public class SccpConfigurationData {
         return remoteSpc;
     }
 
+    public int getRemoteSpc2() {
+        return remoteSpc2;
+    }
+
     public void setRemoteSpc(int remoteSpc) {
         this.remoteSpc = remoteSpc;
+    }
+
+    public void setRemoteSpc2(int remoteSpc2) {
+        this.remoteSpc2 = remoteSpc2;
     }
 
     public int getLocalSpc() {
         return localSpc;
     }
 
+    public int getLocalSpc2() {
+        return localSpc2;
+    }
+
     public void setLocalSpc(int localSpc) {
         this.localSpc = localSpc;
+    }
+
+    public void setLocalSpc2(int localSpc2) {
+        this.localSpc2 = localSpc2;
     }
 
     public int getHLRSsn() {
@@ -170,7 +190,9 @@ public class SccpConfigurationData {
         public void write(SccpConfigurationData sccp, OutputElement xml) throws XMLStreamException {
             xml.setAttribute(REMOTE_ON_GT_MODE, sccp.isRouteOnGtMode());
             xml.setAttribute(REMOTE_SPC, sccp.getRemoteSpc());
+            xml.setAttribute(REMOTE_SPC_2, sccp.getRemoteSpc2());
             xml.setAttribute(LOCAL_SPC, sccp.getLocalSpc());
+            xml.setAttribute(LOCAL_SPC_2, sccp.getLocalSpc2());
             xml.setAttribute(NI, sccp.getNi());
             xml.setAttribute(REMOTE_SSN, sccp.getRemoteSsn());
             xml.setAttribute(HLR_SSN, sccp.getHLRSsn());
@@ -187,7 +209,9 @@ public class SccpConfigurationData {
         public void read(InputElement xml, SccpConfigurationData sccp) throws XMLStreamException {
             sccp.setRouteOnGtMode(xml.getAttribute(REMOTE_ON_GT_MODE).toBoolean());
             sccp.setRemoteSpc(xml.getAttribute(REMOTE_SPC).toInt());
+            sccp.setRemoteSpc2(xml.getAttribute(REMOTE_SPC_2).toInt());
             sccp.setLocalSpc(xml.getAttribute(LOCAL_SPC).toInt());
+            sccp.setLocalSpc2(xml.getAttribute(LOCAL_SPC_2).toInt());
             sccp.setNi(xml.getAttribute(NI).toInt());
             sccp.setRemoteSsn(xml.getAttribute(REMOTE_SSN).toInt());
             sccp.setHLRSsn(xml.getAttribute(HLR_SSN).toInt());

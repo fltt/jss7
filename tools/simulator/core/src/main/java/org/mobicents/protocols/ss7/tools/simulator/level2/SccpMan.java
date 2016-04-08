@@ -26,10 +26,10 @@ import org.mobicents.protocols.ss7.indicator.NatureOfAddress;
 import org.mobicents.protocols.ss7.indicator.NumberingPlan;
 import org.mobicents.protocols.ss7.indicator.RoutingIndicator;
 import org.mobicents.protocols.ss7.mtp.Mtp3UserPart;
+import org.mobicents.protocols.ss7.sccp.LoadSharingAlgorithm;
 import org.mobicents.protocols.ss7.sccp.OriginationType;
 import org.mobicents.protocols.ss7.sccp.RemoteSignalingPointCode;
 import org.mobicents.protocols.ss7.sccp.RemoteSubSystem;
-import org.mobicents.protocols.ss7.sccp.Router;
 import org.mobicents.protocols.ss7.sccp.RuleType;
 import org.mobicents.protocols.ss7.sccp.SccpProvider;
 import org.mobicents.protocols.ss7.sccp.SccpResource;
@@ -58,9 +58,10 @@ public class SccpMan implements SccpManMBean, Stoppable {
     private SccpStackImpl sccpStack;
     private SccpProvider sccpProvider;
     private SccpResource resource;
-    private Router router;
     private boolean isRspcUp = true;
+    private boolean isRspcUp2 = true;
     private boolean isRssUp = true;
+    private boolean isRssUp2 = true;
 
     public SccpMan() {
         this.name = "???";
@@ -95,8 +96,17 @@ public class SccpMan implements SccpManMBean, Stoppable {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc();
     }
 
+    public int getRemoteSpc2() {
+        return this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc2();
+    }
+
     public void setRemoteSpc(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setRemoteSpc(val);
+        this.testerHost.markStore();
+    }
+
+    public void setRemoteSpc2(int val) {
+        this.testerHost.getConfigurationData().getSccpConfigurationData().setRemoteSpc2(val);
         this.testerHost.markStore();
     }
 
@@ -104,8 +114,17 @@ public class SccpMan implements SccpManMBean, Stoppable {
         return this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc();
     }
 
+    public int getLocalSpc2() {
+        return this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc2();
+    }
+
     public void setLocalSpc(int val) {
         this.testerHost.getConfigurationData().getSccpConfigurationData().setLocalSpc(val);
+        this.testerHost.markStore();
+    }
+
+    public void setLocalSpc2(int val) {
+        this.testerHost.getConfigurationData().getSccpConfigurationData().setLocalSpc2(val);
         this.testerHost.markStore();
     }
 
@@ -266,19 +285,29 @@ public class SccpMan implements SccpManMBean, Stoppable {
         sb.append(this.isRspcUp ? "Enabled" : "Disabled");
         sb.append("  Rss: ");
         sb.append(this.isRssUp ? "Enabled" : "Disabled");
+        sb.append(", Rspc2: ");
+        sb.append(this.isRspcUp2 ? "Enabled" : "Disabled");
+        sb.append("  Rss2: ");
+        sb.append(this.isRssUp2 ? "Enabled" : "Disabled");
         return sb.toString();
     }
 
     public boolean start() {
         try {
             this.isRspcUp = true;
+            this.isRspcUp2 = true;
             this.isRssUp = true;
-            this.initSccp(this.mtp3UserPart, this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSsn(),
-                    this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSsn(), this.testerHost
-                            .getConfigurationData().getSccpConfigurationData().getRemoteSpc(), this.testerHost
-                            .getConfigurationData().getSccpConfigurationData().getLocalSpc(), this.testerHost
-                            .getConfigurationData().getSccpConfigurationData().getNi(), this.testerHost.getConfigurationData()
-                            .getSccpConfigurationData().getCallingPartyAddressDigits(), this.testerHost.getPersistDir());
+            this.isRssUp2 = true;
+            this.initSccp(this.mtp3UserPart,
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSsn(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSsn(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc2(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc2(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getNi(),
+                          this.testerHost.getConfigurationData().getSccpConfigurationData().getCallingPartyAddressDigits(),
+                          this.testerHost.getPersistDir());
             this.testerHost.sendNotif(SOURCE_NAME, "SCCP has been started", "", Level.INFO);
             return true;
         } catch (Throwable e) {
@@ -318,10 +347,31 @@ public class SccpMan implements SccpManMBean, Stoppable {
                             + this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSsn(), Level.INFO);
                 }
             }
+            rspc = this.resource.getRemoteSpc(2);
+            rss = this.resource.getRemoteSsn(2);
+            if (rspc != null) {
+                boolean conn = !rspc.isRemoteSpcProhibited();
+                if (this.isRspcUp2 != conn) {
+                    this.isRspcUp2 = conn;
+                    this.testerHost.sendNotif(SOURCE_NAME, "SCCP RemoteSignalingPoint is " + (conn ? "enabled" : "disabled"),
+                            "Dpc=" + this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc2(),
+                            Level.INFO);
+                }
+            }
+            if (rss != null) {
+                boolean conn = !rss.isRemoteSsnProhibited();
+                if (this.isRssUp2 != conn) {
+                    this.isRssUp2 = conn;
+                    this.testerHost.sendNotif(SOURCE_NAME, "SCCP RemoteSubSystem is " + (conn ? "enabled" : "disabled"), "Dpc="
+                            + this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSpc2() + " Ssn="
+                            + this.testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSsn(), Level.INFO);
+                }
+            }
         }
     }
 
-    private void initSccp(Mtp3UserPart mtp3UserPart, int remoteSsn, int localSsn, int dpc, int opc, int ni, String callingPartyAddressDigits, String persistDir)
+    private void initSccp(Mtp3UserPart mtp3UserPart, int remoteSsn, int localSsn, int dpc, int opc,
+                          int dpc2, int opc2, int ni, String callingPartyAddressDigits, String persistDir)
             throws Exception {
 
         this.sccpStack = new SccpStackImpl("TestingSccp");
@@ -331,40 +381,65 @@ public class SccpMan implements SccpManMBean, Stoppable {
         this.sccpStack.start();
         this.sccpStack.removeAllResourses();
 
-        this.sccpStack.getRouter().addMtp3ServiceAccessPoint(1, 1, opc, ni);
-        this.sccpStack.getRouter().addMtp3Destination(1, 1, dpc, dpc, 0, 255, 255);
+        RouterImpl router = (RouterImpl)sccpStack.getRouter();
+
+        router.addMtp3ServiceAccessPoint(1, 1, opc, ni);
+        router.addMtp3Destination(1, 1, dpc, dpc, 0, 255, 255);
+        if (opc2 > 0) {
+            router.addMtp3ServiceAccessPoint(2, 1, opc2, ni);
+            if (dpc2 > 0)
+                router.addMtp3Destination(2, 2, dpc2, dpc2, 0, 255, 255);
+        }
 
         this.sccpProvider = this.sccpStack.getSccpProvider();
-
-        // router1 = sccpStack1.getRouter();
-
         this.resource = this.sccpStack.getSccpResource();
 
         this.resource.addRemoteSpc(1, dpc, 0, 0);
         this.resource.addRemoteSsn(1, dpc, remoteSsn, 0, false);
+        if (dpc2 > 0) {
+            this.resource.addRemoteSpc(2, dpc2, 0, 0);
+            this.resource.addRemoteSsn(2, dpc2, remoteSsn, 0, false);
+        }
 
         if (this.testerHost.getConfigurationData().getSccpConfigurationData().isRouteOnGtMode()) {
-            this.router = this.sccpStack.getRouter();
+            router.addRoutingAddress(1, new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE,
+                                                        dpc, this.createGlobalTitle("-"), remoteSsn));
+            router.addRoutingAddress(2, new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE,
+                                                        opc, this.createGlobalTitle("-"), localSsn));
+            if (dpc2 > 0)
+                router.addRoutingAddress(3, new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE,
+                                                            dpc2, this.createGlobalTitle("-"), remoteSsn));
+            if (opc2 > 0)
+                router.addRoutingAddress(4, new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE,
+                                                            opc2, this.createGlobalTitle("-"), localSsn));
 
-            this.router.addRoutingAddress(1,
-                    new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE, dpc, this.createGlobalTitle(""), 0));
-            this.router.addRoutingAddress(2,
-                    new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_DPC_AND_SSN, opc, this.createGlobalTitle(""), localSsn));
-
-            SccpAddress pattern = new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE, 0,
-                    this.createGlobalTitle("*"), 0);
-            String mask = "K";
-            ((RouterImpl) this.router).addRule(1, RuleType.Solitary, null, OriginationType.LocalOriginated, pattern, mask, 1,
-                    -1, null);
-            pattern = new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE, 0, this.createGlobalTitle("*"), 0);
-            mask = "R";
-            ((RouterImpl) this.router).addRule(2, RuleType.Solitary, null, OriginationType.RemoteOriginated, pattern, mask, 2,
-                    -1, null);
+            SccpAddress pattern = new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE,
+                                                  0, this.createGlobalTitle("*"), 0);
+            if (dpc2 > 0) {
+                router.addRule(1, RuleType.Loadshared, LoadSharingAlgorithm.Bit0,
+                               OriginationType.LocalOriginated, pattern, "K", 1, 3, null);
+            } else {
+                router.addRule(1, RuleType.Solitary, LoadSharingAlgorithm.Undefined,
+                               OriginationType.LocalOriginated, pattern, "K", 1, -1, null);
+            }
+            if (opc2 > 0) {
+                router.addRule(2, RuleType.Loadshared, LoadSharingAlgorithm.Bit1,
+                               OriginationType.RemoteOriginated, pattern, "K", 2, 4, null);
+            } else {
+                router.addRule(2, RuleType.Solitary, LoadSharingAlgorithm.Undefined,
+                               OriginationType.RemoteOriginated, pattern, "K", 2, -1, null);
+            }
             if (testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress().getValue() !=
                 testerHost.getConfigurationData().getSccpConfigurationData().getNatureOfAddress2().getValue()) {
-                pattern = new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE, 0, this.createGlobalTitle2("*"), 0);
-                ((RouterImpl) this.router).addRule(3, RuleType.Solitary, null, OriginationType.RemoteOriginated, pattern, mask, 2,
-                                                   -1, null);
+                pattern = new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_GLOBAL_TITLE,
+                                          0, this.createGlobalTitle2("*"), 0);
+                if (opc2 > 0) {
+                    router.addRule(3, RuleType.Loadshared, LoadSharingAlgorithm.Bit1,
+                                   OriginationType.RemoteOriginated, pattern, "K", 2, 4, null);
+                } else {
+                    router.addRule(3, RuleType.Solitary, LoadSharingAlgorithm.Undefined,
+                                   OriginationType.RemoteOriginated, pattern, "K", 2, -1, null);
+                }
             }
         }
     }
@@ -381,16 +456,22 @@ public class SccpMan implements SccpManMBean, Stoppable {
                     .getConfigurationData().getSccpConfigurationData().getCallingPartyAddressDigits()), this.testerHost
                     .getConfigurationData().getSccpConfigurationData().getLocalSsn());
         } else {
-            return new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_DPC_AND_SSN, this.testerHost.getConfigurationData()
-                    .getSccpConfigurationData().getLocalSpc(), null, this.testerHost.getConfigurationData()
-                    .getSccpConfigurationData().getLocalSsn());
+            int spc = testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc();
+            if ((testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc2() > 0) &&
+                ((System.currentTimeMillis() % 2) > 0))
+                spc = testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc2();
+            return new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_DPC_AND_SSN, spc, null,
+                                   testerHost.getConfigurationData().getSccpConfigurationData().getLocalSsn());
         }
     }
 
     public SccpAddress createCalledPartyAddress() {
-        return new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_DPC_AND_SSN, this.testerHost.getConfigurationData()
-                .getSccpConfigurationData().getRemoteSpc(), null, this.testerHost.getConfigurationData()
-                .getSccpConfigurationData().getRemoteSsn());
+        int spc = testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc();
+        if ((testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc2() > 0) &&
+            ((System.currentTimeMillis() % 2) > 0))
+            spc = testerHost.getConfigurationData().getSccpConfigurationData().getLocalSpc2();
+        return new SccpAddress(RoutingIndicator.ROUTING_BASED_ON_DPC_AND_SSN, spc, null,
+                               testerHost.getConfigurationData().getSccpConfigurationData().getRemoteSsn());
     }
 
     public SccpAddress createCalledPartyAddress(String address, int ssn) {

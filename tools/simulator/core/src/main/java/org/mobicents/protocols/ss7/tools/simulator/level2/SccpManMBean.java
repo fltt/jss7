@@ -32,11 +32,19 @@ public interface SccpManMBean {
 
     int getRemoteSpc();
 
+    int getRemoteSpc2();
+
     void setRemoteSpc(int val);
+
+    void setRemoteSpc2(int val);
 
     int getLocalSpc();
 
+    int getLocalSpc2();
+
     void setLocalSpc(int val);
+
+    void setLocalSpc2(int val);
 
     int getNi();
 
