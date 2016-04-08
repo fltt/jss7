@@ -62,14 +62,11 @@ public class Main {
         System.setProperty(SIMULATOR_HOME, homeDir);
         System.setProperty(SIMULATOR_DATA, homeDir + File.separator + "data" + File.separator);
 
-        if (!initLOG4JProperties(homeDir) && !initLOG4JXml(homeDir)) {
-            logger.error("Failed to initialize loggin, no configuration. Defaults are used.");
-        }
-
+        if (!initLOG4JProperties(homeDir) && !initLOG4JXml(homeDir))
+            System.out.println("Failed to initialize loggin, no configuration. Defaults are used.");
         logger.info("log4j configured");
 
         Main main = new Main();
-
         main.processCommandLine(args);
         main.boot();
     }
@@ -98,8 +95,8 @@ public class Main {
                     // http port
                     arg = g.getOptarg();
                     this.httpPort = Integer.parseInt(arg);
-                    if (this.httpPort < 0 || this.httpPort > 65000) {
-                        System.err.println("Http port should be in range 0 to 65000");
+                    if (this.httpPort < 1 || this.httpPort > 65535) {
+                        logger.error("Http port should be in range 1 to 65535");
                         System.exit(0);
                     }
                     break;
@@ -107,8 +104,8 @@ public class Main {
                     // rmi port
                     arg = g.getOptarg();
                     this.rmiPort = Integer.parseInt(arg);
-                    if (this.rmiPort < 0 || this.rmiPort > 65000) {
-                        System.err.println("RMI port should be in range 0 to 65000");
+                    if (this.rmiPort < 1 || this.rmiPort > 65535) {
+                        logger.error("RMI port should be in range 1 to 65535");
                         System.exit(0);
                     }
                     break;
@@ -127,11 +124,11 @@ public class Main {
                     break;
 
                 case ':':
-                    System.out.println("You need an argument for option " + (char) g.getOptopt());
+                    logger.error("You need an argument for option " + (char) g.getOptopt());
                     System.exit(0);
                     break;
                 case '?':
-                    System.out.println("The option '" + (char) g.getOptopt() + "' is not valid");
+                    logger.error("The option '" + (char) g.getOptopt() + "' is not valid");
                     System.exit(0);
                     break;
                 case 1:
@@ -148,11 +145,11 @@ public class Main {
                         } else if (this.command.equals("gui")) {
                             this.guiHelp();
                         } else {
-                            System.out.println("Invalid command " + optArg);
+                            logger.error("Invalid command " + optArg);
                             this.genericHelp();
                         }
                     } else {
-                        System.out.println("Invalid command " + optArg);
+                        logger.error("Invalid command " + optArg);
                         this.genericHelp();
                     }
                     break;
@@ -218,7 +215,7 @@ public class Main {
             }
         } catch (Exception e) {
             // e.printStackTrace();
-            logger.info("Failed to initialize LOG4J with properties file.");
+            System.out.println("Failed to initialize LOG4J with properties file.");
             return false;
         }
         return true;
@@ -232,7 +229,7 @@ public class Main {
             DOMConfigurator.configure(log4jurl);
         } catch (Exception e) {
             // e.printStackTrace();
-            logger.info("Failed to initialize LOG4J with xml file.");
+            System.out.println("Failed to initialize LOG4J with xml file.");
             return false;
         }
         return true;
@@ -258,7 +255,7 @@ public class Main {
 
     protected void boot() throws Throwable {
         if (this.command == null) {
-            System.out.println("No command passed");
+            logger.error("No command passed");
             this.genericHelp();
         } else if (this.command.equals("gui")) {
             EventQueue.invokeLater(new MainGui(appName, rmiPort));
@@ -284,8 +281,7 @@ public class Main {
     private class ShutdownThread implements Runnable {
 
         public void run() {
-            System.out.println("Shutting down");
-
+            logger.info("Shutting down");
         }
     }
 }

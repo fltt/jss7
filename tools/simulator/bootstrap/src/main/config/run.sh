@@ -29,6 +29,8 @@ die() {
     exit 1
 }
 
+cd "$DIRNAME/.."
+
 # OS specific support (must be 'true' or 'false').
 cygwin=false;
 darwin=false;
@@ -66,7 +68,7 @@ fi
 # Setup SIMULATOR_HOME
 if [ "x$SIMULATOR_HOME" = "x" ]; then
     # get the full path (without any relative bits)
-    SIMULATOR_HOME=`cd $DIRNAME/..; pwd`
+    SIMULATOR_HOME=`pwd`
 fi
 export SIMULATOR_HOME
 
@@ -165,5 +167,6 @@ echo ""
 echo "========================================================================="
 echo ""
 
-exec "$JAVA" $JAVA_OPTS -Djava.ext.dirs="$SIMULATOR_ENDORSED_DIRS" \
-     -classpath "$SIMULATOR_CLASSPATH" org.mobicents.protocols.ss7.tools.simulator.bootstrap.Main "$@"
+exec "$JAVA" $JAVA_OPTS -DSIMULATOR_HOME="$SIMULATOR_HOME" \
+     -Djava.ext.dirs="$SIMULATOR_ENDORSED_DIRS" -classpath "$SIMULATOR_CLASSPATH" \
+     org.mobicents.protocols.ss7.tools.simulator.bootstrap.Main "$@"
