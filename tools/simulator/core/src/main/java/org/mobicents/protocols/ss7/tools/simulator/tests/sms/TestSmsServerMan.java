@@ -377,7 +377,8 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return null;
     }
 
-    public String performSRIForSM(String destIsdnNumber) {
+    public String performSRIForSM(AddressNatureType destAN, NumberingPlanMapType destNP,
+                                  String destIsdnNumber) {
         if (!isStarted)
             return "The tester is not started";
         if (destIsdnNumber == null || destIsdnNumber.equals(""))
@@ -385,12 +386,15 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
 
         currentRequestDef = "";
 
-        return doSendSri(destIsdnNumber, this.getServiceCenterAddress(), null);
+        return doSendSri(destAN, destNP, destIsdnNumber, this.getServiceCenterAddress(), null);
     }
 
+    private AddressNature curDestAddrNat = null;
+    private NumberingPlan curDestNumPlan = null;
     private String curDestIsdnNumber = null;
 
-    private String doSendSri(String destIsdnNumber, String serviceCentreAddr, MtMessageData messageData) {
+    private String doSendSri(AddressNatureType destAN, NumberingPlanMapType destNP, String destIsdnNumber,
+                             String serviceCentreAddr, MtMessageData messageData) {
 
         MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
 
@@ -408,12 +412,14 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         }
         MAPApplicationContext mapAppContext = MAPApplicationContext.getInstance(MAPApplicationContextName.shortMsgGatewayContext, vers);
 
-        ISDNAddressString msisdn = mapProvider.getMAPParameterFactory().createISDNAddressString(
-                this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getAddressNature(),
-                this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlan(), destIsdnNumber);
+        AddressNature destAddrNat = AddressNature.getInstance(destAN.intValue());
+        NumberingPlan destNumPlan = NumberingPlan.getInstance(destNP.intValue());
+        ISDNAddressString msisdn = mapProvider.getMAPParameterFactory().createISDNAddressString(destAddrNat, destNumPlan, destIsdnNumber);
         AddressString serviceCentreAddress = mapProvider.getMAPParameterFactory().createAddressString(
                 this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getAddressNature(),
                 this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlan(), serviceCentreAddr);
+        curDestAddrNat = destAddrNat;
+        curDestNumPlan = destNumPlan;
         curDestIsdnNumber = destIsdnNumber;
 
         try {
@@ -422,8 +428,8 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
                             mapAppContext,
                             this.mapMan.createOrigAddress(),
                             null,
-                            this.mapMan.createDestAddress(destIsdnNumber, this.testerHost.getConfigurationData().getTestSmsServerConfigurationData()
-                                    .getHlrSsn()), null);
+                            mapMan.createDestAddress(destIsdnNumber, testerHost.getConfigurationData().getTestSmsServerConfigurationData().getHlrSsn()),
+                            null);
             HostMessageData hostMessageData = new HostMessageData();
             hostMessageData.mtMessageData = messageData;
             curDialog.setUserObject(hostMessageData);
@@ -459,7 +465,11 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
         return sb.toString();
     }
 
-    public String performSRIForSM_MtForwardSM(String msg, String destIsdnNumber, String origIsdnNumber) {
+    public String performSRIForSM_MtForwardSM(String msg,
+                                              AddressNatureType destAN, NumberingPlanMapType destNP,
+                                              String destIsdnNumber,
+                                              AddressNatureType origAN, NumberingPlanMapType origNP,
+                                              String origIsdnNumber) {
         if (!isStarted)
             return "The tester is not started";
         if (origIsdnNumber == null || origIsdnNumber.equals(""))
@@ -476,12 +486,16 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
 
         MtMessageData mmd = new MtMessageData();
         mmd.msg = msg;
+        mmd.origAN = origAN;
+        mmd.origNP = origNP;
         mmd.origIsdnNumber = origIsdnNumber;
 
-        return doSendSri(destIsdnNumber, this.getServiceCenterAddress(), mmd);
+        return doSendSri(destAN, destNP, destIsdnNumber, this.getServiceCenterAddress(), mmd);
     }
 
-    public String performMtForwardSM(String msg, String destImsi, String vlrNumber, String origIsdnNumber) {
+    public String performMtForwardSM(String msg, String destImsi, String vlrNumber,
+                                     AddressNatureType origAN, NumberingPlanMapType origNP,
+                                     String origIsdnNumber) {
         if (!isStarted)
             return "The tester is not started";
         if (msg == null || msg.equals(""))
@@ -498,10 +512,14 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
 
         currentRequestDef = "";
 
-        return doMtForwardSM(msg, destImsi, vlrNumber, origIsdnNumber, this.getServiceCenterAddress());
+        return doMtForwardSM(msg, destImsi, vlrNumber,
+                             origAN, origNP, origIsdnNumber,
+                             this.getServiceCenterAddress());
     }
 
-    private String doMtForwardSM(String msg, String destImsi, String vlrNumber, String origIsdnNumber, String serviceCentreAddr) {
+    private String doMtForwardSM(String msg, String destImsi, String vlrNumber,
+                                 AddressNatureType origAN, NumberingPlanMapType origNP, String origIsdnNumber,
+                                 String serviceCentreAddr) {
 
         MAPProvider mapProvider = this.mapMan.getMAPStack().getMAPProvider();
 
@@ -784,11 +802,6 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
                 mmd.vlrNum = vlrNum;
                 mmd.destImsi = destImsi;
             }
-
-            // // sending SMS
-            // doMtForwardSM(mmd.msg, destImsi, vlrNum, mmd.origIsdnNumber,
-            // this.testerHost.getConfigurationData().getTestSmsServerConfigurationData()
-            // .getServiceCenterAddress());
         }
     }
 
@@ -956,7 +969,9 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
             MtMessageData mmd = hmd.mtMessageData;
             if (mmd != null && mmd.vlrNum != null && mmd.destImsi != null) {
                 // sending SMS
-                doMtForwardSM(mmd.msg, mmd.destImsi, mmd.vlrNum, mmd.origIsdnNumber, this.testerHost.getConfigurationData().getTestSmsServerConfigurationData()
+                doMtForwardSM(mmd.msg, mmd.destImsi, mmd.vlrNum,
+                              mmd.origAN, mmd.origNP, mmd.origIsdnNumber,
+                              this.testerHost.getConfigurationData().getTestSmsServerConfigurationData()
                         .getServiceCenterAddress());
             }
         }
@@ -994,15 +1009,16 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
                             mapAppContext,
                             this.mapMan.createOrigAddress(),
                             null,
-                            this.mapMan.createDestAddress(curDestIsdnNumber, this.testerHost.getConfigurationData().getTestSmsServerConfigurationData()
-                                    .getHlrSsn()), null);
+                            this.mapMan.createDestAddress(curDestIsdnNumber,
+                                                          testerHost.getConfigurationData().getTestSmsServerConfigurationData().getHlrSsn()),
+                            null);
 
-                    ISDNAddressString msisdn = mapProvider.getMAPParameterFactory().createISDNAddressString(
-                            this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getAddressNature(),
-                            this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlan(), curDestIsdnNumber);
+                    ISDNAddressString msisdn = mapProvider.getMAPParameterFactory().createISDNAddressString(curDestAddrNat, curDestNumPlan, curDestIsdnNumber);
                     AddressString serviceCentreAddress = mapProvider.getMAPParameterFactory().createAddressString(
                             this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getAddressNature(),
                             this.testerHost.getConfigurationData().getTestSmsServerConfigurationData().getNumberingPlan(), this.getServiceCenterAddress());
+                    curDestAddrNat = null;
+                    curDestNumPlan = null;
                     curDestIsdnNumber = null;
 
                     SMDeliveryOutcome sMDeliveryOutcome = null;
@@ -1045,6 +1061,8 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
 
     private class MtMessageData {
         public String msg;
+        public AddressNatureType origAN;
+        public NumberingPlanMapType origNP;
         public String origIsdnNumber;
         public String vlrNum;
         public String destImsi;

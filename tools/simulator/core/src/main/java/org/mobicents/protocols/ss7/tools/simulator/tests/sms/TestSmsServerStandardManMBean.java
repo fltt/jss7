@@ -80,17 +80,28 @@ public class TestSmsServerStandardManMBean extends StandardMBean {
         MBeanParameterInfo[] signString = new MBeanParameterInfo[] { new MBeanParameterInfo("val", String.class.getName(),
                 "Index number or value") };
 
-        MBeanParameterInfo[] performSRIForSMParam = new MBeanParameterInfo[] { new MBeanParameterInfo("destIsdnNumber",
-                String.class.getName(), "Destination ISDN number"), };
+        MBeanParameterInfo[] performSRIForSMParam = new MBeanParameterInfo[] {
+            new MBeanParameterInfo("destAddressNature", AddressNatureType.class.getName(), "Destination AddressNature"),
+            new MBeanParameterInfo("destNumberingPlan", NumberingPlanMapType.class.getName(), "Destination NumberingPlan"),
+            new MBeanParameterInfo("destIsdnNumber", String.class.getName(), "Destination ISDN number")
+        };
         MBeanParameterInfo[] performSRIForSM_MtForwardSMParam = new MBeanParameterInfo[] {
-                new MBeanParameterInfo("msg", String.class.getName(), "Message text"),
-                new MBeanParameterInfo("destIsdnNumber", String.class.getName(), "Destination ISDN number"),
-                new MBeanParameterInfo("origIsdnNumber", String.class.getName(), "Origination ISDN number"), };
+            new MBeanParameterInfo("msg", String.class.getName(), "Message text"),
+            new MBeanParameterInfo("destAddressNature", AddressNatureType.class.getName(), "Destination AddressNature"),
+            new MBeanParameterInfo("destNumberingPlan", NumberingPlanMapType.class.getName(), "Destination NumberingPlan"),
+            new MBeanParameterInfo("destIsdnNumber", String.class.getName(), "Destination ISDN number"),
+            new MBeanParameterInfo("origAddressNature", AddressNatureType.class.getName(), "Origination AddressNature"),
+            new MBeanParameterInfo("origNumberingPlan", NumberingPlanMapType.class.getName(), "Origination NumberingPlan"),
+            new MBeanParameterInfo("origIsdnNumber", String.class.getName(), "Origination ISDN number")
+        };
         MBeanParameterInfo[] performMtForwardSMParam = new MBeanParameterInfo[] {
-                new MBeanParameterInfo("msg", String.class.getName(), "Message text"),
-                new MBeanParameterInfo("destImsi", String.class.getName(), "Destination IMSI"),
-                new MBeanParameterInfo("vlrNumber", String.class.getName(), "Destination VLR number"),
-                new MBeanParameterInfo("origIsdnNumber", String.class.getName(), "Origination ISDN number"), };
+            new MBeanParameterInfo("msg", String.class.getName(), "Message text"),
+            new MBeanParameterInfo("destImsi", String.class.getName(), "Destination IMSI"),
+            new MBeanParameterInfo("vlrNumber", String.class.getName(), "Destination VLR number"),
+            new MBeanParameterInfo("origAddressNature", AddressNatureType.class.getName(), "Origination AddressNature"),
+            new MBeanParameterInfo("origNumberingPlan", NumberingPlanMapType.class.getName(), "Origination NumberingPlan"),
+            new MBeanParameterInfo("origIsdnNumber", String.class.getName(), "Origination ISDN number")
+        };
 
         MBeanOperationInfo[] operations = new MBeanOperationInfo[] {
                 new MBeanOperationInfo("performSRIForSM", "Send sendRoutingInfoForSM request", performSRIForSMParam,

@@ -100,11 +100,17 @@ public interface TestSmsServerManMBean {
 
     String getCurrentRequestDef();
 
-    String performSRIForSM(String destIsdnNumber);
+    String performSRIForSM(AddressNatureType destAN, NumberingPlanMapType destNP, String destIsdnNumber);
 
-    String performSRIForSM_MtForwardSM(String msg, String destIsdnNumber, String origIsdnNumber);
+    String performSRIForSM_MtForwardSM(String msg,
+                                       AddressNatureType destAN, NumberingPlanMapType destNP,
+                                       String destIsdnNumber,
+                                       AddressNatureType origAN, NumberingPlanMapType origNP,
+                                       String origIsdnNumber);
 
-    String performMtForwardSM(String msg, String destImsi, String vlrNumber, String origIsdnNumber);
+    String performMtForwardSM(String msg, String destImsi, String vlrNumber,
+                              AddressNatureType origAN, NumberingPlanMapType origNP,
+                              String origIsdnNumber);
 
     String closeCurrentDialog();
 

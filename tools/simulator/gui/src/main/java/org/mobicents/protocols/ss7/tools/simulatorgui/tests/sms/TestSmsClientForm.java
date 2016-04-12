@@ -63,16 +63,14 @@ public class TestSmsClientForm extends TestingForm {
         JPanel panel = new JPanel();
         panel_c.add(panel, BorderLayout.CENTER);
         GridBagLayout gbl_panel = new GridBagLayout();
-        gbl_panel.columnWidths = new int[] { 0, 0, 0 };
-        gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-        gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+        gbl_panel.columnWeights = new double[] { 0.0, 1.0 };
+        gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
         panel.setLayout(gbl_panel);
 
         JLabel label = new JLabel("Message text");
         GridBagConstraints gbc_label = new GridBagConstraints();
-        gbc_label.anchor = GridBagConstraints.EAST;
         gbc_label.insets = new Insets(0, 0, 5, 5);
+        gbc_label.anchor = GridBagConstraints.EAST;
         gbc_label.gridx = 0;
         gbc_label.gridy = 0;
         panel.add(label, gbc_label);
@@ -121,17 +119,28 @@ public class TestSmsClientForm extends TestingForm {
         panel.add(tbOrigIsdnNumber, gbc_tbOrigIsdnNumber);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setLayout(null);
+        GridBagLayout gbl_panel_1 = new GridBagLayout();
+        gbl_panel_1.columnWeights = new double[] { 1.0, 1.0 };
+        gbl_panel_1.rowWeights = new double[] { 0.0 };
+        panel_1.setLayout(gbl_panel_1);
         GridBagConstraints gbc_panel_1 = new GridBagConstraints();
         gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-        gbc_panel_1.fill = GridBagConstraints.BOTH;
         gbc_panel_1.gridx = 1;
         gbc_panel_1.gridy = 3;
         panel.add(panel_1, gbc_panel_1);
 
         JButton btnSendMoForwardSm = new JButton("Send MoForwardSM");
-        btnSendMoForwardSm.setBounds(12, 0, 149, 25);
-        panel_1.add(btnSendMoForwardSm);
+        btnSendMoForwardSm.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sendMoforwardsm();
+            }
+        });
+        GridBagConstraints gbc_btnSendMoForwardSm = new GridBagConstraints();
+        gbc_btnSendMoForwardSm.insets = new Insets(5, 5, 5, 5);
+        gbc_btnSendMoForwardSm.fill = GridBagConstraints.NONE;
+        gbc_btnSendMoForwardSm.gridx = 0;
+        gbc_btnSendMoForwardSm.gridy = 0;
+        panel_1.add(btnSendMoForwardSm, gbc_btnSendMoForwardSm);
 
         JButton btnSendAlertServiceCentre = new JButton("Send AlertServiceCentre");
         btnSendAlertServiceCentre.addActionListener(new ActionListener() {
@@ -139,13 +148,12 @@ public class TestSmsClientForm extends TestingForm {
                 sendAlertServiceCentre();
             }
         });
-        btnSendAlertServiceCentre.setBounds(173, 0, 187, 25);
-        panel_1.add(btnSendAlertServiceCentre);
-        btnSendMoForwardSm.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                sendMoforwardsm();
-            }
-        });
+        GridBagConstraints gbc_btnSendAlertServiceCentre = new GridBagConstraints();
+        gbc_btnSendAlertServiceCentre.insets = new Insets(5, 5, 5, 5);
+        gbc_btnSendAlertServiceCentre.fill = GridBagConstraints.NONE;
+        gbc_btnSendAlertServiceCentre.gridx = 1;
+        gbc_btnSendAlertServiceCentre.gridy = 0;
+        panel_1.add(btnSendAlertServiceCentre, gbc_btnSendAlertServiceCentre);
 
         JPanel panel_2 = new JPanel();
         GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -207,9 +215,12 @@ public class TestSmsClientForm extends TestingForm {
 
         lbState = new JLabel("-");
         GridBagConstraints gbc_lbState = new GridBagConstraints();
+        gbc_lbState.insets = new Insets(0, 0, 5, 5);
         gbc_lbState.gridx = 1;
         gbc_lbState.gridy = 7;
         panel.add(lbState, gbc_lbState);
+
+        setSize(getPreferredSize());
     }
 
     public void setData(TestSmsClientManMBean smsClient) {
