@@ -909,14 +909,14 @@ public class TestSmsServerMan extends TesterBase implements TestSmsServerManMBea
                         if (dlg.getApplicationContext().getApplicationContextVersion().getVersion() <= 2)
                             dlg.addForwardShortMessageRequest(md.da, md.oa, md.si, false);
                         else
-                            dlg.addMoForwardShortMessageRequest(md.da, md.oa, md.si, null, null);
+                            dlg.addMtForwardShortMessageRequest(md.da, md.oa, md.si, false, null);
                         mapDialog.send();
 
                         String mtData = createMtData(mapDialog.getLocalDialogId(), md.destImsi, md.vlrNumber, md.origIsdnNumber, md.serviceCentreAddr);
-                        currentRequestDef += "Rcvd emptTCont;Sent moReq;";
+                        currentRequestDef += "Rcvd emptTCont;Sent mtReq;";
                         this.countMoFsmReq++;
                         this.testerHost.sendNotif(SOURCE_NAME, "Rcvd: emptTCont", "", Level.DEBUG);
-                        this.testerHost.sendNotif(SOURCE_NAME, "Sent: moReq: " + md.msg, mtData, Level.DEBUG);
+                        this.testerHost.sendNotif(SOURCE_NAME, "Sent: mtReq: " + md.msg, mtData, Level.DEBUG);
                     } catch (Exception e) {
                         this.testerHost.sendNotif(SOURCE_NAME, "Exception when invoking close() : " + e.getMessage(), e, Level.ERROR);
                         return;
