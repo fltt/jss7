@@ -65,7 +65,7 @@ public class Client {
         if (!channel.connect(endpoint)) {
             while (!channel.finishConnect()) {
                 try {
-                    Thread.currentThread().sleep(1);
+                    Thread.sleep(100);
                 } catch (Exception e) {
                 }
             }
@@ -89,7 +89,7 @@ public class Client {
             if (msg != null)
                 return msg;
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
             }
         }
