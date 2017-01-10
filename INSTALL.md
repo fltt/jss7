@@ -19,6 +19,8 @@ the `libs` subdirectory:
 * [jmxtools-1.2.1.jar][]
 * [jreadline-0.17.jar][]
 * [log4j-1.2.17.zip][], the JAR (`log4j-1.2.17.jar`) is inside the ZIP
+* [apache-log4j-extras-1.2.17-bin.tar.gz][], the JAR
+  (`apache-log4j-extras-1.2.17.jar`) is inside the TAR
 * [JBoss AS 5.1.0.GA][], copy at least the following JARs from the
   `jboss-5.1.0.GA/lib` directory:
   * jboss-common-core.jar
@@ -38,6 +40,9 @@ it (you may organize them into a hierachy of subdirectories, if you feel
 like).
 Different versions from the ones shown above may or may not work -- for
 example, `jreadline-0.20` won't.
+
+*NOTE*: apache-log4j-extras-1.2.17.jar is optional -- you may skip it if
+        you don't need Apache log4j Extras' features.
 
 Optional Dependencies
 ---------------------
@@ -150,6 +155,7 @@ directly.
 [jmxtools-1.2.1.jar]: http://simile.mit.edu/maven/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.jar
 [jreadline-0.17.jar]: https://repository.jboss.org/nexus/content/repositories/releases/org/jboss/jreadline/jreadline/0.17/jreadline-0.17.jar
 [log4j-1.2.17.zip]: http://www.eu.apache.org/dist/logging/log4j/1.2.17/log4j-1.2.17.zip
+[apache-log4j-extras-1.2.17-bin.tar.gz]: http://www-eu.apache.org/dist/logging/log4j/extras/1.2.17/apache-log4j-extras-1.2.17-bin.tar.gz
 [JBoss AS 5.1.0.GA]: http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip/download
 [DAHDI drivers]: http://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-2.10.0+2.10.0.tar.gz
 [DSI Development Package]: http://www.dialogic.com/en/products/signaling-and-ss7-components/download/dsi-network-interface-boards.aspx

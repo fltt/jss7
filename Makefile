@@ -552,8 +552,8 @@ SGW_DEPLOY_BUILD_LIST := sgw/boot/src/main/config/sgw-beans.xml
 
 # ?? $(activation.buildname) $(dtdparser121.buildname)
 # ?? $(jaxb-api.buildname) $(xml-apis.buildname) $(jbossxb.buildname)
-SGW_JAR_BUILD_LIST := $(boot.buildname) $(commons.buildname) $(gateway.buildname) \
-                      $(java-getopt.buildname) $(javolution.buildname) \
+SGW_JAR_BUILD_LIST := $(apache-log4j-extras.buildname) $(boot.buildname) $(commons.buildname) \
+                      $(gateway.buildname) $(java-getopt.buildname) $(javolution.buildname) \
                       $(jboss-common-core.buildname) $(jboss-dependency.buildname) \
                       $(jboss-kernel.buildname) $(jboss-logging-spi.buildname) \
                       $(jboss-mdr.buildname) $(jboss-reflect.buildname) $(jboss-xml-binding.buildname) \
@@ -584,17 +584,18 @@ SS7_SIMULATOR_CONF_BUILD_LIST := tools/simulator/bootstrap/src/main/config/log4j
 
 SS7_SIMULATOR_DATA_BUILD_LIST := tools/simulator/bootstrap/src/main/config/data.txt
 
-SS7_SIMULATOR_JAR_BUILD_LIST := $(asn.buildname) $(cap-api.buildname) $(cap-impl.buildname) \
-                                $(commons.buildname) $(congestion.buildname) $(java-getopt.buildname) \
-                                $(inap-api.buildname) $(inap-impl.buildname) $(isup-api.buildname) \
-                                $(isup-impl.buildname) $(javolution.buildname) $(jmxtools.buildname) \
-                                $(log4j.buildname) $(m3ua-api.buildname) $(m3ua-impl.buildname) \
-                                $(map-api.buildname) $(map-impl.buildname) $(mobicents-dialogic.buildname) \
-                                $(mtp.buildname) $(mtp-api.buildname) $(sccp-api.buildname) \
-                                $(sccp-impl.buildname) $(sctp-api.buildname) $(sctp-impl.buildname) \
-                                $(simulator-core.buildname) $(simulator-gui.buildname) \
-                                $(statistics-api.buildname) $(statistics-impl.buildname) \
-                                $(stream.buildname) $(tcap-api.buildname) $(tcap-impl.buildname)
+SS7_SIMULATOR_JAR_BUILD_LIST := $(apache-log4j-extras.buildname) $(asn.buildname) $(cap-api.buildname) \
+                                $(cap-impl.buildname) $(commons.buildname) $(congestion.buildname) \
+                                $(java-getopt.buildname) $(inap-api.buildname) $(inap-impl.buildname) \
+                                $(isup-api.buildname) $(isup-impl.buildname) $(javolution.buildname) \
+                                $(jmxtools.buildname) $(log4j.buildname) $(m3ua-api.buildname) \
+                                $(m3ua-impl.buildname) $(map-api.buildname) $(map-impl.buildname) \
+                                $(mobicents-dialogic.buildname) $(mtp.buildname) $(mtp-api.buildname) \
+                                $(sccp-api.buildname) $(sccp-impl.buildname) $(sctp-api.buildname) \
+                                $(sctp-impl.buildname) $(simulator-core.buildname) \
+                                $(simulator-gui.buildname) $(statistics-api.buildname) \
+                                $(statistics-impl.buildname) $(stream.buildname) $(tcap-api.buildname) \
+                                $(tcap-impl.buildname)
 
 
 SS7_PROTOCOLS_BUILD_LIST := $(cap-api.buildname) $(cap-impl.buildname) $(inap-api.buildname) \
