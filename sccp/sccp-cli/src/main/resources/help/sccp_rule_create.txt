@@ -102,6 +102,8 @@ PARAMETERS
 	
 					Value		Description
 					----------------------------------	
+					*		Match any
+
 					0		Unknown
 
 					1  - 63		International Service

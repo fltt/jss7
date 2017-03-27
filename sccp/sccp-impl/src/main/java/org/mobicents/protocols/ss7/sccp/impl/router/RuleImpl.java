@@ -320,7 +320,8 @@ public class RuleImpl implements Rule, Serializable {
                 }
 
                 // translation type should match
-                if (((GT0011) patternGT).getTranslationType() != gt1.getTranslationType()) {
+                if ((((GT0011) patternGT).getTranslationType() != -1) &&
+                    (((GT0011) patternGT).getTranslationType() != gt1.getTranslationType())) {
                     if (logger.isInfoEnabled()) {
                         logger.info(String.format("TT didn't match. Pattern TT=%s Address TT=%s Return  False",
                                 ((GT0011) patternGT).getTranslationType(), gt1.getTranslationType()));
@@ -359,7 +360,8 @@ public class RuleImpl implements Rule, Serializable {
                 }
 
                 // translation type should match
-                if (((GT0100) patternGT).getTranslationType() != gt2.getTranslationType()) {
+                if ((((GT0100) patternGT).getTranslationType() != -1) &&
+                    (((GT0100) patternGT).getTranslationType() != gt2.getTranslationType())) {
                     if (logger.isInfoEnabled()) {
                         logger.info(String.format("TT didn't match. Pattern TT=%s Address TT=%s Return  False",
                                 ((GT0100) patternGT).getTranslationType(), gt2.getTranslationType()));
@@ -407,7 +409,8 @@ public class RuleImpl implements Rule, Serializable {
                 }
 
                 // translation type should match
-                if (((GT0010) patternGT).getTranslationType() != gt3.getTranslationType()) {
+                if ((((GT0010) patternGT).getTranslationType() != -1) &&
+                    (((GT0010) patternGT).getTranslationType() != gt3.getTranslationType())) {
                     if (logger.isInfoEnabled()) {
                         logger.info(String.format("TT didn't match. Pattern TT=%s Address TT=%s Return  False",
                                 ((GT0010) patternGT).getTranslationType(), gt3.getTranslationType()));

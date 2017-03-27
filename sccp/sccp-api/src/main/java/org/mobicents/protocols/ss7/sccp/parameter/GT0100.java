@@ -21,6 +21,7 @@ package org.mobicents.protocols.ss7.sccp.parameter;
 
 import java.io.IOException;
 
+import javolution.text.CharArray;
 import javolution.xml.XMLFormat;
 import javolution.xml.stream.XMLStreamException;
 
@@ -105,7 +106,11 @@ public class GT0100 extends GlobalTitle {
     protected static final XMLFormat<GT0100> XML = new XMLFormat<GT0100>(GT0100.class) {
 
         public void write(GT0100 ai, OutputElement xml) throws XMLStreamException {
-            xml.setAttribute(TRANSLATION_TYPE, ai.tt);
+            if (ai.tt < 0) {
+                xml.setAttribute(TRANSLATION_TYPE, "*");
+            } else {
+                xml.setAttribute(TRANSLATION_TYPE, ai.tt);
+            }
             xml.setAttribute(ENCODING_SCHEME, ai.encodingScheme.getValue());
             xml.setAttribute(NUMBERING_PLAN, ai.np.getValue());
             xml.setAttribute(NATURE_OF_ADDRESS_INDICATOR, ai.nai.getValue());
@@ -113,7 +118,8 @@ public class GT0100 extends GlobalTitle {
         }
 
         public void read(InputElement xml, GT0100 ai) throws XMLStreamException {
-            ai.tt = xml.getAttribute(TRANSLATION_TYPE).toInt();
+            CharArray tt = xml.getAttribute(TRANSLATION_TYPE);
+            ai.tt = tt.equals("*") ? -1 : tt.toInt();
             ai.encodingScheme = EncodingScheme.valueOf(xml.getAttribute(ENCODING_SCHEME).toInt());
             try {
                 ai.np = NumberingPlan.valueOf(xml.getAttribute(NUMBERING_PLAN).toInt());

@@ -597,7 +597,8 @@ public class SccpExecutor implements ShellExecutor {
             throw new Exception(String.format("Address Indicator %d indicates that PointCode is present, however PointCode passed is 0", ai));
         }
 
-        int tt = Integer.parseInt(options[index++]);
+        int tt = options[index].equals("*") ? -1 : Integer.parseInt(options[index]);
+        ++index;
         NumberingPlan np = NumberingPlan.valueOf(Integer.parseInt(options[index++]));
         NatureOfAddress nai = NatureOfAddress.valueOf(Integer.parseInt(options[index++]));
 
