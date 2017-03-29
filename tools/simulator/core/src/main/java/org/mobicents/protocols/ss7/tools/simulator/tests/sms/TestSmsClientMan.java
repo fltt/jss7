@@ -99,6 +99,9 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
 
     public static String SOURCE_NAME = "TestSmsClient";
 
+    private static final byte[] hlrPCS = {0x41, 0x54, 0x4E, 0x48};
+    private static final byte[] mscPCS = {0x41, 0x54, 0x4E, 0x4D};
+
     private final String name;
     private MapMan hlrMapMan;
     private MapMan mscMapMan;
@@ -779,8 +782,11 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
             this.testerHost.sendNotif(SOURCE_NAME, "Sent: errSubBusyForMt", uData, Level.DEBUG);
             break;
         case MtFSMReaction.VAL_ERROR_SYSTEM_FAILURE:
+            MAPExtensionContainer ec = mapProvider.getMAPParameterFactory()
+                .createMAPExtensionContainer(null, mscPCS);
             mapErrorMessage = mapProvider.getMAPErrorMessageFactory().createMAPErrorMessageSystemFailure(
-                    (long) curDialog.getApplicationContext().getApplicationContextVersion().getVersion(), NetworkResource.vmsc, null, null);
+                    (long) curDialog.getApplicationContext().getApplicationContextVersion().getVersion(),
+                    NetworkResource.vmsc, null, ec);
             curDialog.sendErrorComponent(invokeId, mapErrorMessage);
 
             this.countErrSent++;
@@ -1037,8 +1043,11 @@ public class TestSmsClientMan extends TesterBase implements TestSmsClientManMBea
                 break;
 
             case SRIReaction.VAL_ERROR_SYSTEM_FAILURE:
+                MAPExtensionContainer ec = mapProvider.getMAPParameterFactory()
+                    .createMAPExtensionContainer(null, hlrPCS);
                 mapErrorMessage = mapProvider.getMAPErrorMessageFactory().createMAPErrorMessageSystemFailure(
-                        (long) curDialog.getApplicationContext().getApplicationContextVersion().getVersion(), NetworkResource.hlr, null, null);
+                        (long) curDialog.getApplicationContext().getApplicationContextVersion().getVersion(),
+                        NetworkResource.hlr, null, ec);
                 curDialog.sendErrorComponent(invokeId, mapErrorMessage);
 
                 this.countErrSent++;
