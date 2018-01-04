@@ -50,7 +50,6 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
     private static Logger logger = Logger.getLogger(NodalInterworkingFunction.class);
 
     private LinksetSelector linkSetSelector = new LinksetSelector();
-    private LinksetStream linksetStream = null;
 
     private LinksetManager linksetManager = null;
 
@@ -64,7 +63,6 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
     // max data size is 2176;
     private byte[] rxBuffer = new byte[2176];
 
-    private ConcurrentLinkedQueue<byte[]> mtpqueue = new ConcurrentLinkedQueue<byte[]>();
     private ConcurrentLinkedQueue<Mtp3TransferPrimitive> m3uaqueue = new ConcurrentLinkedQueue<Mtp3TransferPrimitive>();
 
     private IntConcurrentHashMap<Linkset> linksets = new IntConcurrentHashMap<Linkset>();
@@ -92,7 +90,7 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
     public void setM3UAManagement(M3UAManagement m3UAManagement) {
         this.m3UAManagement = (M3UAManagementImpl) m3UAManagement;
         this.m3UAManagement.addMtp3UserPartListener(this);
-        this.mtp3TransferPrimitiveFactory = this.m3UAManagement.getMtp3TransferPrimitiveFactory();
+        mtp3TransferPrimitiveFactory = this.m3UAManagement.getMtp3TransferPrimitiveFactory();
     }
 
     // Layer4 methods
@@ -100,8 +98,7 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
         try {
             linksets.add(linkset, linkset.getApc());
 
-            linksetStream = linkset.getLinksetStream();
-            linksetStream.register(this.linkSetSelector);
+            linkset.getLinksetStream().register(linkSetSelector);
         } catch (IOException ex) {
             logger.error(String.format("Registration for %s LinksetStream failed", linkset.getName()), ex);
         }
@@ -116,29 +113,28 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
     public void start() throws Exception {
 
         // Linkset
-        this.linksetManager.setLayer4(this);
+        linksetManager.setLayer4(this);
 
         // Add all linkset stream
-        FastMap<String, Linkset> map = this.linksetManager.getLinksets();
+        FastMap<String, Linkset> map = linksetManager.getLinksets();
         for (FastMap.Entry<String, Linkset> e = map.head(), end = map.tail(); (e = e.getNext()) != end;) {
             Linkset value = e.getValue();
             this.add(value);
         }
 
-        this.started = true;
+        started = true;
         this.activate(false);
         scheduler.submit(this, scheduler.INTERNETWORKING_QUEUE);
     }
 
     public void stop() throws Exception {
-        this.started = false;
+        started = false;
     }
 
     public long perform() {
         Mtp3TransferPrimitive currPrimitive;
-        if (!started) {
+        if (!started)
             return 0;
-        }
 
         try {
             FastList<SelectorKey> selected = linkSetSelector.selectNow(OP_READ_WRITE, 1);
@@ -151,7 +147,7 @@ public class NodalInterworkingFunction extends Task implements Layer4, Mtp3UserP
                     System.arraycopy(rxBuffer, 0, tempBuffer, 0, size);
 
                     currPrimitive = mtp3TransferPrimitiveFactory.createMtp3TransferPrimitive(tempBuffer);
-                    this.m3UAManagement.sendMessage(currPrimitive);
+                    m3UAManagement.sendMessage(currPrimitive);
                     size = lss.read(rxBuffer);
                 }
             }
