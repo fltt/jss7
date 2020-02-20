@@ -205,7 +205,7 @@ public class SccpManagement {
         }
     }
 
-    private void sendManagementMessage(int dpc, int messageTypeCode, int affectedSsn, int subsystemMultiplicityIndicator) {
+    private void sendManagementMessage(int dpc, int opc, int messageTypeCode, int affectedSsn, int subsystemMultiplicityIndicator) {
 
         Mtp3ServiceAccessPoint sap = this.sccpStackImpl.router.findMtp3ServiceAccessPoint(dpc, 0);
         if (sap == null) {
@@ -215,6 +215,8 @@ public class SccpManagement {
         int affectedPc;
         if (messageTypeCode == SST || messageTypeCode == SOG) {
             affectedPc = dpc;
+        } else if (opc > 0) {
+            affectedPc = opc;
         } else {
             affectedPc = sap.getOpc();
         }
@@ -244,7 +246,9 @@ public class SccpManagement {
     }
 
     private void sendSSA(SccpMessage msg, int affectedSsn) {
-        this.sendManagementMessage(((SccpMessageImpl) msg).getIncomingOpc(), SSA, affectedSsn, 0);
+        this.sendManagementMessage(((SccpMessageImpl) msg).getIncomingOpc(),
+                                   ((SccpMessageImpl) msg).getIncomingDpc(),
+                                   SSA, affectedSsn, 0);
     }
 
     protected void broadcastChangedSsnState(int affectedSsn, boolean inService) {
@@ -262,9 +266,9 @@ public class SccpManagement {
             if (concernedPointCode == ALL_POINT_CODE || concernedPointCode == dpc) {
                 // Send SSA/SSP to only passed concerned point code
                 if (inService)
-                    this.sendManagementMessage(dpc, SSA, affectedSsn, 0);
+                    this.sendManagementMessage(dpc, -1, SSA, affectedSsn, 0);
                 else
-                    this.sendManagementMessage(dpc, SSP, affectedSsn, 0);
+                    this.sendManagementMessage(dpc, -1, SSP, affectedSsn, 0);
             }
         }
     }
@@ -285,7 +289,7 @@ public class SccpManagement {
 
         // Send SSP (when message is mtp3-originated)
         if (msg.getIsMtpOriginated()) {
-            this.sendManagementMessage(dpc, SSP, ssn, 0);
+            this.sendManagementMessage(dpc, -1, SSP, ssn, 0);
         }
     }
 
@@ -777,7 +781,7 @@ public class SccpManagement {
                     this.startTest();
                 }
 
-                sendManagementMessage(affectedPc, SST, ssn, 0);
+                sendManagementMessage(affectedPc, -1, SST, ssn, 0);
 
             }// while
 
