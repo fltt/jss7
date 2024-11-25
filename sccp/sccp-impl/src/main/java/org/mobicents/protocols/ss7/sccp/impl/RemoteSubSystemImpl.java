@@ -45,7 +45,7 @@ public class RemoteSubSystemImpl implements XMLSerializable, RemoteSubSystem {
     private boolean remoteSsnProhibited;
 
     public RemoteSubSystemImpl() {
-
+        remoteSsnProhibited = true;
     }
 
     public RemoteSubSystemImpl(int remoteSpc, int remoteSsn, int remoteSsnFlag, boolean markProhibitedWhenSpcResuming) {
@@ -53,6 +53,7 @@ public class RemoteSubSystemImpl implements XMLSerializable, RemoteSubSystem {
         this.remoteSsn = remoteSsn;
         this.remoteSsnFlag = remoteSsnFlag;
         this.markProhibitedWhenSpcResuming = markProhibitedWhenSpcResuming;
+        remoteSsnProhibited = true;
     }
 
     public boolean isRemoteSsnProhibited() {
